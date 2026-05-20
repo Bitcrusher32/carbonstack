@@ -1,9 +1,18 @@
-# carbonstack
+﻿# CarbonStack
 
-Part of the CarbonStack secure communications appliance project.
+CarbonStack is an open-source secure communications appliance project.
 
-## CarbonStack Project Components
+Its goal is not to build a better smartphone. Its goal is to stop being a smartphone.
 
-- CarbonStackOS — hardened Android-derived appliance OS
-- CarbonStackComms — text-first encrypted messaging client
-- CarbonStackCypher — self-hostable encrypted relay/server
+CarbonStack is composed of:
+
+- **CarbonStackOS** — a deliberately constrained Android-derived operating system for a single-purpose communications appliance.
+- **CarbonStackComms** — a text-first encrypted messaging client.
+- **CarbonStackCypher** — a hostile-server relay and storage stack.
+- **CarbonStack Protocol Docs** — shared threat model, identity model, trust-state model, text policy, file policy, and recovery model.
+
+Core doctrine:
+
+> Every feature is guilty until it proves it does not add unacceptable parser, network, sensor, identity, or filesystem authority.
+
+CarbonStack prioritizes boring text, loud trust changes, hostile-server assumptions, disposable parsers, immutable base images, and minimal ambient attack surface.
