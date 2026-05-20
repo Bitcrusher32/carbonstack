@@ -16,3 +16,8 @@ Core doctrine:
 > Every feature is guilty until it proves it does not add unacceptable parser, network, sensor, identity, or filesystem authority.
 
 CarbonStack prioritizes boring text, loud trust changes, hostile-server assumptions, disposable parsers, immutable base images, and minimal ambient attack surfaces. Convenience smartphone features are deprioritized over security.
+
+## Current Specification Docs
+
+- `docs/14-carbonstack-full-specification.md` — canonical full specification
+- `docs/15-protocol-foundation.md` — shared protocol foundation doctrine
