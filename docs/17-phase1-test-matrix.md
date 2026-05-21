@@ -115,3 +115,11 @@ Comms command-level tests if command behavior grows.
 CI-style automation after the local runner remains stable.
 Hostile-server behavior tests after real protocol selection.
 
+
+
+## Phase 2A Validation Addendum
+
+| Area | Test / Validation | Location | Status |
+|---|---|---|---|
+| Phase 2A trust lifecycle | trust-list, verify, changed-device block, reverify, revocation block | carbonstack-comms/scripts/test-trust-lifecycle.ps1 | VALIDATED |
+| Cross-repo local runner | Cypher tests, Comms tests, CLI lifecycle, and Phase 2A trust lifecycle | carbonstack/scripts/validate-local.ps1 | VALIDATED |

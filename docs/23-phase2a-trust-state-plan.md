@@ -111,7 +111,8 @@ It validates:
 - development send warns but allows changed device
 - revocation marks Bob as revoked
 - revoked device blocks even in development mode
-- final trust history records verification, key change, and revocation events
+- final trust history records verification, key change, re-verification, and revocation events
+- trust-list shows verified, changed, reverified, and revoked states across the lifecycle
 
 ## Current Security Claim
 
@@ -144,6 +145,13 @@ Provider code should expose cryptographic facts.
 
 CarbonStack application logic should own trust decisions.
 
+## v0.1.1 Polish Additions
+
+- trust-list provides local trust-store inspection.
+- Changed devices can be reverified through verify-device.
+- Strict send succeeds again after re-verification.
+- Phase 2A trust lifecycle validation covers trust-list, changed state, reverified state, and revoked state.
+
 ## Next Work
 
 Immediate next:
@@ -159,4 +167,6 @@ Later:
 - research libsignal integration feasibility
 - research MLS for future groups
 - define hostile-server tamper tests
+
+
 
