@@ -123,7 +123,10 @@ try {
     }
 
     Step "Run Comms lifecycle smoke test"
-    Run-In $Comms "powershell -ExecutionPolicy Bypass -File .\scripts\test-local-lifecycle.ps1"
+Run-In $Comms "powershell -ExecutionPolicy Bypass -File .\scripts\test-local-lifecycle.ps1"
+
+Step "Run Comms Phase 2A trust lifecycle smoke test"
+Run-In $Comms "powershell -ExecutionPolicy Bypass -File .\scripts\test-trust-lifecycle.ps1"
 }
 finally {
     if ($CypherProcess -and -not $CypherProcess.HasExited) {
@@ -139,3 +142,4 @@ finally {
 
 Step "Validation complete"
 Write-Host "PASS: CarbonStack Phase 1 local validation passed"
+
