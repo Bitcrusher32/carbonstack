@@ -50,7 +50,7 @@ Phase 1 does not cover:
 | Comms state save/load | local JSON development state | `carbonstack-comms/internal/state/state_test.go` | VALIDATED |
 | Comms Cypher client wrapper | HTTP client methods against test server | `carbonstack-comms/internal/client/cypher_test.go` | VALIDATED |
 | CLI lifecycle smoke test | Alice/Bob lifecycle through CLI | `carbonstack-comms/scripts/test-local-lifecycle.ps1` | VALIDATED |
-| Cross-repo Phase 1 runner | Cypher tests + Comms tests + lifecycle smoke test | `carbonstack/scripts/validate-phase1.ps1` | VALIDATED |
+| Cross-repo Phase 1 runner | Cypher tests + Comms tests + lifecycle smoke test | `carbonstack/scripts/validate-local.ps1` | VALIDATED |
 | Real cryptography | mature protocol integration | future work | NOT VALIDATED |
 | Hostile-server harness | malicious relay behavior tests | future work | NOT VALIDATED |
 | Android client | Android app lifecycle | future work | NOT VALIDATED |
@@ -58,11 +58,11 @@ Phase 1 does not cover:
 
 ## Required Commands
 
-Run the full local Phase 1 validation runner:
+Run the full local local validation runner:
 
 ```powershell
 cd C:\Users\udaiv\repos\carbonstack_umbrella\carbonstack
-powershell -ExecutionPolicy Bypass -File .\scripts\validate-phase1.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-local.ps1
 Run Cypher tests only:
 
 cd C:\Users\udaiv\repos\carbonstack_umbrella\carbonstack-cypher
@@ -114,3 +114,4 @@ More negative-path API tests for missing fields and unsupported content/protocol
 Comms command-level tests if command behavior grows.
 CI-style automation after the local runner remains stable.
 Hostile-server behavior tests after real protocol selection.
+
