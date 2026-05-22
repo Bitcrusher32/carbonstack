@@ -365,6 +365,45 @@ Should return:
 
 CarbonStack must not treat this as a pure decrypt function.
 
+
+## v0.2.8 Persistence Lessons
+
+The OpenMLS MemoryStorage persistence probe added an important provider-boundary lesson.
+
+The provider boundary must support restart-aware state management.
+
+Validated at scratch level:
+
+- provider storage can be saved and loaded through `MemoryStorage` file persistence
+- fresh providers can load saved Alice/Bob provider storage
+- Alice/Bob groups can be reloaded with `MlsGroup::load`
+- loaded groups preserve epoch and member count
+- a post-reload message can be protected/opened
+- Alice signer persistence is required for Bob to validate post-reload messages
+
+Important failure before success:
+
+- phase-B initially created a fresh Alice signer
+- Bob rejected the message with `ValidationError(InvalidSignature)`
+- this is correct protocol behavior
+- signer identity persistence must be explicit provider state
+
+Design implications:
+
+- provider-local storage must be first-class
+- signer identity persistence must be first-class
+- group reload by conversation/group ID must be first-class
+- checkpoint-after-send is required
+- checkpoint-after-receive is required
+- restart recovery should produce typed provider errors
+- invalid signature after restart should become a trust/security event, not a generic crash
+
+Scratch limitation:
+
+- MemoryStorage JSON/base64 persistence is not production storage
+- temp JSON signer persistence is not secure
+- this validates feasibility only, not final vault architecture
+
 ## Error Implications
 
 Provider errors should be typed enough for CarbonStack policy.
@@ -516,4 +555,5 @@ Not allowed:
 - Hostile-server security is solved.
 - Replay resistance is tested.
 - Metadata privacy is solved.
+
 
