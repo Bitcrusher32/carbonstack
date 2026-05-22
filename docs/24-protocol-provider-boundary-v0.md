@@ -449,6 +449,27 @@ CarbonStack will proceed with:
 - Rust allowed inside protocol/provider modules if needed
 - no real provider integration until provider boundary skeleton is committed and validated
 
+## Provider Skeleton Implementation Status
+
+Initial Phase 2B provider-boundary code now exists in CarbonStackComms.
+
+Implemented path:
+
+- carbonstack-comms/internal/protocol
+
+Implemented pieces:
+
+- protocol-neutral provider interface
+- provider-neutral identity, bundle, verification, conversation, protected-message, opened-message, and provider-event types
+- mock provider implementation
+- mock provider package tests
+- no MLS dependency
+- no libsignal dependency
+- no OpenMLS dependency
+- no production security claims
+
+This code is a replacement seam, not a real cryptographic provider.
+
 ## Next Work
 
 Implement provider-neutral skeleton in `carbonstack-comms/internal/protocol`.
@@ -456,3 +477,4 @@ Implement provider-neutral skeleton in `carbonstack-comms/internal/protocol`.
 Keep current MockCryptoProvider behavior working.
 
 Local validation must continue passing.
+

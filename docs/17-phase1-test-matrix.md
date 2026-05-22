@@ -123,3 +123,11 @@ Hostile-server behavior tests after real protocol selection.
 |---|---|---|---|
 | Phase 2A trust lifecycle | trust-list, verify, changed-device block, reverify, revocation block | carbonstack-comms/scripts/test-trust-lifecycle.ps1 | VALIDATED |
 | Cross-repo local runner | Cypher tests, Comms tests, CLI lifecycle, and Phase 2A trust lifecycle | carbonstack/scripts/validate-local.ps1 | VALIDATED |
+
+
+## Phase 2B Validation Addendum
+
+| Area | Test / Validation | Location | Status |
+|---|---|---|---|
+| Protocol provider skeleton | Provider-neutral interface/types and mock provider package tests | carbonstack-comms/internal/protocol | VALIDATED |
+| Provider boundary doc | MLS-shaped provider-neutral architecture, Signal as reference/fallback | carbonstack/docs/24-protocol-provider-boundary-v0.md | VALIDATED |

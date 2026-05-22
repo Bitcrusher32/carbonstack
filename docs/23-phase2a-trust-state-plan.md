@@ -170,3 +170,19 @@ Later:
 
 
 
+
+
+## Phase 2B handoff note
+
+Phase 2A trust-state behavior is now sufficient to support provider-boundary work.
+
+The next layer is provider-neutral protocol plumbing, not MLS/libsignal integration.
+
+Current provider-boundary direction:
+
+- CarbonStack owns trust state, warnings, verification, revocation, and send policy.
+- Protocol providers own cryptographic identity, public setup bundles, conversation/session/group state, message protection, message opening, and provider signals.
+- MLS is the preferred long-term architecture shape.
+- Signal/libsignal remains reference/fallback only.
+- No AGPL dependency is introduced into mainline at this stage.
+
