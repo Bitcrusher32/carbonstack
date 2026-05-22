@@ -14,7 +14,7 @@ It does not authorize production security claims.
 
 ## Purpose
 
-The OpenMLS scratch result proved that a local two-member MLS conversation can be created, joined, and used to protect/open one application message.
+The OpenMLS scratch result proved that a local two-member MLS conversation can be created, joined, and used to protect/open application messages. The current scratch crate has also validated a two-message state-continuity probe inside one process.
 
 The next question is not "how do we immediately wire this into Comms?"
 
@@ -331,6 +331,12 @@ Should return:
 - epoch
 - state-updated event if applicable
 
+Important lesson:
+
+- OpenMLS `create_message` required mutable Alice group state in the scratch probe.
+- Outbound protection may mutate provider state.
+- Future provider persistence must checkpoint after sends, not only after receives.
+
 ### Open / Process Message
 
 Provider operation:
@@ -347,6 +353,7 @@ OpenMLS equivalent:
 Important lesson:
 
 - processing/opening may mutate local group/provider state
+- both outbound protection and inbound opening should be treated as persistence-relevant state transitions
 
 Should return:
 
@@ -483,6 +490,11 @@ Suggested flow:
 10. Bob opens message 2.
 11. Record exactly what persistence was required.
 
+Current pre-restart result:
+
+- A two-message in-memory state-continuity probe has already passed.
+- The next experiment should move from in-memory continuity to real provider storage/export/reload behavior.
+
 ## Allowed Claims
 
 Allowed:
@@ -504,3 +516,4 @@ Not allowed:
 - Hostile-server security is solved.
 - Replay resistance is tested.
 - Metadata privacy is solved.
+

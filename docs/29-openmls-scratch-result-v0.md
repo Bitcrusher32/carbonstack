@@ -24,9 +24,9 @@ Yes, at scratch level, OpenMLS can create a two-member group, add a member, proc
 
 This is a meaningful feasibility signal, but not production integration.
 
-## Current Repos At v0.2.5
+## Current Repos At v0.2.6
 
-Known current heads from the v0.2.5 checkpoint:
+Known current heads from the v0.2.6 checkpoint:
 
 - carbonstack: `5ec9c31 docs: add OpenMLS upstream example notes`
 - carbonstack-comms: `d75bf46 test: probe OpenMLS application message flow`
@@ -145,6 +145,31 @@ Validated:
 - `ProcessedMessageContent::ApplicationMessage(...)` can be extracted.
 - `ApplicationMessage::into_bytes()` returns opened plaintext.
 - Bob-opened plaintext matches Alice plaintext.
+### 6. Two-message state-continuity probe
+
+Validated:
+
+- Alice can send a first application message to Bob.
+- Bob can process/open the first application message.
+- Alice can send a second application message in the same local run.
+- Bob can process/open the second application message.
+- Both opened plaintexts match the original Alice plaintexts.
+- In-memory provider/group state remains usable across sequential messages inside one process.
+
+Important lesson:
+
+- `create_message` required mutable Alice group state.
+- `process_message` required mutable Bob group state.
+- Design implication: both outbound protection and inbound processing can mutate provider state.
+- Future provider persistence must checkpoint after sends and receives, not only after receives.
+
+Limitation:
+
+- This does not validate disk persistence.
+- This does not validate process restart recovery.
+- This does not validate provider-state export/import.
+- This does not validate secure vault storage.
+
 
 Important lesson:
 
@@ -257,6 +282,17 @@ Required ignore posture:
 - `debug/`
 - `release/`
 
+
+## Artifact Guard
+
+CarbonStackComms now includes:
+
+- `scripts/check-no-rust-artifacts.ps1`
+
+This guard scans tracked Git files and fails if Rust/Cargo build artifacts are tracked.
+
+It should be run before committing or pushing Rust scratch changes.
+
 ## Safe Commands
 
 Run OpenMLS scratch directly:
@@ -295,7 +331,7 @@ Allowed:
 - The scratch crate can create a local two-member OpenMLS group.
 - The scratch crate can add Bob using Bob's KeyPackage.
 - The scratch crate can stage Bob from Welcome.
-- The scratch crate can locally protect/open one application message.
+- The scratch crate can locally protect/open application messages in a two-message state-continuity probe.
 - OpenMLS remains the first intended provider candidate.
 
 ## Not Allowed Claims
@@ -324,7 +360,7 @@ Next code experiment after docs/hygiene:
 
 - provider-state persistence / restart simulation
 
-The persistence/restart experiment should answer:
+The next persistence/restart experiment should answer:
 
 - Can Alice/Bob provider/group state survive beyond one in-memory run?
 - What must be persisted after group creation?
@@ -332,3 +368,4 @@ The persistence/restart experiment should answer:
 - What must be persisted after processing an application message?
 - Does OpenMLS expose a clean storage/export shape for CarbonStack?
 - Does CarbonStack need a sidecar/provider-state database layer?
+
