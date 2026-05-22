@@ -224,6 +224,43 @@ Continue with fixtures/sidecar research before integration.
 
 Re-evaluate mls-rs or defer provider integration.
 
+
+## Current Result: Same-Process Provider Storage Reload
+
+The first persistence spike rung has passed in the Rust-only scratch crate.
+
+Validated:
+
+- Alice and Bob still use separate provider/storage instances.
+- Alice sends message one.
+- Bob opens message one.
+- Alice group is loaded from Alice provider storage using `MlsGroup::load`.
+- Bob group is loaded from Bob provider storage using `MlsGroup::load`.
+- Loaded Alice and Bob groups preserve epoch and member count.
+- Loaded Alice group can create message two.
+- Loaded Bob group can process/open message two.
+- Bob-opened plaintext for message two matches Alice plaintext.
+
+Important conclusion:
+
+- OpenMLS provider storage contains usable group state inside the same process.
+- CarbonStack needs a provider load/reload concept.
+- This is stronger than merely keeping mutable group variables alive.
+
+Still not validated:
+
+- disk-backed storage
+- process restart recovery
+- portable state export/import
+- secure vault mapping
+- custom CarbonStack provider storage adapter
+- Go/Rust compatibility
+- Comms/Cypher integration
+
+Next rung:
+
+- identify real disk-backed provider storage or a practical storage adapter strategy.
+
 ## Compatibility Spike Dependency
 
 The Go/Rust compatibility spike should not begin until this persistence spike answers at least:
@@ -260,3 +297,4 @@ Not allowed:
 - OpenMLS is integrated into CarbonStackComms.
 - CarbonStack has production E2EE.
 - hostile-server security is solved.
+
