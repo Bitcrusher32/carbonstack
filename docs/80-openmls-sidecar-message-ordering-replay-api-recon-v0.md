@@ -308,79 +308,62 @@ Do not make it trust-relevant in the sidecar yet without a broader event taxonom
 
 ## 8. Probe F: corrupted artifact
 
-### Flow attempted
+### Initial failed attempt
 
-Fresh state intended:
+The first corruption probe was inconclusive because PowerShell failed to resolve the good artifact path before byte mutation. No corrupt artifact was created, so the sidecar only observed a missing file.
 
-1. Alice identity-create.
-2. Bob identity-create.
-3. Bob public-bundle-export --write-artifact.
-4. Alice conversation-create.
-5. Alice conversation-add-member.
-6. Bob conversation-join.
-7. Alice protects message-0001.
-8. Copy/truncate application-message.bin.
-9. Bob opens corrupt copy.
+That initial failure produced:
 
-### Actual result
-
-This probe is inconclusive.
-
-PowerShell failed to read the expected good artifact path:
-
-    Exception calling "ReadAllBytes" with "1" argument(s): Could not find a part of the path
-
-Then:
-
-    Cannot index into a null array.
-
-Then:
-
-    WriteAllBytes(...): Value cannot be null. Parameter name: bytes
-
-The corrupt artifact was never created. The later sidecar invocation correctly failed because the supplied corrupt artifact path did not exist.
-
-Sidecar failure:
-
-    ok=false
-    command=message-open
     code=conversation_or_message_missing
-    message="The system cannot find the file specified. (os error 2)"
     provider_event=provider.conversation.missing
-    severity=warning
-    trust_relevant=false
-    exit code 3
 
-### Conclusion
+This was missing-file behavior, not corrupted-artifact behavior.
 
-Corrupt artifact behavior is not validated by this probe.
+### Corrected flow
 
-Only missing-file behavior was observed.
-
-The corrupt-artifact probe should be repeated later with a path that is resolved from the current sidecar working directory before byte mutation.
-
-## 9. Corrected future corrupt-artifact probe
-
-Use resolved paths to avoid PowerShell relative-path confusion.
-
-Recommended shape:
+The corrected probe used resolved absolute paths:
 
     $Root = (Get-Location).Path
     $Good = Join-Path $Root ".carbonstack-openmls-sidecar-state\dev\conversations\carbonstack-test-conversation\messages\message-0001\application-message.bin"
     $Bad = Join-Path $Root ".carbonstack-openmls-sidecar-state\dev\conversations\carbonstack-test-conversation\messages\message-0001\corrupt-application-message.bin"
 
-    [byte[]]$Bytes = [System.IO.File]::ReadAllBytes($Good)
+The probe verified:
 
-    if ($Bytes.Length -lt 20) {
-        throw "artifact too short to truncate safely"
-    }
+    Test-Path $Good = True
+    Test-Path $Bad = True
 
-    [byte[]]$Truncated = $Bytes[0..($Bytes.Length - 10)]
-    [System.IO.File]::WriteAllBytes($Bad, $Truncated)
+Then it truncated the valid artifact without printing raw bytes and attempted:
 
-    cargo run -- message-open --device-label carbonstack-bob-device --conversation-label carbonstack-test-conversation --message-label corrupt-message-0001 --message $Bad
+    message-open --message-label corrupt-message-0001 --message <absolute corrupt artifact path>
 
-Do not print $Bytes.
+### Corrected result
+
+The corrupt artifact was rejected before message processing.
+
+Failure envelope:
+
+    ok=false
+    command=message-open
+    code=message_artifact_invalid
+    message="message artifact deserialization failed: EndOfStream"
+    provider_event=provider.message.invalid
+    severity=warning
+    trust_relevant=false
+    private_material_included=false
+    exit code 3
+
+### Conclusion
+
+Truncated/corrupt `application-message.bin` is rejected as invalid provider message material.
+
+For this exact truncation case, the sidecar maps the failure to:
+
+    message_artifact_invalid
+    provider.message.invalid
+
+This is the desired broad behavior for corrupted serialized MLS artifacts.
+
+Future tests can assert this path without inspecting raw artifact bytes.
 
 ## 10. Ordering/replay conclusions
 
@@ -402,9 +385,15 @@ Validated:
   - first open succeeds
   - second open fails with SecretReuseError
 
+Validated:
+
+- corrupted/truncated existing artifact behavior:
+  - rejected with message_artifact_invalid;
+  - provider_event=provider.message.invalid;
+  - underlying deserialization failure was EndOfStream.
+
 Not validated:
 
-- corrupted but existing artifact behavior;
 - wrong conversation label;
 - wrong device label;
 - long skipped-message windows;
@@ -474,13 +463,9 @@ But later, replay/secret-reuse should likely feed a user-visible warning or deli
 
 ## 12. Recommended next checkpoint
 
-Before implementing Go tests for ordering/replay, fix the remaining inconclusive corruption probe.
+The corrected corrupt-artifact probe is now validated.
 
-Recommended next step:
-
-    rerun corrected corrupt-artifact probe
-
-Then decide whether v0.2.40 should implement tests for:
+Next decide whether v0.2.40 should implement tests for:
 
     TestOpenMLSSidecarMessageOpenOutOfOrderTwoMessageDelivery
     TestOpenMLSSidecarMessageOpenDuplicateRejected
@@ -496,3 +481,5 @@ Do not route through Cypher yet.
 Do not migrate Alice state yet.
 
 Do not wire Comms runtime yet.
+
+
