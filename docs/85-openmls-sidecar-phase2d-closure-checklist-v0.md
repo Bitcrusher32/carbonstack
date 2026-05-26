@@ -124,14 +124,29 @@ This completes the intended v0.2.40 device-scoped artifact layout.
   - active sidecar operational call sites no longer use old global message artifact helpers;
   - `message-protect` now writes protected message artifacts under the sender device-scoped conversation path.
 
-- [ ] Wrong-device negative behavior:
-  - opening a message with a device that lacks joined conversation state should fail cleanly;
-  - expected likely code: missing device conversation provider storage;
-  - exact sidecar code/event should be recorded.
+- [x] Wrong-device negative behavior:
+  - opening a message with a device that has identity state but lacks joined conversation state fails cleanly before decrypt/process;
+  - validated by `TestOpenMLSSidecarMessageOpenWrongDeviceRejected`;
+  - result:
+    - `ok=false`;
+    - `code=conversation_or_message_missing`;
+    - `message="device conversation provider storage is missing"`;
+    - `provider_event=provider.conversation.missing`;
+    - `severity=warning`;
+    - `trust_relevant=false`;
+    - exit code `3`.
 
-- [ ] Wrong-conversation negative behavior:
-  - opening a valid artifact under the wrong conversation label should fail cleanly;
-  - exact code/event should be recorded.
+- [x] Wrong-conversation negative behavior:
+  - opening a valid artifact under a receiver conversation label with no joined provider storage fails cleanly before decrypt/process;
+  - validated by `TestOpenMLSSidecarMessageOpenWrongConversationRejected`;
+  - result:
+    - `ok=false`;
+    - `code=conversation_or_message_missing`;
+    - `message="device conversation provider storage is missing"`;
+    - `provider_event=provider.conversation.missing`;
+    - `severity=warning`;
+    - `trust_relevant=false`;
+    - exit code `3`.
 
 - [ ] Bidirectional proof:
   - after Alice adds Bob and Bob joins, Bob should protect a message and Alice should open it;
@@ -152,20 +167,20 @@ This completes the intended v0.2.40 device-scoped artifact layout.
 
 ## 6. Recommended next implementation/test rungs
 
-### v0.2.42 candidate: wrong-device / wrong-conversation negative tests
+### Completed during v0.2.41 polish: wrong-device / wrong-conversation negative tests
 
 Purpose:
 
     Validate that Cypher routing metadata mistakes fail safely.
 
-Suggested tests:
+Validated tests:
 
     TestOpenMLSSidecarMessageOpenWrongDeviceRejected
     TestOpenMLSSidecarMessageOpenWrongConversationRejected
 
-Expected outcomes should be discovered by manual probe or first failing test output before locking assertions.
+Both cases currently fail as missing receiver device/conversation provider storage before OpenMLS message processing.
 
-### v0.2.43 candidate: bidirectional message proof
+### Next candidate: bidirectional message proof
 
 Purpose:
 
@@ -236,3 +251,4 @@ Expected work:
 - keep dev-only constraints explicit;
 - decide what remains research-only;
 - avoid Android/Pixel 4a work until a barebones Android dev app exists much later.
+
