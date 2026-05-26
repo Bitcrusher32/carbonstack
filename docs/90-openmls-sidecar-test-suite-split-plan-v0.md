@@ -186,3 +186,22 @@ Do not collapse wrong-device and wrong-conversation tests into vague generic tes
 Do not rewrite behavior while splitting tests.
 
 Do not start Cypher routing in the test split rung.
+
+## v0.2.45 result note
+
+The Go OpenMLS sidecar contract test split landed at v0.2.45.
+
+Current split files:
+
+    openmls_sidecar_helpers_test.go
+    openmls_sidecar_provider_info_test.go
+    openmls_sidecar_identity_test.go
+    openmls_sidecar_public_bundle_test.go
+    openmls_sidecar_conversation_test.go
+    openmls_sidecar_message_test.go
+    openmls_sidecar_message_negative_test.go
+
+The tests continue to target the promoted sidecar path:
+
+    internal/protocol/mls/openmls-sidecar
+

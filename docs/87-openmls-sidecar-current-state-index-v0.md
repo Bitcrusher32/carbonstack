@@ -166,3 +166,35 @@ v0.2.46:
 v0.2.47:
 
     Begin Cypher minimal opaque MLS artifact relay recon.
+
+## v0.2.46 current-state update
+
+The maintainability promotion ladder has now landed through v0.2.45:
+
+- v0.2.43 promoted the sidecar scaffold to `carbonstack-comms/internal/protocol/mls/openmls-sidecar`;
+- v0.2.44 split promoted Rust modules into `cli.rs`, `envelope.rs`, `paths.rs`, and `schema.rs` while preserving behavior;
+- v0.2.45 split the Go sidecar contract tests by ownership;
+- v0.2.46 updates READMEs, current-state docs, known-good command references, and stale warning strings.
+
+The active sidecar path is:
+
+    carbonstack-comms/internal/protocol/mls/openmls-sidecar
+
+The research sidecar remains a frozen Phase 2D reference:
+
+    carbonstack-comms/internal/protocol/mls/research/openmls-sidecar
+
+The active Go sidecar contract tests are now split across:
+
+    internal/protocol/openmls_sidecar_helpers_test.go
+    internal/protocol/openmls_sidecar_provider_info_test.go
+    internal/protocol/openmls_sidecar_identity_test.go
+    internal/protocol/openmls_sidecar_public_bundle_test.go
+    internal/protocol/openmls_sidecar_conversation_test.go
+    internal/protocol/openmls_sidecar_message_test.go
+    internal/protocol/openmls_sidecar_message_negative_test.go
+
+Next planned rung:
+
+    v0.2.47 — Cypher minimal opaque MLS artifact relay recon.
+

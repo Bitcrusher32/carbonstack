@@ -237,3 +237,25 @@ Do not use the module split to:
 - change OpenMLS lifecycle semantics;
 - productionize storage;
 - add trust-state mutation.
+
+## v0.2.44 result note
+
+The first promoted Rust sidecar module split landed at v0.2.44.
+
+Completed modules:
+
+    src/cli.rs
+    src/envelope.rs
+    src/paths.rs
+    src/schema.rs
+
+Remaining optional future splits:
+
+    src/errors.rs
+    src/identity.rs
+    src/public_bundle.rs
+    src/conversation.rs
+    src/message.rs
+
+Conversation/message envelope printers and command-family logic may still be split later, but v0.2.44 completed the first behavior-preserving maintainability pass.
+

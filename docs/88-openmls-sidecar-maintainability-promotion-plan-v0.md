@@ -174,3 +174,15 @@ v0.2.42 is complete when the following docs exist:
 - command/schema matrix.
 
 No code changes are required for v0.2.42.
+
+## v0.2.46 status update
+
+The planned maintainability ladder has landed through v0.2.45:
+
+- v0.2.43 promoted the sidecar scaffold outside the research path;
+- v0.2.44 split the promoted Rust sidecar modules;
+- v0.2.45 split the Go sidecar contract tests;
+- v0.2.46 updates README/current-state/stale-warning documentation.
+
+The next planned rung is v0.2.47 Cypher minimal opaque MLS artifact relay recon.
+
