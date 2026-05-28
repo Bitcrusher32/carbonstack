@@ -1,63 +1,112 @@
-﻿# Roadmap
+﻿# CarbonStack Roadmap
 
-## Phase 0 — Foundation
+This roadmap describes the current public direction of CarbonStack.
 
-- project charter
-- threat model
-- non-goals
-- stack architecture
-- text policy
-- file policy
-- duress model
-- protocol investigation notes
+Older numbered docs may preserve older plans. Use this file and release-specific runbooks for current public-facing direction.
 
-## Phase 1 — CarbonStackComms + CarbonStackCypher
+## Current state
 
-- text-only messaging
-- encrypted local vault
-- hostile-server relay model
-- invite-only users
-- QR or hardware-key verification
-- no rich previews
-- no inline attachments
-- no plaintext notification content
+CarbonStack is in an experimental backbone phase.
 
-## Phase 2 — Security Assurance Matrix
+The current validated artifact is a local Cypher + Comms OpenMLS relay proof:
 
-- failure-mode analysis
-- hostile-server tests
-- key-change tests
-- parser rejection tests
-- recovery tests
-- device-state tests
-- compromise drills
+- OpenMLS KeyPackage relay;
+- OpenMLS Welcome relay;
+- OpenMLS application-message relay;
+- real local Cypher server;
+- Comms relay helper;
+- payload metadata validation;
+- consume-then-ack semantics;
+- repeatable smoke harness.
 
-## Phase 3 — Deployable Releases
+This is not a finished messenger.
 
-- signed release artifacts
-- documented server deployment
-- documented client build
-- backup and restore guide
-- admin security guide
-- security changelog
+This is not production-certified.
 
-## Phase 4 — CarbonStackOS Prototype
+This is not externally audited.
 
-- Pixel 9a target
-- AOSP / GrapheneOS-derived hardening concepts
-- locked bootloader
-- verified boot
-- signed OS images
-- no browser
-- no Play Services dependency
-- no package installer
-- CarbonStackComms only
+This is not Android-ready.
 
-## Phase 5 — Constrained Utility Layer
+## Near-term path
 
-- TXT notes
-- minimal MD notes
-- WAV playback
-- FLAC playback
-- custom USB transfer mode
-- optional restricted Bluetooth audio
+### v0.2.61 â€” Deployability runbook
+
+Complete.
+
+The current runbook is:
+
+    docs/113-experimental-backbone-deployability-runbook-v0.md
+
+### v0.2.62 â€” Public surface cleanup
+
+Current target.
+
+Scope:
+
+- README cleanup;
+- quickstart/runbook cleanup;
+- component repo public-surface cleanup;
+- stale public claims removal;
+- direct, reader-facing language;
+- strict security nonclaims.
+
+### v0.2.63 â€” Option C completion for testing
+
+Goal:
+
+- keep the current local harness path repeatable;
+- tighten known-good validation;
+- remove misleading helper names or stale test-only framing where necessary.
+
+### v0.2.64 â€” Inbox, ack, and schema semantics cleanup
+
+Goal:
+
+- standardize envelope lifecycle language;
+- clarify queued/acked states;
+- document payload metadata;
+- ensure schema/API docs match implementation.
+
+### v0.2.65+ â€” Option B planning and implementation
+
+Goal:
+
+- plan a user-visible CLI/dev harness path;
+- expose a repeatable self-test surface without pretending it is a production messenger.
+
+### Pre-v0.3.0 release-hardening checkpoint
+
+Goal:
+
+- repository cleanup;
+- release-facing README hardening;
+- stale-claims sweep;
+- known-good validation;
+- security disclaimer hardening;
+- clear component map;
+- no production certification claims.
+
+### v0.3.0 â€” Experimental backbone epoch
+
+Goal:
+
+- publish CarbonStack as an experimental server-deployable backbone;
+- use `carbonstack` as the release front door;
+- link component repos;
+- describe the concrete validated artifact as the Cypher + Comms OpenMLS relay backbone;
+- keep the release clearly pre-alpha and non-certified.
+
+## Long-term path
+
+Later work may include:
+
+- runtime Comms send/inbox OpenMLS integration;
+- trust-state mapping from sidecar/provider events;
+- hostile-server rollback/replay harnesses;
+- metadata minimization design;
+- secure local vault/storage;
+- external review and audit preparation;
+- Android/Pixel development;
+- CarbonStackOS appliance prototyping.
+
+Android and CarbonStackOS work are not the current near-term target.

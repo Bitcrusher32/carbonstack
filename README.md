@@ -1,23 +1,93 @@
 ﻿# CarbonStack
 
-CarbonStack is an open-source secure communications appliance project.
+CarbonStack is an experimental secure-communications backbone.
 
-Its goal is not to build a secure text comms surface using a smartphone base.
+At this stage, it is not a finished messenger. It is not production-certified. It is not externally audited. It is not Android-ready.
 
-CarbonStack is composed of:
+The current validated artifact is a local Cypher + Comms OpenMLS relay proof. CarbonStackComms generates OpenMLS sidecar artifacts. CarbonStackCypher relays them as opaque envelopes. The receiving side writes and consumes the artifacts through the OpenMLS sidecar.
 
-- **CarbonStackOS** — a deliberately constrained Android-derived operating system for a single-purpose communications appliance.
-- **CarbonStackComms** — a text-first encrypted messaging client.
-- **CarbonStackCypher** — a hostile-server relay and storage stack.
-- **CarbonStack Protocol Docs** — shared threat model, identity model, trust-state model, text policy, file policy, and recovery model.
+This proves a local experimental relay lifecycle. It does not prove production security.
 
-Core doctrine:
+## What is currently proven
 
-> Every feature is guilty until it proves it does not add unacceptable parser, network, sensor, identity, or filesystem authority.
+The current local proof validates this path:
 
-CarbonStack prioritizes boring text, loud trust changes, hostile-server assumptions, disposable parsers, immutable base images, and minimal ambient attack surfaces. Convenience smartphone features are deprioritized over security.
+1. Bob creates an OpenMLS KeyPackage artifact.
+2. Cypher relays the KeyPackage to Alice.
+3. Alice consumes the KeyPackage and creates a Welcome artifact.
+4. Cypher relays the Welcome to Bob.
+5. Bob consumes the Welcome and joins the conversation.
+6. Alice creates an OpenMLS application-message artifact.
+7. Cypher relays the application-message to Bob.
+8. Bob consumes the application-message through the OpenMLS sidecar.
+9. The plaintext matches.
+10. Envelopes are acknowledged only after sidecar consume succeeds.
+11. Payload metadata is checked before downloaded artifact bytes are written locally.
 
-## Current Specification Docs
+This is the current experimental backbone.
 
-- `docs/14-carbonstack-full-specification.md` — canonical full specification
-- `docs/15-protocol-foundation.md` — shared protocol foundation doctrine
+## What is not proven
+
+CarbonStack does not currently prove:
+
+- production E2EE product readiness;
+- hostile-server safety;
+- metadata privacy;
+- secure local vault/storage;
+- Android appliance readiness;
+- polished Comms runtime send/inbox integration;
+- rollback/replay safety against a malicious server;
+- external audit or certification;
+- a stable public protocol.
+
+Do not treat this repository as a finished secure messenger.
+
+## Repositories
+
+CarbonStack is split across component repositories.
+
+- `carbonstack` â€” doctrine, docs, release framing, runbooks, and public front-door material.
+- `carbonstack-comms` â€” text-first Comms client, OpenMLS sidecar, relay helper, tests, and smoke harness.
+- `carbonstack-cypher` â€” relay/storage server, envelope API, SQLite schema, migrations, and server tests.
+- `carbonstack-os` â€” future constrained appliance OS concept; not part of the current runnable relay proof.
+
+The public release surface should start here, in `carbonstack`.
+
+Component repositories carry implementation details and development tests.
+
+## Known-good local proof
+
+The current runbook is:
+
+- `docs/113-experimental-backbone-deployability-runbook-v0.md`
+
+That document explains the current local validation path, component roles, smoke harness, payload metadata, ack semantics, generated-state warnings, and security nonclaims.
+
+## Docs archive
+
+The docs folder is a chronological archive and release documentation surface.
+
+Start here:
+
+- `docs/README.md`
+
+Older numbered docs may be stale. They preserve design history, failures, pivots, and implementation context. Current release/runbook docs define current behavior for a release.
+
+## Core doctrine
+
+Every feature is guilty until it proves it does not add unacceptable parser, network, sensor, identity, or filesystem authority.
+
+CarbonStack prioritizes restricted surfaces, explicit trust changes, hostile-server assumptions, disposable parsers, and minimal ambient authority.
+
+## Current direction
+
+The near-term target is a v0.3.0 experimental server-deployable CarbonStack backbone epoch.
+
+The v0.3.0 release surface should be framed as:
+
+- CarbonStack experimental backbone;
+- concrete validated artifact: Cypher + Comms OpenMLS relay backbone;
+- pre-alpha / experimental;
+- not certified secure;
+- not externally audited;
+- not a finished messenger product.

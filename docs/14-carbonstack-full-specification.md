@@ -1,3 +1,18 @@
+﻿# Current status notice
+
+This document is a historical canonical specification draft.
+
+It preserves project doctrine and long-range design intent. It should not be treated as the current release surface by itself.
+
+For current public behavior and known-good validation, start with:
+
+- `README.md`
+- `docs/README.md`
+- `docs/113-experimental-backbone-deployability-runbook-v0.md`
+
+As of the v0.2.61/v0.2.62 public-surface cleanup rung, the current validated artifact is the experimental Cypher + Comms OpenMLS relay backbone. This document may contain older assumptions, future targets, and long-range design language.
+
+---
 # CarbonStack Full Specification
 
 Status: Draft Canonical Specification  
@@ -1301,14 +1316,14 @@ Possible states:
 
 Allowed transitions:
 
-- NORMAL → DECOY;
-- NORMAL → DURESS_LOCKDOWN;
-- NORMAL → BURNED;
-- DECOY → RECOVERY_ARMED;
-- DURESS_LOCKDOWN → RECOVERY_ARMED;
-- RECOVERY_ARMED → RECOVERY_USB_KEY_ONLY;
-- RECOVERY_USB_KEY_ONLY → RECOVERED;
-- BURNED → REENROLLMENT_ONLY.
+- NORMAL â†’ DECOY;
+- NORMAL â†’ DURESS_LOCKDOWN;
+- NORMAL â†’ BURNED;
+- DECOY â†’ RECOVERY_ARMED;
+- DURESS_LOCKDOWN â†’ RECOVERY_ARMED;
+- RECOVERY_ARMED â†’ RECOVERY_USB_KEY_ONLY;
+- RECOVERY_USB_KEY_ONLY â†’ RECOVERED;
+- BURNED â†’ REENROLLMENT_ONLY.
 
 This prevents components from independently re-enabling dangerous features.
 
@@ -1953,3 +1968,4 @@ The mature system should be:
 The purpose of CarbonStackOS is not to make Android nicer.
 
 The purpose of CarbonStackOS is to stop being a smartphone.
+
