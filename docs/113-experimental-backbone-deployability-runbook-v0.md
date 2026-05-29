@@ -4,6 +4,11 @@ Status: current known-good runbook
 Component: CarbonStack + CarbonStackComms + CarbonStackCypher
 Phase: v0.2.61 public deployability runbook
 
+Related current docs:
+
+- `docs/114-known-good-validation-matrix-v0.md`
+- `docs/115-envelope-lifecycle-semantics-v0.md`
+
 ## 1. What am I looking at?
 
 This is the current CarbonStack experimental backbone runbook.
@@ -228,4 +233,5 @@ Future v0.3.0 framing:
 Concrete validated artifact:
 
     Cypher + Comms OpenMLS relay backbone.
+
 
