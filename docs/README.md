@@ -69,3 +69,12 @@ CarbonStack is not production-certified.
 CarbonStack has not received senior external audit or security certification.
 
 Historical docs must not be used to imply production readiness, hostile-server safety, Android readiness, metadata privacy, or complete E2EE product status unless a current release document explicitly says so.
+## Current v0.3.0 packaging freeze
+
+The v0.3.0 release packaging freeze is recorded at:
+
+    docs/119-v0.3.0-release-packaging-freeze-v0.md
+
+Use it with:
+
+    docs/v0.3.0-minor-epoch-release.md
