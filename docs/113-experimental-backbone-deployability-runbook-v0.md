@@ -77,11 +77,11 @@ Run the Comms real-server smoke harness:
 
     cd C:\Users\udaiv\repos\carbonstack_umbrella\carbonstack-comms
     Get-Process cypher -ErrorAction SilentlyContinue | Stop-Process -Force
-    powershell -ExecutionPolicy Bypass -File .\scripts\smoke-openmls-real-cypher-relay.ps1
+    powershell -ExecutionPolicy Bypass -File .\scripts\self-test-openmls-backbone.ps1
 
 Run broader Comms validation:
 
-    powershell -ExecutionPolicy Bypass -File .\scripts\smoke-openmls-real-cypher-relay.ps1 -Full
+    powershell -ExecutionPolicy Bypass -File .\scripts\self-test-openmls-backbone.ps1 -Full
     powershell -ExecutionPolicy Bypass -File .\scripts\check-no-rust-artifacts.ps1
 
 Run CarbonStack docs validation:
@@ -233,6 +233,7 @@ Future v0.3.0 framing:
 Concrete validated artifact:
 
     Cypher + Comms OpenMLS relay backbone.
+
 
 
 
