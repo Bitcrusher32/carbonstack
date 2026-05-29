@@ -1,6 +1,6 @@
 ﻿# OpenMLS Backbone Self-Test Harness Plan v0
 
-Status: planning / recon result
+Status: implemented self-test wrapper plan/result
 Component: CarbonStack + CarbonStackComms
 Phase: v0.2.65 OpenMLS backbone self-test harness planning
 
@@ -50,29 +50,29 @@ They are not the current OpenMLS backbone proof.
 
 The OpenMLS relay path should not be wired into user-facing `send` / `inbox` commands during this planning rung.
 
-## 4. Recommended next implementation
+## 4. Implemented self-test wrapper
 
-The next implementation should add a small wrapper script in `carbonstack-comms`:
+The self-test wrapper now lives in `carbonstack-comms`:
 
     scripts/self-test-openmls-backbone.ps1
 
-The wrapper should call the existing known-good smoke harness instead of duplicating the proof logic.
+The wrapper calls the existing known-good smoke harness instead of duplicating the proof logic.
 
-Expected behavior:
+Current behavior:
 
     default:
-        run the targeted OpenMLS backbone self-test
+        runs the targeted OpenMLS backbone self-test
 
     -Full:
-        pass through to the broader validation path
+        passes through to the broader validation path
 
     output:
-        use public-facing self-test language
-        keep maturity warnings near the top
-        clearly state what is proven
-        clearly state what is not proven
+        uses public-facing self-test language
+        keeps maturity warnings near the top
+        clearly states what is proven
+        clearly states what is not proven
 
-The existing lower-level script may remain as the implementation detail:
+The existing lower-level script remains the implementation detail:
 
     scripts/smoke-openmls-real-cypher-relay.ps1
 
@@ -125,17 +125,17 @@ It lets `carbonstack` document the release surface without owning execution.
 
 It can be replaced or promoted later if the CLI/dev harness matures.
 
-## 8. Expected v0.2.66 work
+## 8. v0.2.66 result
 
-The next implementation rung should:
+The v0.2.66 implementation rung should be considered complete when:
 
-1. add `scripts/self-test-openmls-backbone.ps1`;
-2. make it call the current smoke harness;
-3. support `-Full`;
-4. print direct public-facing status/nonclaim text;
-5. update `carbonstack-comms/scripts/README.md`;
-6. update the main `carbonstack` runbook and validation matrix;
-7. validate the same known-good command set.
+1. `scripts/self-test-openmls-backbone.ps1` exists in `carbonstack-comms`;
+2. it calls the current smoke harness;
+3. it supports `-Full`;
+4. it prints direct public-facing status/nonclaim text;
+5. `carbonstack-comms/scripts/README.md` points to it as the current known-good entrypoint;
+6. the main `carbonstack` runbook and validation matrix point to it;
+7. the same known-good command set passes.
 
 ## 9. Local Go cache note
 
@@ -151,3 +151,4 @@ These directories are local build/test artifacts.
 They must not be committed.
 
 If used, they should be ignored by Git.
+

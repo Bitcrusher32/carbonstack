@@ -59,11 +59,11 @@ Run the current Comms-hosted backbone smoke harness:
 
     cd C:\Users\udaiv\repos\carbonstack_umbrella\carbonstack-comms
     Get-Process cypher -ErrorAction SilentlyContinue | Stop-Process -Force
-    powershell -ExecutionPolicy Bypass -File .\scripts\smoke-openmls-real-cypher-relay.ps1
+    powershell -ExecutionPolicy Bypass -File .\scripts\self-test-openmls-backbone.ps1
 
 Run full Comms validation:
 
-    powershell -ExecutionPolicy Bypass -File .\scripts\smoke-openmls-real-cypher-relay.ps1 -Full
+    powershell -ExecutionPolicy Bypass -File .\scripts\self-test-openmls-backbone.ps1 -Full
     powershell -ExecutionPolicy Bypass -File .\scripts\check-no-rust-artifacts.ps1
 
 Run CarbonStack docs validation:
@@ -92,7 +92,7 @@ Validates:
 
 Command:
 
-    powershell -ExecutionPolicy Bypass -File .\scripts\smoke-openmls-real-cypher-relay.ps1
+    powershell -ExecutionPolicy Bypass -File .\scripts\self-test-openmls-backbone.ps1
 
 Validates:
 
@@ -111,7 +111,7 @@ Validates:
 
 Command:
 
-    powershell -ExecutionPolicy Bypass -File .\scripts\smoke-openmls-real-cypher-relay.ps1 -Full
+    powershell -ExecutionPolicy Bypass -File .\scripts\self-test-openmls-backbone.ps1 -Full
 
 Validates the smoke layer plus broader protocol, relay, and Go package tests.
 
@@ -161,5 +161,6 @@ This does not prove:
 The next rung should clean up inbox, ack, general envelope semantics, and schema/API wording.
 
 The goal is to make the relay lifecycle language consistent before Option B CLI/dev-harness planning and pre-v0.3.0 release hardening.
+
 
 
