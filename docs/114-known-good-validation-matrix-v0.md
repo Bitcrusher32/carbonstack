@@ -8,6 +8,7 @@ Related current docs:
 
 - `docs/113-experimental-backbone-deployability-runbook-v0.md`
 - `docs/115-envelope-lifecycle-semantics-v0.md`
+- `docs/116-openmls-backbone-self-test-harness-plan-v0.md`
 
 ## 1. Purpose
 
@@ -160,4 +161,5 @@ This does not prove:
 The next rung should clean up inbox, ack, general envelope semantics, and schema/API wording.
 
 The goal is to make the relay lifecycle language consistent before Option B CLI/dev-harness planning and pre-v0.3.0 release hardening.
+
 
