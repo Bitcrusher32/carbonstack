@@ -91,3 +91,11 @@ The v0.3.0 release surface should be framed as:
 - not certified secure;
 - not externally audited;
 - not a finished messenger product.
+## v0.3.0 release surface
+
+For the v0.3.0 experimental backbone release README, start here:
+
+    docs/v0.3.0-minor-epoch-release.md
+
+That document is the consolidated release entrypoint for the current Cypher + Comms OpenMLS relay backbone.
+

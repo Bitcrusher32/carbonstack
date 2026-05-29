@@ -50,7 +50,7 @@ Scope:
 - direct, reader-facing language;
 - strict security nonclaims.
 
-### v0.2.63 â€” Option C completion for testing
+### v0.2.63 â€” known-good local backbone proof completion for testing
 
 Goal:
 
@@ -67,7 +67,7 @@ Goal:
 - document payload metadata;
 - ensure schema/API docs match implementation.
 
-### v0.2.65+ â€” Option B planning and implementation
+### v0.2.65+ â€” OpenMLS backbone self-test and dev-harness planning
 
 Goal:
 
@@ -110,3 +110,10 @@ Later work may include:
 - CarbonStackOS appliance prototyping.
 
 Android and CarbonStackOS work are not the current near-term target.
+## v0.3.0 release README
+
+The consolidated v0.3.0 release README is planned at:
+
+    docs/v0.3.0-minor-epoch-release.md
+
+That document is the public release entrypoint for the experimental backbone epoch.
