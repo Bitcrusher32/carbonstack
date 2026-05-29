@@ -215,8 +215,8 @@ This does not prove:
 
 Near-term:
 
-- full-spectrum README/public-surface cleanup;
-- Option C test-harness path completion;
+- public README/surface cleanup: complete at v0.2.62;
+- known-good validation matrix: complete at v0.2.63;
 - inbox/ack/general semantics and schema standardization;
 - Option B CLI/dev-harness planning and implementation;
 - pre-v0.3.0 release hardening.
@@ -228,3 +228,4 @@ Future v0.3.0 framing:
 Concrete validated artifact:
 
     Cypher + Comms OpenMLS relay backbone.
+
