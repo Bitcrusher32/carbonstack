@@ -223,8 +223,9 @@ Near-term:
 - public README/surface cleanup: complete at v0.2.62;
 - known-good validation matrix: complete at v0.2.63;
 - inbox/ack/general semantics and schema standardization;
-- Option B CLI/dev-harness planning and implementation;
-- pre-v0.3.0 release hardening.
+- OpenMLS backbone self-test harness implementation: complete at v0.2.66;
+- v0.3.0 release README implementation: complete at v0.2.68;
+- final pre-v0.3.0 stale-claims and validation sweep.
 
 Future v0.3.0 framing:
 
@@ -233,6 +234,7 @@ Future v0.3.0 framing:
 Concrete validated artifact:
 
     Cypher + Comms OpenMLS relay backbone.
+
 
 
 

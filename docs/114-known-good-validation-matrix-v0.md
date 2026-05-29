@@ -2,7 +2,7 @@
 
 Status: current validation matrix
 Component: CarbonStack + CarbonStackComms + CarbonStackCypher
-Phase: v0.2.63 Option C known-good validation cleanup
+Phase: v0.2.63 known-good OpenMLS backbone validation cleanup
 
 Related current docs:
 
@@ -160,7 +160,8 @@ This does not prove:
 
 The next rung should clean up inbox, ack, general envelope semantics, and schema/API wording.
 
-The goal is to make the relay lifecycle language consistent before Option B CLI/dev-harness planning and pre-v0.3.0 release hardening.
+The goal is to make the relay lifecycle language consistent before OpenMLS backbone self-test harness work and pre-v0.3.0 release hardening.
+
 
 
 
