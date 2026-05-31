@@ -8,6 +8,8 @@ The current validated artifact is a local Cypher + Comms OpenMLS relay proof. Ca
 
 This proves a local experimental relay lifecycle. It does not prove production security.
 
+_Related repositories: [carbonstack-comms](https://git.bitcrusher32.win/bitcrusher32/carbonstack-comms) / [carbonstack-cypher](https://git.bitcrusher32.win/bitcrusher32/carbonstack-cypher) / [carbonstack-os](https://git.bitcrusher32.win/bitcrusher32/carbonstack-os)_
+
 ## What is currently proven
 
 The current local proof validates this path:
@@ -46,12 +48,12 @@ Do not treat this repository as a finished secure messenger.
 
 CarbonStack is split across component repositories.
 
-- `carbonstack` â€” doctrine, docs, release framing, runbooks, and public front-door material.
-- `carbonstack-comms` â€” text-first Comms client, OpenMLS sidecar, relay helper, tests, and smoke harness.
-- `carbonstack-cypher` â€” relay/storage server, envelope API, SQLite schema, migrations, and server tests.
-- `carbonstack-os` â€” future constrained appliance OS concept; not part of the current runnable relay proof.
+- `carbonstack`: doctrine, docs, release framing, runbooks, and public front-door material.
+- `carbonstack-comms`: text-first Comms client, OpenMLS sidecar, relay helper, tests, and smoke harness.
+- `carbonstack-cypher`: relay/storage server, envelope API, SQLite schema, migrations, and server tests.
+- `carbonstack-os`: future constrained appliance OS concept; not part of the current runnable relay proof.
 
-The public release surface should start here, in `carbonstack`.
+The public release surface starts here, in `carbonstack`.
 
 Component repositories carry implementation details and development tests.
 
