@@ -117,3 +117,28 @@ The consolidated v0.3.0 release README is planned at:
     docs/v0.3.0-minor-epoch-release.md
 
 That document is the public release entrypoint for the experimental backbone epoch.
+## Post-v0.3.0 minor-epoch direction
+
+v0.3.x should focus on backbone maturation and release verification:
+
+    release asset verification
+    clean snapshot extraction checks
+    self-test/runbook UX cleanup
+    portability recon
+    low-level deploy configuration
+    backbone hardening
+
+Future security/safety claims require a dedicated adversarial-validation or self-penetration-testing minor epoch before they are made.
+
+That future epoch must document:
+
+    what was tested
+    methodology
+    tested version/deployment context
+    what the test validates
+    what the test does not validate
+    residual risk
+    whether the claim is allowed, narrowed, deferred, or rejected
+
+Self-testing, AI-assisted testing, and community attempts are not external audits unless a real scoped external audit occurs.
+

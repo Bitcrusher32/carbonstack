@@ -78,3 +78,11 @@ The v0.3.0 release packaging freeze is recorded at:
 Use it with:
 
     docs/v0.3.0-minor-epoch-release.md
+## Post-v0.3.0 verification and governance
+
+Current post-release verification and governance docs:
+
+    docs/120-v0.3.0-post-release-verification-v0.md
+    docs/121-security-claim-validation-policy-v0.md
+    docs/122-logdoc-case-study-sanitization-plan-v0.md
+
