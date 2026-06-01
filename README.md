@@ -101,3 +101,9 @@ For the v0.3.0 experimental backbone release README, start here:
 
 That document is the consolidated release entrypoint for the current Cypher + Comms OpenMLS relay backbone.
 
+---
+
+License: MIT.
+See the repository's LICENSE file for more information.
+
+
