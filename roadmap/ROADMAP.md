@@ -141,4 +141,12 @@ That future epoch must document:
     whether the claim is allowed, narrowed, deferred, or rejected
 
 Self-testing, AI-assisted testing, and community attempts are not external audits unless a real scoped external audit occurs.
+## Public identity after v0.3.0
 
+CarbonStack's end goal is the secure-communications appliance stack.
+
+The current verified release is narrower:
+
+    v0.3.0 / v0.3.x experimental backbone
+
+That backbone is the current public proof surface. It should not be described as the finished appliance stack, a production messenger, or a certified secure product.

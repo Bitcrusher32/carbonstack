@@ -85,4 +85,10 @@ Current post-release verification and governance docs:
     docs/120-v0.3.0-post-release-verification-v0.md
     docs/121-security-claim-validation-policy-v0.md
     docs/122-logdoc-case-study-sanitization-plan-v0.md
+## Sanitized project LogDoc list
 
+A sanitized project LogDoc archive is available at:
+
+    sanitized-project-logdoc-list/
+
+This folder contains sanitized LogDoc material for workflow/case-study use. It is separate from the main numbered docs archive and should not be treated as the current release source of truth.

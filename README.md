@@ -1,10 +1,10 @@
 ﻿# CarbonStack
 
-CarbonStack is an experimental secure-communications backbone.
+CarbonStack is an experimental secure-communications appliance-stack project.
 
 At this stage, it is not a finished messenger. It is not production-certified. It is not externally audited. It is not Android-ready.
 
-The current validated artifact is a local Cypher + Comms OpenMLS relay proof. CarbonStackComms generates OpenMLS sidecar artifacts. CarbonStackCypher relays them as opaque envelopes. The receiving side writes and consumes the artifacts through the OpenMLS sidecar.
+The current validated artifact is the v0.3.x experimental backbone: a local Cypher + Comms OpenMLS relay proof. CarbonStackComms generates OpenMLS sidecar artifacts. CarbonStackCypher relays them as opaque envelopes. The receiving side writes and consumes the artifacts through the OpenMLS sidecar.
 
 This proves a local experimental relay lifecycle. It does not prove production security.
 
@@ -83,9 +83,9 @@ CarbonStack prioritizes restricted surfaces, explicit trust changes, hostile-ser
 
 ## Current direction
 
-The near-term target is a v0.3.0 experimental server-deployable CarbonStack backbone epoch.
+The near-term target is v0.3.x backbone maturation: verify the released v0.3.0 artifacts, improve self-test/runbook UX, reduce Windows-only assumptions, clarify low-level deploy configuration, and harden the backbone before runtime Comms UX work.
 
-The v0.3.0 release surface should be framed as:
+The current v0.3.x release surface should be framed as:
 
 - CarbonStack experimental backbone;
 - concrete validated artifact: Cypher + Comms OpenMLS relay backbone;
@@ -105,5 +105,6 @@ That document is the consolidated release entrypoint for the current Cypher + Co
 
 License: MIT.
 See the repository's LICENSE file for more information.
+
 
 
