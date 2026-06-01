@@ -99,3 +99,10 @@ The v0.3.3 clean release snapshot self-test recon is recorded at:
     docs/123-v0.3.0-clean-snapshot-self-test-recon-v0.md
 
 This recon checks whether the v0.3.0 release source snapshots can run validation from extraction rather than from the active working repos.
+## Release snapshot self-test fix
+
+The v0.3.4 source-snapshot self-test fix is recorded at:
+
+    docs/124-v0.3.4-release-snapshot-self-test-fix-v0.md
+
+This follows the v0.3.3 clean snapshot recon and records the fix for source snapshots that do not include Git metadata.
