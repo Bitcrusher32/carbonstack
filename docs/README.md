@@ -120,4 +120,10 @@ The v0.3.4 public tester runbook is recorded at:
     docs/126-v0.3.4-public-tester-runbook-v0.md
 
 This is the version-specific tester runbook for the v0.3.4 experimental backbone release. For current public testing, start from the latest release page and use that release's attached assets/runbook.
+## Windows reliance and Debian homelab recon
 
+The v0.3.7 Windows reliance and Debian homelab recon is recorded at:
+
+    docs/127-windows-reliance-and-debian-homelab-recon-v0.md
+
+This records the current Windows/PowerShell validation boundary, Debian homelab target context, and the planned WSL Debian quick-portability bridge before real Debian validation.

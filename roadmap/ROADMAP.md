@@ -169,3 +169,20 @@ Debian target context:
     future recon should inspect actual host setup before proposing deploy changes.
 
 Debian/Linux portability is not yet validated.
+## WSL Debian bridge before homelab validation
+
+Before touching the real Debian homelab, v0.3.x should use WSL Debian as a quick portability triage layer.
+
+The intended sequence is:
+
+    Windows public release basics
+    Windows assumptions / portability recon
+    WSL Debian quick-portability triage
+    real Debian homelab local-only validation
+    low-level Cypher deploy config and operator model
+
+WSL Debian is not a deployment proof.
+
+It can identify Linux path/toolchain/script issues before the real homelab is used.
+
+The real Debian homelab remains the meaningful future target for deployability recon because it has systemd, active services, cloudflared ingress, and existing operator constraints.
