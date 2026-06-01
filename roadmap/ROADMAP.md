@@ -29,7 +29,7 @@ This is not Android-ready.
 
 ## Near-term path
 
-### v0.2.61 â€” Deployability runbook
+### v0.2.61 Ã¢â‚¬â€ Deployability runbook
 
 Complete.
 
@@ -37,7 +37,7 @@ The current runbook is:
 
     docs/113-experimental-backbone-deployability-runbook-v0.md
 
-### v0.2.62 â€” Public surface cleanup
+### v0.2.62 Ã¢â‚¬â€ Public surface cleanup
 
 Current target.
 
@@ -50,7 +50,7 @@ Scope:
 - direct, reader-facing language;
 - strict security nonclaims.
 
-### v0.2.63 â€” known-good local backbone proof completion for testing
+### v0.2.63 Ã¢â‚¬â€ known-good local backbone proof completion for testing
 
 Goal:
 
@@ -58,7 +58,7 @@ Goal:
 - tighten known-good validation;
 - remove misleading helper names or stale test-only framing where necessary.
 
-### v0.2.64 â€” Inbox, ack, and schema semantics cleanup
+### v0.2.64 Ã¢â‚¬â€ Inbox, ack, and schema semantics cleanup
 
 Goal:
 
@@ -67,7 +67,7 @@ Goal:
 - document payload metadata;
 - ensure schema/API docs match implementation.
 
-### v0.2.65+ â€” OpenMLS backbone self-test and dev-harness planning
+### v0.2.65+ Ã¢â‚¬â€ OpenMLS backbone self-test and dev-harness planning
 
 Goal:
 
@@ -86,7 +86,7 @@ Goal:
 - clear component map;
 - no production certification claims.
 
-### v0.3.0 â€” Experimental backbone epoch
+### v0.3.0 Ã¢â‚¬â€ Experimental backbone epoch
 
 Goal:
 
@@ -256,3 +256,20 @@ Implementation should start small:
     non-destructive artifact scan.
 
 WSL Debian may become the preferred fast core-validation environment after the Go runner passes on both WSL Debian and Windows.
+## v0.3.12 Go validation runner hardening
+
+v0.3.12 hardens the Go validation runner and records the first runner validation path across Windows and WSL Debian.
+
+Current runner location:
+
+    carbonstack/tools/carbonstack-validate
+
+Current profiles:
+
+    doctor
+    core
+    full
+
+`full` currently aliases `core`.
+
+The runner now acts as the future umbrella validation authority candidate. PowerShell and bash should become thin wrappers over the runner rather than independent validation authorities.

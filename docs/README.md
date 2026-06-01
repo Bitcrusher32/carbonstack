@@ -148,3 +148,10 @@ The v0.3.10 Go validation runner design is recorded at:
     docs/130-go-validation-runner-design-v0.md
 
 This defines the umbrella Go runner direction for converging Windows and WSL Debian validation without maintaining separate PowerShell and bash validation authorities.
+## Go validation runner implementation
+
+The Go validation runner implementation and first cross-platform validation record is recorded at:
+
+    docs/131-go-validation-runner-implementation-v0.md
+
+This records the `tools/carbonstack-validate` runner, doctor/core/full profiles, and validation under both Windows PowerShell and WSL Debian.

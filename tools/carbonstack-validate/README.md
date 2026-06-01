@@ -1,9 +1,9 @@
-# CarbonStack Validate
+﻿# CarbonStack Validate
 
 Status: experimental validation runner
-Phase: v0.3.11 implementation scaffold
+Phase: v0.3.12 runner hardening / docs integration
 
-This is the first Go-based umbrella validation runner for CarbonStack.
+This is the Go-based umbrella validation runner for CarbonStack.
 
 It is intended to replace shell-specific umbrella validation over time while still calling repo-local tests.
 
@@ -11,7 +11,7 @@ It is intended to replace shell-specific umbrella validation over time while sti
 
 ### doctor
 
-Reports environment, inferred repo layout, required paths, and toolchain versions.
+Reports environment, inferred repo layout, required paths, executable paths, and toolchain versions.
 
     go run . --profile doctor
 
@@ -34,6 +34,8 @@ Currently aliases `core`.
 
     go run . --profile full
 
+`full` should remain a simple alias until later v0.3.x work creates real release/deployability validation surfaces.
+
 ## Expected layout
 
 The runner expects sibling repos:
@@ -42,11 +44,42 @@ The runner expects sibling repos:
     carbonstack-comms/
     carbonstack-cypher/
 
-Run from:
+It can infer the umbrella root when launched from inside the `carbonstack` repo, including from:
 
     carbonstack/tools/carbonstack-validate
 
-or pass an explicit umbrella root later when supported by workflow.
+You can also pass an explicit umbrella root:
+
+    go run . --profile core --root /path/to/carbonstack_umbrella
+
+## Windows example
+
+    cd C:\Users\udaiv\repos\carbonstack_umbrella\carbonstack\tools\carbonstack-validate
+    go run . --profile doctor
+    go run . --profile core
+
+## WSL Debian example
+
+    . "$HOME/.cargo/env"
+    cd "$HOME/carbonstack-wsl/carbonstack/tools/carbonstack-validate"
+    go run . --profile doctor
+    go run . --profile core
+
+## Rust toolchain note
+
+OpenMLS 0.8.1 failed under Debian apt rustc 1.85.0 during v0.3.9.
+
+rustup stable rustc/cargo 1.96.0 passed under WSL Debian during v0.3.9.
+
+The runner reports Rust/Cargo paths and versions, but it does not install or mutate toolchains.
+
+## Artifact scan behavior
+
+Artifact scans are non-destructive.
+
+Pre-test hits may indicate source/copy hygiene problems.
+
+Post-test hits are expected only when they stay in known generated roots such as the OpenMLS sidecar `target/` and `.carbonstack-openmls-sidecar-state/`.
 
 ## Boundaries
 
