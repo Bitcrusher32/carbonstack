@@ -106,3 +106,10 @@ The v0.3.4 source-snapshot self-test fix is recorded at:
     docs/124-v0.3.4-release-snapshot-self-test-fix-v0.md
 
 This follows the v0.3.3 clean snapshot recon and records the fix for source snapshots that do not include Git metadata.
+## Public v0.3.4 release asset verification
+
+The v0.3.5 public v0.3.4 release asset verification is recorded at:
+
+    docs/125-v0.3.4-public-release-asset-verification-v0.md
+
+This verifies the uploaded v0.3.4 Gitea release assets, not just local release staging.
