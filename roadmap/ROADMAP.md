@@ -186,3 +186,19 @@ WSL Debian is not a deployment proof.
 It can identify Linux path/toolchain/script issues before the real homelab is used.
 
 The real Debian homelab remains the meaningful future target for deployability recon because it has systemd, active services, cloudflared ingress, and existing operator constraints.
+## v0.3.8 WSL Debian setup scout result
+
+v0.3.8 established Debian under WSL as the quick-portability bridge before real Debian homelab validation.
+
+Observed baseline:
+
+    Debian 13 trixie under WSL2
+    linux/amd64
+    git available
+    Go available
+    Rust/Cargo available
+    sqlite3 available
+
+The first WSL test rung should use current working repo snapshots, run direct Go/Rust tests first, and avoid PowerShell wrappers until the Linux validation gap is understood.
+
+Long-term direction remains a small Go validation runner so Windows and Linux release validation can converge.

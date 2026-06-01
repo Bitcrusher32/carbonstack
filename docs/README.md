@@ -127,3 +127,10 @@ The v0.3.7 Windows reliance and Debian homelab recon is recorded at:
     docs/127-windows-reliance-and-debian-homelab-recon-v0.md
 
 This records the current Windows/PowerShell validation boundary, Debian homelab target context, and the planned WSL Debian quick-portability bridge before real Debian validation.
+## WSL Debian quick-portability setup scout
+
+The v0.3.8 WSL Debian setup scout is recorded at:
+
+    docs/128-wsl-debian-quick-portability-setup-scout-v0.md
+
+This records the Debian WSL setup and toolchain baseline before running Linux-side quick-portability tests.
