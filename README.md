@@ -93,18 +93,7 @@ The current v0.3.x release surface should be framed as:
 - not certified secure;
 - not externally audited;
 - not a finished messenger product.
-## v0.3.0 release surface
 
-For the v0.3.0 experimental backbone release README, start here:
-
-    docs/v0.3.0-minor-epoch-release.md
-
-That document is the consolidated release entrypoint for the current Cypher + Comms OpenMLS relay backbone.
-
----
-
-License: MIT.
-See the repository's LICENSE file for more information.
 ## Public testing and development
 
 For public testing or development, start from the latest CarbonStack release:
@@ -114,4 +103,10 @@ For public testing or development, start from the latest CarbonStack release:
 Use the attached release assets and version-specific runbook for that release.
 
 Do not use Gitea's default Source Code ZIP/TAR.GZ archives as the multi-repo test package unless a release explicitly says otherwise.
+
+---
+
+License: MIT.
+See the repository's LICENSE file for more information.
+
 
