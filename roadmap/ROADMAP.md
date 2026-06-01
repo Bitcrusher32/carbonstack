@@ -225,3 +225,34 @@ Next direction:
     design a Go-based cross-platform full-test wrapper;
     avoid letting separate PowerShell and bash validation flows become long-term tech debt;
     keep real Debian homelab testing deferred until deployability / IRC-style setup work requires it.
+## v0.3.10 Go validation runner design
+
+v0.3.10 records the decision to converge validation around an umbrella Go runner.
+
+Initial intended location:
+
+    carbonstack/tools/carbonstack-validate
+
+Reason:
+
+    repo-local tests already exist;
+    the umbrella should orchestrate functional tests across repos;
+    Windows and WSL Debian validation should converge;
+    PowerShell and bash should become convenience wrappers, not validation authorities.
+
+Initial profiles:
+
+    doctor
+    core
+    full
+
+Implementation should start small:
+
+    environment/toolchain report;
+    sibling repo path checks;
+    Cypher package tests;
+    Comms package tests;
+    targeted OpenMLS real-Cypher lifecycle test;
+    non-destructive artifact scan.
+
+WSL Debian may become the preferred fast core-validation environment after the Go runner passes on both WSL Debian and Windows.

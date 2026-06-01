@@ -141,3 +141,10 @@ The v0.3.9 WSL Debian quick-portability test is recorded at:
     docs/129-wsl-debian-quick-portability-test-v0.md
 
 This records the first WSL Debian core validation pass, including the Rust toolchain floor finding and the passing Comms/Cypher OpenMLS backbone tests after rustup stable was used.
+## Go validation runner design
+
+The v0.3.10 Go validation runner design is recorded at:
+
+    docs/130-go-validation-runner-design-v0.md
+
+This defines the umbrella Go runner direction for converging Windows and WSL Debian validation without maintaining separate PowerShell and bash validation authorities.
