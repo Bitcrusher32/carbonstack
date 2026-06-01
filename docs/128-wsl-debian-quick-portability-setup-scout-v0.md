@@ -199,3 +199,12 @@ Do not expose Cypher through cloudflared.
 Do not create systemd services.
 
 Do not move to runtime Comms UX until the validation substrate is less platform-fragile.
+## Updated by v0.3.9
+
+The first WSL Debian test pass found that Debian apt Rust 1.85.0 was too old for OpenMLS 0.8.1.
+
+The WSL Debian test pass succeeded after installing rustup stable and using Rust/Cargo from `~/.cargo/bin`.
+
+Detailed validation record:
+
+    docs/129-wsl-debian-quick-portability-test-v0.md

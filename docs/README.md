@@ -134,3 +134,10 @@ The v0.3.8 WSL Debian setup scout is recorded at:
     docs/128-wsl-debian-quick-portability-setup-scout-v0.md
 
 This records the Debian WSL setup and toolchain baseline before running Linux-side quick-portability tests.
+## WSL Debian quick-portability test
+
+The v0.3.9 WSL Debian quick-portability test is recorded at:
+
+    docs/129-wsl-debian-quick-portability-test-v0.md
+
+This records the first WSL Debian core validation pass, including the Rust toolchain floor finding and the passing Comms/Cypher OpenMLS backbone tests after rustup stable was used.

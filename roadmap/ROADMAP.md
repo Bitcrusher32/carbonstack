@@ -202,3 +202,26 @@ Observed baseline:
 The first WSL test rung should use current working repo snapshots, run direct Go/Rust tests first, and avoid PowerShell wrappers until the Linux validation gap is understood.
 
 Long-term direction remains a small Go validation runner so Windows and Linux release validation can converge.
+## v0.3.9 WSL Debian quick-portability test result
+
+v0.3.9 validated the current Comms/Cypher OpenMLS backbone core under Debian WSL after correcting the Rust toolchain.
+
+Finding:
+
+    Debian apt Rust 1.85.0 was too old for OpenMLS 0.8.1.
+    rustup stable 1.96.0 worked.
+
+Passed under WSL Debian after rustup stable:
+
+    targeted OpenMLS real-Cypher lifecycle test;
+    full carbonstack-comms/internal/protocol package;
+    full carbonstack-comms package suite;
+    full carbonstack-cypher package suite.
+
+The remaining portability gap is mostly validation orchestration, not obvious Go/Rust core behavior.
+
+Next direction:
+
+    design a Go-based cross-platform full-test wrapper;
+    avoid letting separate PowerShell and bash validation flows become long-term tech debt;
+    keep real Debian homelab testing deferred until deployability / IRC-style setup work requires it.
