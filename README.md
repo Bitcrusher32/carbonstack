@@ -105,10 +105,13 @@ That document is the consolidated release entrypoint for the current Cypher + Co
 
 License: MIT.
 See the repository's LICENSE file for more information.
-## Public testing
+## Public testing and development
 
-For the current public testing path, use the v0.3.4 attached release source snapshots and follow:
+For public testing or development, start from the latest CarbonStack release:
 
-    docs/126-v0.3.4-public-tester-runbook-v0.md
+    https://git.bitcrusher32.win/bitcrusher32/carbonstack/releases
 
-Do not use Gitea's default Source Code ZIP/TAR.GZ archives as the multi-repo test package.
+Use the attached release assets and version-specific runbook for that release.
+
+Do not use Gitea's default Source Code ZIP/TAR.GZ archives as the multi-repo test package unless a release explicitly says otherwise.
+

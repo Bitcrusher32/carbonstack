@@ -119,4 +119,5 @@ The v0.3.4 public tester runbook is recorded at:
 
     docs/126-v0.3.4-public-tester-runbook-v0.md
 
-This is the recommended starting point for testers validating the v0.3.4 experimental backbone release from attached release source snapshots.
+This is the version-specific tester runbook for the v0.3.4 experimental backbone release. For current public testing, start from the latest release page and use that release's attached assets/runbook.
+
