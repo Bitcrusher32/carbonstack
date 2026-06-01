@@ -150,3 +150,22 @@ The current verified release is narrower:
     v0.3.0 / v0.3.x experimental backbone
 
 That backbone is the current public proof surface. It should not be described as the finished appliance stack, a production messenger, or a certified secure product.
+## v0.3.x portability sequence
+
+v0.3.x should finish Windows/public release basics before Linux portability work.
+
+Current intended sequence:
+
+    public tester runbook and self-test UX cleanup;
+    Windows assumptions / portability recon;
+    Debian homelab recon;
+    low-level deploy config and operator model.
+
+Debian target context:
+
+    x86_64 Debian homelab;
+    currently hosts Gitea and WordPress services;
+    cloudflared is part of the current public ingress setup;
+    future recon should inspect actual host setup before proposing deploy changes.
+
+Debian/Linux portability is not yet validated.

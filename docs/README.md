@@ -113,3 +113,10 @@ The v0.3.5 public v0.3.4 release asset verification is recorded at:
     docs/125-v0.3.4-public-release-asset-verification-v0.md
 
 This verifies the uploaded v0.3.4 Gitea release assets, not just local release staging.
+## Public tester runbook
+
+The v0.3.4 public tester runbook is recorded at:
+
+    docs/126-v0.3.4-public-tester-runbook-v0.md
+
+This is the recommended starting point for testers validating the v0.3.4 experimental backbone release from attached release source snapshots.
