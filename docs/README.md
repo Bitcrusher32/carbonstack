@@ -92,3 +92,10 @@ A sanitized project LogDoc archive is available at:
     sanitized-project-logdoc-list/
 
 This folder contains sanitized LogDoc material for workflow/case-study use. It is separate from the main numbered docs archive and should not be treated as the current release source of truth.
+## Clean release snapshot self-test recon
+
+The v0.3.3 clean release snapshot self-test recon is recorded at:
+
+    docs/123-v0.3.0-clean-snapshot-self-test-recon-v0.md
+
+This recon checks whether the v0.3.0 release source snapshots can run validation from extraction rather than from the active working repos.
