@@ -60,7 +60,7 @@ From the fresh package root's runner module:
 
 ## 5. Windows validation
 
-Windows validation used a fresh local extracted package root.
+Windows validation used a fresh local extracted package root. The final known-good Windows pass used a short extraction root to avoid long-path/toolchain/file-lock instability observed in the first Windows attempt.
 
 Expected and observed behavior:
 
@@ -72,6 +72,32 @@ Expected and observed behavior:
     core validation passed;
     post-test generated artifacts stayed under known OpenMLS sidecar generated roots.
 
+## 5a. Windows short-path validation lesson
+
+Initial Windows validation from a long nested release-verification path reached checksum verification and release-snapshot pre-core checks, but failed during Rust/MSVC linking with LNK1104 while creating build_script_build executables under the OpenMLS sidecar target tree.
+
+This appeared to be a Windows toolchain/path/file-lock/environment issue rather than a CarbonStack package or checksum failure.
+
+A short-path Windows validation root was then used:
+
+    C:\cs-v0319-win2\package
+
+With:
+
+    CARGO_BUILD_JOBS=1
+
+The short-path Windows validation passed:
+
+    verify-checksums;
+    release-snapshot layout checks;
+    release metadata checks;
+    strict pre-test artifact scan;
+    release checksum verification;
+    OpenMLS real-Cypher lifecycle;
+    carbonstack-comms package tests;
+    carbonstack-cypher package tests.
+
+Windows known-good validation should use a short extraction root until the path/file-lock behavior is better characterized.
 ## 6. WSL Debian validation
 
 WSL Debian validation used a fresh local extracted package root.
