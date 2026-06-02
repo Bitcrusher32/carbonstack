@@ -533,4 +533,8 @@ v0.3.26 records the local-only Cypher operator config/data convention after the 
 
 v0.3.27 records a local-only Cypher API lifecycle proof under the explicit local operator environment. It starts Cypher on loopback with a temporary SQLite DB, claims invites, registers devices, submits/retrieves/acks an opaque envelope, restarts against the same DB, and verifies persisted state remains available. It does not add helper tooling, a local-backbone runner profile, systemd, cloudflared, public ingress, runtime Comms OpenMLS UX, or production deployability claims.
 
+### v0.3.28 — Local operator helper/runner decision recon
+
+v0.3.28 records a decision/recon checkpoint after the v0.3.27 local Cypher explicit-env API lifecycle proof. It defers helper tooling and runner profile implementation, reserves `local-backbone` for a later whole-CarbonStack backbone validation surface, treats `local-cypher` as the future candidate name for Cypher-only lifecycle validation, and confirms temporary isolated DBs as the correct dev/test validation default while noting they are not sufficient for later public Comms or real-user testing maturity.
+
 
