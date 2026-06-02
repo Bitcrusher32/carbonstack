@@ -190,3 +190,10 @@ The v0.3.17 runner-backed public testing path draft is recorded at:
     docs/136-runner-backed-public-testing-path-v0.md
 
 This documents the future Go runner release-snapshot public testing path while preserving v0.3.4 as the current recommended public testing release until a runner-backed release is staged, uploaded, downloaded, and verified.
+## Runner-backed release staging rehearsal
+
+The v0.3.18 runner-backed release staging rehearsal is recorded at:
+
+    docs/137-runner-backed-release-staging-rehearsal-v0.md
+
+This records a local release-candidate rehearsal package with real Go-generated checksums and release-snapshot validation from fresh extractions on WSL Debian and Windows.

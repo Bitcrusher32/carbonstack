@@ -24,8 +24,12 @@ func (r *Runner) ReleaseSnapshot() error {
 		return err
 	}
 
+	if err := r.VerifyReleaseChecksums(); err != nil {
+		return err
+	}
+
 	fmt.Println()
-	fmt.Println("release-snapshot package checks passed; calling core validation")
+	fmt.Println("release-snapshot package checks and checksum verification passed; calling core validation")
 	fmt.Println()
 
 	return r.Core()

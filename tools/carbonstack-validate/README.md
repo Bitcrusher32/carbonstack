@@ -121,3 +121,37 @@ Correct pattern:
     discard or preserve the throwaway extraction only as validation evidence
 
 Do not run `release-snapshot` twice in the same extraction unless you intentionally expect the second run to fail strict pre-test artifact scanning.
+## Release checksum helper profiles
+
+### write-checksums
+
+Writes real SHA-256 checksums for a clean release package root:
+
+    go run . --profile write-checksums --root /path/to/package-root
+
+The checksum file is written to:
+
+    release/checksums.txt
+
+The helper excludes generated/private/build artifacts and excludes `release/checksums.txt` itself.
+
+### verify-checksums
+
+Verifies `release/checksums.txt` against the release package root:
+
+    go run . --profile verify-checksums --root /path/to/package-root
+
+### release-snapshot relationship
+
+`release-snapshot` now verifies real checksums before calling `core`.
+
+The expected flow is:
+
+    create clean package source root
+    write release metadata
+    run write-checksums against the package source root
+    run only non-generating sanity checks
+    archive the package source root
+    validate from a fresh extraction with release-snapshot
+
+Do not run `release-snapshot` against the package source root intended for archive/publish.

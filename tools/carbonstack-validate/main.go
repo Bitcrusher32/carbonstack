@@ -43,7 +43,7 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, full")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	flag.Parse()
 
@@ -65,8 +65,12 @@ func main() {
 		runErr = r.Core()
 	case "release-snapshot":
 		runErr = r.ReleaseSnapshot()
+	case "write-checksums":
+		runErr = r.WriteReleaseChecksums()
+	case "verify-checksums":
+		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, full, or release-snapshot", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {
