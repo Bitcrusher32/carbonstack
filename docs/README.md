@@ -183,3 +183,10 @@ The v0.3.16 release-snapshot validation hardening record is recorded at:
     docs/135-release-snapshot-validation-hardening-v0.md
 
 This records staged release-like package validation from fresh extractions on WSL Debian and Windows, plus the run-order rule that release-snapshot must not be run inside the package source root that will later be archived.
+## Runner-backed public testing path
+
+The v0.3.17 runner-backed public testing path draft is recorded at:
+
+    docs/136-runner-backed-public-testing-path-v0.md
+
+This documents the future Go runner release-snapshot public testing path while preserving v0.3.4 as the current recommended public testing release until a runner-backed release is staged, uploaded, downloaded, and verified.
