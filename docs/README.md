@@ -1,4 +1,4 @@
-﻿# CarbonStack docs archive
+# CarbonStack docs archive
 
 This folder is a historical docs archive and continuity trail for CarbonStack.
 
@@ -155,3 +155,10 @@ The Go validation runner implementation and first cross-platform validation reco
     docs/131-go-validation-runner-implementation-v0.md
 
 This records the `tools/carbonstack-validate` runner, doctor/core/full profiles, and validation under both Windows PowerShell and WSL Debian.
+## Clean working snapshot runner validation
+
+The v0.3.13 clean working snapshot runner validation is recorded at:
+
+    docs/132-clean-working-snapshot-runner-validation-v0.md
+
+This records clean copied working snapshot validation through the Go runner on both WSL Debian and Windows.

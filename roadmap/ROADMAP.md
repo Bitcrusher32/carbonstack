@@ -1,4 +1,4 @@
-﻿# CarbonStack Roadmap
+# CarbonStack Roadmap
 
 This roadmap describes the current public direction of CarbonStack.
 
@@ -273,3 +273,21 @@ Current profiles:
 `full` currently aliases `core`.
 
 The runner now acts as the future umbrella validation authority candidate. PowerShell and bash should become thin wrappers over the runner rather than independent validation authorities.
+## v0.3.13 clean working snapshot runner validation
+
+v0.3.13 validates that a clean copied working snapshot can run the Go validation runner outside the live Git working repos.
+
+Result:
+
+    WSL Debian clean snapshot runner validation passed.
+    Windows clean snapshot runner validation passed.
+    Pre-test artifact scans were clean.
+    Post-test artifacts stayed in expected OpenMLS sidecar generated roots.
+
+Next direction:
+
+    design release-snapshot validation;
+    then implement release-snapshot validation;
+    then update public testing docs around runner-backed validation;
+    then consider a future runner-backed public testing release;
+    then proceed to actual backbone deployability work inside late v0.3.x.
