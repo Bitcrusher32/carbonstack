@@ -162,3 +162,10 @@ The v0.3.13 clean working snapshot runner validation is recorded at:
     docs/132-clean-working-snapshot-runner-validation-v0.md
 
 This records clean copied working snapshot validation through the Go runner on both WSL Debian and Windows.
+## Release-snapshot profile design
+
+The v0.3.14 release-snapshot profile design is recorded at:
+
+    docs/133-release-snapshot-profile-design-v0.md
+
+This defines the intended Go runner profile for validating formal release-like packages before implementing the profile.
