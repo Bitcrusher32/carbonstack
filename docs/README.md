@@ -10,7 +10,7 @@ For current public testing and release status, start with:
 
 Current release direction:
 
-    v0.3.20 runner-backed testing release candidate
+    v0.3.20 runner-backed testing release
     Debian / WSL Debian as the primary validation target
     Windows 11 short-path validation as the final explicit Windows dev/test validation for this phase
     v0.3.4 remains available as the older Windows 11 / PowerShell testbed
@@ -249,4 +249,4 @@ The v0.3.20 runner-backed testing release cleanup and final validation plan is r
 
     docs/139-runner-backed-testing-release-cleanup-v0.md
 
-This prepares the final release surface for the first runner-backed testing release, with Debian / WSL Debian as the primary validation target and Windows 11 short-path validation as the final explicit Windows dev/test validation for this phase.
+This records the final release-surface cleanup for the first public runner-backed testing release, with Debian / WSL Debian as the primary validation target and Windows 11 short-path validation as the final explicit Windows dev/test validation for this phase.

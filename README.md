@@ -111,21 +111,21 @@ See the repository's LICENSE file for more information.
 
 ## Current testing path
 
-Current public testing release before the runner-backed release transition:
+Current preferred public testing release:
 
-    v0.3.4
+    v0.3.20 runner-backed testing release
 
 v0.3.4 remains available as the older Windows 11 / PowerShell testbed.
 
-The next runner-backed testing release is being prepared with Debian / WSL Debian as the primary validation target.
+The current runner-backed testing release uses Debian / WSL Debian as the primary validation target.
 
 Windows 11 validation is retained as secondary/final explicit dev-test validation for this phase, using a short extraction root and serial Cargo builds where needed.
 
-After v0.3.20, CarbonStack mainline public dev/test releases are expected to migrate to Debian / WSL Debian first. Windows may be reconsidered later after the server/backbone stack is more mature.
+After v0.3.20, CarbonStack mainline public dev/test releases are expected to continue Debian / WSL Debian first. Windows may be reconsidered later after the server/backbone stack is more mature.
 
 ## Current testing path
 
-CarbonStack is currently preparing the v0.3.20 runner-backed testing release.
+CarbonStack v0.3.20 is now the current preferred public runner-backed testing release.
 
 Primary validation target:
 
@@ -139,7 +139,7 @@ Secondary final explicit Windows dev/test validation for this phase:
 
 v0.3.20 is expected to be the final release in this phase where Windows dev/test validation is explicitly provided as part of the runner-backed release surface.
 
-After v0.3.20, CarbonStack mainline public dev/test releases are expected to migrate to Debian / WSL Debian first.
+After v0.3.20, CarbonStack mainline public dev/test releases are expected to continue Debian / WSL Debian first.
 
 The older v0.3.4 Windows 11 / PowerShell release remains available as a legacy testbed for users who specifically want that path.
 
