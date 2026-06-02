@@ -508,3 +508,8 @@ Next direction after the runner-backed release is clean:
     actual local-only backbone deployability planning and implementation;
     Debian/server-like layout first;
     Windows no longer mainline for deployability unless a later mature port effort justifies it.
+
+### v0.3.22 — Cypher local operator surface recon
+
+v0.3.22 records a docs/recon-only Cypher local operator surface pass for the WSL Debian-first local-only deployability line. It introduces the CarbonStack Relay Space terminology, inspects Cypher config/database/migration/API surfaces, records Comms-to-Cypher addressing seams, preserves runtime Comms OpenMLS UX as v0.4.x work, and identifies persistent SQLite migration behavior as the highest-priority deployability risk before a stronger local operator profile.
+
