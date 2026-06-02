@@ -259,5 +259,6 @@ The Cypher + Comms backbone deployability planning document is recorded at:
 - `docs/143-cypher-schema-migrations-implementation-v0.md` — v0.3.24 Cypher schema_migrations implementation result, repeated-migration tests, and persistence-boundary notes.
 - docs/144-local-cypher-operator-runbook-skeleton-v0.md — v0.3.25 local-only Cypher operator runbook skeleton with explicit loopback startup, DB path, reset boundary, and health-check proof.
 - docs/145-local-operator-config-data-convention-v0.md — v0.3.26 local operator config/data convention for explicit loopback bind, DB path, migrations path, reset boundary, and delayed helper/runner decisions.
+- docs/146-local-cypher-explicit-env-api-lifecycle-proof-v0.md — v0.3.27 local Cypher explicit-env API lifecycle proof using loopback bind, temporary SQLite DB, invite/device/envelope/ack lifecycle, and restart against the same DB.
 
 This records repo recon and near + far future planning for carbonstack deployability and mechanics.

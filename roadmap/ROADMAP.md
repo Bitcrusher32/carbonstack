@@ -529,4 +529,8 @@ v0.3.25 records the first local-only Cypher operator runbook skeleton after sche
 
 v0.3.26 records the local-only Cypher operator config/data convention after the v0.3.25 runbook skeleton. It standardizes explicit loopback bind, an experimental SQLite DB path outside the source tree, explicit migrations path, blunt reset semantics, and defers config parsers, helper commands, local-backbone runner profiles, systemd, cloudflared, public ingress, and production deployability claims.
 
+### v0.3.27 — Local Cypher explicit-env API lifecycle proof
+
+v0.3.27 records a local-only Cypher API lifecycle proof under the explicit local operator environment. It starts Cypher on loopback with a temporary SQLite DB, claims invites, registers devices, submits/retrieves/acks an opaque envelope, restarts against the same DB, and verifies persisted state remains available. It does not add helper tooling, a local-backbone runner profile, systemd, cloudflared, public ingress, runtime Comms OpenMLS UX, or production deployability claims.
+
 
