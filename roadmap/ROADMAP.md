@@ -29,7 +29,7 @@ This is not Android-ready.
 
 ## Near-term path
 
-### v0.2.61 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Deployability runbook
+### v0.2.61 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Deployability runbook
 
 Complete.
 
@@ -37,7 +37,7 @@ The current runbook is:
 
     docs/113-experimental-backbone-deployability-runbook-v0.md
 
-### v0.2.62 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Public surface cleanup
+### v0.2.62 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Public surface cleanup
 
 Current target.
 
@@ -50,7 +50,7 @@ Scope:
 - direct, reader-facing language;
 - strict security nonclaims.
 
-### v0.2.63 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â known-good local backbone proof completion for testing
+### v0.2.63 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â known-good local backbone proof completion for testing
 
 Goal:
 
@@ -58,7 +58,7 @@ Goal:
 - tighten known-good validation;
 - remove misleading helper names or stale test-only framing where necessary.
 
-### v0.2.64 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Inbox, ack, and schema semantics cleanup
+### v0.2.64 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Inbox, ack, and schema semantics cleanup
 
 Goal:
 
@@ -67,7 +67,7 @@ Goal:
 - document payload metadata;
 - ensure schema/API docs match implementation.
 
-### v0.2.65+ ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â OpenMLS backbone self-test and dev-harness planning
+### v0.2.65+ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â OpenMLS backbone self-test and dev-harness planning
 
 Goal:
 
@@ -86,7 +86,7 @@ Goal:
 - clear component map;
 - no production certification claims.
 
-### v0.3.0 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Experimental backbone epoch
+### v0.3.0 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Experimental backbone epoch
 
 Goal:
 
@@ -316,3 +316,16 @@ The v0.3.x sequence after this remains:
     optionally cut a runner-backed public testing release;
     then proceed into actual backbone deployability planning and local-only implementation;
     later, after deployability is ironed out, plan deployable server-system mechanics such as IRC-like CarbonStack standard server systems and server/admin workflows under the hostile-endpoint assumption.
+## v0.3.15 release-snapshot profile implementation
+
+v0.3.15 implements the Go runner `release-snapshot` profile.
+
+The profile validates package layout and strict pre-test artifact hygiene before calling `core`.
+
+Next direction:
+
+    validate staged release-like package behavior;
+    refine manifest/checksum expectations;
+    update runner-backed public testing docs after validation stabilizes;
+    then rehearse runner-backed release staging and uploaded/downloaded asset verification;
+    then move toward late-v0.3.x actual backbone deployability work.

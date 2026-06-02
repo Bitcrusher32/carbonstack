@@ -63,8 +63,10 @@ func main() {
 	case "full":
 		fmt.Println("profile full currently aliases core")
 		runErr = r.Core()
+	case "release-snapshot":
+		runErr = r.ReleaseSnapshot()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, or full", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, full, or release-snapshot", r.Profile)
 	}
 
 	if runErr != nil {

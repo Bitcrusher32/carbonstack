@@ -1,4 +1,4 @@
-﻿# CarbonStack Validate
+# CarbonStack Validate
 
 Status: experimental validation runner
 Phase: v0.3.12 runner hardening / docs integration
@@ -86,3 +86,21 @@ Post-test hits are expected only when they stay in known generated roots such as
 This runner does not prove production readiness, production E2EE, hostile-server safety, metadata privacy, Debian deployability, systemd readiness, cloudflared readiness, audit, or certification.
 
 It does not install dependencies, delete artifacts, package releases, publish releases, configure services, or deploy anything.
+### release-snapshot
+
+Validates a formal release-like package root before calling `core`.
+
+    go run . --profile release-snapshot --root /path/to/release-package-root
+
+The package root is expected to contain:
+
+    carbonstack/
+    carbonstack-comms/
+    carbonstack-cypher/
+    release/
+
+The profile checks required repo files, release metadata, and fails if forbidden generated/private/build artifacts are present before tests.
+
+After package checks pass, it calls `core`.
+
+`release-snapshot` does not package, upload, deploy, clean, install dependencies, or make security claims.

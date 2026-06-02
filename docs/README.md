@@ -169,3 +169,10 @@ The v0.3.14 release-snapshot profile design is recorded at:
     docs/133-release-snapshot-profile-design-v0.md
 
 This defines the intended Go runner profile for validating formal release-like packages before implementing the profile.
+## Release-snapshot profile implementation
+
+The v0.3.15 release-snapshot profile implementation is recorded at:
+
+    docs/134-release-snapshot-profile-implementation-v0.md
+
+This records the first Go runner `release-snapshot` profile, package checks, strict pre-test artifact policy, and validation path.
