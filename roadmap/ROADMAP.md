@@ -521,4 +521,8 @@ v0.3.23 records a proof-first recon of CarbonStackCypher repeated SQLite migrati
 
 v0.3.24 implements minimal schema migration tracking in CarbonStackCypher. Migrations are recorded by filename, SHA-256 checksum, and applied timestamp. Re-running migrations against the same SQLite database now skips already-applied matching migrations, while checksum drift for an already-applied migration hard-fails. This removes the v0.3.23 repeated-migration blocker for experimental local operator persistence, but does not make CarbonStack production-deployable.
 
+### v0.3.25 — Local Cypher operator runbook skeleton
+
+v0.3.25 records the first local-only Cypher operator runbook skeleton after schema_migrations landed. It documents explicit loopback startup, an experimental persistent SQLite DB path, explicit migrations path, reset/cleanup behavior, and a minimal health-check proof. It does not add systemd, cloudflared, public ingress, a runner local-backbone profile, runtime Comms OpenMLS UX, or production deployability claims.
+
 
