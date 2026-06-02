@@ -513,3 +513,8 @@ Next direction after the runner-backed release is clean:
 
 v0.3.22 records a docs/recon-only Cypher local operator surface pass for the WSL Debian-first local-only deployability line. It introduces the CarbonStack Relay Space terminology, inspects Cypher config/database/migration/API surfaces, records Comms-to-Cypher addressing seams, preserves runtime Comms OpenMLS UX as v0.4.x work, and identifies persistent SQLite migration behavior as the highest-priority deployability risk before a stronger local operator profile.
 
+### v0.3.23 — Cypher migration persistence recon
+
+v0.3.23 records a proof-first recon of CarbonStackCypher repeated SQLite migration behavior. A temporary test ran the current migration path twice against the same SQLite database, then removed the test file. The result confirms that fresh DB migration remains the known-good path while persistent local DB migration/restart behavior needs `schema_migrations`, idempotent guards, or explicit wipe-only experimental documentation before stronger local operator claims.
+
+

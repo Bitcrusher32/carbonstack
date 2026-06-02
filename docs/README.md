@@ -255,5 +255,6 @@ This records the final release-surface cleanup for the first public runner-backe
 The Cypher + Comms backbone deployability planning document is recorded at:
     docs/140-local-backbone-deployability-recon-v0.md 
 - `docs/141-cypher-local-operator-surface-recon-v0.md` — v0.3.22 Cypher local operator surface recon for the WSL Debian-first local-only deployability line.
+- `docs/142-cypher-migration-persistence-recon-v0.md` — v0.3.23 proof-first recon of Cypher repeated SQLite migration behavior before persistent local operator implementation.
 
 This records repo recon and near + far future planning for carbonstack deployability and mechanics.
