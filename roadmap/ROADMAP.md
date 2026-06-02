@@ -525,4 +525,8 @@ v0.3.24 implements minimal schema migration tracking in CarbonStackCypher. Migra
 
 v0.3.25 records the first local-only Cypher operator runbook skeleton after schema_migrations landed. It documents explicit loopback startup, an experimental persistent SQLite DB path, explicit migrations path, reset/cleanup behavior, and a minimal health-check proof. It does not add systemd, cloudflared, public ingress, a runner local-backbone profile, runtime Comms OpenMLS UX, or production deployability claims.
 
+### v0.3.26 — Local operator config/data convention
+
+v0.3.26 records the local-only Cypher operator config/data convention after the v0.3.25 runbook skeleton. It standardizes explicit loopback bind, an experimental SQLite DB path outside the source tree, explicit migrations path, blunt reset semantics, and defers config parsers, helper commands, local-backbone runner profiles, systemd, cloudflared, public ingress, and production deployability claims.
+
 
