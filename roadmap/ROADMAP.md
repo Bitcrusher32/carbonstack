@@ -517,4 +517,8 @@ v0.3.22 records a docs/recon-only Cypher local operator surface pass for the WSL
 
 v0.3.23 records a proof-first recon of CarbonStackCypher repeated SQLite migration behavior. A temporary test ran the current migration path twice against the same SQLite database, then removed the test file. The result confirms that fresh DB migration remains the known-good path while persistent local DB migration/restart behavior needs `schema_migrations`, idempotent guards, or explicit wipe-only experimental documentation before stronger local operator claims.
 
+### v0.3.24 — Cypher schema_migrations implementation
+
+v0.3.24 implements minimal schema migration tracking in CarbonStackCypher. Migrations are recorded by filename, SHA-256 checksum, and applied timestamp. Re-running migrations against the same SQLite database now skips already-applied matching migrations, while checksum drift for an already-applied migration hard-fails. This removes the v0.3.23 repeated-migration blocker for experimental local operator persistence, but does not make CarbonStack production-deployable.
+
 
