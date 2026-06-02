@@ -250,3 +250,9 @@ The v0.3.20 runner-backed testing release cleanup and final validation plan is r
     docs/139-runner-backed-testing-release-cleanup-v0.md
 
 This records the final release-surface cleanup for the first public runner-backed testing release, with Debian / WSL Debian as the primary validation target and Windows 11 short-path validation as the final explicit Windows dev/test validation for this phase.
+## Local-Only Cypher + Comms OpenMLS Backbone Deployability Recon and Planning
+
+The Cypher + Comms backbone deployability planning document is recorded at:
+    docs/140-local-backbone-deployability-recon-v0.md 
+
+This records repo recon and near + far future planning for carbonstack deployability and mechanics.
