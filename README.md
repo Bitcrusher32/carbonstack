@@ -1,4 +1,4 @@
-﻿# CarbonStack
+# CarbonStack
 
 CarbonStack is an experimental secure-communications appliance-stack project.
 
@@ -109,4 +109,16 @@ Do not use Gitea's default Source Code ZIP/TAR.GZ archives as the multi-repo tes
 License: MIT.
 See the repository's LICENSE file for more information.
 
+## Current testing path
 
+Current public testing release before the runner-backed release transition:
+
+    v0.3.4
+
+v0.3.4 remains available as the older Windows 11 / PowerShell testbed.
+
+The next runner-backed testing release is being prepared with Debian / WSL Debian as the primary validation target.
+
+Windows 11 validation is retained as secondary/final explicit dev-test validation for this phase, using a short extraction root and serial Cargo builds where needed.
+
+After v0.3.20, CarbonStack mainline public dev/test releases are expected to migrate to Debian / WSL Debian first. Windows may be reconsidered later after the server/backbone stack is more mature.

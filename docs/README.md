@@ -204,3 +204,10 @@ The v0.3.19 local downloaded-asset simulation and public release readiness plan 
     docs/138-local-downloaded-asset-simulation-v0.md
 
 This records a local public-user-style asset flow using published-assets, downloads, and fresh package extraction roots before touching the Gitea release surface.
+## Runner-backed testing release cleanup
+
+The v0.3.20 runner-backed testing release cleanup and final validation plan is recorded at:
+
+    docs/139-runner-backed-testing-release-cleanup-v0.md
+
+This prepares the final release surface for the first runner-backed testing release, with Debian / WSL Debian as the primary validation target and Windows 11 short-path validation as the final explicit Windows dev/test validation for this phase.
