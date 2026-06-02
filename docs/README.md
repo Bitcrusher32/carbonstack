@@ -261,5 +261,6 @@ The Cypher + Comms backbone deployability planning document is recorded at:
 - docs/145-local-operator-config-data-convention-v0.md — v0.3.26 local operator config/data convention for explicit loopback bind, DB path, migrations path, reset boundary, and delayed helper/runner decisions.
 - docs/146-local-cypher-explicit-env-api-lifecycle-proof-v0.md — v0.3.27 local Cypher explicit-env API lifecycle proof using loopback bind, temporary SQLite DB, invite/device/envelope/ack lifecycle, and restart against the same DB.
 - docs/147-local-operator-helper-runner-decision-recon-v0.md — v0.3.28 helper/runner decision recon after the local Cypher API lifecycle proof; reserves local-backbone for later whole-stack validation and keeps local-cypher runner/helper tooling deferred.
+- docs/148-local-cypher-validation-contract-v0.md — v0.3.29 local-cypher validation contract recon defining the future Cypher-only runner-owned lifecycle profile before implementation.
 
 This records repo recon and near + far future planning for carbonstack deployability and mechanics.

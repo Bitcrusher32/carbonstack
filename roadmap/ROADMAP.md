@@ -537,4 +537,8 @@ v0.3.27 records a local-only Cypher API lifecycle proof under the explicit local
 
 v0.3.28 records a decision/recon checkpoint after the v0.3.27 local Cypher explicit-env API lifecycle proof. It defers helper tooling and runner profile implementation, reserves `local-backbone` for a later whole-CarbonStack backbone validation surface, treats `local-cypher` as the future candidate name for Cypher-only lifecycle validation, and confirms temporary isolated DBs as the correct dev/test validation default while noting they are not sufficient for later public Comms or real-user testing maturity.
 
+### v0.3.29 — local-cypher validation contract recon
+
+v0.3.29 records the future `local-cypher` validation contract after the v0.3.28 helper/runner decision recon. It defines `local-cypher` as a future Cypher-only runner-owned lifecycle profile using a temporary isolated DB, explicit loopback bind, positive invite/device/envelope/ack lifecycle, restart against the same DB, and cleanup requirements. It reserves `local-backbone` for later whole-stack validation and does not implement the runner profile yet.
+
 
