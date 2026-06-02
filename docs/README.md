@@ -1,8 +1,47 @@
-# CarbonStack docs archive
+# CarbonStack docs
 
-This folder is a historical docs archive and continuity trail for CarbonStack.
+This directory is a living documentation archive.
 
-It contains planning notes, recon notes, implementation result notes, process checkpoints, release-supporting docs, and other project continuity documents written over time.
+Lower-numbered documents preserve historical design, research, validation, and release-process state. They may contain stale assumptions because they intentionally record the project at the time they were written.
+
+For current public testing and release status, start with:
+
+    docs/139-runner-backed-testing-release-cleanup-v0.md
+
+Current release direction:
+
+    v0.3.20 runner-backed testing release candidate
+    Debian / WSL Debian as the primary validation target
+    Windows 11 short-path validation as the final explicit Windows dev/test validation for this phase
+    v0.3.4 remains available as the older Windows 11 / PowerShell testbed
+
+After v0.3.20, mainline public dev/test releases are expected to migrate to Debian / WSL Debian first.
+
+Current validation boundary:
+
+    checksum verification
+    release-snapshot validation
+    OpenMLS real-Cypher lifecycle
+    carbonstack-comms package tests
+    carbonstack-cypher package tests
+
+Current nonclaims:
+
+    not production-ready
+    not production E2EE
+    not hostile-server safe
+    not metadata-private
+    not deployment-ready
+    not systemd-ready
+    not cloudflared-ready
+    not externally audited
+    not certified
+
+## Historical archive note
+
+Most numbered docs are historical records, not the current release front door.
+
+Do not assume an older numbered document supersedes the latest release/runbook docs unless the newer docs explicitly say so.
 
 ## How to read this folder
 
@@ -119,7 +158,7 @@ The v0.3.4 public tester runbook is recorded at:
 
     docs/126-v0.3.4-public-tester-runbook-v0.md
 
-This is the version-specific tester runbook for the v0.3.4 experimental backbone release. For current public testing, start from the latest release page and use that release's attached assets/runbook.
+This is the version-specific tester runbook for the v0.3.4 experimental backbone release. v0.3.4 remains available as the older Windows 11 / PowerShell testbed; for current status, start from the top-level README and current release/runbook docs.
 ## Windows reliance and Debian homelab recon
 
 The v0.3.7 Windows reliance and Debian homelab recon is recorded at:
@@ -189,7 +228,7 @@ The v0.3.17 runner-backed public testing path draft is recorded at:
 
     docs/136-runner-backed-public-testing-path-v0.md
 
-This documents the future Go runner release-snapshot public testing path while preserving v0.3.4 as the current recommended public testing release until a runner-backed release is staged, uploaded, downloaded, and verified.
+This documents the Go runner release-snapshot public testing path while preserving v0.3.4 as the older Windows 11 / PowerShell testbed until the runner-backed release surface is cut and published.
 ## Runner-backed release staging rehearsal
 
 The v0.3.18 runner-backed release staging rehearsal is recorded at:

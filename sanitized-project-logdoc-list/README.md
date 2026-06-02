@@ -1,4 +1,11 @@
-﻿# Sanitized project LogDoc list
+# Historical LogDoc archive
+
+This folder contains sanitized historical LogDoc material.
+
+These files are preserved as project/process history. They are not the current release front door and may contain stale assumptions from earlier checkpoints.
+
+For current testing/release status, start from the top-level README and the current release/runbook docs.
+# Sanitized project LogDoc list
 
 This folder contains sanitized CarbonStack LogDoc material for workflow, continuity, and case-study use.
 

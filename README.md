@@ -122,3 +122,46 @@ The next runner-backed testing release is being prepared with Debian / WSL Debia
 Windows 11 validation is retained as secondary/final explicit dev-test validation for this phase, using a short extraction root and serial Cargo builds where needed.
 
 After v0.3.20, CarbonStack mainline public dev/test releases are expected to migrate to Debian / WSL Debian first. Windows may be reconsidered later after the server/backbone stack is more mature.
+
+## Current testing path
+
+CarbonStack is currently preparing the v0.3.20 runner-backed testing release.
+
+Primary validation target:
+
+    Debian 13 / WSL2 Debian, linux/amd64
+
+Secondary final explicit Windows dev/test validation for this phase:
+
+    Windows 11, windows/amd64
+    short extraction root required/recommended, such as C:\cs-v0320\package
+    CARGO_BUILD_JOBS=1 required/recommended for Rust/OpenMLS validation
+
+v0.3.20 is expected to be the final release in this phase where Windows dev/test validation is explicitly provided as part of the runner-backed release surface.
+
+After v0.3.20, CarbonStack mainline public dev/test releases are expected to migrate to Debian / WSL Debian first.
+
+The older v0.3.4 Windows 11 / PowerShell release remains available as a legacy testbed for users who specifically want that path.
+
+This does not mean Windows is permanently unsupported. Later Linux-family, BSD, or Windows ports may be reconsidered after the server/backbone stack is more mature.
+
+Current validation boundary:
+
+    runner-backed package validation
+    checksum verification
+    release-snapshot validation
+    OpenMLS real-Cypher lifecycle
+    carbonstack-comms package tests
+    carbonstack-cypher package tests
+
+Current nonclaims:
+
+    not production-ready
+    not production E2EE
+    not hostile-server safe
+    not metadata-private
+    not deployment-ready
+    not systemd-ready
+    not cloudflared-ready
+    not externally audited
+    not certified
