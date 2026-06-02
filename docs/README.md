@@ -197,3 +197,10 @@ The v0.3.18 runner-backed release staging rehearsal is recorded at:
     docs/137-runner-backed-release-staging-rehearsal-v0.md
 
 This records a local release-candidate rehearsal package with real Go-generated checksums and release-snapshot validation from fresh extractions on WSL Debian and Windows.
+## Local downloaded-asset simulation
+
+The v0.3.19 local downloaded-asset simulation and public release readiness plan is recorded at:
+
+    docs/138-local-downloaded-asset-simulation-v0.md
+
+This records a local public-user-style asset flow using published-assets, downloads, and fresh package extraction roots before touching the Gitea release surface.
