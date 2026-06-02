@@ -104,3 +104,20 @@ The profile checks required repo files, release metadata, and fails if forbidden
 After package checks pass, it calls `core`.
 
 `release-snapshot` does not package, upload, deploy, clean, install dependencies, or make security claims.
+## release-snapshot run-order warning
+
+`release-snapshot` must be run from a fresh extracted or throwaway staged package root.
+
+Do not validate the package source root that will later be archived or published.
+
+A successful `release-snapshot` run calls `core`, and `core` generates OpenMLS sidecar state and Rust build artifacts. If that same package root is archived afterward, the archive will contain forbidden generated/private/build artifacts and should fail strict pre-test validation later.
+
+Correct pattern:
+
+    create clean package source root
+    archive it without running release-snapshot inside it
+    extract archive into a throwaway validation root
+    run release-snapshot from the throwaway extraction
+    discard or preserve the throwaway extraction only as validation evidence
+
+Do not run `release-snapshot` twice in the same extraction unless you intentionally expect the second run to fail strict pre-test artifact scanning.

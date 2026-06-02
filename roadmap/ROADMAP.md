@@ -29,7 +29,7 @@ This is not Android-ready.
 
 ## Near-term path
 
-### v0.2.61 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Deployability runbook
+### v0.2.61 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â Deployability runbook
 
 Complete.
 
@@ -37,7 +37,7 @@ The current runbook is:
 
     docs/113-experimental-backbone-deployability-runbook-v0.md
 
-### v0.2.62 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Public surface cleanup
+### v0.2.62 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â Public surface cleanup
 
 Current target.
 
@@ -50,7 +50,7 @@ Scope:
 - direct, reader-facing language;
 - strict security nonclaims.
 
-### v0.2.63 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â known-good local backbone proof completion for testing
+### v0.2.63 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â known-good local backbone proof completion for testing
 
 Goal:
 
@@ -58,7 +58,7 @@ Goal:
 - tighten known-good validation;
 - remove misleading helper names or stale test-only framing where necessary.
 
-### v0.2.64 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Inbox, ack, and schema semantics cleanup
+### v0.2.64 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â Inbox, ack, and schema semantics cleanup
 
 Goal:
 
@@ -67,7 +67,7 @@ Goal:
 - document payload metadata;
 - ensure schema/API docs match implementation.
 
-### v0.2.65+ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â OpenMLS backbone self-test and dev-harness planning
+### v0.2.65+ ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â OpenMLS backbone self-test and dev-harness planning
 
 Goal:
 
@@ -86,7 +86,7 @@ Goal:
 - clear component map;
 - no production certification claims.
 
-### v0.3.0 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Experimental backbone epoch
+### v0.3.0 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â Experimental backbone epoch
 
 Goal:
 
@@ -329,3 +329,26 @@ Next direction:
     update runner-backed public testing docs after validation stabilizes;
     then rehearse runner-backed release staging and uploaded/downloaded asset verification;
     then move toward late-v0.3.x actual backbone deployability work.
+## v0.3.16 release-snapshot validation hardening
+
+v0.3.16 validates the release-snapshot profile against a staged release-like package from fresh extractions.
+
+Important rule:
+
+    do not validate the package source root that will later be archived or published.
+
+Correct flow:
+
+    create clean package source root;
+    archive it before running release-snapshot inside it;
+    validate from fresh throwaway extraction;
+    use WSL Debian first;
+    use Windows second.
+
+Next direction:
+
+    refine runner-backed public testing docs;
+    define real checksum/manifest semantics;
+    rehearse runner-backed release staging;
+    verify uploaded/downloaded release assets;
+    only then consider an optional public runner-backed testing release.

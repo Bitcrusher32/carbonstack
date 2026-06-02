@@ -176,3 +176,10 @@ The v0.3.15 release-snapshot profile implementation is recorded at:
     docs/134-release-snapshot-profile-implementation-v0.md
 
 This records the first Go runner `release-snapshot` profile, package checks, strict pre-test artifact policy, and validation path.
+## Release-snapshot validation hardening
+
+The v0.3.16 release-snapshot validation hardening record is recorded at:
+
+    docs/135-release-snapshot-validation-hardening-v0.md
+
+This records staged release-like package validation from fresh extractions on WSL Debian and Windows, plus the run-order rule that release-snapshot must not be run inside the package source root that will later be archived.

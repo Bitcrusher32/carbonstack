@@ -12,6 +12,9 @@ func (r *Runner) ReleaseSnapshot() error {
 
 	fmt.Printf("release_package_root: %s\n", r.UmbrellaRoot)
 	fmt.Println("release-snapshot checks run before core validation")
+	fmt.Println("run-order warning: validate only fresh extracted/staged package roots")
+	fmt.Println("do not validate the package source root that will later be archived/published")
+	fmt.Println("a successful validation generates artifacts, so rerun from a fresh extraction")
 
 	if err := r.CheckReleaseSnapshotLayout(); err != nil {
 		return err
