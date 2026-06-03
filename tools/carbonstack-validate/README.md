@@ -28,6 +28,25 @@ Runs the current core validation path:
 
     go run . --profile core
 
+### local-cypher
+
+Runs the local-only Cypher API lifecycle validation contract:
+
+    required path checks
+    pre-local-cypher artifact scan
+    temporary Cypher binary build
+    temporary isolated SQLite DB
+    explicit loopback bind on 127.0.0.1
+    invite/device/envelope/ack lifecycle
+    restart against the same temporary DB
+    persisted state checks after restart
+    post-local-cypher artifact scan
+    temporary state cleanup
+
+    go run . --profile local-cypher
+
+`local-cypher` is Cypher-only. It is not `local-backbone`, not runtime Comms UX, not public ingress, not systemd/cloudflared, and not a production deployment or security claim.
+
 ### full
 
 Currently aliases `core`.

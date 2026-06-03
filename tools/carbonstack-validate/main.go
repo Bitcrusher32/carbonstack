@@ -43,7 +43,7 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, full, release-snapshot, write-checksums, verify-checksums")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	flag.Parse()
 
@@ -60,6 +60,8 @@ func main() {
 		runErr = r.Doctor()
 	case "core":
 		runErr = r.Core()
+	case "local-cypher":
+		runErr = r.LocalCypher()
 	case "full":
 		fmt.Println("profile full currently aliases core")
 		runErr = r.Core()
@@ -70,7 +72,7 @@ func main() {
 	case "verify-checksums":
 		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {
