@@ -541,4 +541,8 @@ v0.3.28 records a decision/recon checkpoint after the v0.3.27 local Cypher expli
 
 v0.3.29 records the future `local-cypher` validation contract after the v0.3.28 helper/runner decision recon. It defines `local-cypher` as a future Cypher-only runner-owned lifecycle profile using a temporary isolated DB, explicit loopback bind, positive invite/device/envelope/ack lifecycle, restart against the same DB, and cleanup requirements. It reserves `local-backbone` for later whole-stack validation and does not implement the runner profile yet.
 
+### v0.3.30 — local-cypher runner implementation
+
+v0.3.30 implements the first `local-cypher` profile in the Go validation runner. The profile is Cypher-only: it builds a temporary Cypher binary, uses a temporary isolated SQLite DB, binds to loopback, runs the positive invite/device/envelope/ack lifecycle, restarts against the same DB, checks persisted state, and cleans temporary state. It does not implement `local-backbone`, helper tooling, negative-path validation, public ingress, runtime Comms UX, or production deployability claims.
+
 
