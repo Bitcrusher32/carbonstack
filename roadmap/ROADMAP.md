@@ -57,15 +57,20 @@ Goal:
     frame v0.4.0 as broad local deployability pre-release
     avoid new feature work
 
-### v0.3.34 — release checklist and package validation rehearsal
+### v0.3.34 — full profile release validation ladder
 
 Goal:
 
-    prepare pre-v0.4.0 release checklist
+    make `full` the v0.4.0 release-package validation ladder
     confirm release-snapshot/checksum/package expectations
-    run package-like validation from clean extraction
-    verify local-cypher/core validation from release-like layout
+    define full as release-snapshot plus local-cypher
+    avoid duplicated core execution because release-snapshot already calls core
     keep release claims narrow
+
+
+Recommended v0.4.0 validation command shape:
+
+    go run . --profile full --root /path/to/release-package-root --clean-generated
 
 ### v0.3.35 — release candidate wording and asset plan
 

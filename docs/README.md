@@ -79,6 +79,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/150-local-cypher-polish-generated-cleanup-v0.md` — v0.3.31 local-cypher polish and explicit generated-artifact cleanup.
 - `docs/151-local-cypher-negative-protocol-validation-v0.md` — v0.3.32 local-cypher negative protocol validation.
 - `docs/152-pre-v0.4.0-release-surface-cleanup-v0.md` — v0.3.33 pre-v0.4.0 release-surface cleanup.
+- `docs/153-full-profile-release-validation-ladder-v0.md` — v0.3.34 full profile release validation ladder; `full` now runs `release-snapshot` then `local-cypher`.
 
 ## Security and maturity warning
 
