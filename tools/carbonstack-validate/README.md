@@ -74,11 +74,18 @@ Expected result:
 
 ### full
 
-Currently aliases `core`.
+Runs the current release-package validation ladder:
 
-    go run . --profile full
+    release-snapshot
+    local-cypher
 
-`full` should remain a simple alias until later v0.3.x work creates real release/deployability validation surfaces.
+`release-snapshot` already calls `core`, so `full` does not call `core` a second time.
+
+Recommended release-package command:
+
+    go run . --profile full --root /path/to/release-package-root --clean-generated
+
+`full` is intended for fresh extracted or throwaway staged release package roots. It is not a deployment command, not `local-backbone`, not runtime Comms UX, and not a production/security claim.
 
 ## Expected layout
 
@@ -148,6 +155,14 @@ The profile checks required repo files, release metadata, and fails if forbidden
 After package checks pass, it calls `core`.
 
 `release-snapshot` does not package, upload, deploy, clean, install dependencies, or make security claims.
+## v0.4.0 release validation recommendation
+
+For the v0.4.0 broad local deployability pre-release, prefer the `full` profile from a fresh extracted or throwaway staged package root:
+
+    go run . --profile full --root /path/to/release-package-root --clean-generated
+
+This runs the release package/checksum/core validation path through `release-snapshot`, then runs the Cypher-only `local-cypher` lifecycle validation. It remains a validation ladder, not a deployment command.
+
 ## release-snapshot run-order warning
 
 `release-snapshot` must be run from a fresh extracted or throwaway staged package root.

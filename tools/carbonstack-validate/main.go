@@ -66,8 +66,13 @@ func main() {
 	case "local-cypher":
 		runErr = r.LocalCypher()
 	case "full":
-		fmt.Println("profile full currently aliases core")
-		runErr = r.Core()
+		fmt.Println("profile full runs release-snapshot, then local-cypher")
+		fmt.Println("release-snapshot already calls core; full does not call core a second time")
+		if err := r.ReleaseSnapshot(); err != nil {
+			runErr = err
+		} else {
+			runErr = r.LocalCypher()
+		}
 	case "release-snapshot":
 		runErr = r.ReleaseSnapshot()
 	case "write-checksums":
