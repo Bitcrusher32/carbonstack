@@ -549,4 +549,8 @@ v0.3.30 implements the first `local-cypher` profile in the Go validation runner.
 
 v0.3.31 polishes `local-cypher` output and adds an explicit opt-in `--clean-generated` flag to the Go validation runner. The flag runs only after successful profile execution and removes only known generated OpenMLS sidecar roots. It is not a general untracked-file cleaner, not default behavior, and not a substitute for release-snapshot strict artifact checks. v0.3.31 also records the v0.4.0 framing direction as a broad local deployability pre-release / research-and-development milestone, not public-user or production application use.
 
+### v0.3.32 — local-cypher negative protocol validation
+
+v0.3.32 adds the first negative-path check to the `local-cypher` runner profile. The runner now verifies that the historical stub-text/OpenMLS protocol mismatch, `content_type=carbonstack.message.text.stub.v0` with `protocol_version=carbonstack-openmls-sidecar-v0`, is rejected with HTTP 400 and `unsupported_protocol_version` before continuing through the positive local-cypher lifecycle. This remains Cypher-only validation and does not implement `local-backbone`, runtime Comms UX, public ingress, or production deployability claims.
+
 

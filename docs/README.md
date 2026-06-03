@@ -264,5 +264,6 @@ The Cypher + Comms backbone deployability planning document is recorded at:
 - docs/148-local-cypher-validation-contract-v0.md — v0.3.29 local-cypher validation contract recon defining the future Cypher-only runner-owned lifecycle profile before implementation.
 - docs/149-local-cypher-runner-implementation-v0.md — v0.3.30 local-cypher Go runner profile implementation result for Cypher-only positive lifecycle validation.
 - docs/150-local-cypher-polish-generated-cleanup-v0.md — v0.3.31 runner output polish plus explicit --clean-generated flag for known generated OpenMLS sidecar roots.
+- docs/151-local-cypher-negative-protocol-validation-v0.md — v0.3.32 local-cypher negative-path validation for rejecting the historical stub-text/OpenMLS protocol mismatch with unsupported_protocol_version.
 
 This records repo recon and near + far future planning for carbonstack deployability and mechanics.
