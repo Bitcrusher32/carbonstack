@@ -545,4 +545,8 @@ v0.3.29 records the future `local-cypher` validation contract after the v0.3.28 
 
 v0.3.30 implements the first `local-cypher` profile in the Go validation runner. The profile is Cypher-only: it builds a temporary Cypher binary, uses a temporary isolated SQLite DB, binds to loopback, runs the positive invite/device/envelope/ack lifecycle, restarts against the same DB, checks persisted state, and cleans temporary state. It does not implement `local-backbone`, helper tooling, negative-path validation, public ingress, runtime Comms UX, or production deployability claims.
 
+### v0.3.31 — local-cypher polish and explicit generated-artifact cleanup
+
+v0.3.31 polishes `local-cypher` output and adds an explicit opt-in `--clean-generated` flag to the Go validation runner. The flag runs only after successful profile execution and removes only known generated OpenMLS sidecar roots. It is not a general untracked-file cleaner, not default behavior, and not a substitute for release-snapshot strict artifact checks. v0.3.31 also records the v0.4.0 framing direction as a broad local deployability pre-release / research-and-development milestone, not public-user or production application use.
+
 

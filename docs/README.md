@@ -263,5 +263,6 @@ The Cypher + Comms backbone deployability planning document is recorded at:
 - docs/147-local-operator-helper-runner-decision-recon-v0.md — v0.3.28 helper/runner decision recon after the local Cypher API lifecycle proof; reserves local-backbone for later whole-stack validation and keeps local-cypher runner/helper tooling deferred.
 - docs/148-local-cypher-validation-contract-v0.md — v0.3.29 local-cypher validation contract recon defining the future Cypher-only runner-owned lifecycle profile before implementation.
 - docs/149-local-cypher-runner-implementation-v0.md — v0.3.30 local-cypher Go runner profile implementation result for Cypher-only positive lifecycle validation.
+- docs/150-local-cypher-polish-generated-cleanup-v0.md — v0.3.31 runner output polish plus explicit --clean-generated flag for known generated OpenMLS sidecar roots.
 
 This records repo recon and near + far future planning for carbonstack deployability and mechanics.
