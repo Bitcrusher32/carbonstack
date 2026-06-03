@@ -80,6 +80,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/151-local-cypher-negative-protocol-validation-v0.md` — v0.3.32 local-cypher negative protocol validation.
 - `docs/152-pre-v0.4.0-release-surface-cleanup-v0.md` — v0.3.33 pre-v0.4.0 release-surface cleanup.
 - `docs/153-full-profile-release-validation-ladder-v0.md` — v0.3.34 full profile release validation ladder; `full` now runs `release-snapshot` then `local-cypher`.
+- `docs/154-v0.4.0-package-rehearsal-v0.md` — v0.3.36 throwaway v0.4.0-style package rehearsal; fresh extraction checksum verification and full validation passed under WSL Debian.
 
 ## Security and maturity warning
 

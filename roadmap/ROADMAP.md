@@ -72,11 +72,28 @@ Recommended v0.4.0 validation command shape:
 
     go run . --profile full --root /path/to/release-package-root --clean-generated
 
-### v0.3.35 — release candidate wording and asset plan
+### v0.3.35 / v0.3.36 — v0.4.0 package rehearsal
 
 Goal:
 
-    draft v0.4.0 release notes
+    stage a throwaway v0.4.0-style package root
+    include carbonstack, carbonstack-comms, carbonstack-cypher, and release metadata
+    exclude carbonstack-os from the runnable package
+    generate release checksums
+    archive and fresh-extract the package
+    verify checksums from the fresh extraction
+    run full from the fresh extraction with --clean-generated
+    document package rehearsal result
+
+Result:
+
+    v0.3.36 package rehearsal passed under WSL Debian.
+
+### v0.3.37 — release candidate wording and asset plan
+
+Goal:
+
+    draft v0.4.0 release notes using v0.3.20 release presentation as continuity template
     define attached asset expectations
     define validation instructions
     define known-good toolchains
@@ -236,3 +253,7 @@ Do:
     build feature -> test it -> document scope and non-scope -> then make limited claim
 
 CarbonStack should remain evidence-led, not vibes-led.
+
+Current package rehearsal record:
+
+    docs/154-v0.4.0-package-rehearsal-v0.md
