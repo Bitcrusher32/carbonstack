@@ -162,6 +162,17 @@ func (r *Runner) LocalCypher() error {
 		payloadSum := sha256.Sum256(payload)
 		wantSHA := hex.EncodeToString(payloadSum[:])
 
+		if err := localCypherExpectErrorCode(baseURL+"/v0/envelopes", map[string]any{
+			"sender_device_id":    ids["alice_device_id"],
+			"recipient_device_id": ids["bob_device_id"],
+			"content_type":        "carbonstack.message.text.stub.v0",
+			"protocol_version":    "carbonstack-openmls-sidecar-v0",
+			"ciphertext_b64":      payloadB64,
+		}, http.StatusBadRequest, "unsupported_protocol_version"); err != nil {
+			return err
+		}
+		fmt.Println("PASS: reject invalid stub-text/OpenMLS protocol pairing")
+
 		envelope, err := localCypherPOST(baseURL+"/v0/envelopes", map[string]any{
 			"sender_device_id":    ids["alice_device_id"],
 			"recipient_device_id": ids["bob_device_id"],
@@ -400,6 +411,25 @@ func waitForLocalCypherHealth(url string) error {
 	}
 
 	return fmt.Errorf("wait for health %s: %w", url, lastErr)
+}
+
+func localCypherExpectErrorCode(url string, body map[string]any, expectedStatus int, expectedCode string) error {
+	resp, err := localCypherPOST(url, body, expectedStatus)
+	if err != nil {
+		return err
+	}
+
+	errorValue, ok := resp["error"].(map[string]any)
+	if !ok {
+		return fmt.Errorf("expected error object in response from %s", url)
+	}
+
+	gotCode, _ := errorValue["code"].(string)
+	if gotCode != expectedCode {
+		return fmt.Errorf("expected error code %q from %s, got %q", expectedCode, url, gotCode)
+	}
+
+	return nil
 }
 
 func localCypherGET(url string, expectedStatus int) (map[string]any, error) {

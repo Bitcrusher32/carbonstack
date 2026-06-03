@@ -60,6 +60,16 @@ Runs the local-only Cypher API lifecycle validation contract:
 
     go run . --profile local-cypher
 
+Negative-path coverage currently includes the historically preserved v0.3.27 blunder case:
+
+    content_type=carbonstack.message.text.stub.v0
+    protocol_version=carbonstack-openmls-sidecar-v0
+
+Expected result:
+
+    HTTP 400
+    unsupported_protocol_version
+
 `local-cypher` is Cypher-only. It is not `local-backbone`, not runtime Comms UX, not public ingress, not systemd/cloudflared, and not a production deployment or security claim.
 
 ### full
