@@ -2,124 +2,134 @@
 
 CarbonStack is an experimental secure-communications appliance-stack project.
 
-At this stage, it is not a finished messenger. It is not production-certified. It is not externally audited. It is not Android-ready.
+It is not a finished messenger. It is not production-certified. It is not externally audited. It is not Android-ready. Do not use CarbonStack for operationally sensitive communications unless you have read the relevant release notes, runbooks, and limitations, and you understand the current release's boundaries.
 
-The current public testing release remains:
+The canonical project home is the self-hosted Gitea repository:
 
-    v0.3.20 runner-backed testing release
+    https://git.bitcrusher32.win/bitcrusher32/carbonstack
 
-The current mainline validation state has moved beyond v0.3.20. Mainline v0.3.32 now includes a WSL Debian Go-runner validation surface with:
+GitHub mirrors may exist for discoverability and redundancy, but Gitea remains the source of truth for releases, tags, attached release assets, and current project state.
 
-    local-cypher
-    doctor
-    core --clean-generated
+## Start here
 
-`local-cypher` validates a Cypher-only local lifecycle. It builds a temporary Cypher binary, uses a temporary SQLite DB, binds to loopback, claims invites, registers devices, submits/retrieves/acks an opaque OpenMLS envelope, verifies restart/persistence behavior, checks one negative protocol pairing, and leaves no source-tree artifacts.
+For runnable or known-good artifacts, start from the Releases page:
 
-This proves a local experimental validation path. It does not prove production security.
+    https://git.bitcrusher32.win/bitcrusher32/carbonstack/releases
 
-_Related repositories: [carbonstack-comms](https://git.bitcrusher32.win/bitcrusher32/carbonstack-comms) / [carbonstack-cypher](https://git.bitcrusher32.win/bitcrusher32/carbonstack-cypher) / [carbonstack-os](https://git.bitcrusher32.win/bitcrusher32/carbonstack-os)_
+Use the attached release assets and the release-specific testing runbook for the release you are testing.
 
-## What is currently proven
+Do not treat Gitea's default Source Code ZIP/TAR.GZ downloads as the intended multi-repo validation package unless a release explicitly says so. The default archives are generated from the carbonstack repository alone. CarbonStack release packages may include multiple repositories plus release metadata.
 
-The current validated backbone path includes:
+## What this repository is
 
-1. OpenMLS KeyPackage relay through Cypher.
-2. OpenMLS Welcome relay through Cypher.
-3. OpenMLS application-message relay through Cypher.
-4. Consume-then-ack behavior.
-5. Payload metadata checks before downloaded artifact bytes are written locally.
-6. Cypher schema migration idempotence through `schema_migrations`.
-7. Explicit local Cypher operator config/data convention.
-8. `local-cypher` runner-owned positive lifecycle validation.
-9. `local-cypher` restart against the same temporary DB.
-10. `local-cypher` rejection of the historical invalid stub-text/OpenMLS protocol pairing.
-11. `core --clean-generated` validation with explicit generated-artifact cleanup.
+The carbonstack repository is the public front door for the CarbonStack project.
 
-This is the current experimental validation surface.
+It contains:
+
+- project doctrine;
+- public release framing;
+- roadmap material;
+- validation and testing docs;
+- historical design and implementation records;
+- the CarbonStack validation runner;
+- release/package validation support.
+
+Implementation work is split across component repositories:
+
+- carbonstack: doctrine, docs, release framing, runbooks, validation runner, and public front-door material.
+- carbonstack-comms: text-first Comms client, OpenMLS sidecar, relay helper, tests, and smoke harness.
+- carbonstack-cypher: relay/storage server, envelope API, SQLite schema, migrations, and server tests.
+- carbonstack-os: future constrained appliance OS concept; not part of the current runnable validation package unless a release explicitly says otherwise.
+
+Related repositories:
+
+    https://git.bitcrusher32.win/bitcrusher32/carbonstack-comms
+    https://git.bitcrusher32.win/bitcrusher32/carbonstack-cypher
+    https://git.bitcrusher32.win/bitcrusher32/carbonstack-os
+
+## Current maturity
+
+CarbonStack is pre-alpha / experimental.
+
+It currently focuses on validating pieces of a secure-communications backbone, especially the relationship between:
+
+- CarbonStackComms;
+- CarbonStackCypher;
+- OpenMLS sidecar artifacts;
+- local validation runners;
+- release-package verification.
+
+The exact claims, tested platforms, validation commands, package shape, and known-good artifacts are release-specific. Check the latest release notes and attached testing runbook before testing.
+
+## What has been demonstrated so far
+
+Across the v0.3.x and v0.4.x line, CarbonStack has demonstrated experimental validation coverage for:
+
+- OpenMLS KeyPackage relay through Cypher;
+- OpenMLS Welcome relay through Cypher;
+- OpenMLS application-message relay through Cypher;
+- consume-then-ack behavior;
+- payload metadata checks before downloaded artifact bytes are written locally;
+- Cypher schema migration idempotence through schema_migrations;
+- local Cypher operator config/data conventions;
+- Cypher-only local lifecycle validation through local-cypher;
+- restart/persistence checks against a temporary DB;
+- rejection of a historical invalid stub-text/OpenMLS protocol pairing;
+- release package layout checks;
+- package checksum verification;
+- fresh-extraction validation;
+- explicit cleanup of known OpenMLS sidecar generated roots.
+
+This is useful project evidence. It is not a production security proof.
 
 ## What is not proven
 
 CarbonStack does not currently prove:
 
+- production readiness;
 - production E2EE product readiness;
 - hostile-server safety;
 - metadata privacy;
 - secure local vault/storage;
 - Android appliance readiness;
-- polished Comms runtime send/inbox integration;
+- CarbonStackOS readiness;
+- polished Comms runtime send/inbox UX;
 - rollback/replay safety against a malicious server;
 - public ingress safety;
 - systemd/cloudflared deployment readiness;
+- real homelab deployment safety;
 - external audit or certification;
 - a stable public protocol.
 
 Do not treat this repository as a finished secure messenger.
 
-## Repositories
+## Testing and validation
 
-CarbonStack is split across component repositories.
+Release-specific instructions live with each release.
 
-- `carbonstack`: doctrine, docs, release framing, runbooks, validation runner, and public front-door material.
-- `carbonstack-comms`: text-first Comms client, OpenMLS sidecar, relay helper, tests, and smoke harness.
-- `carbonstack-cypher`: relay/storage server, envelope API, SQLite schema, migrations, and server tests.
-- `carbonstack-os`: future constrained appliance OS concept; not part of the current runnable validation surface.
+The general pattern for current release packages is:
 
-The public release surface starts here, in `carbonstack`.
+    download the attached multi-repo release package
+    download the attached checksums and runbook
+    extract to a fresh package root
+    follow the release-specific testing runbook
 
-Component repositories carry implementation details and development tests.
+Current runner profiles may include:
 
-## Current testing path
+    verify-checksums
+    release-snapshot
+    full
+    local-cypher
+    core
+    doctor
 
-For public testing or development, start from the latest CarbonStack release:
+The meaning of these profiles can change as the project matures. Use the testing runbook attached to the release you are validating.
 
-    https://git.bitcrusher32.win/bitcrusher32/carbonstack/releases
+For development from a live checkout, see:
 
-Use the attached release assets and version-specific runbook for that release.
-
-Do not use Gitea's default Source Code ZIP/TAR.GZ archives as the multi-repo test package unless a release explicitly says otherwise.
-
-Current preferred public testing release:
-
-    v0.3.20 runner-backed testing release
-
-v0.3.4 remains available as the older Windows 11 / PowerShell testbed.
-
-Current mainline dev/test validation target:
-
-    Debian / WSL Debian, linux/amd64
-
-Current mainline validation commands:
-
-    cd tools/carbonstack-validate
-    go run . --profile local-cypher
-    go run . --profile doctor
-    go run . --profile core --clean-generated
-
-Windows 11 validation is retained as historical/secondary validation for v0.3.20, but after v0.3.20 CarbonStack mainline public dev/test releases are expected to continue Debian / WSL Debian first. Later Windows/BSD/Linux-family port work may be reconsidered after the server/backbone stack is more mature.
-
-## v0.4.0 release direction
-
-The next minor epoch release should be framed as:
-
-    CarbonStack v0.4.0 broad local deployability pre-release
-
-Intended meaning:
-
-    milestone / research-and-development release
-    WSL Debian runner-backed local validation surface
-    local-cypher/core validation as the concrete artifact
-    transition point before runtime Comms OpenMLS UX work
-
-Not intended meaning:
-
-    public-user-ready messenger
-    application-use-ready messenger
-    production secure stack
-    hostile-server-certified system
-    mature Comms release
-    Android release
-    CarbonStackOS release
+    tools/carbonstack-validate/README.md
+    docs/README.md
+    roadmap/ROADMAP.md
 
 ## CarbonStack Relay Space terminology
 
@@ -129,7 +139,7 @@ Use:
 
 for the future addressable server/conversation space concept.
 
-Avoid importing IRC culture/moderation assumptions. "IRC-like" may be used only as a historical analogy when explaining the earlier mental model.
+Avoid importing IRC moderation/culture assumptions into CarbonStack. "IRC-like" may be used only as a historical analogy when explaining earlier design thinking.
 
 ## Docs archive
 
@@ -137,9 +147,9 @@ The docs folder is a chronological archive and release documentation surface.
 
 Start here:
 
-- `docs/README.md`
+- docs/README.md
 
-Older numbered docs may be stale. They preserve design history, failures, pivots, and implementation context. Current release/runbook docs define current behavior for a release.
+Older numbered docs may be stale. They preserve design history, failures, pivots, and implementation context. Current release pages, release runbooks, and newer docs define current behavior for a release.
 
 ## Core doctrine
 
