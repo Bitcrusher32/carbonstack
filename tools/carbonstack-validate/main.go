@@ -21,12 +21,13 @@ const (
 )
 
 type Runner struct {
-	Profile      string
-	StartDir     string
-	UmbrellaRoot string
-	CarbonStack  string
-	Comms        string
-	Cypher       string
+	Profile        string
+	CleanGenerated bool
+	StartDir       string
+	UmbrellaRoot   string
+	CarbonStack    string
+	Comms          string
+	Cypher         string
 }
 
 type Step struct {
@@ -45,6 +46,7 @@ type ArtifactHit struct {
 func main() {
 	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
+	cleanGenerated := flag.Bool("clean-generated", false, "after a successful profile run, remove known generated/build artifacts such as OpenMLS sidecar target/state roots")
 	flag.Parse()
 
 	r, err := NewRunner(*profile, *rootOverride)
@@ -52,6 +54,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "ERROR: %v\n", err)
 		os.Exit(2)
 	}
+	r.CleanGenerated = *cleanGenerated
 
 	var runErr error
 
@@ -78,6 +81,13 @@ func main() {
 	if runErr != nil {
 		fmt.Fprintf(os.Stderr, "\nVALIDATION FAILED: %v\n", runErr)
 		os.Exit(1)
+	}
+
+	if r.CleanGenerated {
+		if err := r.CleanGeneratedArtifacts(); err != nil {
+			fmt.Fprintf(os.Stderr, "\nVALIDATION FAILED: %v\n", err)
+			os.Exit(1)
+		}
 	}
 
 	fmt.Println("\nVALIDATION PASSED")
@@ -459,6 +469,36 @@ func (r *Runner) ArtifactScan(phase string) {
 	fmt.Println("artifact scan is non-destructive")
 	fmt.Println("pre-test hits are potential source/copy hygiene issues")
 	fmt.Println("post-test hits are expected only when they stay in known generated roots")
+}
+
+func (r *Runner) CleanGeneratedArtifacts() error {
+	fmt.Println()
+	fmt.Println("== clean generated artifacts ==")
+	fmt.Println("cleanup mode: explicit --clean-generated")
+	fmt.Println("cleanup scope: known generated/build artifact roots only")
+
+	paths := []string{
+		filepath.Join(r.Comms, "internal", "protocol", "mls", "openmls-sidecar", ".carbonstack-openmls-sidecar-state"),
+		filepath.Join(r.Comms, "internal", "protocol", "mls", "openmls-sidecar", "target"),
+	}
+
+	for _, path := range paths {
+		if _, err := os.Stat(path); err != nil {
+			if os.IsNotExist(err) {
+				fmt.Println("SKIP absent:", path)
+				continue
+			}
+			return fmt.Errorf("inspect generated artifact path %s: %w", path, err)
+		}
+
+		fmt.Println("REMOVE:", path)
+		if err := os.RemoveAll(path); err != nil {
+			return fmt.Errorf("remove generated artifact path %s: %w", path, err)
+		}
+	}
+
+	fmt.Println("generated artifact cleanup complete")
+	return nil
 }
 
 func classifyArtifactPath(path string) string {

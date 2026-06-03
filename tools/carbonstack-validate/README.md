@@ -28,6 +28,21 @@ Runs the current core validation path:
 
     go run . --profile core
 
+### Explicit generated-artifact cleanup
+
+By default, artifact scans are non-destructive. This keeps validation honest: generated/private/build artifacts remain visible after tests and must not be mistaken for source files.
+
+When desired, run with explicit cleanup:
+
+    go run . --profile core --clean-generated
+
+`--clean-generated` only removes known generated/build artifact roots currently recognized by the runner:
+
+    carbonstack-comms/internal/protocol/mls/openmls-sidecar/.carbonstack-openmls-sidecar-state
+    carbonstack-comms/internal/protocol/mls/openmls-sidecar/target
+
+It does not delete manual local operator DBs, does not touch `$HOME/.local/share/carbonstack/cypher/cypher.db`, does not clean arbitrary untracked files, and does not replace artifact scans.
+
 ### local-cypher
 
 Runs the local-only Cypher API lifecycle validation contract:

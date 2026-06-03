@@ -32,9 +32,8 @@ func (r *Runner) LocalCypher() error {
 
 	fmt.Println()
 	fmt.Println("== Toolchains ==")
-	fmt.Println("go path:", r.ReportTool("go", "env", "GOROOT"))
-	fmt.Println("go version:", r.ReportTool("go", "version"))
-	fmt.Println("sqlite3 version:", r.ReportTool("sqlite3", "--version"))
+	_ = r.ReportTool("go", "version")
+	_ = r.ReportTool("sqlite3", "--version")
 
 	r.ArtifactScan("pre-local-cypher")
 
