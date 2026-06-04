@@ -81,6 +81,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/152-pre-v0.4.0-release-surface-cleanup-v0.md` — v0.3.33 pre-v0.4.0 release-surface cleanup.
 - `docs/153-full-profile-release-validation-ladder-v0.md` — v0.3.34 full profile release validation ladder; `full` now runs `release-snapshot` then `local-cypher`.
 - `docs/154-v0.4.0-package-rehearsal-v0.md` — v0.3.36 throwaway v0.4.0-style package rehearsal; fresh extraction checksum verification and full validation passed under WSL Debian.
+- `docs/155-runtime-comms-openmls-cypher-recon-v0.md` — v0.4.1 runtime Comms/OpenMLS/Cypher recon; records that send/inbox are still stub-era while OpenMLS/Cypher relay is validated through lower-level seams.
 
 ## Security and maturity warning
 

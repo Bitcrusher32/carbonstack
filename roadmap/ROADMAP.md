@@ -106,6 +106,20 @@ Goal:
 
     cut v0.4.0 only if release-surface cleanup, package validation, checksums, release instructions, and nonclaims are coherent
 
+## v0.4.x current rung
+
+### v0.4.1 — runtime Comms/OpenMLS/Cypher recon
+
+Result:
+
+    Current Comms CLI send/inbox/ack exist, but send/inbox are still stub-era.
+    The OpenMLS/Cypher relay seam is already validated through internal relay/protocol tests.
+    The next implementation should use explicit dev-only OpenMLS runtime commands before replacing send/inbox.
+
+Recommended next rung:
+
+    v0.4.2 runtime OpenMLS command contract
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:
