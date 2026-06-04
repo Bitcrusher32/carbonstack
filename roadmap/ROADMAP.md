@@ -120,6 +120,23 @@ Recommended next rung:
 
     v0.4.2 runtime OpenMLS command contract
 
+### v0.4.2 — runtime OpenMLS command contract
+
+Goal:
+
+    Define explicit dev-only runtime OpenMLS commands before implementation.
+
+Decision:
+
+    Use openmls-send-dev and openmls-inbox-dev first.
+    Do not silently replace existing send/inbox yet.
+    Ack remains consume-success gated.
+    Keep local-backbone reserved until whole-path runtime validation deserves it.
+
+Recommended next rung:
+
+    v0.4.3 first dev-only OpenMLS send command
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:
