@@ -8,33 +8,38 @@ For current public testing and release status, start with:
 
     top-level README.md
     roadmap/ROADMAP.md
-    docs/139-runner-backed-testing-release-cleanup-v0.md
+    current Gitea release page and attached release runbook
 
-Current public testing release:
+Current public release:
 
-    v0.3.20 runner-backed testing release
+    v0.4.0 broad local deployability pre-release
 
-Current mainline validation state:
+Current mainline checkpoint:
 
-    v0.3.32 local-cypher negative protocol validation
+    v0.4.20 roadmap refresh after v0.4.19 registry validation and local-help planning
 
-Current mainline validation commands:
+Current mainline validation surface:
 
     cd tools/carbonstack-validate
+    go test ./... -count=1
+    go run . --profile dev-runtime-openmls-wrappers --clean-generated
+    go run . --profile dev-runtime-openmls --clean-generated
     go run . --profile local-cypher
     go run . --profile doctor
     go run . --profile core --clean-generated
 
-Current v0.4.0 direction:
+Current release-package validation shape remains release-specific. For the v0.4.0 release package, use the release-attached runbook and assets. The general release-package pattern is:
 
-    broad local deployability pre-release
-    milestone / research-and-development release
-    not public-user-ready
-    not application-use-ready
-    not production secure
-    not hostile-server-certified
-    not a mature Comms release
-    not a CarbonStackOS release
+    go run . --profile verify-checksums --root <package-root>
+    go run . --profile full --root <package-root> --clean-generated
+
+Current v0.5.0 direction:
+
+    v0.5.0 is planned as a minor epoch release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
+    It should follow the v0.4.0 release style: cleanup, package rehearsal, validation, release notes, attached assets, and explicit nonclaims.
+    It is not the start of PQ/state/vault implementation.
+    It is not a general-public official usable release.
+    GitHub remains a push mirror only until a later official public/general-use release policy changes.
 
 ## Historical archive note
 

@@ -1,7 +1,7 @@
 # CarbonStack Validate
 
 Status: experimental validation runner
-Phase: v0.3.12 runner hardening / docs integration
+Phase: v0.4.x validation runner / v0.5.0 release-prep surface
 
 This is the Go-based umbrella validation runner for CarbonStack.
 
@@ -172,18 +172,18 @@ You can also pass an explicit umbrella root:
 
     go run . --profile core --root /path/to/carbonstack_umbrella
 
-## Windows example
+## Windows note
 
-    cd C:\Users\udaiv\repos\carbonstack_umbrella\carbonstack\tools\carbonstack-validate
-    go run . --profile doctor
-    go run . --profile core
+Windows validation is not the current mainline release-prep target. Prefer Debian / WSL Debian for current runner-backed validation unless a release runbook explicitly says otherwise.
 
 ## WSL Debian example
 
     . "$HOME/.cargo/env"
-    cd "$HOME/carbonstack-wsl/carbonstack/tools/carbonstack-validate"
+    cd "$HOME/repos/carbonstack_umbrella/carbonstack/tools/carbonstack-validate"
+    go test ./... -count=1
     go run . --profile doctor
-    go run . --profile core
+    go run . --profile core --clean-generated
+    go run . --profile local-cypher
 
 ## Rust toolchain note
 

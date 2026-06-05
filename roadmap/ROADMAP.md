@@ -4,29 +4,77 @@ This roadmap describes the current public direction of CarbonStack.
 
 Older numbered docs preserve older plans and implementation history. Use this file, the top-level README, the latest docs index, and release-specific runbooks for current public-facing direction.
 
-## Current state after v0.3.32
+## Current state after v0.4.20
 
-CarbonStack is in the late v0.3.x local deployability validation line.
+CarbonStack has completed the v0.4.0 broad local deployability pre-release. That remains the current public release artifact users should treat as known-good for package validation.
 
-Current public testing release:
+Mainline development has moved beyond v0.4.0 into dev/pre-alpha runtime OpenMLS integration, wrapper-based smoke validation, runner profile separation, command registry work, and registry validation.
 
-    v0.3.20 runner-backed testing release
+Current public release:
 
-Current mainline validation state:
+    v0.4.0 broad local deployability pre-release
 
-    v0.3.32 local-cypher negative protocol validation
+Current mainline checkpoint:
 
-Mainline WSL Debian validation now includes:
+    v0.4.20 roadmap refresh after v0.4.19 command registry validation and local-help planning
 
+Current mainline repo heads at the v0.4.19 checkpoint:
+
+    carbonstack        568fb45 test: validate command registry coverage
+    carbonstack-comms  cb4e59d test: add wrapper-based OpenMLS runtime smoke proof
+    carbonstack-cypher 9ab994c docs: point to local operator runbook
+    carbonstack-os     1bbbe52 docs: clarify CarbonStackOS target direction
+
+Current public/source-of-truth policy:
+
+    Gitea remains authoritative for releases, tags, attached release assets, and current project state.
+    GitHub mirrors may exist for discoverability and redundancy, but they are push mirrors only.
+    Official general-public usable releases belong later, such as the intended v1.0.0 major epoch line, unless policy changes.
+
+## Current validated surfaces
+
+Current release-package validation shape for v0.4.0:
+
+    cd <package-root>/carbonstack/tools/carbonstack-validate
+    go run . --profile verify-checksums --root <package-root>
+    go run . --profile full --root <package-root> --clean-generated
+
+Current live mainline development validation shape:
+
+    cd ~/repos/carbonstack_umbrella/carbonstack/tools/carbonstack-validate
+    go test ./... -count=1
+    go run . --profile dev-runtime-openmls-wrappers --clean-generated
+    go run . --profile dev-runtime-openmls --clean-generated
     go run . --profile local-cypher
     go run . --profile doctor
     go run . --profile core --clean-generated
 
-`local-cypher` is Cypher-only. It validates local Cypher lifecycle behavior with temporary state, dynamic loopback bind, invite/device/envelope/ack lifecycle, restart against the same DB, cleanup, and one negative protocol pairing.
+Current runner split:
 
-`local-cypher` is not `local-backbone`.
+    full:
+        release-package validation ladder
+        release-snapshot followed by local-cypher
+        not deployment
+        not local-backbone
+        not runtime Comms UX
 
-`local-backbone` remains reserved for later whole-stack validation after Comms runtime UX is actually wired through the backbone.
+    dev-runtime-openmls:
+        manual live-umbrella direct-sidecar OpenMLS runtime smoke profile
+        openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
+        not included in full
+
+    dev-runtime-openmls-wrappers:
+        manual live-umbrella wrapper-bootstrap OpenMLS runtime smoke profile
+        openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
+        separate maturity surface
+        does not replace dev-runtime-openmls yet
+        not included in full
+
+Current command-surface hygiene:
+
+    registry/commands.v0.yaml exists as a provisional cross-repo command registry.
+    registry validation is covered by tools/carbonstack-validate/command_registry_test.go.
+    The registry tracks runner profiles, Comms CLI commands, old stub-era send/inbox/ack, OpenMLS dev runtime commands, bootstrap wrappers, Comms smoke scripts, sidecar commands, Cypher surfaces, and legacy helper scripts.
 
 ## Current nonclaims
 
@@ -43,70 +91,50 @@ CarbonStack is not currently:
     CarbonStackOS-ready
     externally audited
     certified
+    quantum-safe
+    local-backbone
+    mature messaging UX
+    general-public usable software
 
-## Late v0.3.x runway
+Existing send/inbox remain stub-era.
+The OpenMLS runtime commands are explicit dev/pre-alpha commands.
+The wrapper bootstrap commands are not final Relay Space join UX.
+Neither runtime profile is release-package validation yet.
+Neither runtime profile is included in full.
+The registry is command-surface hygiene, not a security proof.
 
-### v0.3.33 — pre-v0.4.0 release-surface cleanup
+## Late v0.4.x to v0.5.0 minor epoch release runway
 
-Goal:
+v0.5.0 should be a minor epoch release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
 
-    refresh README/docs/roadmap public wording
-    remove stale v0.2.x/v0.3.0-era current-state language from public surfaces
-    surface v0.3.32 as the current mainline validation state
-    preserve v0.3.20 as current public testing release
-    frame v0.4.0 as broad local deployability pre-release
-    avoid new feature work
+It should follow the v0.4.0 release style:
 
-### v0.3.34 — full profile release validation ladder
+    release-surface cleanup
+    stale-claim scan
+    package rehearsal planning
+    package staging
+    checksum generation
+    fresh extraction validation
+    attached release assets
+    release notes
+    testing runbook
+    validation freeze
+    LogDoc and breakpoint export
+    explicit nonclaims
 
-Goal:
+It should not start PQ/state/vault implementation.
 
-    make `full` the v0.4.0 release-package validation ladder
-    confirm release-snapshot/checksum/package expectations
-    define full as release-snapshot plus local-cypher
-    avoid duplicated core execution because release-snapshot already calls core
-    keep release claims narrow
+Likely late-v0.4.x release-prep rungs:
 
+    v0.4.21 release-surface recon and stale-claim scan
+    v0.4.22 public-surface cleanup patch
+    v0.4.23 v0.5.0 package rehearsal plan
+    v0.4.24 v0.5.0 package rehearsal implementation
+    v0.4.25 fresh extraction validation and asset/checksum rehearsal
+    v0.4.26 release notes, LogDoc, and final pre-release checkpoint
+    v0.5.0 minor epoch release
 
-Recommended v0.4.0 validation command shape:
-
-    go run . --profile full --root /path/to/release-package-root --clean-generated
-
-### v0.3.35 / v0.3.36 — v0.4.0 package rehearsal
-
-Goal:
-
-    stage a throwaway v0.4.0-style package root
-    include carbonstack, carbonstack-comms, carbonstack-cypher, and release metadata
-    exclude carbonstack-os from the runnable package
-    generate release checksums
-    archive and fresh-extract the package
-    verify checksums from the fresh extraction
-    run full from the fresh extraction with --clean-generated
-    document package rehearsal result
-
-Result:
-
-    v0.3.36 package rehearsal passed under WSL Debian.
-
-### v0.3.37 — release candidate wording and asset plan
-
-Goal:
-
-    draft v0.4.0 release notes using v0.3.20 release presentation as continuity template
-    define attached asset expectations
-    define validation instructions
-    define known-good toolchains
-    define nonclaims
-    decide whether another RC validation pass is needed
-
-### v0.3.36+ — pre-v0.4.0 release cut, if clean
-
-Goal:
-
-    cut v0.4.0 only if release-surface cleanup, package validation, checksums, release instructions, and nonclaims are coherent
-
-## v0.4.x current rung
+## v0.4.x completed runtime, wrapper, and registry rungs
 
 ### v0.4.1 — runtime Comms/OpenMLS/Cypher recon
 
