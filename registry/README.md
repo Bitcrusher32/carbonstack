@@ -35,3 +35,18 @@ Front-door README rule:
 
     Only commands marked `include_in_front_readme: true` should be considered for top-level/front-door docs.
     Dev/internal/legacy command surfaces should usually live in registry docs, component READMEs, or implementation-specific docs.
+
+Validation status:
+
+    The provisional v0 registry is validated by:
+
+        carbonstack/tools/carbonstack-validate/command_registry_test.go
+
+    The check runs with:
+
+        cd carbonstack/tools/carbonstack-validate
+        go test ./... -count=1
+
+    The test validates registry structure, source_path existence, runner profile coverage, Comms command coverage, Comms script coverage, sidecar command IDs, Cypher API IDs, legacy send/inbox/ack classification, direct-vs-wrapper OpenMLS profile separation, and local-backbone/Gitea source-of-truth boundaries.
+
+    The check is intentionally a Go test for now, not a runner profile. It may become a runner profile later only if the registry policy stabilizes enough to justify public validation-profile status.

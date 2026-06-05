@@ -91,6 +91,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/162-openmls-bootstrap-command-contract-v0.md` — v0.4.12 command contract for dev-only OpenMLS bootstrap wrappers; defines flags, output shape, path handling, sidecar JSON parsing, testing seams, and staged implementation order.
 - `docs/163-dev-runtime-openmls-wrapper-runner-profile-v0.md` — v0.4.17 separate manual `dev-runtime-openmls-wrappers` profile; validates wrapper-based smoke while preserving `dev-runtime-openmls` as the direct-smoke baseline.
 - `docs/164-known-good-command-registry-recon-v0.md` — v0.4.18 first provisional cross-repo command registry; maps runner profiles, Comms CLI, scripts, sidecar commands, Cypher surfaces, legacy helpers, maturity, audience, validation surfaces, and nonclaims.
+- `docs/165-command-registry-validation-and-help-plan-v0.md` — v0.4.19 registry validation and local help/manual planning; adds Go-test coverage for registry completeness and defines README vs registry vs generated command-reference boundaries.
 
 ## Security and maturity warning
 

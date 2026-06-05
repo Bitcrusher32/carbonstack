@@ -332,6 +332,35 @@ Recommended next rung:
 
     command registry validation / local-help planning.
 
+### v0.4.19 — command registry validation and local help plan
+
+Result:
+
+    The provisional command registry is now validated by Go test coverage in:
+
+        carbonstack/tools/carbonstack-validate/command_registry_test.go
+
+    The test checks registry structure, duplicate IDs, required fields, source_path existence, runner profile coverage, Comms command coverage, Comms script coverage, sidecar command IDs, Cypher API IDs, legacy send/inbox/ack classification, direct-vs-wrapper OpenMLS profile separation, and local-backbone/source-of-truth boundaries.
+
+Local help/manual planning decision:
+
+    Use registry validation first.
+    Add generated markdown command reference later.
+    Avoid embedding registry-derived local help in Comms command code until command structure is ready.
+    Avoid adding a runner profile for registry validation until the check proves stable.
+    Keep front README minimal; registry is the complete command-surface inventory.
+
+Boundary:
+
+    No runtime behavior changes.
+    No generated command reference yet.
+    No local-backbone.
+    No v0.5.x state/trust/vault/PQ implementation yet.
+
+Carry-forward:
+
+    After late v0.4.x grouped registry/help-planning work, refresh the long-term roadmap and prepare a v0.5.0 minor epoch release ladder with cleanup, deployability testing, release-style replication, and release hardening.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:
