@@ -137,6 +137,26 @@ Recommended next rung:
 
     v0.4.3 first dev-only OpenMLS send command
 
+### v0.4.5 — dev runtime OpenMLS smoke proof
+
+Result:
+
+    carbonstack-comms now includes scripts/dev-openmls-runtime-smoke.sh.
+    The script proves openmls-send-dev -> Cypher -> openmls-inbox-dev --ack for the OpenMLS application-message path.
+    It verifies plaintext and confirms the recipient inbox is empty after ack.
+
+Boundary:
+
+    This is a dev/pre-alpha smoke proof.
+    This is not local-backbone.
+    This is not production messaging UX.
+    Sidecar KeyPackage/Welcome/bootstrap setup remains direct dev setup.
+    Existing send/inbox remain stub-era.
+
+Recommended next rung:
+
+    v0.4.6 pre-local-backbone assessment and validation-profile decision.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:

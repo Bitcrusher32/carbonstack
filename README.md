@@ -68,6 +68,7 @@ Across the v0.3.x and v0.4.x line, CarbonStack has demonstrated experimental val
 - OpenMLS KeyPackage relay through Cypher;
 - OpenMLS Welcome relay through Cypher;
 - OpenMLS application-message relay through Cypher;
+- a dev runtime OpenMLS CLI smoke proof for openmls-send-dev -> Cypher -> openmls-inbox-dev --ack;
 - consume-then-ack behavior;
 - payload metadata checks before downloaded artifact bytes are written locally;
 - Cypher schema migration idempotence through schema_migrations;
@@ -93,7 +94,7 @@ CarbonStack does not currently prove:
 - secure local vault/storage;
 - Android appliance readiness;
 - CarbonStackOS readiness;
-- polished Comms runtime send/inbox UX;
+- mature Comms runtime send/inbox UX;
 - rollback/replay safety against a malicious server;
 - public ingress safety;
 - systemd/cloudflared deployment readiness;
