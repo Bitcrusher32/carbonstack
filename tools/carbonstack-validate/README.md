@@ -72,6 +72,37 @@ Expected result:
 
 `local-cypher` is Cypher-only. It is not `local-backbone`, not runtime Comms UX, not public ingress, not systemd/cloudflared, and not a production deployment or security claim.
 
+### dev-runtime-openmls
+
+Runs the current dev/pre-alpha OpenMLS application-message runtime CLI smoke proof:
+
+    openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
+
+Command:
+
+    go run . --profile dev-runtime-openmls --clean-generated
+
+This profile is manual-only and live-umbrella-only for now. It requires sibling git checkouts for:
+
+    carbonstack/
+    carbonstack-comms/
+    carbonstack-cypher/
+
+It wraps:
+
+    carbonstack-comms/scripts/dev-openmls-runtime-smoke.sh
+
+Boundary:
+
+    not local-backbone
+    not mature messaging UX
+    not deployment
+    not release-package validation yet
+    not production/security proof
+    not included in full
+
+`--clean-generated` is recommended after successful runs because the smoke proof can leave known OpenMLS sidecar generated roots.
+
 ### full
 
 Runs the current release-package validation ladder:

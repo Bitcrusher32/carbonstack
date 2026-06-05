@@ -178,6 +178,27 @@ Recommended next rung:
 
     v0.4.8 behavior-preserving OpenMLS command/helper extraction recon, or dev-runtime-openmls runner-profile recon if runner promotion becomes the priority.
 
+### v0.4.9 — manual dev-runtime-openmls runner profile
+
+Result:
+
+    carbonstack/tools/carbonstack-validate now includes a manual `dev-runtime-openmls` profile.
+    The profile wraps carbonstack-comms/scripts/dev-openmls-runtime-smoke.sh.
+    It validates openmls-send-dev -> Cypher -> openmls-inbox-dev --ack from a live umbrella checkout.
+    It is not included in `full`.
+
+Boundary:
+
+    This is a dev/pre-alpha manual validation profile.
+    This is not local-backbone.
+    This is not production messaging UX.
+    This is not release-package validation yet.
+    Existing send/inbox remain stub-era.
+
+Recommended next rung:
+
+    v0.4.10 validation/profile polish or sidecar bootstrap wrapper recon after the v0.4.9 breakpoint.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:
