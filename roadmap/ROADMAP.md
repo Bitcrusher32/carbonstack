@@ -199,6 +199,29 @@ Recommended next rung:
 
     v0.4.10 validation/profile polish or sidecar bootstrap wrapper recon after the v0.4.9 breakpoint.
 
+### v0.4.10 — dev-runtime-openmls profile boundary check
+
+Result:
+
+    The manual `dev-runtime-openmls` profile was repeatability-checked from the live umbrella checkout.
+    Running without `--clean-generated` left only known OpenMLS sidecar generated roots.
+    Running with `--clean-generated` cleaned known generated roots.
+    A non-git package-like root was refused as expected.
+    `full` remains separate and does not call `dev-runtime-openmls`.
+
+Boundary:
+
+    This is a documentation/evidence checkpoint.
+    No runner behavior changed.
+    This is not local-backbone.
+    This is not release-package validation.
+    This is not production messaging UX.
+    Existing send/inbox remain stub-era.
+
+Recommended next rung:
+
+    v0.4.11 sidecar bootstrap wrapper recon.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:

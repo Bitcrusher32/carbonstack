@@ -86,6 +86,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/157-dev-runtime-openmls-smoke-proof-v0.md` — records the v0.4.5 dev runtime OpenMLS CLI smoke proof using openmls-send-dev -> Cypher -> openmls-inbox-dev --ack.
 - `docs/158-pre-local-backbone-assessment-v0.md` — v0.4.7 pre-local-backbone assessment; keeps local-backbone reserved, recommends future `dev-runtime-openmls` profile naming, and plans helper extraction before more runtime growth.
 - `docs/159-dev-runtime-openmls-runner-profile-v0.md` — v0.4.9 manual `dev-runtime-openmls` validation profile; wraps the Comms smoke proof while preserving not-local-backbone and not-production boundaries.
+- `docs/160-dev-runtime-openmls-profile-boundary-v0.md` — v0.4.10 boundary check for the manual `dev-runtime-openmls` profile; records repeatability, cleanup behavior, full-profile separation, and non-git package-like root refusal.
 
 ## Security and maturity warning
 

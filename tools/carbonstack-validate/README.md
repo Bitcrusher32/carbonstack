@@ -103,6 +103,8 @@ Boundary:
 
 `--clean-generated` is recommended after successful runs because the smoke proof can leave known OpenMLS sidecar generated roots.
 
+This profile intentionally refuses non-git package-like roots for now. Use it from the live umbrella checkout, not from release package roots. `full` remains the release-package validation ladder and does not include `dev-runtime-openmls`.
+
 ### full
 
 Runs the current release-package validation ladder:
