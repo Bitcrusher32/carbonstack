@@ -88,6 +88,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/159-dev-runtime-openmls-runner-profile-v0.md` — v0.4.9 manual `dev-runtime-openmls` validation profile; wraps the Comms smoke proof while preserving not-local-backbone and not-production boundaries.
 - `docs/160-dev-runtime-openmls-profile-boundary-v0.md` — v0.4.10 boundary check for the manual `dev-runtime-openmls` profile; records repeatability, cleanup behavior, full-profile separation, and non-git package-like root refusal.
 - `docs/161-openmls-bootstrap-wrapper-recon-v0.md` — v0.4.11 recon/planning for dev-only OpenMLS bootstrap wrappers; preserves openmls-*-dev naming, keeps local-backbone reserved, and recommends a command-contract doc before implementation.
+- `docs/162-openmls-bootstrap-command-contract-v0.md` — v0.4.12 command contract for dev-only OpenMLS bootstrap wrappers; defines flags, output shape, path handling, sidecar JSON parsing, testing seams, and staged implementation order.
 
 ## Security and maturity warning
 

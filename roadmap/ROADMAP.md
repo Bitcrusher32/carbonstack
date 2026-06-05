@@ -245,6 +245,31 @@ Recommended next rung:
 
     v0.4.12 dev-only OpenMLS bootstrap command contract.
 
+### v0.4.12 — dev-only OpenMLS bootstrap command contract
+
+Result:
+
+    The command contract for future dev-only OpenMLS bootstrap wrappers is defined.
+    Wrapper names should use the `openmls-*-dev` pattern.
+    Sidecar labels remain explicit and are not derived from Comms state.
+    Sidecar JSON should be normalized to stable Comms key/value output.
+    Sidecar path hints should be preserved, with absolute artifact paths printed when applicable.
+    Wrappers must not mutate Comms state/trust files.
+    Future implementation should live in carbonstack-comms/internal/app/openmls_bootstrap.go.
+
+Boundary:
+
+    This is a docs/contract checkpoint.
+    No wrapper commands are implemented yet.
+    This is not local-backbone.
+    This does not replace old send/inbox.
+    This does not move dev-runtime-openmls into full.
+    This does not start v0.5.x state/trust/vault/PQ work.
+
+Recommended next rung:
+
+    v0.4.13 implement identity create/status dev wrappers.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:
