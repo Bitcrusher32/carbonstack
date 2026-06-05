@@ -124,15 +124,45 @@ It should follow the v0.4.0 release style:
 
 It should not start PQ/state/vault implementation.
 
-Likely late-v0.4.x release-prep rungs:
+Compressed late-v0.4.x release-prep rungs:
 
-    v0.4.21 release-surface recon and stale-claim scan
-    v0.4.22 public-surface cleanup patch
-    v0.4.23 v0.5.0 package rehearsal plan
-    v0.4.24 v0.5.0 package rehearsal implementation
-    v0.4.25 fresh extraction validation and asset/checksum rehearsal
-    v0.4.26 release notes, LogDoc, and final pre-release checkpoint
-    v0.5.0 minor epoch release
+    v0.4.21 package rehearsal plan, asset inventory, and package staging implementation
+    v0.4.22 checksum generation, fresh extraction validation, and release notes formulation using v0.4.0 continuity reference
+    v0.4.23 final LogDoc sanitization/export and release asset generation
+    v0.5.0 minor epoch release, followed by v0.4.xPRIME compression into LogDoc v0.5.0
+
+### v0.4.21 — v0.5.0 package rehearsal plan and staging
+
+Result:
+
+    A repeatable package staging helper exists:
+
+        scripts/stage-v0.5.0-package.sh
+
+    It stages:
+
+        carbonstack
+        carbonstack-comms
+        carbonstack-cypher
+        release metadata skeleton
+
+    It excludes:
+
+        carbonstack-os
+
+Boundary:
+
+    No final checksums yet.
+    No archive yet.
+    No fresh extraction validation yet.
+    No final release assets yet.
+    No v0.5.0 tag yet.
+    No local-backbone.
+    No PQ/state/vault implementation.
+
+Next rung:
+
+    v0.4.22 checksum generation, fresh extraction validation, and release notes formulation using v0.4.0 continuity reference.
 
 ## v0.4.x completed runtime, wrapper, and registry rungs
 
