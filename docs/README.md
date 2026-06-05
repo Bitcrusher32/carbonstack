@@ -98,6 +98,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/164-known-good-command-registry-recon-v0.md` — v0.4.18 first provisional cross-repo command registry; maps runner profiles, Comms CLI, scripts, sidecar commands, Cypher surfaces, legacy helpers, maturity, audience, validation surfaces, and nonclaims.
 - `docs/165-command-registry-validation-and-help-plan-v0.md` — v0.4.19 registry validation and local help/manual planning; adds Go-test coverage for registry completeness and defines README vs registry vs generated command-reference boundaries.
 - `docs/166-v0.5.0-package-rehearsal-plan-v0.md` — v0.4.21 v0.5.0 package rehearsal plan and staging implementation; defines package shape, excludes carbonstack-os from runnable package, and adds the staging helper.
+- `docs/167-v0.5.0-package-checksum-and-fresh-extraction-rehearsal-v0.md` — v0.4.22 v0.5.0 checksum/archive/fresh-extraction rehearsal; adds a repeatable helper that stages package, writes checksums, archives, extracts fresh, verifies, and runs `full`.
 
 ## Security and maturity warning
 

@@ -933,6 +933,27 @@ entries:
     why_exists: Supports delivery-state transition and inbox-empty-after-ack proofs.
     include_in_front_readme: false
 
+- id: carbonstack.script.rehearse-v0.5.0-package
+  command: scripts/rehearse-v0.5.0-package.sh
+  repo: carbonstack
+  component: scripts
+  kind: script
+  audience: dev
+  maturity: experimental
+  introduced_in: v0.4.22
+  source_path: carbonstack/scripts/rehearse-v0.5.0-package.sh
+  validation_surface: v0.5.0 package checksum/archive/fresh-extraction rehearsal
+  short_help: Stage a v0.5.0 package, write checksums, archive it, fresh-extract it, verify checksums, and run full validation.
+  why_exists: Provides repeatable v0.5.0 release-package rehearsal before final release assets and tag.
+  example: cd carbonstack && scripts/rehearse-v0.5.0-package.sh
+  nonclaims:
+    - does not cut release
+    - does not upload assets
+    - does not include carbonstack-os
+    - does not make runtime OpenMLS profiles part of full
+    - does not create local-backbone
+  include_in_front_readme: false
+
 - id: carbonstack.script.stage-v0.5.0-package
   command: scripts/stage-v0.5.0-package.sh
   repo: carbonstack

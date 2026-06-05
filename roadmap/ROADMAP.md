@@ -131,6 +131,38 @@ Compressed late-v0.4.x release-prep rungs:
     v0.4.23 final LogDoc sanitization/export and release asset generation
     v0.5.0 minor epoch release, followed by v0.4.xPRIME compression into LogDoc v0.5.0
 
+### v0.4.22 — v0.5.0 checksum and fresh extraction rehearsal
+
+Result:
+
+    The v0.5.0 release-helper system now has:
+
+        scripts/stage-v0.5.0-package.sh
+        scripts/rehearse-v0.5.0-package.sh
+
+    The rehearsal helper performs:
+
+        stage package skeleton
+        write release/checksums.txt
+        verify checksums in staged package
+        archive package
+        fresh extract package
+        verify checksums from fresh extraction
+        run full from fresh extraction with --clean-generated
+
+Boundary:
+
+    No final release assets yet.
+    No v0.5.0 tag yet.
+    No upload.
+    No local-backbone.
+    No PQ/state/vault implementation.
+    Runtime OpenMLS profiles remain live-umbrella-only and outside full.
+
+Next rung:
+
+    v0.4.23 final release notes, LogDoc sanitization/export, release asset generation, and v0.5.0 release cut prep.
+
 ### v0.4.21 — v0.5.0 package rehearsal plan and staging
 
 Result:
