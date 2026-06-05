@@ -1,0 +1,958 @@
+schema_version: carbonstack-command-registry/v0
+status: provisional
+generated_for_checkpoint: v0.4.18
+owner_repo: carbonstack
+source_of_truth: gitea
+purpose: >
+  Cross-repo registry of known command, script, profile, sidecar, operator,
+  and API surfaces that are easy to lose track of as CarbonStack grows.
+  This registry is not a release promise and not a production security claim.
+
+boundaries:
+  - This registry is a navigation and claim-boundary artifact.
+  - This registry is not a complete security model.
+  - This registry is not local-backbone.
+  - This registry is not release-package runtime validation.
+  - This registry does not imply production readiness, production E2EE, hostile-server safety, metadata privacy, PQ/hybrid security, audit, or certification.
+  - Gitea remains source of truth; GitHub mirrors are secondary push mirrors.
+
+maturity_levels:
+  release_supported: Intended release/package validation surface for the current public pre-release line.
+  experimental: Implemented and useful, but still pre-release and claim-bounded.
+  dev_only: Development-only helper or proof surface.
+  legacy: Historical, stub-era, compatibility, or debugging surface that must not be confused with current OpenMLS runtime proof.
+  internal: Internal provider/helper/API surface not intended as polished user UX.
+  future: Named placeholder or documented future surface, not currently implemented.
+
+audiences:
+  public: Appropriate to mention in top-level/release-facing docs with boundaries.
+  dev: Intended for operators/developers working from source.
+  internal: Intended for tests, sidecars, or implementation details.
+  legacy: Preserved for continuity or compatibility; not the recommended future UX.
+
+entries:
+  - id: runner.doctor
+    command: go run . --profile doctor
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: public
+    maturity: experimental
+    introduced_in: pre-v0.4.x
+    source_path: tools/carbonstack-validate/main.go
+    validation_surface: runner self-check
+    short_help: Report environment, inferred repo layout, required paths, and toolchain versions.
+    why_exists: Baseline diagnostics before deeper validation.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile doctor
+    nonclaims:
+      - does not install or mutate toolchains
+      - does not prove deployment readiness
+    include_in_front_readme: true
+
+  - id: runner.core
+    command: go run . --profile core
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: public
+    maturity: experimental
+    introduced_in: pre-v0.4.x
+    source_path: tools/carbonstack-validate/main.go
+    validation_surface: core implementation validation
+    short_help: Run doctor, OpenMLS real-Cypher lifecycle test, Comms tests, Cypher tests, and artifact scans.
+    why_exists: Core implementation sanity path for source checkouts and release snapshot internals.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile core --clean-generated
+    nonclaims:
+      - not deployment
+      - not production security proof
+    include_in_front_readme: true
+
+  - id: runner.local-cypher
+    command: go run . --profile local-cypher
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: public
+    maturity: experimental
+    introduced_in: v0.3.30
+    source_path: tools/carbonstack-validate/local_cypher.go
+    validation_surface: local Cypher lifecycle validation
+    short_help: Validate a temporary local Cypher lifecycle with invite, device, envelope, ack, restart, and negative protocol checks.
+    why_exists: Proves local Cypher relay/storage lifecycle without claiming whole-stack local-backbone.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile local-cypher
+    nonclaims:
+      - not local-backbone
+      - not runtime Comms UX
+      - not public ingress
+      - not deployment
+    include_in_front_readme: true
+
+  - id: runner.dev-runtime-openmls
+    command: go run . --profile dev-runtime-openmls
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.9
+    source_path: tools/carbonstack-validate/dev_runtime_openmls.go
+    validation_surface: direct OpenMLS runtime smoke
+    short_help: Validate the direct-sidecar dev OpenMLS runtime smoke path through Comms and Cypher.
+    why_exists: Runner-wrapped baseline proof for openmls-send-dev -> Cypher -> openmls-inbox-dev --ack.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile dev-runtime-openmls --clean-generated
+    related_scripts:
+      - carbonstack-comms/scripts/dev-openmls-runtime-smoke.sh
+    nonclaims:
+      - not local-backbone
+      - not release-package validation
+      - not included in full
+      - not mature messaging UX
+      - not production security proof
+    include_in_front_readme: false
+
+  - id: runner.dev-runtime-openmls-wrappers
+    command: go run . --profile dev-runtime-openmls-wrappers
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.17
+    source_path: tools/carbonstack-validate/dev_runtime_openmls_wrappers.go
+    validation_surface: wrapper-based OpenMLS runtime smoke
+    short_help: Validate the wrapper-bootstrap dev OpenMLS runtime path through Comms and Cypher.
+    why_exists: Separate maturity profile for openmls-*-dev bootstrap wrappers before they can replace direct-sidecar smoke.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile dev-runtime-openmls-wrappers --clean-generated
+    related_scripts:
+      - carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh
+    nonclaims:
+      - not local-backbone
+      - does not replace dev-runtime-openmls yet
+      - not release-package validation
+      - not included in full
+      - not production security proof
+    include_in_front_readme: false
+
+  - id: runner.full
+    command: go run . --profile full
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: public
+    maturity: release_supported
+    introduced_in: v0.3.34
+    source_path: tools/carbonstack-validate/main.go
+    validation_surface: release package validation ladder
+    short_help: Run release-snapshot, then local-cypher, from a fresh release package root.
+    why_exists: Current v0.4.0 release package validation ladder.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile full --root /path/to/release-package-root --clean-generated
+    related_profiles:
+      - release-snapshot
+      - local-cypher
+    nonclaims:
+      - not deployment
+      - not local-backbone
+      - not runtime Comms UX
+      - not production security proof
+    include_in_front_readme: true
+
+  - id: runner.release-snapshot
+    command: go run . --profile release-snapshot
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: release_supported
+    introduced_in: v0.3.34
+    source_path: tools/carbonstack-validate/release_snapshot.go
+    validation_surface: release package layout/checksum/core validation
+    short_help: Validate release package layout, metadata, checksums, strict pre-test artifact hygiene, then core.
+    why_exists: Prevents generated/private/build artifacts from leaking into release package validation roots.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile release-snapshot --root /path/to/release-package-root
+    nonclaims:
+      - does not package or upload releases
+      - not deployment
+      - not production security proof
+    include_in_front_readme: false
+
+  - id: runner.write-checksums
+    command: go run . --profile write-checksums
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: release_supported
+    introduced_in: v0.3.x
+    source_path: tools/carbonstack-validate/checksums.go
+    validation_surface: release checksum generation
+    short_help: Write SHA-256 checksums for a clean release package root.
+    why_exists: Produces release/checksums.txt for release package verification.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile write-checksums --root /path/to/package-root
+    nonclaims:
+      - does not publish releases
+      - does not validate runtime security
+    include_in_front_readme: false
+
+  - id: runner.verify-checksums
+    command: go run . --profile verify-checksums
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: public
+    maturity: release_supported
+    introduced_in: v0.3.x
+    source_path: tools/carbonstack-validate/checksums.go
+    validation_surface: release checksum verification
+    short_help: Verify release/checksums.txt against the current package root.
+    why_exists: Confirms release package files match generated checksum metadata.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile verify-checksums --root /path/to/package-root
+    nonclaims:
+      - does not prove runtime security
+      - does not replace full validation
+    include_in_front_readme: true
+
+  - id: comms.init
+    command: go run ./cmd/comms init
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Initialize a local Comms state file for a server URL.
+    why_exists: Creates local client state for dev/test Comms workflows.
+    validation_surface: Comms package tests and runtime smoke scripts
+    include_in_front_readme: false
+
+  - id: comms.dev-create-invite
+    command: go run ./cmd/comms dev-create-invite
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Create a development invite through the configured Cypher server.
+    why_exists: Supports local/dev account onboarding before mature invite UX exists.
+    validation_surface: runtime smoke scripts
+    nonclaims:
+      - dev helper only
+    include_in_front_readme: false
+
+  - id: comms.claim-invite
+    command: go run ./cmd/comms claim-invite
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Claim an invite and bind local Comms state to a Cypher account.
+    why_exists: Establishes account identity in local/dev Comms flows.
+    validation_surface: runtime smoke scripts
+    include_in_front_readme: false
+
+  - id: comms.register-device
+    command: go run ./cmd/comms register-device
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Register a device for the current Comms state/account.
+    why_exists: Provides device IDs used by Cypher envelope routing and smoke tests.
+    validation_surface: runtime smoke scripts
+    include_in_front_readme: false
+
+  - id: comms.list-devices
+    command: go run ./cmd/comms list-devices
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: List devices known through the current Comms/Cypher account context.
+    why_exists: Debug/operator helper for device visibility.
+    validation_surface: Comms tests
+    include_in_front_readme: false
+
+  - id: comms.fingerprint
+    command: go run ./cmd/comms fingerprint
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Print or inspect trust/fingerprint information for local device state.
+    why_exists: Supports trust lifecycle development before mature UX.
+    validation_surface: trust lifecycle tests
+    include_in_front_readme: false
+
+  - id: comms.verify-device
+    command: go run ./cmd/comms verify-device
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Mark or evaluate a device as verified in the dev trust model.
+    why_exists: Supports trust-state test/dev flows.
+    validation_surface: trust lifecycle tests
+    nonclaims:
+      - not production trust UX
+    include_in_front_readme: false
+
+  - id: comms.trust-history
+    command: go run ./cmd/comms trust-history
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Show trust event history for debugging trust-state changes.
+    why_exists: Makes trust lifecycle evidence inspectable.
+    validation_surface: trust lifecycle tests
+    include_in_front_readme: false
+
+  - id: comms.trust-list
+    command: go run ./cmd/comms trust-list
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: List known trust records from local Comms state.
+    why_exists: Debug helper for trust-state development.
+    validation_surface: trust lifecycle tests
+    include_in_front_readme: false
+
+  - id: comms.simulate-key-change
+    command: go run ./cmd/comms simulate-key-change
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Simulate a key-change event for trust lifecycle testing.
+    why_exists: Negative/test helper for trust policy behavior.
+    validation_surface: trust lifecycle tests
+    nonclaims:
+      - dev/test helper only
+    include_in_front_readme: false
+
+  - id: comms.revoke-device
+    command: go run ./cmd/comms revoke-device
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Revoke a device in the local trust model.
+    why_exists: Supports device lifecycle and trust event testing.
+    validation_surface: trust lifecycle tests
+    include_in_front_readme: false
+
+  - id: comms.send
+    command: go run ./cmd/comms send
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Stub-era send command using the older mock/stub message path.
+    why_exists: Preserved for continuity while OpenMLS runtime commands mature.
+    validation_surface: Comms package tests
+    replaced_by: openmls-send-dev for dev OpenMLS runtime proof
+    nonclaims:
+      - old send is not OpenMLS-backed yet
+      - not mature messaging UX
+    include_in_front_readme: false
+
+  - id: comms.inbox
+    command: go run ./cmd/comms inbox
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Stub-era inbox command using the older mock/stub message path.
+    why_exists: Preserved for continuity while OpenMLS runtime commands mature.
+    validation_surface: Comms package tests
+    replaced_by: openmls-inbox-dev for dev OpenMLS runtime proof
+    nonclaims:
+      - old inbox is not OpenMLS-backed yet
+      - not mature messaging UX
+    include_in_front_readme: false
+
+  - id: comms.ack
+    command: go run ./cmd/comms ack
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Ack a Cypher envelope by ID in the older CLI surface.
+    why_exists: Preserved for explicit ack workflows and continuity.
+    validation_surface: Comms package tests and runtime smoke scripts
+    nonclaims:
+      - not a standalone secure receive proof
+    include_in_front_readme: false
+
+  - id: comms.openmls-send-dev
+    command: go run ./cmd/comms openmls-send-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.3
+    source_path: carbonstack-comms/internal/app/openmls_runtime.go
+    short_help: Protect an OpenMLS application message with the sidecar and submit it through Cypher.
+    why_exists: Dev runtime send-side proof for the OpenMLS/Cypher path.
+    validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
+    nonclaims:
+      - dev/pre-alpha only
+      - not mature send UX
+      - not production E2EE claim
+    include_in_front_readme: true
+
+  - id: comms.openmls-inbox-dev
+    command: go run ./cmd/comms openmls-inbox-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.4
+    source_path: carbonstack-comms/internal/app/openmls_runtime.go
+    short_help: Fetch OpenMLS application-message envelopes, sidecar-open them, and optionally ack after success.
+    why_exists: Dev runtime receive/open proof for the OpenMLS/Cypher path.
+    validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
+    nonclaims:
+      - dev/pre-alpha only
+      - not mature inbox UX
+      - not production E2EE claim
+    include_in_front_readme: true
+
+  - id: comms.openmls-identity-create-dev
+    command: go run ./cmd/comms openmls-identity-create-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.13
+    source_path: carbonstack-comms/internal/app/openmls_bootstrap.go
+    short_help: Create a dev-local OpenMLS sidecar identity with an explicit sidecar device label.
+    why_exists: Bootstrap helper for wrapper-based runtime smoke.
+    validation_surface: dev-runtime-openmls-wrappers
+    nonclaims:
+      - not production identity UX
+      - does not mutate Comms trust state
+    include_in_front_readme: false
+
+  - id: comms.openmls-identity-status-dev
+    command: go run ./cmd/comms openmls-identity-status-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.13
+    source_path: carbonstack-comms/internal/app/openmls_bootstrap.go
+    short_help: Check dev-local OpenMLS sidecar identity status for an explicit sidecar device label.
+    why_exists: Bootstrap inspection helper for wrapper-based runtime smoke.
+    validation_surface: dev-runtime-openmls-wrappers
+    nonclaims:
+      - not production identity UX
+      - does not mutate Comms trust state
+    include_in_front_readme: false
+
+  - id: comms.openmls-bundle-export-dev
+    command: go run ./cmd/comms openmls-bundle-export-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.14
+    source_path: carbonstack-comms/internal/app/openmls_bootstrap.go
+    short_help: Export a dev OpenMLS KeyPackage bundle and optional artifact path.
+    why_exists: Wrapper step for member onboarding in dev runtime proofs.
+    validation_surface: dev-runtime-openmls-wrappers
+    nonclaims:
+      - not production identity/key distribution UX
+    include_in_front_readme: false
+
+  - id: comms.openmls-conversation-create-dev
+    command: go run ./cmd/comms openmls-conversation-create-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.14
+    source_path: carbonstack-comms/internal/app/openmls_bootstrap.go
+    short_help: Create a dev-local OpenMLS conversation for an explicit sidecar label and conversation label.
+    why_exists: Wrapper bootstrap step before add-member/join and message proof.
+    validation_surface: dev-runtime-openmls-wrappers
+    nonclaims:
+      - not Relay Space join UX
+    include_in_front_readme: false
+
+  - id: comms.openmls-conversation-load-check-dev
+    command: go run ./cmd/comms openmls-conversation-load-check-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.14
+    source_path: carbonstack-comms/internal/app/openmls_bootstrap.go
+    short_help: Check that a dev-local sidecar conversation can be loaded and reports group_reloadable.
+    why_exists: Bootstrap state sanity check for wrapper proof chains.
+    validation_surface: dev-runtime-openmls-wrappers
+    include_in_front_readme: false
+
+  - id: comms.openmls-conversation-add-member-dev
+    command: go run ./cmd/comms openmls-conversation-add-member-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.15
+    source_path: carbonstack-comms/internal/app/openmls_bootstrap.go
+    short_help: Add a member KeyPackage to a dev OpenMLS conversation and write a Welcome artifact.
+    why_exists: Wrapper bootstrap step for Welcome generation in wrapper-based runtime smoke.
+    validation_surface: dev-runtime-openmls-wrappers
+    nonclaims:
+      - not production membership UX
+      - not Relay Space join UX
+    include_in_front_readme: false
+
+  - id: comms.openmls-conversation-join-dev
+    command: go run ./cmd/comms openmls-conversation-join-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.15
+    source_path: carbonstack-comms/internal/app/openmls_bootstrap.go
+    short_help: Consume a Welcome artifact and join a dev OpenMLS conversation.
+    why_exists: Wrapper bootstrap step for completing Alice/Bob wrapper smoke setup.
+    validation_surface: dev-runtime-openmls-wrappers
+    nonclaims:
+      - not production membership UX
+      - not Relay Space join UX
+    include_in_front_readme: false
+
+  - id: comms.script.direct-openmls-runtime-smoke
+    command: scripts/dev-openmls-runtime-smoke.sh
+    repo: carbonstack-comms
+    component: scripts
+    kind: script
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.5
+    source_path: carbonstack-comms/scripts/dev-openmls-runtime-smoke.sh
+    short_help: Direct-sidecar bootstrap smoke proving openmls-send-dev -> Cypher -> openmls-inbox-dev --ack.
+    why_exists: Known-good lower-level OpenMLS runtime baseline.
+    related_profiles:
+      - dev-runtime-openmls
+    nonclaims:
+      - not local-backbone
+      - not production messaging UX
+    include_in_front_readme: false
+
+  - id: comms.script.wrapper-openmls-runtime-smoke
+    command: scripts/dev-openmls-runtime-smoke-wrappers.sh
+    repo: carbonstack-comms
+    component: scripts
+    kind: script
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.4.16
+    source_path: carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh
+    short_help: Wrapper-bootstrap smoke proving openmls-*-dev wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack.
+    why_exists: Higher-level wrapper maturity proof while direct-sidecar baseline remains.
+    related_profiles:
+      - dev-runtime-openmls-wrappers
+    nonclaims:
+      - not local-backbone
+      - does not replace direct smoke yet
+    include_in_front_readme: false
+
+  - id: comms.script.self-test-openmls-backbone
+    command: powershell -ExecutionPolicy Bypass -File ./scripts/self-test-openmls-backbone.ps1
+    repo: carbonstack-comms
+    component: scripts
+    kind: script
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/scripts/self-test-openmls-backbone.ps1
+    short_help: Legacy/Windows-oriented OpenMLS backbone self-test harness retained for continuity.
+    why_exists: Historical validation route before newer Go runner/runtime profiles matured.
+    nonclaims:
+      - not current primary WSL Debian validation path
+    include_in_front_readme: false
+
+  - id: comms.script.smoke-openmls-real-cypher-relay
+    command: powershell -ExecutionPolicy Bypass -File ./scripts/smoke-openmls-real-cypher-relay.ps1
+    repo: carbonstack-comms
+    component: scripts
+    kind: script
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/scripts/smoke-openmls-real-cypher-relay.ps1
+    short_help: Lower-level historical real-Cypher/OpenMLS relay smoke harness.
+    why_exists: Debug and continuity path from earlier relay proof work.
+    include_in_front_readme: false
+
+  - id: comms.script.check-no-rust-artifacts
+    command: powershell -ExecutionPolicy Bypass -File ./scripts/check-no-rust-artifacts.ps1
+    repo: carbonstack-comms
+    component: scripts
+    kind: script
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/scripts/check-no-rust-artifacts.ps1
+    short_help: Check for Rust build/generated artifacts in the repo.
+    why_exists: Historical hygiene guard before runner artifact scans matured.
+    include_in_front_readme: false
+
+  - id: comms.script.test-local-lifecycle
+    command: powershell -ExecutionPolicy Bypass -File ./scripts/test-local-lifecycle.ps1
+    repo: carbonstack-comms
+    component: scripts
+    kind: script
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/scripts/test-local-lifecycle.ps1
+    short_help: Historical local lifecycle PowerShell validation helper.
+    why_exists: Preserved for continuity; superseded by Go runner profiles where applicable.
+    include_in_front_readme: false
+
+  - id: comms.script.test-trust-lifecycle
+    command: powershell -ExecutionPolicy Bypass -File ./scripts/test-trust-lifecycle.ps1
+    repo: carbonstack-comms
+    component: scripts
+    kind: script
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack-comms/scripts/test-trust-lifecycle.ps1
+    short_help: Historical trust lifecycle PowerShell validation helper.
+    why_exists: Preserved for trust lifecycle continuity.
+    include_in_front_readme: false
+
+  - id: sidecar.provider-info
+    command: cargo run -- provider-info
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Print provider/sidecar information.
+    why_exists: Sidecar diagnostics and contract sanity.
+    include_in_front_readme: false
+
+  - id: sidecar.identity-create
+    command: cargo run -- identity-create
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Create dev-local OpenMLS sidecar identity state.
+    why_exists: Internal provider command wrapped by openmls-identity-create-dev.
+    wrapped_by: openmls-identity-create-dev
+    include_in_front_readme: false
+
+  - id: sidecar.identity-status
+    command: cargo run -- identity-status
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Inspect dev-local OpenMLS sidecar identity state.
+    why_exists: Internal provider command wrapped by openmls-identity-status-dev.
+    wrapped_by: openmls-identity-status-dev
+    include_in_front_readme: false
+
+  - id: sidecar.public-bundle-export
+    command: cargo run -- public-bundle-export
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Export a KeyPackage/public bundle and optionally write an artifact.
+    why_exists: Internal provider command wrapped by openmls-bundle-export-dev.
+    wrapped_by: openmls-bundle-export-dev
+    include_in_front_readme: false
+
+  - id: sidecar.conversation-create
+    command: cargo run -- conversation-create
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Create sidecar OpenMLS conversation state.
+    why_exists: Internal provider command wrapped by openmls-conversation-create-dev.
+    wrapped_by: openmls-conversation-create-dev
+    include_in_front_readme: false
+
+  - id: sidecar.conversation-load-check
+    command: cargo run -- conversation-load-check
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Load-check a sidecar conversation.
+    why_exists: Internal provider sanity check wrapped by openmls-conversation-load-check-dev.
+    wrapped_by: openmls-conversation-load-check-dev
+    include_in_front_readme: false
+
+  - id: sidecar.conversation-add-member
+    command: cargo run -- conversation-add-member
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Consume a KeyPackage, add member, and write a Welcome artifact.
+    why_exists: Internal provider command wrapped by openmls-conversation-add-member-dev.
+    wrapped_by: openmls-conversation-add-member-dev
+    include_in_front_readme: false
+
+  - id: sidecar.conversation-join
+    command: cargo run -- conversation-join
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Consume a Welcome artifact and join a sidecar conversation.
+    why_exists: Internal provider command wrapped by openmls-conversation-join-dev.
+    wrapped_by: openmls-conversation-join-dev
+    include_in_front_readme: false
+
+  - id: sidecar.message-protect
+    command: cargo run -- message-protect
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Protect plaintext into an OpenMLS application-message artifact.
+    why_exists: Internal provider command used by openmls-send-dev.
+    wrapped_by: openmls-send-dev
+    include_in_front_readme: false
+
+  - id: sidecar.message-open
+    command: cargo run -- message-open
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: internal
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/main.rs
+    short_help: Open an OpenMLS application-message artifact and print plaintext after sidecar success.
+    why_exists: Internal provider command used by openmls-inbox-dev.
+    wrapped_by: openmls-inbox-dev
+    include_in_front_readme: false
+
+  - id: sidecar.state-checkpoint
+    command: cargo run -- state-checkpoint
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: future
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/README.md
+    short_help: Unsupported placeholder mentioned by the sidecar as not currently implemented.
+    why_exists: Future state/provider checkpoint concept.
+    nonclaims:
+      - unsupported
+    include_in_front_readme: false
+
+  - id: sidecar.state-load-check
+    command: cargo run -- state-load-check
+    repo: carbonstack-comms
+    component: openmls-sidecar
+    kind: sidecar-cli
+    audience: internal
+    maturity: future
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/README.md
+    short_help: Unsupported placeholder mentioned by the sidecar as not currently implemented.
+    why_exists: Future state/provider load-check concept.
+    nonclaims:
+      - unsupported
+    include_in_front_readme: false
+
+  - id: cypher.server
+    command: go run ./cmd/cypher
+    repo: carbonstack-cypher
+    component: cmd/cypher
+    kind: cli
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/cmd/cypher/main.go
+    short_help: Start the Cypher relay/storage HTTP server with explicit environment configuration.
+    why_exists: Provides the local relay/storage server for Comms and validation profiles.
+    validation_surface: local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers
+    environment:
+      - CYPHER_ADDR
+      - CYPHER_DB
+      - CYPHER_MIGRATIONS
+      - CYPHER_DEV_INVITE
+    nonclaims:
+      - not deployment hardening
+      - not public ingress
+      - not systemd/cloudflared readiness
+    include_in_front_readme: true
+
+  - id: cypher.api.health
+    command: GET /v0/health
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: Health check endpoint used by validation and smoke scripts.
+    why_exists: Allows runner/scripts to wait for temporary Cypher readiness.
+    include_in_front_readme: false
+
+  - id: cypher.api.invites-claim
+    command: POST /v0/invites/claim
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: Claim an invite and create/account-bind local test identity.
+    why_exists: Supports local-cypher and Comms smoke onboarding.
+    include_in_front_readme: false
+
+  - id: cypher.api.dev-invites
+    command: POST /v0/dev/invites
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: dev_only
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: Create development invite codes.
+    why_exists: Dev-only test/onboarding helper.
+    include_in_front_readme: false
+
+  - id: cypher.api.devices-register
+    command: POST /v0/devices/register
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: Register a device for an account.
+    why_exists: Provides recipient/sender device IDs for envelope routing.
+    include_in_front_readme: false
+
+  - id: cypher.api.accounts-devices
+    command: GET /v0/accounts/{account_id}/devices
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: List devices under an account.
+    why_exists: Validates persisted local Cypher device state.
+    include_in_front_readme: false
+
+  - id: cypher.api.envelopes-submit
+    command: POST /v0/envelopes
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: Submit an opaque envelope payload for a recipient device.
+    why_exists: Core relay/storage primitive for Comms message delivery.
+    validation_surface: local-cypher and OpenMLS runtime profiles
+    include_in_front_readme: false
+
+  - id: cypher.api.device-envelopes
+    command: GET /v0/devices/{device_id}/envelopes
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: Retrieve queued envelopes for a device.
+    why_exists: Inbox fetch primitive for Comms runtime commands and smoke scripts.
+    include_in_front_readme: false
+
+  - id: cypher.api.envelope-ack
+    command: POST /v0/envelopes/{envelope_id}/ack
+    repo: carbonstack-cypher
+    component: httpapi
+    kind: api-surface
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack-cypher/internal/httpapi
+    short_help: Acknowledge an envelope after successful receive/open.
+    why_exists: Supports delivery-state transition and inbox-empty-after-ack proofs.
+    include_in_front_readme: false
+
+  - id: carbonstack.script.validate-local
+    command: powershell -ExecutionPolicy Bypass -File ./scripts/validate-local.ps1
+    repo: carbonstack
+    component: scripts
+    kind: script
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack/scripts/validate-local.ps1
+    short_help: Historical/local PowerShell validation helper.
+    why_exists: Preserved for historical continuity; Go runner is current main validation surface.
+    include_in_front_readme: false
+
+  - id: carbonstack.script.validate-phase1
+    command: powershell -ExecutionPolicy Bypass -File ./scripts/validate-phase1.ps1
+    repo: carbonstack
+    component: scripts
+    kind: script
+    audience: legacy
+    maturity: legacy
+    source_path: carbonstack/scripts/validate-phase1.ps1
+    short_help: Historical Phase 1 PowerShell validation helper.
+    why_exists: Preserved for historical continuity; Go runner is current main validation surface.
+    include_in_front_readme: false

@@ -299,6 +299,39 @@ Recommended next rung:
 
     pre-v0.5.x known-good command registry recon/planning.
 
+### v0.4.18 — known-good command registry
+
+Result:
+
+    A provisional cross-repo command registry now exists:
+
+        carbonstack/registry/commands.v0.yaml
+
+    It tracks:
+
+        runner profiles
+        Comms CLI commands
+        old stub-era send/inbox/ack commands
+        OpenMLS dev runtime commands
+        OpenMLS bootstrap wrappers
+        Comms smoke scripts
+        OpenMLS sidecar commands
+        Cypher CLI/env/API surfaces
+        legacy PowerShell helper scripts
+
+Boundary:
+
+    This is metadata and command-surface hygiene.
+    It does not change runtime behavior.
+    It is not local-backbone.
+    It is not production/security proof.
+    It does not add either runtime profile to full.
+    It does not start v0.5.x PQ/state/vault work.
+
+Recommended next rung:
+
+    command registry validation / local-help planning.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:
