@@ -83,7 +83,8 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/154-v0.4.0-package-rehearsal-v0.md` — v0.3.36 throwaway v0.4.0-style package rehearsal; fresh extraction checksum verification and full validation passed under WSL Debian.
 - `docs/155-runtime-comms-openmls-cypher-recon-v0.md` — v0.4.1 runtime Comms/OpenMLS/Cypher recon; records that send/inbox are still stub-era while OpenMLS/Cypher relay is validated through lower-level seams.
 - `docs/156-runtime-openmls-command-contract-v0.md` — v0.4.2 runtime OpenMLS command contract; defines `openmls-send-dev` and `openmls-inbox-dev` before implementation.
-- docs/157-dev-runtime-openmls-smoke-proof-v0.md — records the v0.4.5 dev runtime OpenMLS CLI smoke proof using openmls-send-dev -> Cypher -> openmls-inbox-dev --ack.
+- `docs/157-dev-runtime-openmls-smoke-proof-v0.md` — records the v0.4.5 dev runtime OpenMLS CLI smoke proof using openmls-send-dev -> Cypher -> openmls-inbox-dev --ack.
+- `docs/158-pre-local-backbone-assessment-v0.md` — v0.4.7 pre-local-backbone assessment; keeps local-backbone reserved, recommends future `dev-runtime-openmls` profile naming, and plans helper extraction before more runtime growth.
 
 ## Security and maturity warning
 

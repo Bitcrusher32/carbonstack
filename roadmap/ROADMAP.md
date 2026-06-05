@@ -155,7 +155,28 @@ Boundary:
 
 Recommended next rung:
 
-    v0.4.6 pre-local-backbone assessment and validation-profile decision.
+    v0.4.7 pre-local-backbone assessment and validation-profile decision.
+
+### v0.4.7 — pre-local-backbone assessment
+
+Result:
+
+    local-backbone remains reserved.
+    dev-runtime-openmls is the preferred future runner-profile name if the smoke proof is promoted.
+    The v0.4.5 smoke script should remain a carbonstack-comms dev helper until runner boundaries, generated-state cleanup, and release-root behavior are documented and tested.
+    commands.go/helper extraction should be considered before adding more OpenMLS runtime wrappers.
+
+Boundary:
+
+    This is an assessment and planning checkpoint.
+    No runner profile is added yet.
+    Existing send/inbox remain stub-era.
+    Direct sidecar KeyPackage/Welcome/bootstrap setup remains dev setup.
+    This is not production messaging UX.
+
+Recommended next rung:
+
+    v0.4.8 behavior-preserving OpenMLS command/helper extraction recon, or dev-runtime-openmls runner-profile recon if runner promotion becomes the priority.
 
 ## v0.4.x — runtime Comms OpenMLS integration
 
