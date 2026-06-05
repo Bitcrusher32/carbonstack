@@ -270,6 +270,35 @@ Recommended next rung:
 
     v0.4.13 implement identity create/status dev wrappers.
 
+### v0.4.17 — wrapper OpenMLS runtime validation profile
+
+Result:
+
+    A separate manual runner profile exists for the wrapper-based smoke proof:
+
+        dev-runtime-openmls-wrappers
+
+    It wraps:
+
+        carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh
+
+    Proof shape:
+
+        openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
+
+Boundary:
+
+    The original `dev-runtime-openmls` direct-smoke profile remains unchanged.
+    `dev-runtime-openmls-wrappers` is separate while wrappers mature.
+    Neither runtime profile is included in `full`.
+    Neither profile is release-package validation yet.
+    This is not local-backbone.
+    This is not production/security proof.
+
+Recommended next rung:
+
+    pre-v0.5.x known-good command registry recon/planning.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:

@@ -105,6 +105,42 @@ Boundary:
 
 This profile intentionally refuses non-git package-like roots for now. Use it from the live umbrella checkout, not from release package roots. `full` remains the release-package validation ladder and does not include `dev-runtime-openmls`.
 
+### dev-runtime-openmls-wrappers
+
+Runs the separate dev/pre-alpha OpenMLS wrapper-bootstrap runtime CLI smoke proof:
+
+    openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
+
+Command:
+
+    go run . --profile dev-runtime-openmls-wrappers --clean-generated
+
+This profile is manual-only and live-umbrella-only for now. It requires sibling git checkouts for:
+
+    carbonstack/
+    carbonstack-comms/
+    carbonstack-cypher/
+
+It wraps:
+
+    carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh
+
+Boundary:
+
+    not local-backbone
+    not mature messaging UX
+    not deployment
+    not release-package validation yet
+    not production/security proof
+    not included in full
+    does not replace dev-runtime-openmls yet
+
+The existing `dev-runtime-openmls` profile remains the direct-sidecar smoke baseline. This wrapper profile exists as a separate maturity surface while the bootstrap wrappers continue to harden.
+
+`--clean-generated` is recommended after successful runs because the smoke proof can leave known OpenMLS sidecar generated roots.
+
+This profile intentionally refuses non-git package-like roots for now. Use it from the live umbrella checkout, not from release package roots. `full` remains the release-package validation ladder and does not include `dev-runtime-openmls-wrappers`.
+
 ### full
 
 Runs the current release-package validation ladder:
