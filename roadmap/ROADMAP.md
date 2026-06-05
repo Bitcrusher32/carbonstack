@@ -222,6 +222,29 @@ Recommended next rung:
 
     v0.4.11 sidecar bootstrap wrapper recon.
 
+### v0.4.11 — OpenMLS bootstrap wrapper recon
+
+Result:
+
+    Direct sidecar bootstrap inside scripts/dev-openmls-runtime-smoke.sh was inspected.
+    Candidate dev-only wrapper names should follow the `openmls-*-dev` pattern.
+    Wrapper planning should stay separate from local-backbone and Relay Space naming.
+    Future wrapper code should likely live in carbonstack-comms/internal/app/openmls_bootstrap.go.
+    The smoke script should not be migrated until wrapper contracts and tests exist.
+
+Boundary:
+
+    This is recon/planning only.
+    No wrapper commands are implemented yet.
+    This is not local-backbone.
+    This does not replace old send/inbox.
+    This does not move dev-runtime-openmls into full.
+    This does not start v0.5.x state/trust/vault/PQ work.
+
+Recommended next rung:
+
+    v0.4.12 dev-only OpenMLS bootstrap command contract.
+
 ## v0.4.x — runtime Comms OpenMLS integration
 
 Goal:
