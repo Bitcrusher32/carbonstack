@@ -100,6 +100,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/165-command-registry-validation-and-help-plan-v0.md` — v0.4.19 registry validation and local help/manual planning; adds Go-test coverage for registry completeness and defines README vs registry vs generated command-reference boundaries.
 - `docs/166-v0.5.0-package-rehearsal-plan-v0.md` — v0.4.21 v0.5.0 package rehearsal plan and staging implementation; defines package shape, excludes carbonstack-os from runnable package, and adds the staging helper.
 - `docs/167-v0.5.0-package-checksum-and-fresh-extraction-rehearsal-v0.md` — v0.4.22 v0.5.0 checksum/archive/fresh-extraction rehearsal; adds a repeatable helper that stages package, writes checksums, archives, extracts fresh, verifies, and runs `full`.
+- `docs/168-v0.5.2-state-trust-vault-pq-preliminary-recon-v0.md` — v0.5.2 broad preliminary recon of current state/trust/provider/vault/PQ surfaces; prioritizes state correctness and persistence before vault or PQ implementation.
 
 ## Security and maturity warning
 
