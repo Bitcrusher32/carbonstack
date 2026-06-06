@@ -4,23 +4,24 @@ This roadmap describes the current public direction of CarbonStack.
 
 Older numbered docs preserve older plans and implementation history. Use this file, the top-level README, the latest docs index, and release-specific runbooks for current public-facing direction.
 
-## Current state after v0.4.20
+## Current state after v0.5.0
 
-CarbonStack has completed the v0.4.0 broad local deployability pre-release. That remains the current public release artifact users should treat as known-good for package validation.
+CarbonStack has completed the v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release. That is the current Gitea-source-of-truth public pre-release for package validation and release-facing state.
 
-Mainline development has moved beyond v0.4.0 into dev/pre-alpha runtime OpenMLS integration, wrapper-based smoke validation, runner profile separation, command registry work, and registry validation.
+v0.5.0 packages accumulated v0.4.x runtime, runner, wrapper, command-registry, and package-validation work. It remains pre-alpha / experimental and is not a general-public usable release, not v1.0.0, not production secure, and not local-backbone.
 
 Current public release:
 
-    v0.4.0 broad local deployability pre-release
+    v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release
 
 Current mainline checkpoint:
 
-    v0.4.20 roadmap refresh after v0.4.19 command registry validation and local-help planning
+    v0.5.0 compressed minor-epoch baseline after the v0.5.0 release cut.
+    v0.5.1 is the current post-release baseline / public-surface sanity rung.
 
-Current mainline repo heads at the v0.4.19 checkpoint:
+Current mainline repo heads at the v0.5.0 release checkpoint:
 
-    carbonstack        568fb45 test: validate command registry coverage
+    carbonstack        c6aa4e3 test: rehearse v0.5.0 package validation
     carbonstack-comms  cb4e59d test: add wrapper-based OpenMLS runtime smoke proof
     carbonstack-cypher 9ab994c docs: point to local operator runbook
     carbonstack-os     1bbbe52 docs: clarify CarbonStackOS target direction
@@ -33,7 +34,7 @@ Current public/source-of-truth policy:
 
 ## Current validated surfaces
 
-Current release-package validation shape for v0.4.0:
+Current release-package validation shape for v0.5.0:
 
     cd <package-root>/carbonstack/tools/carbonstack-validate
     go run . --profile verify-checksums --root <package-root>
@@ -103,33 +104,26 @@ Neither runtime profile is release-package validation yet.
 Neither runtime profile is included in full.
 The registry is command-surface hygiene, not a security proof.
 
-## Late v0.4.x to v0.5.0 minor epoch release runway
+## v0.5.x post-release baseline and next planning runway
 
-v0.5.0 should be a minor epoch release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
+v0.5.0 has now been cut as a minor epoch pre-release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
 
-It should follow the v0.4.0 release style:
+The immediate v0.5.x priority is not implementation expansion. It is:
 
-    release-surface cleanup
-    stale-claim scan
-    package rehearsal planning
-    package staging
-    checksum generation
-    fresh extraction validation
-    attached release assets
-    release notes
-    testing runbook
-    validation freeze
-    LogDoc and breakpoint export
-    explicit nonclaims
+    post-release public-surface sanity
+    current-state doc cleanup
+    state/trust/provider/vault inventory
+    PQ/hybrid migration readiness planning
+    claim-boundary preservation
 
-It should not start PQ/state/vault implementation.
+It should not start immediate PQ implementation.
 
-Compressed late-v0.4.x release-prep rungs:
+Compressed next rungs:
 
-    v0.4.21 package rehearsal plan, asset inventory, and package staging implementation
-    v0.4.22 checksum generation, fresh extraction validation, and release notes formulation using v0.4.0 continuity reference
-    v0.4.23 final LogDoc sanitization/export and release asset generation
-    v0.5.0 minor epoch release, followed by v0.4.xPRIME compression into LogDoc v0.5.0
+    v0.5.1 post-release preflight and public-surface baseline
+    v0.5.2 state/trust/vault/PQ planning recon
+    v0.5.3 storage/trust/provider-state inventory
+    later: PQ/hybrid ciphersuite migration planning only after state/trust/provider boundaries are clear
 
 ### v0.4.22 — v0.5.0 checksum and fresh extraction rehearsal
 

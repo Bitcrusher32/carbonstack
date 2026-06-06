@@ -1,7 +1,7 @@
 # CarbonStack Validate
 
 Status: experimental validation runner
-Phase: v0.4.x validation runner / v0.5.0 release-prep surface
+Phase: v0.5.x validation runner / post-v0.5.0 baseline surface
 
 This is the Go-based umbrella validation runner for CarbonStack.
 
@@ -224,13 +224,14 @@ The profile checks required repo files, release metadata, and fails if forbidden
 After package checks pass, it calls `core`.
 
 `release-snapshot` does not package, upload, deploy, clean, install dependencies, or make security claims.
-## v0.4.0 release validation recommendation
+## v0.5.0 release validation recommendation
 
-For the v0.4.0 broad local deployability pre-release, prefer the `full` profile from a fresh extracted or throwaway staged package root:
+For the v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release, use the release-attached runbook and assets. The intended package validation shape is:
 
+    go run . --profile verify-checksums --root /path/to/release-package-root
     go run . --profile full --root /path/to/release-package-root --clean-generated
 
-This runs the release package/checksum/core validation path through `release-snapshot`, then runs the Cypher-only `local-cypher` lifecycle validation. It remains a validation ladder, not a deployment command.
+This verifies the release package checksums, runs the release package/checksum/core validation path through `release-snapshot`, then runs the Cypher-only `local-cypher` lifecycle validation. It remains a validation ladder, not a deployment command.
 
 ## release-snapshot run-order warning
 

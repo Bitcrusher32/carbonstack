@@ -12,13 +12,14 @@ For current public testing and release status, start with:
 
 Current public release:
 
-    v0.4.0 broad local deployability pre-release
+    v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release
 
 Current mainline checkpoint:
 
-    v0.4.20 roadmap refresh after v0.4.19 registry validation and local-help planning
+    v0.5.0 compressed minor-epoch baseline after the v0.5.0 release cut.
+    v0.5.1 is the current post-release baseline / public-surface sanity rung.
 
-Current mainline validation surface:
+Current live mainline validation surface:
 
     cd tools/carbonstack-validate
     go test ./... -count=1
@@ -28,16 +29,16 @@ Current mainline validation surface:
     go run . --profile doctor
     go run . --profile core --clean-generated
 
-Current release-package validation shape remains release-specific. For the v0.4.0 release package, use the release-attached runbook and assets. The general release-package pattern is:
+Current release-package validation shape remains release-specific. For the v0.5.0 release package, use the release-attached runbook and assets. The general release-package pattern is:
 
     go run . --profile verify-checksums --root <package-root>
     go run . --profile full --root <package-root> --clean-generated
 
-Current v0.5.0 direction:
+Current v0.5.x direction:
 
-    v0.5.0 is planned as a minor epoch release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
-    It should follow the v0.4.0 release style: cleanup, package rehearsal, validation, release notes, attached assets, and explicit nonclaims.
-    It is not the start of PQ/state/vault implementation.
+    v0.5.0 has been cut as a minor epoch pre-release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
+    v0.5.x should begin with post-release baseline cleanup, then state/trust/vault/provider-state/PQ-readiness recon.
+    It is not the start of immediate PQ implementation.
     It is not a general-public official usable release.
     GitHub remains a push mirror only until a later official public/general-use release policy changes.
 
