@@ -101,6 +101,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/166-v0.5.0-package-rehearsal-plan-v0.md` — v0.4.21 v0.5.0 package rehearsal plan and staging implementation; defines package shape, excludes carbonstack-os from runnable package, and adds the staging helper.
 - `docs/167-v0.5.0-package-checksum-and-fresh-extraction-rehearsal-v0.md` — v0.4.22 v0.5.0 checksum/archive/fresh-extraction rehearsal; adds a repeatable helper that stages package, writes checksums, archives, extracts fresh, verifies, and runs `full`.
 - `docs/168-v0.5.2-state-trust-vault-pq-preliminary-recon-v0.md` — v0.5.2 broad preliminary recon of current state/trust/provider/vault/PQ surfaces; prioritizes state correctness and persistence before vault or PQ implementation.
+- `docs/169-v0.5.3-storage-trust-provider-state-inventory-v0.md` — v0.5.3 concrete inventory of current storage, trust, provider, relay-staging, Cypher, runner, vault, and PQ-relevant state domains.
 
 ## Security and maturity warning
 
