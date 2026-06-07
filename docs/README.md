@@ -106,6 +106,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/171-v0.5.5-trust-state-model-v0.md` — v0.5.5 trust-state model defining unknown, unverified, verified, changed, revoked, and reserved compromised states, send policy, trust events, provider-linkage expectations, and loud UX rules.
 - `docs/172-v0.5.6-provider-state-linkage-plan-v0.md` — v0.5.6 provider-state linkage plan defining how OpenMLS sidecar/provider events should map to Comms trust history, warnings, blocking behavior, and future linkage stages before implementation.
 - `docs/173-v0.5.8-provider-trust-report-contract-v0.md` — v0.5.8 implementation-contract record for the internal provider-trust report helper, clarifying JSON source-of-truth semantics, interpretive human summaries, non-mutating boundaries, and no-registry/no-CLI status.
+- `docs/174-v0.5.9-provider-trust-report-exposure-decision-v0.md` — v0.5.9 decision record keeping the provider-trust report helper internal-only for now, defining CLI exposure gates, JSON-first policy, and no-registry status until a real command surface exists.
 
 ## Security and maturity warning
 
