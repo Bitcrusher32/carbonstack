@@ -110,6 +110,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/175-v0.5.10-provider-originated-trust-history-append-plan-v0.md` — v0.5.10 planning record for future provider-originated trust-history append semantics, including event classes, future event names, append categories, trust.json mutation boundaries, ack boundary, and first append-spike eligibility.
 - `docs/176-v0.5.14-provider-identity-candidate-import-plan-v0.md` — v0.5.14 planning record for provider-observed identity candidate/unverified import policy, storage options, conflict rules, send-policy implications, and verification-boundary rules before implementation.
 - `docs/177-v0.5.15-mapped-provider-identity-mismatch-plan-v0.md` — v0.5.15 planning record for mapped provider identity mismatch behavior, changed/reverify classification, conflict cases, future mutation gates, and send-policy implications before implementation.
+- `docs/178-v0.5.16-relay-space-architecture-decision-v0.md` — v0.5.16 architecture decision record defining Relay Space as routing/conversation infrastructure, not identity authority, and preserving Cypher/Comms/server/admin/trust boundaries before local-backbone work.
 
 ## Security and maturity warning
 
