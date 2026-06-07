@@ -115,6 +115,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/180-v0.5.18-implementation-priority-decision-v0.md` — v0.5.18 decision record choosing candidate identity storage as the next narrow implementation priority, with separate identity-candidates.json ownership under internal/trust and strict no-mutation/no-CLI/no-ack boundaries.
 - `docs/181-v0.5.21-candidate-review-update-priority-decision-v0.md` — v0.5.21 decision record choosing candidate review/update mechanics before candidate/mismatch trust-history append integration, while deferring roadmap refresh, CLI/registry, and local-backbone.
 - `docs/182-v0.5.25-reset-recovery-reenrollment-decision-v0.md` — v0.5.25 decision record defining Comms-first reset/recovery/re-enrollment boundaries before local-backbone, with Cypher as downstream context and no code/CLI/registry changes.
+- `docs/183-v0.5.27-post-recovery-classifier-priority-decision-v0.md` — v0.5.27 decision record choosing recovery-history append helpers next after the pure recovery classifier, while deferring recovery orchestration, Relay Space, local-backbone, CLI/registry, and broad provider live-flow wiring.
 
 ## Security and maturity warning
 
