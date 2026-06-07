@@ -112,6 +112,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/177-v0.5.15-mapped-provider-identity-mismatch-plan-v0.md` — v0.5.15 planning record for mapped provider identity mismatch behavior, changed/reverify classification, conflict cases, future mutation gates, and send-policy implications before implementation.
 - `docs/178-v0.5.16-relay-space-architecture-decision-v0.md` — v0.5.16 architecture decision record defining Relay Space as routing/conversation infrastructure, not identity authority, and preserving Cypher/Comms/server/admin/trust boundaries before local-backbone work.
 - `docs/179-v0.5.17-local-backbone-feasibility-reassessment-v0.md` — v0.5.17 feasibility reassessment concluding that local-backbone is closer but not implementation-ready, and authorizing the roadmap refresh after the provider/trust/Relay Space planning arc.
+- `docs/180-v0.5.18-implementation-priority-decision-v0.md` — v0.5.18 decision record choosing candidate identity storage as the next narrow implementation priority, with separate identity-candidates.json ownership under internal/trust and strict no-mutation/no-CLI/no-ack boundaries.
 
 ## Security and maturity warning
 
