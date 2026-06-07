@@ -104,6 +104,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/169-v0.5.3-storage-trust-provider-state-inventory-v0.md` — v0.5.3 concrete inventory of current storage, trust, provider, relay-staging, Cypher, runner, vault, and PQ-relevant state domains.
 - `docs/170-v0.5.4-storage-domain-model-v0.md` — v0.5.4 storage-domain model defining source, generated, local app, trust, provider, relay-staging, server, validation, future-vault, and must-not-silently-regenerate domains.
 - `docs/171-v0.5.5-trust-state-model-v0.md` — v0.5.5 trust-state model defining unknown, unverified, verified, changed, revoked, and reserved compromised states, send policy, trust events, provider-linkage expectations, and loud UX rules.
+- `docs/172-v0.5.6-provider-state-linkage-plan-v0.md` — v0.5.6 provider-state linkage plan defining how OpenMLS sidecar/provider events should map to Comms trust history, warnings, blocking behavior, and future linkage stages before implementation.
 
 ## Security and maturity warning
 
