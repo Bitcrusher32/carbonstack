@@ -105,6 +105,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/170-v0.5.4-storage-domain-model-v0.md` — v0.5.4 storage-domain model defining source, generated, local app, trust, provider, relay-staging, server, validation, future-vault, and must-not-silently-regenerate domains.
 - `docs/171-v0.5.5-trust-state-model-v0.md` — v0.5.5 trust-state model defining unknown, unverified, verified, changed, revoked, and reserved compromised states, send policy, trust events, provider-linkage expectations, and loud UX rules.
 - `docs/172-v0.5.6-provider-state-linkage-plan-v0.md` — v0.5.6 provider-state linkage plan defining how OpenMLS sidecar/provider events should map to Comms trust history, warnings, blocking behavior, and future linkage stages before implementation.
+- `docs/173-v0.5.8-provider-trust-report-contract-v0.md` — v0.5.8 implementation-contract record for the internal provider-trust report helper, clarifying JSON source-of-truth semantics, interpretive human summaries, non-mutating boundaries, and no-registry/no-CLI status.
 
 ## Security and maturity warning
 
