@@ -4,11 +4,29 @@ This roadmap describes the current public direction of CarbonStack.
 
 Older numbered docs preserve older plans and implementation history. Use this file, the top-level README, the latest docs index, and release-specific runbooks for current public-facing direction.
 
-## Current state after v0.5.0
+## Current state after v0.5.17
 
-CarbonStack has completed the v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release. That is the current Gitea-source-of-truth public pre-release for package validation and release-facing state.
+CarbonStack has completed the v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release. That remains the current Gitea-source-of-truth public pre-release for package validation and release-facing state.
 
-v0.5.0 packages accumulated v0.4.x runtime, runner, wrapper, command-registry, and package-validation work. It remains pre-alpha / experimental and is not a general-public usable release, not v1.0.0, not production secure, and not local-backbone.
+v0.5.1 through v0.5.17 are post-release mainline checkpoints. They do not retag v0.5.0 and do not create a new public release package.
+
+The major v0.5.x work after v0.5.0 has been state/trust/provider/Relay Space planning and a few narrow helper spikes:
+
+    state/trust/vault/PQ preliminary recon;
+    storage/trust/provider-state inventory;
+    storage-domain model;
+    trust-state model;
+    provider-state linkage plan;
+    provider-trust decision report helper;
+    provider-trust report contract and exposure decision;
+    provider-originated trust-history append plan;
+    provider trust-history draft helper;
+    provider trust-event draft bridge;
+    provider trust-event append helper;
+    provider identity candidate / unverified import plan;
+    mapped provider identity mismatch plan;
+    Relay Space architecture decision record;
+    local-backbone feasibility reassessment.
 
 Current public release:
 
@@ -16,14 +34,13 @@ Current public release:
 
 Current mainline checkpoint:
 
-    v0.5.0 compressed minor-epoch baseline after the v0.5.0 release cut.
-    v0.5.1 is the current post-release baseline / public-surface sanity rung.
+    v0.5.17 local-backbone feasibility reassessment and roadmap refresh.
 
-Current mainline repo heads at the v0.5.0 release checkpoint:
+Current mainline repo heads at the v0.5.16 checkpoint before v0.5.17 roadmap patch:
 
-    carbonstack        c6aa4e3 test: rehearse v0.5.0 package validation
-    carbonstack-comms  cb4e59d test: add wrapper-based OpenMLS runtime smoke proof
-    carbonstack-cypher 9ab994c docs: point to local operator runbook
+    carbonstack        9f4e982 docs: define v0.5.16 Relay Space architecture
+    carbonstack-comms  94e0ff2 docs: record Comms Relay Space boundary
+    carbonstack-cypher 24166b0 docs: record Relay Space boundary
     carbonstack-os     1bbbe52 docs: clarify CarbonStackOS target direction
 
 Current public/source-of-truth policy:
@@ -42,557 +59,276 @@ Current release-package validation shape for v0.5.0:
 
 Current live mainline development validation shape:
 
+    cd ~/repos/carbonstack_umbrella/carbonstack-comms
+    go test ./... -count=1
+
+    cd ~/repos/carbonstack_umbrella/carbonstack-cypher
+    go test ./... -count=1
+
     cd ~/repos/carbonstack_umbrella/carbonstack/tools/carbonstack-validate
     go test ./... -count=1
-    go run . --profile dev-runtime-openmls-wrappers --clean-generated
-    go run . --profile dev-runtime-openmls --clean-generated
-    go run . --profile local-cypher
     go run . --profile doctor
+
+Additional existing profiles remain useful where relevant:
+
     go run . --profile core --clean-generated
+    go run . --profile local-cypher
+    go run . --profile dev-runtime-openmls-wrappers --clean-generated
 
-Current runner split:
-
-    full:
-        release-package validation ladder
-        release-snapshot followed by local-cypher
-        not deployment
-        not local-backbone
-        not runtime Comms UX
+Important:
 
-    dev-runtime-openmls:
-        manual live-umbrella direct-sidecar OpenMLS runtime smoke profile
-        openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
-        not included in full
+    Validation passing does not prove production security.
+    v0.5.17 does not create local-backbone.
+    v0.5.17 does not create a public deployment surface.
 
-    dev-runtime-openmls-wrappers:
-        manual live-umbrella wrapper-bootstrap OpenMLS runtime smoke profile
-        openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
-        separate maturity surface
-        does not replace dev-runtime-openmls yet
-        not included in full
+## Current architecture truth
 
-Current command-surface hygiene:
+### CarbonStack
 
-    registry/commands.v0.yaml exists as a provisional cross-repo command registry.
-    registry validation is covered by tools/carbonstack-validate/command_registry_test.go.
-    The registry tracks runner profiles, Comms CLI commands, old stub-era send/inbox/ack, OpenMLS dev runtime commands, bootstrap wrappers, Comms smoke scripts, sidecar commands, Cypher surfaces, and legacy helper scripts.
+CarbonStack is the umbrella doctrine, roadmap, release, docs, registry, and validation surface.
 
-## Current nonclaims
+It remains the public claim-boundary authority.
 
-CarbonStack is not currently:
+### CarbonStackComms
 
-    production-ready
-    production E2EE
-    hostile-server safe
-    metadata-private
-    deployment-ready
-    systemd-ready
-    cloudflared-ready
-    Android-ready
-    CarbonStackOS-ready
-    externally audited
-    certified
-    quantum-safe
-    local-backbone
-    mature messaging UX
-    general-public usable software
+CarbonStackComms is the text-first messaging client and current OpenMLS sidecar integration surface.
 
-Existing send/inbox remain stub-era.
-The OpenMLS runtime commands are explicit dev/pre-alpha commands.
-The wrapper bootstrap commands are not final Relay Space join UX.
-Neither runtime profile is release-package validation yet.
-Neither runtime profile is included in full.
-The registry is command-surface hygiene, not a security proof.
+Current Comms status:
 
-## v0.5.x post-release baseline and next planning runway
+    dev/pre-alpha;
+    has local state and trust-state packages;
+    has OpenMLS sidecar wrapper/runtime surfaces;
+    has provider event/trust classification helpers;
+    has provider-originated trust-history draft/event/append helper path;
+    has candidate identity and mapped mismatch plans;
+    does not have mature UX;
+    does not have provider identity import;
+    does not have candidate identity storage;
+    does not have mapped mismatch implementation;
+    does not have mature verification ceremony;
+    does not have local-backbone.
 
-v0.5.0 has now been cut as a minor epoch pre-release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
+### CarbonStackCypher
 
-The immediate v0.5.x priority is not implementation expansion. It is:
+CarbonStackCypher is the self-hostable relay/storage server.
 
-    post-release public-surface sanity
-    current-state doc cleanup
-    state/trust/provider/vault inventory
-    PQ/hybrid migration readiness planning
-    claim-boundary preservation
+Current Cypher status:
 
-It should not start immediate PQ implementation.
+    dev/pre-alpha;
+    has Go/SQLite relay skeleton;
+    supports dev invite creation/claim;
+    supports device registration/lookup;
+    supports encrypted envelope submit/retrieve/ack;
+    has local operator runbook docs;
+    has Relay Space boundary docs;
+    does not implement Relay Space schema/join yet;
+    is not identity authority;
+    is not a trust root.
 
-Compressed next rungs:
+### CarbonStackOS
 
-    v0.5.1 post-release preflight and public-surface baseline
-    v0.5.2 state/trust/vault/PQ planning recon
-    v0.5.3 storage/trust/provider-state inventory
-    later: PQ/hybrid ciphersuite migration planning only after state/trust/provider boundaries are clear
+CarbonStackOS remains long-range constrained Android-derived appliance OS research/direction.
 
-### v0.4.22 — v0.5.0 checksum and fresh extraction rehearsal
+It is not part of current runnable validation packages and should not be treated as near-term implementation.
 
-Result:
+## Local-backbone status
 
-    The v0.5.0 release-helper system now has:
+Local-backbone is not ready to implement.
 
-        scripts/stage-v0.5.0-package.sh
-        scripts/rehearse-v0.5.0-package.sh
+It is now architecture-discussable because the v0.5.x planning arc clarified state, trust, provider, candidate identity, mapped mismatch, and Relay Space boundaries.
 
-    The rehearsal helper performs:
+It is not profile/release-ready because:
 
-        stage package skeleton
-        write release/checksums.txt
-        verify checksums in staged package
-        archive package
-        fresh extract package
-        verify checksums from fresh extraction
-        run full from fresh extraction with --clean-generated
+    Relay Space join/invite/member behavior is not implemented;
+    candidate identity storage does not exist;
+    mapped mismatch behavior is not implemented;
+    provider event draft/append helpers are not wired into live app flows;
+    Comms send/inbox remain dev/stub-era split surfaces;
+    reset/recovery/re-enrollment behavior is not mature;
+    validation profile claims would overstate the current system.
 
-Boundary:
+Future local-backbone work must remain claim-careful.
 
-    No final release assets yet.
-    No v0.5.0 tag yet.
-    No upload.
-    No local-backbone.
-    No PQ/state/vault implementation.
-    Runtime OpenMLS profiles remain live-umbrella-only and outside full.
+## Relay Space status
 
-Next rung:
+Relay Space is now defined as routing/conversation infrastructure.
 
-    v0.4.23 final release notes, LogDoc sanitization/export, release asset generation, and v0.5.0 release cut prep.
+Relay Space is not identity authority.
 
-### v0.4.21 — v0.5.0 package rehearsal plan and staging
+Relay admin is not a trust root.
 
-Result:
+Cypher delivery is not trust.
 
-    A repeatable package staging helper exists:
+Server membership claims are not enough for client trust.
 
-        scripts/stage-v0.5.0-package.sh
+Client trust history and verification remain local/client-owned.
 
-    It stages:
+Future Relay Space work must preserve:
 
-        carbonstack
-        carbonstack-comms
-        carbonstack-cypher
-        release metadata skeleton
+    hostile-server assumption;
+    local trust-store authority;
+    candidate identity review boundary;
+    mapped mismatch/reverify boundary;
+    ack-after-open boundary;
+    no plaintext server authority.
 
-    It excludes:
+## Provider/trust status
 
-        carbonstack-os
+Implemented helper path:
 
-Boundary:
+    ProviderTrustReport;
+    ProviderTrustHistoryDraft;
+    ProviderTrustEventDraft;
+    trust.ProviderEventAppendDraft;
+    trust.BuildProviderEvent;
+    trust.AppendProviderEvent.
 
-    No final checksums yet.
-    No archive yet.
-    No fresh extraction validation yet.
-    No final release assets yet.
-    No v0.5.0 tag yet.
-    No local-backbone.
-    No PQ/state/vault implementation.
+Current boundary:
 
-Next rung:
+    provider-originated append helper exists;
+    runtime provider events are not wired into live append flow yet;
+    provider identity import does not exist;
+    candidate identity storage does not exist;
+    mapped mismatch mutation does not exist;
+    trust.json mutation from provider observation does not exist.
 
-    v0.4.22 checksum generation, fresh extraction validation, and release notes formulation using v0.4.0 continuity reference.
+Core rule:
 
-## v0.4.x completed runtime, wrapper, and registry rungs
+    provider-observed identity material is not trust.
 
-### v0.4.1 — runtime Comms/OpenMLS/Cypher recon
+## Near-term roadmap
 
-Result:
+### v0.5.18 — roadmap-refresh aftermath / implementation-priority decision
 
-    Current Comms CLI send/inbox/ack exist, but send/inbox are still stub-era.
-    The OpenMLS/Cypher relay seam is already validated through internal relay/protocol tests.
-    The next implementation should use explicit dev-only OpenMLS runtime commands before replacing send/inbox.
+Decide which post-planning implementation spike should happen first.
 
-Recommended next rung:
+Candidate directions:
 
-    v0.4.2 runtime OpenMLS command contract
+    candidate identity draft/storage spike;
+    mapped mismatch classifier spike;
+    provider-event live-flow append integration spike;
+    Relay Space join/invite/member planning;
+    validation profile boundary planning.
 
-### v0.4.2 — runtime OpenMLS command contract
+Default bias:
 
-Goal:
+    do not create local-backbone next.
+    choose one narrow implementation spike that reduces ambiguity without overclaiming.
 
-    Define explicit dev-only runtime OpenMLS commands before implementation.
+### v0.5.19+ — targeted implementation or planning spikes
 
-Decision:
+Possible sequence:
 
-    Use openmls-send-dev and openmls-inbox-dev first.
-    Do not silently replace existing send/inbox yet.
-    Ack remains consume-success gated.
-    Keep local-backbone reserved until whole-path runtime validation deserves it.
+    candidate identity draft/storage model;
+    mapped mismatch classifier;
+    safe provider event live-flow wiring;
+    Relay Space join/invite/member plan;
+    local-backbone profile boundary plan;
+    reset/recovery/re-enrollment plan.
 
-Recommended next rung:
+Exact ordering should be chosen after v0.5.18.
 
-    v0.4.3 first dev-only OpenMLS send command
+## Medium-term roadmap
 
-### v0.4.5 — dev runtime OpenMLS smoke proof
+### Vault boundary design
 
-Result:
+Vault work should come after state/trust/provider/candidate/mismatch behavior is clearer.
 
-    carbonstack-comms now includes scripts/dev-openmls-runtime-smoke.sh.
-    The script proves openmls-send-dev -> Cypher -> openmls-inbox-dev --ack for the OpenMLS application-message path.
-    It verifies plaintext and confirms the recipient inbox is empty after ack.
+Do not design vault as a generic encrypted folder.
 
-Boundary:
+Vault must be domain-aware:
 
-    This is a dev/pre-alpha smoke proof.
-    This is not local-backbone.
-    This is not production messaging UX.
-    Sidecar KeyPackage/Welcome/bootstrap setup remains direct dev setup.
-    Existing send/inbox remain stub-era.
+    identity-bearing state;
+    trust-bearing state;
+    group/conversation-bearing state;
+    message/plaintext state;
+    relay-staging state;
+    recovery/export state;
+    revocation/compromise state.
 
-Recommended next rung:
+### PQ/hybrid readiness
 
-    v0.4.7 pre-local-backbone assessment and validation-profile decision.
+PQ/hybrid work should remain deferred until state/trust/provider migration boundaries are clearer.
 
-### v0.4.7 — pre-local-backbone assessment
+PQ/hybrid is not a one-line ciphersuite flip.
 
-Result:
+It affects:
 
-    local-backbone remains reserved.
-    dev-runtime-openmls is the preferred future runner-profile name if the smoke proof is promoted.
-    The v0.4.5 smoke script should remain a carbonstack-comms dev helper until runner boundaries, generated-state cleanup, and release-root behavior are documented and tested.
-    commands.go/helper extraction should be considered before adding more OpenMLS runtime wrappers.
+    KeyPackage size and compatibility;
+    Welcome size and compatibility;
+    OpenMLS group/provider state;
+    protocol_version and content_type mapping;
+    trust display;
+    group reinit/rekey policy;
+    runner artifact-size assumptions;
+    release claim boundaries.
 
-Boundary:
+Do not claim quantum-safe messaging from one successful test.
 
-    This is an assessment and planning checkpoint.
-    No runner profile is added yet.
-    Existing send/inbox remain stub-era.
-    Direct sidecar KeyPackage/Welcome/bootstrap setup remains dev setup.
-    This is not production messaging UX.
+### Hostile-server harnesses
 
-Recommended next rung:
+Hostile-server and abuse-resistance validation remain later work.
 
-    v0.4.8 behavior-preserving OpenMLS command/helper extraction recon, or dev-runtime-openmls runner-profile recon if runner promotion becomes the priority.
+Future harnesses should test:
 
-### v0.4.9 — manual dev-runtime-openmls runner profile
+    replay;
+    stale epoch;
+    server equivocation;
+    malicious identity material delivery;
+    delayed or hidden messages;
+    malicious membership claims;
+    ack/order edge cases.
 
-Result:
+### Deployability and operations hardening
 
-    carbonstack/tools/carbonstack-validate now includes a manual `dev-runtime-openmls` profile.
-    The profile wraps carbonstack-comms/scripts/dev-openmls-runtime-smoke.sh.
-    It validates openmls-send-dev -> Cypher -> openmls-inbox-dev --ack from a live umbrella checkout.
-    It is not included in `full`.
+Deployability/ops hardening remains later than local architecture correctness.
 
-Boundary:
+Future work should include:
 
-    This is a dev/pre-alpha manual validation profile.
-    This is not local-backbone.
-    This is not production messaging UX.
-    This is not release-package validation yet.
-    Existing send/inbox remain stub-era.
+    operator runbooks;
+    migration policy;
+    backup/restore policy;
+    retention/pruning policy;
+    server admin boundary docs;
+    realistic threat-model docs.
 
-Recommended next rung:
+## Long-range roadmap
 
-    v0.4.10 validation/profile polish or sidecar bootstrap wrapper recon after the v0.4.9 breakpoint.
+Later epochs remain:
 
-### v0.4.10 — dev-runtime-openmls profile boundary check
+    v0.6.x hostile-server and abuse-resistance harnesses;
+    v0.7.x deployability and operations hardening;
+    v0.8.x documented self-pentest / adversarial validation;
+    v0.9.x claim-boundary review;
+    v0.10.x Android backend/app exploration;
+    v1.x.x public app/server major epoch only if justified by maturity.
 
-Result:
+CarbonStackOS remains beyond those near/mid-term milestones.
 
-    The manual `dev-runtime-openmls` profile was repeatability-checked from the live umbrella checkout.
-    Running without `--clean-generated` left only known OpenMLS sidecar generated roots.
-    Running with `--clean-generated` cleaned known generated roots.
-    A non-git package-like root was refused as expected.
-    `full` remains separate and does not call `dev-runtime-openmls`.
+## Hard nonclaims
 
-Boundary:
+CarbonStack currently does not claim:
 
-    This is a documentation/evidence checkpoint.
-    No runner behavior changed.
-    This is not local-backbone.
-    This is not release-package validation.
-    This is not production messaging UX.
-    Existing send/inbox remain stub-era.
+    production readiness;
+    production E2EE;
+    hostile-server safety;
+    metadata privacy;
+    local-backbone readiness;
+    mature messenger UX;
+    general-public usable software;
+    Android readiness;
+    CarbonStackOS readiness;
+    vault security;
+    PQ/hybrid security;
+    quantum-safe messaging;
+    external audit or certification.
 
-Recommended next rung:
+v0.5.17 specifically does not claim:
 
-    v0.4.11 sidecar bootstrap wrapper recon.
-
-### v0.4.11 — OpenMLS bootstrap wrapper recon
-
-Result:
-
-    Direct sidecar bootstrap inside scripts/dev-openmls-runtime-smoke.sh was inspected.
-    Candidate dev-only wrapper names should follow the `openmls-*-dev` pattern.
-    Wrapper planning should stay separate from local-backbone and Relay Space naming.
-    Future wrapper code should likely live in carbonstack-comms/internal/app/openmls_bootstrap.go.
-    The smoke script should not be migrated until wrapper contracts and tests exist.
-
-Boundary:
-
-    This is recon/planning only.
-    No wrapper commands are implemented yet.
-    This is not local-backbone.
-    This does not replace old send/inbox.
-    This does not move dev-runtime-openmls into full.
-    This does not start v0.5.x state/trust/vault/PQ work.
-
-Recommended next rung:
-
-    v0.4.12 dev-only OpenMLS bootstrap command contract.
-
-### v0.4.12 — dev-only OpenMLS bootstrap command contract
-
-Result:
-
-    The command contract for future dev-only OpenMLS bootstrap wrappers is defined.
-    Wrapper names should use the `openmls-*-dev` pattern.
-    Sidecar labels remain explicit and are not derived from Comms state.
-    Sidecar JSON should be normalized to stable Comms key/value output.
-    Sidecar path hints should be preserved, with absolute artifact paths printed when applicable.
-    Wrappers must not mutate Comms state/trust files.
-    Future implementation should live in carbonstack-comms/internal/app/openmls_bootstrap.go.
-
-Boundary:
-
-    This is a docs/contract checkpoint.
-    No wrapper commands are implemented yet.
-    This is not local-backbone.
-    This does not replace old send/inbox.
-    This does not move dev-runtime-openmls into full.
-    This does not start v0.5.x state/trust/vault/PQ work.
-
-Recommended next rung:
-
-    v0.4.13 implement identity create/status dev wrappers.
-
-### v0.4.17 — wrapper OpenMLS runtime validation profile
-
-Result:
-
-    A separate manual runner profile exists for the wrapper-based smoke proof:
-
-        dev-runtime-openmls-wrappers
-
-    It wraps:
-
-        carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh
-
-    Proof shape:
-
-        openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
-
-Boundary:
-
-    The original `dev-runtime-openmls` direct-smoke profile remains unchanged.
-    `dev-runtime-openmls-wrappers` is separate while wrappers mature.
-    Neither runtime profile is included in `full`.
-    Neither profile is release-package validation yet.
-    This is not local-backbone.
-    This is not production/security proof.
-
-Recommended next rung:
-
-    pre-v0.5.x known-good command registry recon/planning.
-
-### v0.4.18 — known-good command registry
-
-Result:
-
-    A provisional cross-repo command registry now exists:
-
-        carbonstack/registry/commands.v0.yaml
-
-    It tracks:
-
-        runner profiles
-        Comms CLI commands
-        old stub-era send/inbox/ack commands
-        OpenMLS dev runtime commands
-        OpenMLS bootstrap wrappers
-        Comms smoke scripts
-        OpenMLS sidecar commands
-        Cypher CLI/env/API surfaces
-        legacy PowerShell helper scripts
-
-Boundary:
-
-    This is metadata and command-surface hygiene.
-    It does not change runtime behavior.
-    It is not local-backbone.
-    It is not production/security proof.
-    It does not add either runtime profile to full.
-    It does not start v0.5.x PQ/state/vault work.
-
-Recommended next rung:
-
-    command registry validation / local-help planning.
-
-### v0.4.19 — command registry validation and local help plan
-
-Result:
-
-    The provisional command registry is now validated by Go test coverage in:
-
-        carbonstack/tools/carbonstack-validate/command_registry_test.go
-
-    The test checks registry structure, duplicate IDs, required fields, source_path existence, runner profile coverage, Comms command coverage, Comms script coverage, sidecar command IDs, Cypher API IDs, legacy send/inbox/ack classification, direct-vs-wrapper OpenMLS profile separation, and local-backbone/source-of-truth boundaries.
-
-Local help/manual planning decision:
-
-    Use registry validation first.
-    Add generated markdown command reference later.
-    Avoid embedding registry-derived local help in Comms command code until command structure is ready.
-    Avoid adding a runner profile for registry validation until the check proves stable.
-    Keep front README minimal; registry is the complete command-surface inventory.
-
-Boundary:
-
-    No runtime behavior changes.
-    No generated command reference yet.
-    No local-backbone.
-    No v0.5.x state/trust/vault/PQ implementation yet.
-
-Carry-forward:
-
-    After late v0.4.x grouped registry/help-planning work, refresh the long-term roadmap and prepare a v0.5.0 minor epoch release ladder with cleanup, deployability testing, release-style replication, and release hardening.
-
-## v0.4.x — runtime Comms OpenMLS integration
-
-Goal:
-
-    make runtime Comms paths deliberately use the OpenMLS/Cypher backbone.
-
-This means:
-
-    send/inbox stops being stub-era
-    Comms uses the OpenMLS sidecar/backbone path deliberately
-    Cypher integration becomes part of actual client flow
-    local developer UX becomes more coherent
-    still pre-alpha/dev UX
-    no production security claims
-
-Early v0.4.x should avoid:
-
-    public ingress
-    production deployment
-    Android app
-    CarbonStackOS
-    broad hostile-server claims
-    secure vault claims
-
-## v0.5.x — local storage, trust state, provider state, and vault design
-
-Goal:
-
-    solve the local state model before stronger user-readiness claims.
-
-Topics:
-
-    device identity state
-    provider storage
-    trust state
-    vault boundaries
-    local encryption
-    backup/export policy
-    compromise assumptions
-    recovery assumptions
-    state migration
-
-No claim of production-safe vault until adversarial validation exists.
-
-## v0.6.x — hostile-server and abuse-resistance harnesses
-
-Goal:
-
-    test server-hostile behavior deliberately.
-
-Topics:
-
-    replay
-    rollback
-    dropped messages
-    delayed messages
-    malformed envelopes
-    metadata abuse
-    server equivocation
-    ack manipulation
-    denial-of-service surfaces
-
-## v0.7.x — deployability and operations hardening
-
-Goal:
-
-    harden the deployable/operator story after runtime and state mechanics exist.
-
-Topics:
-
-    operator docs
-    service lifecycle
-    data paths
-    logs
-    backup
-    update/migration
-    failure recovery
-    server administration boundaries
-    local-only vs public deployment modes
-
-## v0.8.x — documented self-pentest / adversarial validation
-
-Goal:
-
-    run documented adversarial validation before making security claims.
-
-Every record must include:
-
-    what was tested
-    methodology
-    environment
-    what it validates
-    what it does not validate
-    limitations
-    follow-up fixes
-
-This still does not replace external audit.
-
-## v0.9.x — claim-boundary review
-
-Goal:
-
-    review what claims are actually allowed after accumulated validation.
-
-Output should include:
-
-    allowed claims
-    forbidden claims
-    conditional claims
-    validation references
-    required future audits/reviews
-
-## v0.10.x+ — Android, app UX, and CarbonStackOS later
-
-Android app and CarbonStackOS remain later.
-
-Approximate direction:
-
-    v0.10.x Android backend research + Cypher integration
-    v0.11.x Android frontend / UX / CarbonStack Relay Space join model
-    v0.12.x pre-major hardening
-    v1.0.x deployable server + app stack major epoch
-    v1.x.x CarbonStackOS / appliance OS research later
-
-## CarbonStack Relay Space terminology
-
-Use:
-
-    CarbonStack Relay Space
-
-instead of "IRC-like server" except when explaining the historical analogy.
-
-This avoids importing IRC moderation/culture assumptions into the CarbonStack model.
-
-## Governing principle
-
-Every major claim must trail validation.
-
-Do not do:
-
-    build feature -> claim safety
-
-Do:
-
-    build feature -> test it -> document scope and non-scope -> then make limited claim
-
-CarbonStack should remain evidence-led, not vibes-led.
-
-Current package rehearsal record:
-
-    docs/154-v0.4.0-package-rehearsal-v0.md
+    local-backbone implementation;
+    Relay Space implementation;
+    candidate identity implementation;
+    mapped mismatch implementation;
+    trust.json mutation from provider observation;
+    provider identity import;
+    ack behavior changes.
