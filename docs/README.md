@@ -108,6 +108,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/173-v0.5.8-provider-trust-report-contract-v0.md` — v0.5.8 implementation-contract record for the internal provider-trust report helper, clarifying JSON source-of-truth semantics, interpretive human summaries, non-mutating boundaries, and no-registry/no-CLI status.
 - `docs/174-v0.5.9-provider-trust-report-exposure-decision-v0.md` — v0.5.9 decision record keeping the provider-trust report helper internal-only for now, defining CLI exposure gates, JSON-first policy, and no-registry status until a real command surface exists.
 - `docs/175-v0.5.10-provider-originated-trust-history-append-plan-v0.md` — v0.5.10 planning record for future provider-originated trust-history append semantics, including event classes, future event names, append categories, trust.json mutation boundaries, ack boundary, and first append-spike eligibility.
+- `docs/176-v0.5.14-provider-identity-candidate-import-plan-v0.md` — v0.5.14 planning record for provider-observed identity candidate/unverified import policy, storage options, conflict rules, send-policy implications, and verification-boundary rules before implementation.
 
 ## Security and maturity warning
 
