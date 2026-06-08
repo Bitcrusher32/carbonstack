@@ -1046,3 +1046,15 @@ entries:
   short_help: Retrieve and write Relay Space-scoped OpenMLS Welcome artifacts without acking.
   why_exists: Dev/pre-alpha inbox scaffold for Welcome artifact movement; no conversation-join, ack, trust mutation, verification, or local-backbone claim.
   include_in_front_readme: false
+
+- id: comms.openmls-relay-add-member-dev
+  command: openmls-relay-add-member-dev
+  repo: carbonstack-comms
+  component: comms
+  kind: dev-command
+  audience: developer
+  maturity: experimental
+  source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
+  short_help: Retrieve a Relay Space KeyPackage, run sidecar add-member, and submit the produced Welcome through Relay Space.
+  why_exists: Dev/pre-alpha add-member scaffold for the KeyPackage-to-Welcome leg; no join, ack, trust mutation, candidate acceptance, local-backbone, or production UX claim.
+  include_in_front_readme: false
