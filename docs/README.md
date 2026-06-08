@@ -119,6 +119,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/184-v0.5.30-local-backbone-blocker-reassessment-v0.md` — v0.5.30 reassessment after recovery-history and recovery orchestration, concluding local-backbone is closer but still blocked, and selecting dedicated Relay Space recon/planning as v0.5.31.
 - `docs/185-v0.5.31-relay-space-join-invite-member-planning-v0.md` — v0.5.31 planning record defining practical Relay Space addressing, invite, join, and qualified member semantics while preserving Cypher routing-only authority, Comms local trust authority, OpenMLS cryptographic membership boundaries, and no implementation claims.
 - `docs/186-v0.5.32-provider-live-flow-boundary-v0.md` — v0.5.32 planning record defining why broad provider/OpenMLS live-flow wiring remains deferred until Relay Space schema/API and validation boundaries exist, while preserving candidate/review/recovery/trust and ack-after-open rules.
+- `docs/187-v0.5.33-validation-profile-boundary-v0.md` — v0.5.33 planning record defining validation-profile claim boundaries, live-umbrella versus release-package validation separation, generated-state cleanup limits, and why local-backbone profile implementation remains deferred.
 
 ## Security and maturity warning
 
