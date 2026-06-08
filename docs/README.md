@@ -117,6 +117,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/182-v0.5.25-reset-recovery-reenrollment-decision-v0.md` — v0.5.25 decision record defining Comms-first reset/recovery/re-enrollment boundaries before local-backbone, with Cypher as downstream context and no code/CLI/registry changes.
 - `docs/183-v0.5.27-post-recovery-classifier-priority-decision-v0.md` — v0.5.27 decision record choosing recovery-history append helpers next after the pure recovery classifier, while deferring recovery orchestration, Relay Space, local-backbone, CLI/registry, and broad provider live-flow wiring.
 - `docs/184-v0.5.30-local-backbone-blocker-reassessment-v0.md` — v0.5.30 reassessment after recovery-history and recovery orchestration, concluding local-backbone is closer but still blocked, and selecting dedicated Relay Space recon/planning as v0.5.31.
+- `docs/185-v0.5.31-relay-space-join-invite-member-planning-v0.md` — v0.5.31 planning record defining practical Relay Space addressing, invite, join, and qualified member semantics while preserving Cypher routing-only authority, Comms local trust authority, OpenMLS cryptographic membership boundaries, and no implementation claims.
 
 ## Security and maturity warning
 
