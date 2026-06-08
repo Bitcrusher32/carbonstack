@@ -1070,3 +1070,15 @@ entries:
   short_help: Retrieve a Relay Space Welcome, run sidecar conversation-join, and optionally ack only after join success.
   why_exists: Dev/pre-alpha join scaffold for the Welcome-to-joined leg; scoped ack is opt-in and gated after sidecar join success. No trust mutation, candidate acceptance, local-backbone, verification, or production UX claim.
   include_in_front_readme: false
+
+- id: comms.scripts.openmls-relay-narrow-join-smoke-dev
+  command: scripts/openmls-relay-narrow-join-smoke-dev.sh
+  repo: carbonstack-comms
+  component: comms
+  kind: dev-script
+  audience: developer
+  maturity: experimental
+  source_path: carbonstack-comms/scripts/openmls-relay-narrow-join-smoke-dev.sh
+  short_help: Run the narrow Relay Space OpenMLS KeyPackage -> add-member -> Welcome -> join smoke-proof command sequence.
+  why_exists: Dev/pre-alpha smoke-proof sequencer for one local/dev Relay Space OpenMLS join path. It is not a validation profile, local-backbone, identity verification, trust mutation, candidate acceptance, production UX, hostile-server proof, or security claim.
+  include_in_front_readme: false
