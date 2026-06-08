@@ -4,13 +4,13 @@ This roadmap describes the current public direction of CarbonStack.
 
 Older numbered docs preserve older plans and implementation history. Use this file, the top-level README, the latest docs index, and release-specific runbooks for current public-facing direction.
 
-## Current state after v0.5.17
+## Current state after v0.5.35
 
 CarbonStack has completed the v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release. That remains the current Gitea-source-of-truth public pre-release for package validation and release-facing state.
 
-v0.5.1 through v0.5.17 are post-release mainline checkpoints. They do not retag v0.5.0 and do not create a new public release package.
+v0.5.1 through v0.5.35 are post-release mainline checkpoints. They do not retag v0.5.0 and do not create a new public release package.
 
-The major v0.5.x work after v0.5.0 has been state/trust/provider/Relay Space planning and a few narrow helper spikes:
+The major v0.5.x work after v0.5.0 has been state/trust/provider/candidate/recovery/Relay Space planning and narrow helper implementation:
 
     state/trust/vault/PQ preliminary recon;
     storage/trust/provider-state inventory;
@@ -26,7 +26,22 @@ The major v0.5.x work after v0.5.0 has been state/trust/provider/Relay Space pla
     provider identity candidate / unverified import plan;
     mapped provider identity mismatch plan;
     Relay Space architecture decision record;
-    local-backbone feasibility reassessment.
+    local-backbone feasibility reassessment;
+    candidate identity storage;
+    mapped mismatch classifier;
+    candidate review/update mechanics;
+    candidate/mismatch history events;
+    candidate observation orchestration;
+    reset/recovery/re-enrollment boundary;
+    pure recovery classifier;
+    recovery-history append helpers;
+    recovery orchestration;
+    local-backbone blocker reassessment;
+    Relay Space join/invite/member mechanics planning;
+    provider live-flow boundary planning;
+    validation profile boundary planning;
+    local-backbone go/no-go reassessment;
+    implementation-readiness cleanup.
 
 Current public release:
 
@@ -34,14 +49,7 @@ Current public release:
 
 Current mainline checkpoint:
 
-    v0.5.17 local-backbone feasibility reassessment and roadmap refresh.
-
-Current mainline repo heads at the v0.5.16 checkpoint before v0.5.17 roadmap patch:
-
-    carbonstack        9f4e982 docs: define v0.5.16 Relay Space architecture
-    carbonstack-comms  94e0ff2 docs: record Comms Relay Space boundary
-    carbonstack-cypher 24166b0 docs: record Relay Space boundary
-    carbonstack-os     1bbbe52 docs: clarify CarbonStackOS target direction
+    v0.5.35 cleanup / implementation-readiness checkpoint.
 
 Current public/source-of-truth policy:
 
@@ -77,9 +85,10 @@ Additional existing profiles remain useful where relevant:
 
 Important:
 
-    Validation passing does not prove production security.
-    v0.5.17 does not create local-backbone.
-    v0.5.17 does not create a public deployment surface.
+    validation passing does not prove production security;
+    v0.5.35 does not create local-backbone;
+    v0.5.35 does not create a public deployment surface;
+    v0.5.35 does not add a local-backbone validation profile.
 
 ## Current architecture truth
 
@@ -100,12 +109,17 @@ Current Comms status:
     has OpenMLS sidecar wrapper/runtime surfaces;
     has provider event/trust classification helpers;
     has provider-originated trust-history draft/event/append helper path;
-    has candidate identity and mapped mismatch plans;
+    has identity-candidates.json storage;
+    has mapped mismatch classifier;
+    has candidate review/update mechanics;
+    has candidate/mismatch history append helpers;
+    has candidate observation orchestration;
+    has recovery classifier/history/orchestration helpers;
+    has Relay Space, provider live-flow, validation-profile, and local-backbone boundary docs;
     does not have mature UX;
-    does not have provider identity import;
-    does not have candidate identity storage;
-    does not have mapped mismatch implementation;
+    does not have verified provider identity import;
     does not have mature verification ceremony;
+    does not have broad provider live-flow;
     does not have local-backbone.
 
 ### CarbonStackCypher
@@ -121,7 +135,9 @@ Current Cypher status:
     supports encrypted envelope submit/retrieve/ack;
     has local operator runbook docs;
     has Relay Space boundary docs;
-    does not implement Relay Space schema/join yet;
+    has validation-profile and local-backbone boundary docs;
+    does not implement Relay Space schema/API yet;
+    does not implement Relay Space join yet;
     is not identity authority;
     is not a trust root.
 
@@ -133,27 +149,39 @@ It is not part of current runnable validation packages and should not be treated
 
 ## Local-backbone status
 
-Local-backbone is not ready to implement.
+Local-backbone is not implemented.
 
-It is now architecture-discussable because the v0.5.x planning arc clarified state, trust, provider, candidate identity, mapped mismatch, and Relay Space boundaries.
+v0.5.34 granted only a conditional GO for first narrow implementation planning.
 
-It is not profile/release-ready because:
+Correct current phrasing:
 
+    local-backbone is closer;
+    full local-backbone is not ready;
+    first narrow implementation target is Cypher Relay Space schema/API substrate;
+    do not call the next implementation full local-backbone.
+
+Local-backbone remains not profile/release-ready because:
+
+    Relay Space schema/API implementation does not exist;
     Relay Space join/invite/member behavior is not implemented;
-    candidate identity storage does not exist;
-    mapped mismatch behavior is not implemented;
-    provider event draft/append helpers are not wired into live app flows;
-    Comms send/inbox remain dev/stub-era split surfaces;
-    reset/recovery/re-enrollment behavior is not mature;
-    validation profile claims would overstate the current system.
+    Comms Relay Space client wrappers do not exist;
+    provider live-flow remains deferred;
+    validation profile claims would still overstate the system;
+    CLI/registry exposure remains deferred;
+    destructive reset/recovery/re-enrollment behavior is intentionally absent;
+    mature verification ceremony, vault, PQ/hybrid migration, hostile-server harnesses, and operator-grade deployability remain later.
 
 Future local-backbone work must remain claim-careful.
 
 ## Relay Space status
 
-Relay Space is now defined as routing/conversation infrastructure.
+Relay Space is routing/conversation infrastructure and a vector to OpenMLS join.
 
 Relay Space is not identity authority.
+
+OpenMLS/provider membership is cryptographic group participation, not local verification.
+
+Local Comms verification remains actual trust/auth/presence.
 
 Relay admin is not a trust root.
 
@@ -161,7 +189,7 @@ Cypher delivery is not trust.
 
 Server membership claims are not enough for client trust.
 
-Client trust history and verification remain local/client-owned.
+Client trust history, candidate review, recovery decisions, and verification remain local/client-owned.
 
 Future Relay Space work must preserve:
 
@@ -169,6 +197,7 @@ Future Relay Space work must preserve:
     local trust-store authority;
     candidate identity review boundary;
     mapped mismatch/reverify boundary;
+    recovery classification boundary;
     ack-after-open boundary;
     no plaintext server authority.
 
@@ -181,16 +210,23 @@ Implemented helper path:
     ProviderTrustEventDraft;
     trust.ProviderEventAppendDraft;
     trust.BuildProviderEvent;
-    trust.AppendProviderEvent.
+    trust.AppendProviderEvent;
+    identity candidate storage;
+    mapped mismatch classifier;
+    candidate review/update;
+    candidate/mismatch history events;
+    candidate observation orchestration;
+    recovery classifier;
+    recovery-history append;
+    recovery orchestration.
 
 Current boundary:
 
     provider-originated append helper exists;
-    runtime provider events are not wired into live append flow yet;
-    provider identity import does not exist;
-    candidate identity storage does not exist;
-    mapped mismatch mutation does not exist;
-    trust.json mutation from provider observation does not exist.
+    runtime provider events are not broadly wired into live append flow yet;
+    verified provider identity import does not exist;
+    trust.json mutation from provider observation does not exist;
+    Relay Space membership must not mutate local trust.
 
 Core rule:
 
@@ -198,41 +234,49 @@ Core rule:
 
 ## Near-term roadmap
 
-### v0.5.18 — roadmap-refresh aftermath / implementation-priority decision
+### v0.5.36+ — first narrow Cypher Relay Space schema/API substrate
 
-Decide which post-planning implementation spike should happen first.
+Before implementation:
 
-Candidate directions:
+    user must resend latest LogDoc as direct continuity reference;
+    assistant must scout relevant planning docs;
+    first-rung scope must be confirmed before code.
 
-    candidate identity draft/storage spike;
-    mapped mismatch classifier spike;
-    provider-event live-flow append integration spike;
-    Relay Space join/invite/member planning;
-    validation profile boundary planning.
+Preferred first implementation target:
 
-Default bias:
+    Cypher Relay Space schema/API substrate.
 
-    do not create local-backbone next.
-    choose one narrow implementation spike that reduces ambiguity without overclaiming.
+Possible narrow split:
 
-### v0.5.19+ — targeted implementation or planning spikes
+    relay_spaces schema;
+    relay_space_invites schema;
+    relay_space_members schema;
+    relay_space_id-scoped envelope support or migration path;
+    create/get/list Relay Space APIs;
+    invite create/claim APIs;
+    routing member registration/list APIs;
+    routing-only tests;
+    no-trust-authority tests.
 
-Possible sequence:
+Do not combine all of these into one rung if a schema-only first rung is safer.
 
-    candidate identity draft/storage model;
-    mapped mismatch classifier;
-    safe provider event live-flow wiring;
-    Relay Space join/invite/member plan;
-    local-backbone profile boundary plan;
-    reset/recovery/re-enrollment plan.
+### Later v0.5.x after Cypher substrate
 
-Exact ordering should be chosen after v0.5.18.
+Possible later sequence:
+
+    Comms Relay Space client wrapper;
+    Comms no-trust-mutation tests;
+    candidate handoff only when identity material is explicit;
+    provider/OpenMLS join wiring;
+    ack-boundary tests;
+    validation profile implementation only after concrete substrate exists;
+    CLI/registry only if the dev surface is honest and useful.
 
 ## Medium-term roadmap
 
 ### Vault boundary design
 
-Vault work should come after state/trust/provider/candidate/mismatch behavior is clearer.
+Vault work should come after state/trust/provider/candidate/mismatch/recovery/Relay Space behavior is clearer.
 
 Do not design vault as a generic encrypted folder.
 
@@ -244,6 +288,7 @@ Vault must be domain-aware:
     message/plaintext state;
     relay-staging state;
     recovery/export state;
+    Relay Space routing state;
     revocation/compromise state.
 
 ### PQ/hybrid readiness
@@ -313,7 +358,8 @@ CarbonStack currently does not claim:
     production E2EE;
     hostile-server safety;
     metadata privacy;
-    local-backbone readiness;
+    local-backbone implementation;
+    local-backbone validation profile;
     mature messenger UX;
     general-public usable software;
     Android readiness;
@@ -323,12 +369,13 @@ CarbonStack currently does not claim:
     quantum-safe messaging;
     external audit or certification.
 
-v0.5.17 specifically does not claim:
+v0.5.35 specifically does not claim:
 
-    local-backbone implementation;
-    Relay Space implementation;
-    candidate identity implementation;
-    mapped mismatch implementation;
+    Relay Space schema/API implementation;
+    provider live-flow implementation;
+    validation profile implementation;
+    CLI/registry update;
     trust.json mutation from provider observation;
-    provider identity import;
-    ack behavior changes.
+    provider identity verified import;
+    ack behavior changes;
+    destructive reset/recovery/re-enrollment support.

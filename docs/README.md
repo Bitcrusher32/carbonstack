@@ -16,8 +16,8 @@ Current public release:
 
 Current mainline checkpoint:
 
-    v0.5.0 compressed minor-epoch baseline after the v0.5.0 release cut.
-    v0.5.1 is the current post-release baseline / public-surface sanity rung.
+    v0.5.35 cleanup / implementation-readiness checkpoint after the v0.5.30-v0.5.34 Relay Space, provider live-flow, validation-profile, and local-backbone go/no-go planning arc.
+    v0.5.0 remains the current public Gitea-source-of-truth pre-release package-validation release.
 
 Current live mainline validation surface:
 
@@ -37,9 +37,10 @@ Current release-package validation shape remains release-specific. For the v0.5.
 Current v0.5.x direction:
 
     v0.5.0 has been cut as a minor epoch pre-release of accumulated v0.4.x runtime, runner, wrapper, registry, and validation work.
-    v0.5.x should begin with post-release baseline cleanup, then state/trust/vault/provider-state/PQ-readiness recon.
-    It is not the start of immediate PQ implementation.
-    It is not a general-public official usable release.
+    v0.5.1-v0.5.34 completed a post-release state/trust/provider/candidate/recovery/Relay Space planning and helper arc.
+    v0.5.34 granted only a conditional GO for first narrow implementation planning, with Cypher Relay Space schema/API substrate as the preferred first target.
+    v0.5.35 is the cleanup / implementation-readiness checkpoint before any first narrow implementation.
+    It is not the start of full local-backbone, broad provider live-flow, validation-profile implementation, CLI/registry exposure, immediate PQ implementation, or a general-public official usable release.
     GitHub remains a push mirror only until a later official public/general-use release policy changes.
 
 ## Historical archive note
@@ -121,6 +122,7 @@ Do not rewrite old historical docs just because implementation moved forward.
 - `docs/186-v0.5.32-provider-live-flow-boundary-v0.md` — v0.5.32 planning record defining why broad provider/OpenMLS live-flow wiring remains deferred until Relay Space schema/API and validation boundaries exist, while preserving candidate/review/recovery/trust and ack-after-open rules.
 - `docs/187-v0.5.33-validation-profile-boundary-v0.md` — v0.5.33 planning record defining validation-profile claim boundaries, live-umbrella versus release-package validation separation, generated-state cleanup limits, and why local-backbone profile implementation remains deferred.
 - `docs/188-v0.5.34-local-backbone-go-no-go-v0.md` — v0.5.34 go/no-go reassessment granting conditional GO for first narrow implementation planning, with Cypher Relay Space schema/API substrate as the preferred first target while full local-backbone, validation profile, provider live-flow, and CLI/registry remain deferred.
+- `docs/189-v0.5.35-implementation-readiness-checkpoint-v0.md` — v0.5.35 cleanup and implementation-readiness checkpoint recording stale roadmap/docs cleanup, first implementation rung naming, CLI/registry deferral, and the required LogDoc/planning-doc scout before any Cypher Relay Space schema/API implementation.
 
 ## Security and maturity warning
 
