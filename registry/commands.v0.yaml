@@ -1058,3 +1058,15 @@ entries:
   short_help: Retrieve a Relay Space KeyPackage, run sidecar add-member, and submit the produced Welcome through Relay Space.
   why_exists: Dev/pre-alpha add-member scaffold for the KeyPackage-to-Welcome leg; no join, ack, trust mutation, candidate acceptance, local-backbone, or production UX claim.
   include_in_front_readme: false
+
+- id: comms.openmls-relay-join-dev
+  command: openmls-relay-join-dev
+  repo: carbonstack-comms
+  component: comms
+  kind: dev-command
+  audience: developer
+  maturity: experimental
+  source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
+  short_help: Retrieve a Relay Space Welcome, run sidecar conversation-join, and optionally ack only after join success.
+  why_exists: Dev/pre-alpha join scaffold for the Welcome-to-joined leg; scoped ack is opt-in and gated after sidecar join success. No trust mutation, candidate acceptance, local-backbone, verification, or production UX claim.
+  include_in_front_readme: false
