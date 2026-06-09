@@ -4,44 +4,37 @@ This roadmap describes the current public direction of CarbonStack.
 
 Older numbered docs preserve older plans and implementation history. Use this file, the top-level README, the latest docs index, and release-specific runbooks for current public-facing direction.
 
-## Current state after v0.5.35
+## Current state after v0.5.58-REFACTOR
 
 CarbonStack has completed the v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release. That remains the current Gitea-source-of-truth public pre-release for package validation and release-facing state.
 
-v0.5.1 through v0.5.35 are post-release mainline checkpoints. They do not retag v0.5.0 and do not create a new public release package.
+v0.5.1 through v0.5.58 are post-release mainline development checkpoints. They do not retag v0.5.0 and do not create a new public release package.
 
-The major v0.5.x work after v0.5.0 has been state/trust/provider/candidate/recovery/Relay Space planning and narrow helper implementation:
+The major v0.5.x work after v0.5.0 has included:
 
     state/trust/vault/PQ preliminary recon;
     storage/trust/provider-state inventory;
     storage-domain model;
     trust-state model;
-    provider-state linkage plan;
-    provider-trust decision report helper;
-    provider-trust report contract and exposure decision;
-    provider-originated trust-history append plan;
-    provider trust-history draft helper;
-    provider trust-event draft bridge;
-    provider trust-event append helper;
-    provider identity candidate / unverified import plan;
-    mapped provider identity mismatch plan;
-    Relay Space architecture decision record;
-    local-backbone feasibility reassessment;
-    candidate identity storage;
-    mapped mismatch classifier;
-    candidate review/update mechanics;
-    candidate/mismatch history events;
+    provider-state linkage planning;
+    provider-trust report helpers and exposure decision;
+    provider trust-history append planning/helpers;
+    candidate identity storage/review/update/mismatch helpers;
     candidate observation orchestration;
     reset/recovery/re-enrollment boundary;
-    pure recovery classifier;
-    recovery-history append helpers;
-    recovery orchestration;
-    local-backbone blocker reassessment;
-    Relay Space join/invite/member mechanics planning;
-    provider live-flow boundary planning;
-    validation profile boundary planning;
-    local-backbone go/no-go reassessment;
-    implementation-readiness cleanup.
+    recovery classifier/history/orchestration helpers;
+    Relay Space architecture planning;
+    Relay Space schema/API substrate;
+    Relay Space scoped envelope routes;
+    Comms Relay Space client and artifact bridge helpers;
+    KeyPackage / Welcome / add-member / join dev command scaffolding;
+    no-ack and ACK_AFTER_JOIN smoke evidence;
+    relay-openmls-join-dev positive-path validation profile;
+    compact profile summary;
+    negative helper hardening;
+    live negative-path ownership matrix;
+    Comms no-ack/failure coverage matrix;
+    add-member sidecar-failure command test.
 
 Current public release:
 
@@ -49,7 +42,7 @@ Current public release:
 
 Current mainline checkpoint:
 
-    v0.5.35 cleanup / implementation-readiness checkpoint.
+    v0.5.58 targeted Comms add-member sidecar-failure test, followed by v0.5.58-REFACTOR planning for pre-v0.6.0 truth hygiene.
 
 Current public/source-of-truth policy:
 
@@ -81,14 +74,17 @@ Additional existing profiles remain useful where relevant:
 
     go run . --profile core --clean-generated
     go run . --profile local-cypher
+    go run . --profile dev-runtime-openmls --clean-generated
     go run . --profile dev-runtime-openmls-wrappers --clean-generated
+    go run . --profile relay-openmls-join-dev --compact-summary
 
 Important:
 
     validation passing does not prove production security;
-    v0.5.35 does not create local-backbone;
-    v0.5.35 does not create a public deployment surface;
-    v0.5.35 does not add a local-backbone validation profile.
+    v0.5.58 does not create local-backbone;
+    v0.5.58 does not create a public deployment surface;
+    v0.5.58 does not add relay-openmls-join-dev to full or release-snapshot;
+    v0.5.58 does not complete key storage, vault, public CLI/manual, or mature inbox UX.
 
 ## Current architecture truth
 
@@ -108,18 +104,21 @@ Current Comms status:
     has local state and trust-state packages;
     has OpenMLS sidecar wrapper/runtime surfaces;
     has provider event/trust classification helpers;
-    has provider-originated trust-history draft/event/append helper path;
-    has identity-candidates.json storage;
-    has mapped mismatch classifier;
-    has candidate review/update mechanics;
-    has candidate/mismatch history append helpers;
+    has identity-candidates.json storage and candidate review/update helpers;
+    has mapped mismatch classifier and candidate/mismatch history helpers;
     has candidate observation orchestration;
     has recovery classifier/history/orchestration helpers;
-    has Relay Space, provider live-flow, validation-profile, and local-backbone boundary docs;
+    has Relay Space client wrappers and OpenMLS artifact bridge helpers;
+    has KeyPackage/Welcome/add-member/join dev commands;
+    has openmls-relay-join-dev with optional --ack-after-join;
+    has focused failure-path tests for join/no-ack and add-member sidecar failure;
     does not have mature UX;
     does not have verified provider identity import;
     does not have mature verification ceremony;
     does not have broad provider live-flow;
+    does not have public CLI/manual polish;
+    does not have secure vault/key storage;
+    does not have mature public inbox semantics;
     does not have local-backbone.
 
 ### CarbonStackCypher
@@ -133,13 +132,14 @@ Current Cypher status:
     supports dev invite creation/claim;
     supports device registration/lookup;
     supports encrypted envelope submit/retrieve/ack;
+    supports Relay Space schema/API substrate;
+    supports Relay Space-scoped envelope submit/inbox/ack;
+    supports scoped ack rejection for wrong Relay Space and wrong recipient;
     has local operator runbook docs;
-    has Relay Space boundary docs;
-    has validation-profile and local-backbone boundary docs;
-    does not implement Relay Space schema/API yet;
-    does not implement Relay Space join yet;
+    is routing/storage infrastructure only;
     is not identity authority;
-    is not a trust root.
+    is not a trust root;
+    is not plaintext authority.
 
 ### CarbonStackOS
 
@@ -151,23 +151,21 @@ It is not part of current runnable validation packages and should not be treated
 
 Local-backbone is not implemented.
 
-v0.5.34 granted only a conditional GO for first narrow implementation planning.
-
 Correct current phrasing:
 
     local-backbone is closer;
     full local-backbone is not ready;
-    first narrow implementation target is Cypher Relay Space schema/API substrate;
-    do not call the next implementation full local-backbone.
+    current work is Relay Space / OpenMLS validation substrate and failure-path hardening;
+    relay-openmls-join-dev is a positive-path local/dev profile, not local-backbone.
 
 Local-backbone remains not profile/release-ready because:
 
-    Relay Space schema/API implementation does not exist;
-    Relay Space join/invite/member behavior is not implemented;
-    Comms Relay Space client wrappers do not exist;
+    public CLI/manual surface is not defined;
+    key storage/vault is not complete;
+    inbox semantics are fragmented across dev surfaces;
     provider live-flow remains deferred;
-    validation profile claims would still overstate the system;
-    CLI/registry exposure remains deferred;
+    trust/candidate mechanics are not mature public UX;
+    relay-openmls-join-dev is not included in full or release-snapshot;
     destructive reset/recovery/re-enrollment behavior is intentionally absent;
     mature verification ceremony, vault, PQ/hybrid migration, hostile-server harnesses, and operator-grade deployability remain later.
 
@@ -198,7 +196,7 @@ Future Relay Space work must preserve:
     candidate identity review boundary;
     mapped mismatch/reverify boundary;
     recovery classification boundary;
-    ack-after-open boundary;
+    ack-after-open / ack-after-join boundaries;
     no plaintext server authority.
 
 ## Provider/trust status
@@ -232,150 +230,134 @@ Core rule:
 
     provider-observed identity material is not trust.
 
-## Near-term roadmap
+## Key storage / vault status
 
-### v0.5.36+ — first narrow Cypher Relay Space schema/API substrate
+Key storage is not complete.
 
-Before implementation:
+Current sidecar/provider state remains dev-local generated state and must not be represented as a production vault.
 
-    user must resend latest LogDoc as direct continuity reference;
-    assistant must scout relevant planning docs;
-    first-rung scope must be confirmed before code.
+Future storage/vault work must define:
 
-Preferred first implementation target:
+    what state is source-owned;
+    what state is generated dev state;
+    what state is local app state;
+    what state is trust state;
+    what state is relay staging;
+    what state is validation-only;
+    what state must never silently regenerate;
+    what state belongs in a future encrypted vault;
+    backup/restore behavior;
+    re-enrollment behavior;
+    compromise/revocation behavior.
 
-    Cypher Relay Space schema/API substrate.
+## Inbox semantics status
 
-Possible narrow split:
+Inbox semantics are not complete.
 
-    relay_spaces schema;
-    relay_space_invites schema;
-    relay_space_members schema;
-    relay_space_id-scoped envelope support or migration path;
-    create/get/list Relay Space APIs;
-    invite create/claim APIs;
-    routing member registration/list APIs;
-    routing-only tests;
-    no-trust-authority tests.
+Current inbox-like surfaces include:
 
-Do not combine all of these into one rung if a schema-only first rung is safer.
+    legacy/stub-era send/inbox;
+    openmls-inbox-dev for application-message artifacts and optional ack-after-open;
+    openmls-relay-keypackage-inbox-dev without ack;
+    openmls-relay-welcome-inbox-dev without ack;
+    openmls-relay-join-dev with optional Welcome ack after join success.
 
-### Later v0.5.x after Cypher substrate
+These are dev/pre-alpha surfaces, not one mature public inbox model.
 
-Possible later sequence:
+Future work must define public inbox semantics before claiming mature messaging UX.
 
-    Comms Relay Space client wrapper;
-    Comms no-trust-mutation tests;
-    candidate handoff only when identity material is explicit;
-    provider/OpenMLS join wiring;
-    ack-boundary tests;
-    validation profile implementation only after concrete substrate exists;
-    CLI/registry only if the dev surface is honest and useful.
+## Public CLI / manual status
 
-## Medium-term roadmap
+Public CLI/manual surface is not complete.
 
-### Vault boundary design
+The command registry exists as a navigation and claim-boundary artifact, but there is not yet a generated command reference or mature public CLI manual.
 
-Vault work should come after state/trust/provider/candidate/mismatch/recovery/Relay Space behavior is clearer.
+Future public/manual work must distinguish:
 
-Do not design vault as a generic encrypted folder.
+    public release validation commands;
+    source developer commands;
+    dev-only OpenMLS commands;
+    hidden/private validation profiles;
+    legacy/stub-era commands;
+    future commands not yet implemented.
 
-Vault must be domain-aware:
+## Near-term refactor roadmap
 
-    identity-bearing state;
-    trust-bearing state;
-    group/conversation-bearing state;
-    message/plaintext state;
-    relay-staging state;
-    recovery/export state;
-    Relay Space routing state;
-    revocation/compromise state.
+### v0.5.59-REFACTOR-1 — surface truth / evergreen docs cleanup
 
-### PQ/hybrid readiness
+Refresh current public-facing source surfaces so they do not point readers to stale v0.5.35/v0.5.48 assumptions.
 
-PQ/hybrid work should remain deferred until state/trust/provider migration boundaries are clearer.
+Likely files:
 
-PQ/hybrid is not a one-line ciphersuite flip.
+    carbonstack/README.md
+    carbonstack/docs/README.md
+    carbonstack/roadmap/ROADMAP.md
+    carbonstack-comms/README.md
+    carbonstack-cypher/README.md
+    carbonstack-comms/docs/README.md
+    carbonstack-cypher/docs/README.md
 
-It affects:
+### v0.5.60-REFACTOR-2 — registry/manual boundary
 
-    KeyPackage size and compatibility;
-    Welcome size and compatibility;
-    OpenMLS group/provider state;
-    protocol_version and content_type mapping;
-    trust display;
-    group reinit/rekey policy;
-    runner artifact-size assumptions;
-    release claim boundaries.
+Define what the command registry is and is not.
 
-Do not claim quantum-safe messaging from one successful test.
+Clarify which command surfaces are public release validation, developer-only, hidden/private, legacy, and future.
 
-### Hostile-server harnesses
+Do not expose relay-openmls-join-dev in front-door release docs yet.
 
-Hostile-server and abuse-resistance validation remain later work.
+### v0.5.61-REFACTOR-3 — hygiene / portability checkpoint
 
-Future harnesses should test:
+Resolve or document:
 
-    replay;
-    stale epoch;
-    server equivocation;
-    malicious identity material delivery;
-    delayed or hidden messages;
-    malicious membership claims;
-    ack/order edge cases.
+    repo-local carbonstack-cypher/cypher.db;
+    generated sidecar state policy;
+    Go toolchain version portability;
+    local committer metadata warning;
+    WSL Git Credential Manager warning;
+    pre-release generated-artifact policy.
 
-### Deployability and operations hardening
+### v0.5.62-REFACTOR-4 — v0.6.0 inclusion decision
 
-Deployability/ops hardening remains later than local architecture correctness.
+Decide whether relay-openmls-join-dev is ready for v0.6.0 release-package validation.
 
-Future work should include:
+If yes, design inclusion deliberately.
 
-    operator runbooks;
-    migration policy;
-    backup/restore policy;
-    retention/pruning policy;
-    server admin boundary docs;
-    realistic threat-model docs.
+If no, keep it live-mainline/dev-only and document why.
 
-## Long-range roadmap
+### Later v0.5.x / pre-v0.6.0
 
-Later epochs remain:
+Remaining targeted tests may still be useful:
 
-    v0.6.x hostile-server and abuse-resistance harnesses;
-    v0.7.x deployability and operations hardening;
-    v0.8.x documented self-pentest / adversarial validation;
-    v0.9.x claim-boundary review;
-    v0.10.x Android backend/app exploration;
-    v1.x.x public app/server major epoch only if justified by maturity.
+    add-member KeyPackage artifact write failure;
+    add-member Welcome submit failure after sidecar success.
 
-CarbonStackOS remains beyond those near/mid-term milestones.
+But cleanup/truth-hygiene is now the priority before more feature growth.
 
-## Hard nonclaims
+## Do not do next
 
-CarbonStack currently does not claim:
+Do not:
 
-    production readiness;
-    production E2EE;
-    hostile-server safety;
-    metadata privacy;
-    local-backbone implementation;
-    local-backbone validation profile;
-    mature messenger UX;
-    general-public usable software;
-    Android readiness;
-    CarbonStackOS readiness;
-    vault security;
-    PQ/hybrid security;
-    quantum-safe messaging;
-    external audit or certification.
-
-v0.5.35 specifically does not claim:
-
-    Relay Space schema/API implementation;
-    provider live-flow implementation;
-    validation profile implementation;
-    CLI/registry update;
-    trust.json mutation from provider observation;
-    provider identity verified import;
-    ack behavior changes;
-    destructive reset/recovery/re-enrollment support.
+    call current mainline full local-backbone;
+    add relay-openmls-join-dev to front README;
+    add relay-openmls-join-dev to full or release-snapshot without a separate decision;
+    promote dev-only OpenMLS commands as mature public CLI;
+    claim production secure messaging;
+    claim metadata privacy;
+    claim hostile-server safety;
+    claim verified identity;
+    claim secure enrollment;
+    claim mature provider live-flow;
+    claim mature send/inbox UX;
+    claim secure vault/key storage;
+    mutate trust.json from Relay Space routing membership or provider/OpenMLS observation alone;
+    mutate identity-candidates.json into verified trust from provider/OpenMLS observation alone;
+    mark provider-observed identity as verified;
+    silently replace known key material;
+    implement destructive reset/recovery/re-enrollment helpers without a new explicit plan;
+    delete unknown sidecar state;
+    delete non-profile provider storage;
+    delete non-profile Cypher DBs without an explicit hygiene decision;
+    kill arbitrary user Cypher processes;
+    implement vault encryption yet;
+    implement PQ/hybrid ciphersuites yet;
+    commit raw LogDoc or breakpoint files to Gitea.
