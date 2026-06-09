@@ -655,12 +655,18 @@ func relayOpenMLSSQLiteCount(dbPath string, query string) (int, error) {
 }
 
 func printRelayOpenMLSCompactSummary(results []relayOpenMLSJoinSubrunResult) {
-	fmt.Println()
-	fmt.Println("== compact relay-openmls-join-dev evidence summary ==")
-	fmt.Println("profile: relay-openmls-join-dev")
-	fmt.Println("status: PASS")
-	fmt.Println("scope: positive-path local/dev Relay Space OpenMLS join validation")
-	fmt.Println("subruns:", len(results))
+	fmt.Print(formatRelayOpenMLSCompactSummary(results))
+}
+
+func formatRelayOpenMLSCompactSummary(results []relayOpenMLSJoinSubrunResult) string {
+	var builder strings.Builder
+
+	builder.WriteString("\n")
+	builder.WriteString("== compact relay-openmls-join-dev evidence summary ==\n")
+	builder.WriteString("profile: relay-openmls-join-dev\n")
+	builder.WriteString("status: PASS\n")
+	builder.WriteString("scope: positive-path local/dev Relay Space OpenMLS join validation\n")
+	builder.WriteString(fmt.Sprintf("subruns: %d\n", len(results)))
 
 	for _, result := range results {
 		ackMode := "no-ack"
@@ -668,19 +674,21 @@ func printRelayOpenMLSCompactSummary(results []relayOpenMLSJoinSubrunResult) {
 			ackMode = "ACK_AFTER_JOIN"
 		}
 
-		fmt.Println()
-		fmt.Println("subrun:", result.Name)
-		fmt.Println("  ack_mode:", ackMode)
-		fmt.Println("  relay_space_id:", result.RelaySpaceID)
-		fmt.Println("  envelopes:", result.EnvelopeCount)
-		fmt.Println("  envelope_acks:", result.AckCount)
-		fmt.Println("  keypackage_delivery_state:", result.KeyPackageDeliveryState)
-		fmt.Println("  welcome_delivery_state:", result.WelcomeDeliveryState)
-		fmt.Println("  welcome_ack_rows:", result.WelcomeAckRows)
-		fmt.Println("  trust_candidate_check:", result.TrustCandidateCheck)
-		fmt.Println("  temp_dir_lifecycle:", result.TempDirLifecycle)
+		builder.WriteString("\n")
+		builder.WriteString(fmt.Sprintf("subrun: %s\n", result.Name))
+		builder.WriteString(fmt.Sprintf("  ack_mode: %s\n", ackMode))
+		builder.WriteString(fmt.Sprintf("  relay_space_id: %s\n", result.RelaySpaceID))
+		builder.WriteString(fmt.Sprintf("  envelopes: %d\n", result.EnvelopeCount))
+		builder.WriteString(fmt.Sprintf("  envelope_acks: %d\n", result.AckCount))
+		builder.WriteString(fmt.Sprintf("  keypackage_delivery_state: %s\n", result.KeyPackageDeliveryState))
+		builder.WriteString(fmt.Sprintf("  welcome_delivery_state: %s\n", result.WelcomeDeliveryState))
+		builder.WriteString(fmt.Sprintf("  welcome_ack_rows: %d\n", result.WelcomeAckRows))
+		builder.WriteString(fmt.Sprintf("  trust_candidate_check: %s\n", result.TrustCandidateCheck))
+		builder.WriteString(fmt.Sprintf("  temp_dir_lifecycle: %s\n", result.TempDirLifecycle))
 	}
 
-	fmt.Println()
-	fmt.Println("nonclaims: not local-backbone; not production secure messaging; not identity verification; not hostile-server safety; not metadata privacy; not audit/certification")
+	builder.WriteString("\n")
+	builder.WriteString("nonclaims: not local-backbone; not production secure messaging; not identity verification; not hostile-server safety; not metadata privacy; not audit/certification\n")
+
+	return builder.String()
 }
