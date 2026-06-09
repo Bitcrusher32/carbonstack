@@ -607,10 +607,16 @@ func collectRelayOpenMLSSubrunResult(sub *relayOpenMLSJoinSubrun) (relayOpenMLSJ
 	if err != nil {
 		return relayOpenMLSJoinSubrunResult{}, err
 	}
+	if keyPackageState == "" {
+		return relayOpenMLSJoinSubrunResult{}, fmt.Errorf("missing KeyPackage delivery state in profile DB")
+	}
 
 	welcomeState, err := relayOpenMLSSQLiteScalar(sub.DBPath, "SELECT delivery_state FROM envelopes WHERE content_type = 'carbonstack.mls.welcome.v0' LIMIT 1;")
 	if err != nil {
 		return relayOpenMLSJoinSubrunResult{}, err
+	}
+	if welcomeState == "" {
+		return relayOpenMLSJoinSubrunResult{}, fmt.Errorf("missing Welcome delivery state in profile DB")
 	}
 
 	envelopeCount, err := relayOpenMLSSQLiteCount(sub.DBPath, "SELECT COUNT(*) FROM envelopes;")

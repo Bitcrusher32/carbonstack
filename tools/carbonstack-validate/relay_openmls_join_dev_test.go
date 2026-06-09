@@ -165,3 +165,205 @@ func createRelayOpenMLSTestDB(t *testing.T, dbPath string) {
 		}
 	}
 }
+
+func TestAssertRelayOpenMLSDBStateNegativePaths(t *testing.T) {
+	tests := []struct {
+		name             string
+		ackAfter         bool
+		keyPackageState  string
+		includeWelcome   bool
+		includeFiller    bool
+		welcomeState     string
+		ackRows          int
+		wantErrorSnippet string
+	}{
+		{
+			name:             "missing welcome fails no-ack",
+			ackAfter:         false,
+			keyPackageState:  "queued",
+			includeWelcome:   false,
+			includeFiller:    true,
+			welcomeState:     "",
+			ackRows:          0,
+			wantErrorSnippet: "Welcome envelopes with expected state count = 0, want 1",
+		},
+		{
+			name:             "unexpected ack fails no-ack",
+			ackAfter:         false,
+			keyPackageState:  "queued",
+			includeWelcome:   true,
+			welcomeState:     "queued",
+			ackRows:          1,
+			wantErrorSnippet: "envelope_acks count = 1, want 0",
+		},
+		{
+			name:             "missing ack fails ack-after-join",
+			ackAfter:         true,
+			keyPackageState:  "queued",
+			includeWelcome:   true,
+			welcomeState:     "acknowledged",
+			ackRows:          0,
+			wantErrorSnippet: "envelope_acks count = 0, want 1",
+		},
+		{
+			name:             "queued welcome fails ack-after-join",
+			ackAfter:         true,
+			keyPackageState:  "queued",
+			includeWelcome:   true,
+			welcomeState:     "queued",
+			ackRows:          1,
+			wantErrorSnippet: "Welcome envelopes with expected state count = 0, want 1",
+		},
+		{
+			name:             "missing keypackage fails",
+			ackAfter:         false,
+			keyPackageState:  "",
+			includeWelcome:   true,
+			includeFiller:    true,
+			welcomeState:     "queued",
+			ackRows:          0,
+			wantErrorSnippet: "queued KeyPackage envelopes count = 0, want 1",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			dbPath := filepath.Join(t.TempDir(), "cypher.db")
+			createRelayOpenMLSProfileAssertionTestDB(t, dbPath, relayOpenMLSProfileAssertionFixture{
+				KeyPackageState: tt.keyPackageState,
+				IncludeWelcome:  tt.includeWelcome,
+				IncludeFiller:   tt.includeFiller,
+				WelcomeState:    tt.welcomeState,
+				AckRows:         tt.ackRows,
+			})
+
+			err := assertRelayOpenMLSDBState(&relayOpenMLSJoinSubrun{
+				Name:     tt.name,
+				AckAfter: tt.ackAfter,
+				DBPath:   dbPath,
+			})
+			if err == nil {
+				t.Fatalf("expected DB assertion failure")
+			}
+			if !strings.Contains(err.Error(), tt.wantErrorSnippet) {
+				t.Fatalf("error %q does not contain %q", err.Error(), tt.wantErrorSnippet)
+			}
+		})
+	}
+}
+
+func TestAssertRelayOpenMLSTrustCandidateAbsentNegativePaths(t *testing.T) {
+	for _, filename := range []string{"trust.json", "trust-events.jsonl", "identity-candidates.json"} {
+		t.Run(filename, func(t *testing.T) {
+			stateDir := t.TempDir()
+			statePath := filepath.Join(stateDir, "alice-state.json")
+			if err := os.WriteFile(statePath, []byte("{}"), 0600); err != nil {
+				t.Fatalf("write state file: %v", err)
+			}
+
+			badPath := filepath.Join(stateDir, filename)
+			if err := os.WriteFile(badPath, []byte("{}"), 0600); err != nil {
+				t.Fatalf("write trust/candidate sentinel: %v", err)
+			}
+
+			err := assertRelayOpenMLSTrustCandidateAbsent("negative trust/candidate check", statePath)
+			if err == nil {
+				t.Fatal("expected trust/candidate absence check to fail")
+			}
+			if !strings.Contains(err.Error(), "unexpected trust/candidate file exists") {
+				t.Fatalf("unexpected error: %v", err)
+			}
+			if !strings.Contains(err.Error(), filename) {
+				t.Fatalf("error does not include filename %q: %v", filename, err)
+			}
+		})
+	}
+}
+
+func TestCollectRelayOpenMLSSubrunResultNegativePaths(t *testing.T) {
+	dbPath := filepath.Join(t.TempDir(), "cypher.db")
+	createRelayOpenMLSProfileAssertionTestDB(t, dbPath, relayOpenMLSProfileAssertionFixture{
+		KeyPackageState: "queued",
+		IncludeWelcome:  false,
+		WelcomeState:    "",
+		AckRows:         0,
+	})
+
+	_, err := collectRelayOpenMLSSubrunResult(&relayOpenMLSJoinSubrun{
+		Name:       "missing-welcome",
+		AckAfter:   false,
+		DBPath:     dbPath,
+		RelaySpace: "relay-missing-welcome",
+	})
+	if err == nil {
+		t.Fatal("expected collect result to fail when Welcome state is missing")
+	}
+	if !strings.Contains(err.Error(), "missing Welcome delivery state in profile DB") {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+func TestExpectRelayOpenMLSDBCountNegativePath(t *testing.T) {
+	dbPath := filepath.Join(t.TempDir(), "cypher.db")
+	createRelayOpenMLSProfileAssertionTestDB(t, dbPath, relayOpenMLSProfileAssertionFixture{
+		KeyPackageState: "queued",
+		IncludeWelcome:  true,
+		WelcomeState:    "queued",
+		AckRows:         0,
+	})
+
+	err := expectRelayOpenMLSDBCount(dbPath, "SELECT COUNT(*) FROM envelopes;", 3, "envelopes")
+	if err == nil {
+		t.Fatal("expected count mismatch")
+	}
+	if !strings.Contains(err.Error(), "envelopes count = 2, want 3") {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+type relayOpenMLSProfileAssertionFixture struct {
+	KeyPackageState string
+	IncludeWelcome  bool
+	IncludeFiller   bool
+	WelcomeState    string
+	AckRows         int
+}
+
+func createRelayOpenMLSProfileAssertionTestDB(t *testing.T, dbPath string, fixture relayOpenMLSProfileAssertionFixture) {
+	t.Helper()
+
+	statements := []string{
+		"CREATE TABLE accounts (account_id TEXT PRIMARY KEY);",
+		"CREATE TABLE devices (device_id TEXT PRIMARY KEY);",
+		"CREATE TABLE relay_spaces (relay_space_id TEXT PRIMARY KEY);",
+		"CREATE TABLE relay_space_members (routing_member_id TEXT PRIMARY KEY);",
+		"CREATE TABLE envelopes (envelope_id TEXT PRIMARY KEY, content_type TEXT NOT NULL, delivery_state TEXT NOT NULL);",
+		"CREATE TABLE envelope_acks (ack_id TEXT PRIMARY KEY, envelope_id TEXT NOT NULL);",
+		"INSERT INTO accounts (account_id) VALUES ('alice');",
+		"INSERT INTO accounts (account_id) VALUES ('bob');",
+		"INSERT INTO devices (device_id) VALUES ('alice-device');",
+		"INSERT INTO devices (device_id) VALUES ('bob-device');",
+		"INSERT INTO relay_spaces (relay_space_id) VALUES ('relay-test');",
+		"INSERT INTO relay_space_members (routing_member_id) VALUES ('alice-routing');",
+		"INSERT INTO relay_space_members (routing_member_id) VALUES ('bob-routing');",
+	}
+
+	if fixture.KeyPackageState != "" {
+		statements = append(statements, "INSERT INTO envelopes (envelope_id, content_type, delivery_state) VALUES ('kp1', 'carbonstack.mls.keypackage.v0', '"+fixture.KeyPackageState+"');")
+	}
+	if fixture.IncludeWelcome {
+		statements = append(statements, "INSERT INTO envelopes (envelope_id, content_type, delivery_state) VALUES ('welcome1', 'carbonstack.mls.welcome.v0', '"+fixture.WelcomeState+"');")
+	}
+	if fixture.IncludeFiller {
+		statements = append(statements, "INSERT INTO envelopes (envelope_id, content_type, delivery_state) VALUES ('filler1', 'carbonstack.test.filler.v0', 'queued');")
+	}
+	for i := 0; i < fixture.AckRows; i++ {
+		statements = append(statements, "INSERT INTO envelope_acks (ack_id, envelope_id) VALUES ('ack"+string(rune('1'+i))+"', 'welcome1');")
+	}
+
+	for _, statement := range statements {
+		if _, err := relayOpenMLSSQLiteScalar(dbPath, statement); err != nil {
+			t.Fatalf("sqlite statement failed: %v\nstatement: %s", err, statement)
+		}
+	}
+}
