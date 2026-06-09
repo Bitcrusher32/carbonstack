@@ -1082,3 +1082,17 @@ entries:
   short_help: Run the narrow Relay Space OpenMLS KeyPackage -> add-member -> Welcome -> join smoke-proof command sequence.
   why_exists: Dev/pre-alpha smoke-proof sequencer for one local/dev Relay Space OpenMLS join path. It is not a validation profile, local-backbone, identity verification, trust mutation, candidate acceptance, production UX, hostile-server proof, or security claim.
   include_in_front_readme: false
+
+  - id: runner.relay-openmls-join-dev
+    command: go run . --profile relay-openmls-join-dev
+    repo: carbonstack
+    component: runner
+    kind: validation-profile
+    audience: developer
+    maturity: experimental
+    source_path: carbonstack/tools/carbonstack-validate/relay_openmls_join_dev.go
+    validation_surface: live-umbrella-relay-openmls-join-dev-positive-path
+    short_help: Run the positive-path Relay Space OpenMLS join dev validation profile.
+    why_exists: Proves a bounded local/dev KeyPackage -> add-member -> Welcome -> join path with no-ack and ACK_AFTER_JOIN subruns using runner-owned temp state and strict nonclaims.
+    include_in_front_readme: false
+

@@ -44,7 +44,7 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, full, release-snapshot, write-checksums, verify-checksums")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	cleanGenerated := flag.Bool("clean-generated", false, "after a successful profile run, remove known generated/build artifacts such as OpenMLS sidecar target/state roots")
 	flag.Parse()
@@ -69,6 +69,8 @@ func main() {
 		runErr = r.DevRuntimeOpenMLS()
 	case "dev-runtime-openmls-wrappers":
 		runErr = r.DevRuntimeOpenMLSWrappers()
+	case "relay-openmls-join-dev":
+		runErr = r.RelayOpenMLSJoinDev()
 	case "full":
 		fmt.Println("profile full runs release-snapshot, then local-cypher")
 		fmt.Println("release-snapshot already calls core; full does not call core a second time")
@@ -84,7 +86,7 @@ func main() {
 	case "verify-checksums":
 		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {
