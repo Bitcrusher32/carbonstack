@@ -41,6 +41,19 @@ type relayOpenMLSCommsState struct {
 	DeviceID  string `json:"device_id"`
 }
 
+type relayOpenMLSJoinSubrunResult struct {
+	Name                    string
+	AckAfter                bool
+	RelaySpaceID            string
+	KeyPackageDeliveryState string
+	WelcomeDeliveryState    string
+	EnvelopeCount           int
+	AckCount                int
+	WelcomeAckRows          int
+	TrustCandidateCheck     string
+	TempDirLifecycle        string
+}
+
 func (r *Runner) RelayOpenMLSJoinDev() error {
 	r.PrintHeader("relay-openmls-join-dev")
 
@@ -99,21 +112,27 @@ func (r *Runner) RelayOpenMLSJoinDev() error {
 
 	runID := relayOpenMLSRunID()
 
-	if err := r.runRelayOpenMLSJoinSubrun(binPath, tempRoot, relayOpenMLSJoinSubrun{
+	results := []relayOpenMLSJoinSubrunResult{}
+
+	noAckResult, err := r.runRelayOpenMLSJoinSubrun(binPath, tempRoot, relayOpenMLSJoinSubrun{
 		Name:     "no-ack",
 		AckAfter: false,
 		RunID:    runID + "-noack",
-	}); err != nil {
+	})
+	if err != nil {
 		return err
 	}
+	results = append(results, noAckResult)
 
-	if err := r.runRelayOpenMLSJoinSubrun(binPath, tempRoot, relayOpenMLSJoinSubrun{
+	ackResult, err := r.runRelayOpenMLSJoinSubrun(binPath, tempRoot, relayOpenMLSJoinSubrun{
 		Name:     "ack-after-join",
 		AckAfter: true,
 		RunID:    runID + "-ack",
-	}); err != nil {
+	})
+	if err != nil {
 		return err
 	}
+	results = append(results, ackResult)
 
 	r.ArtifactScan("post-relay-openmls-join-dev")
 
@@ -124,10 +143,14 @@ func (r *Runner) RelayOpenMLSJoinDev() error {
 	fmt.Println("  boundary: positive-path local/dev validation only")
 	fmt.Println("  nonclaims: not local-backbone, not production secure messaging, not identity verification, not hostile-server safety, not metadata privacy")
 
+	if r.CompactSummary {
+		printRelayOpenMLSCompactSummary(results)
+	}
+
 	return nil
 }
 
-func (r *Runner) runRelayOpenMLSJoinSubrun(binPath string, tempRoot string, sub relayOpenMLSJoinSubrun) error {
+func (r *Runner) runRelayOpenMLSJoinSubrun(binPath string, tempRoot string, sub relayOpenMLSJoinSubrun) (relayOpenMLSJoinSubrunResult, error) {
 	fmt.Println()
 	fmt.Println("========================================")
 	fmt.Printf("Relay OpenMLS join subrun: %s\n", sub.Name)
@@ -135,12 +158,12 @@ func (r *Runner) runRelayOpenMLSJoinSubrun(binPath string, tempRoot string, sub 
 
 	sub.TempDir = filepath.Join(tempRoot, sub.Name)
 	if err := os.Mkdir(sub.TempDir, 0700); err != nil {
-		return fmt.Errorf("create subrun temp dir %s: %w", sub.TempDir, err)
+		return relayOpenMLSJoinSubrunResult{}, fmt.Errorf("create subrun temp dir %s: %w", sub.TempDir, err)
 	}
 
 	port, err := reserveLoopbackPort()
 	if err != nil {
-		return err
+		return relayOpenMLSJoinSubrunResult{}, err
 	}
 
 	addr := fmt.Sprintf("127.0.0.1:%d", port)
@@ -163,10 +186,10 @@ func (r *Runner) runRelayOpenMLSJoinSubrun(binPath string, tempRoot string, sub 
 	fmt.Println("conversation_label:", sub.AliceConversationLabel)
 
 	if err := r.refuseExistingSidecarDevice(sub.AliceSidecarLabel); err != nil {
-		return err
+		return relayOpenMLSJoinSubrunResult{}, err
 	}
 	if err := r.refuseExistingSidecarDevice(sub.BobSidecarLabel); err != nil {
-		return err
+		return relayOpenMLSJoinSubrunResult{}, err
 	}
 
 	env := append(os.Environ(),
@@ -178,7 +201,7 @@ func (r *Runner) runRelayOpenMLSJoinSubrun(binPath string, tempRoot string, sub 
 
 	server, err := startLocalCypherServer(binPath, r.Cypher, env)
 	if err != nil {
-		return err
+		return relayOpenMLSJoinSubrunResult{}, err
 	}
 
 	serverErr := func() error {
@@ -218,14 +241,19 @@ func (r *Runner) runRelayOpenMLSJoinSubrun(binPath string, tempRoot string, sub 
 
 	stopErr := server.stop(sub.Name)
 	if serverErr != nil {
-		return serverErr
+		return relayOpenMLSJoinSubrunResult{}, serverErr
 	}
 	if stopErr != nil {
-		return stopErr
+		return relayOpenMLSJoinSubrunResult{}, stopErr
+	}
+
+	result, err := collectRelayOpenMLSSubrunResult(&sub)
+	if err != nil {
+		return relayOpenMLSJoinSubrunResult{}, err
 	}
 
 	fmt.Printf("PASS: relay-openmls subrun %s\n", sub.Name)
-	return nil
+	return result, nil
 }
 
 func (r *Runner) setupRelayOpenMLSCommsState(sub *relayOpenMLSJoinSubrun) error {
@@ -572,4 +600,87 @@ func relayOpenMLSRunID() string {
 		raw = raw[len(raw)-18:]
 	}
 	return "v0552" + raw
+}
+
+func collectRelayOpenMLSSubrunResult(sub *relayOpenMLSJoinSubrun) (relayOpenMLSJoinSubrunResult, error) {
+	keyPackageState, err := relayOpenMLSSQLiteScalar(sub.DBPath, "SELECT delivery_state FROM envelopes WHERE content_type = 'carbonstack.mls.keypackage.v0' LIMIT 1;")
+	if err != nil {
+		return relayOpenMLSJoinSubrunResult{}, err
+	}
+
+	welcomeState, err := relayOpenMLSSQLiteScalar(sub.DBPath, "SELECT delivery_state FROM envelopes WHERE content_type = 'carbonstack.mls.welcome.v0' LIMIT 1;")
+	if err != nil {
+		return relayOpenMLSJoinSubrunResult{}, err
+	}
+
+	envelopeCount, err := relayOpenMLSSQLiteCount(sub.DBPath, "SELECT COUNT(*) FROM envelopes;")
+	if err != nil {
+		return relayOpenMLSJoinSubrunResult{}, err
+	}
+
+	ackCount, err := relayOpenMLSSQLiteCount(sub.DBPath, "SELECT COUNT(*) FROM envelope_acks;")
+	if err != nil {
+		return relayOpenMLSJoinSubrunResult{}, err
+	}
+
+	welcomeAckRows, err := relayOpenMLSSQLiteCount(sub.DBPath, "SELECT COUNT(*) FROM envelope_acks ea JOIN envelopes e ON ea.envelope_id = e.envelope_id WHERE e.content_type = 'carbonstack.mls.welcome.v0' AND e.delivery_state = 'acknowledged';")
+	if err != nil {
+		return relayOpenMLSJoinSubrunResult{}, err
+	}
+
+	return relayOpenMLSJoinSubrunResult{
+		Name:                    sub.Name,
+		AckAfter:                sub.AckAfter,
+		RelaySpaceID:            sub.RelaySpace,
+		KeyPackageDeliveryState: keyPackageState,
+		WelcomeDeliveryState:    welcomeState,
+		EnvelopeCount:           envelopeCount,
+		AckCount:                ackCount,
+		WelcomeAckRows:          welcomeAckRows,
+		TrustCandidateCheck:     "checked absent before and after subrun",
+		TempDirLifecycle:        "runner-owned temp root removed after profile completion",
+	}, nil
+}
+
+func relayOpenMLSSQLiteCount(dbPath string, query string) (int, error) {
+	gotText, err := relayOpenMLSSQLiteScalar(dbPath, query)
+	if err != nil {
+		return 0, err
+	}
+	got, err := strconv.Atoi(strings.TrimSpace(gotText))
+	if err != nil {
+		return 0, fmt.Errorf("parse sqlite count from %q: %w", gotText, err)
+	}
+	return got, nil
+}
+
+func printRelayOpenMLSCompactSummary(results []relayOpenMLSJoinSubrunResult) {
+	fmt.Println()
+	fmt.Println("== compact relay-openmls-join-dev evidence summary ==")
+	fmt.Println("profile: relay-openmls-join-dev")
+	fmt.Println("status: PASS")
+	fmt.Println("scope: positive-path local/dev Relay Space OpenMLS join validation")
+	fmt.Println("subruns:", len(results))
+
+	for _, result := range results {
+		ackMode := "no-ack"
+		if result.AckAfter {
+			ackMode = "ACK_AFTER_JOIN"
+		}
+
+		fmt.Println()
+		fmt.Println("subrun:", result.Name)
+		fmt.Println("  ack_mode:", ackMode)
+		fmt.Println("  relay_space_id:", result.RelaySpaceID)
+		fmt.Println("  envelopes:", result.EnvelopeCount)
+		fmt.Println("  envelope_acks:", result.AckCount)
+		fmt.Println("  keypackage_delivery_state:", result.KeyPackageDeliveryState)
+		fmt.Println("  welcome_delivery_state:", result.WelcomeDeliveryState)
+		fmt.Println("  welcome_ack_rows:", result.WelcomeAckRows)
+		fmt.Println("  trust_candidate_check:", result.TrustCandidateCheck)
+		fmt.Println("  temp_dir_lifecycle:", result.TempDirLifecycle)
+	}
+
+	fmt.Println()
+	fmt.Println("nonclaims: not local-backbone; not production secure messaging; not identity verification; not hostile-server safety; not metadata privacy; not audit/certification")
 }

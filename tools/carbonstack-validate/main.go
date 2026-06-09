@@ -23,6 +23,7 @@ const (
 type Runner struct {
 	Profile        string
 	CleanGenerated bool
+	CompactSummary bool
 	StartDir       string
 	UmbrellaRoot   string
 	CarbonStack    string
@@ -47,6 +48,7 @@ func main() {
 	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	cleanGenerated := flag.Bool("clean-generated", false, "after a successful profile run, remove known generated/build artifacts such as OpenMLS sidecar target/state roots")
+	compactSummary := flag.Bool("compact-summary", false, "print a compact profile evidence summary for supported validation profiles")
 	flag.Parse()
 
 	r, err := NewRunner(*profile, *rootOverride)
@@ -55,6 +57,7 @@ func main() {
 		os.Exit(2)
 	}
 	r.CleanGenerated = *cleanGenerated
+	r.CompactSummary = *compactSummary
 
 	var runErr error
 
