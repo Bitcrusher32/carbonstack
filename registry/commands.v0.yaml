@@ -409,6 +409,28 @@ entries:
       - not a standalone secure receive proof
     include_in_front_readme: false
 
+  - id: comms.state-audit-dev
+    command: go run ./cmd/comms state-audit-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.5.60
+    source_path: carbonstack-comms/internal/app/commands.go
+    short_help: Report non-mutating local state-domain inventory for Comms, trust/candidate state, OpenMLS sidecar generated state, build output, and local Cypher DB boundaries.
+    why_exists: First executable state/vault-spine primitive; makes local state domains visible without printing secrets, mutating trust, deleting artifacts, or claiming production vault readiness.
+    validation_surface: Comms package tests and command registry coverage
+    nonclaims:
+      - not vault encryption
+      - not production key storage
+      - not recovery
+      - not deletion or cleanup
+      - not trust verification
+      - not local-backbone
+      - not production secure messaging
+    include_in_front_readme: false
+
   - id: comms.openmls-send-dev
     command: go run ./cmd/comms openmls-send-dev
     repo: carbonstack-comms
@@ -1107,4 +1129,3 @@ entries:
       - not metadata privacy
       - not audit or certification
     include_in_front_readme: false
-
