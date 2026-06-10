@@ -141,6 +141,41 @@ The existing `dev-runtime-openmls` profile remains the direct-sidecar smoke base
 
 This profile intentionally refuses non-git package-like roots for now. Use it from the live umbrella checkout, not from release package roots. `full` remains the release-package validation ladder and does not include `dev-runtime-openmls-wrappers`.
 
+
+
+### relay-openmls-join-dev
+
+Runs the current positive-path Relay Space OpenMLS join development validation profile:
+
+    KeyPackage -> add-member -> Welcome -> join
+
+Command:
+
+    go run . --profile relay-openmls-join-dev --compact-summary
+
+This profile is live-umbrella/dev-oriented for now.
+
+It validates two positive-path subruns:
+
+    no-ack;
+    ACK_AFTER_JOIN.
+
+Boundary:
+
+    not local-backbone;
+    not production secure messaging;
+    not identity verification;
+    not hostile-server safety;
+    not metadata privacy;
+    not audit or certification;
+    not included in full;
+    not included in release-snapshot;
+    not front-door public CLI.
+
+`--compact-summary` is console output/evidence convenience only. It does not preserve generated artifacts and does not change validation scope.
+
+relay-openmls-join-dev may be reconsidered during a later v0.6.0 release-surface decision, but it is not promoted by registry presence alone.
+
 ### full
 
 Runs the current release-package validation ladder:
