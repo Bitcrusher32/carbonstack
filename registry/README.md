@@ -149,3 +149,19 @@ The check runs with:
 The test validates registry structure, source_path existence, runner profile coverage, Comms command coverage, Comms script coverage, sidecar command IDs, Cypher API IDs, legacy send/inbox/ack classification, direct-vs-wrapper OpenMLS profile separation, and local-backbone/Gitea source-of-truth boundaries.
 
 The check is intentionally a Go test for now, not a runner profile. It may become a runner profile later only if the registry policy stabilizes enough to justify public validation-profile status.
+
+## Runtime send/inbox convergence rule
+
+As of v0.5.65, the current canonical dev/pre-alpha OpenMLS application-message runtime paths are:
+
+- `openmls-send-dev`
+- `openmls-inbox-dev`
+
+The older `send`, `inbox`, and `ack` commands remain legacy/stub-era surfaces. They are preserved for continuity and must not be described as mature OpenMLS-backed messaging UX.
+
+Do not add new `message-send-dev` / `message-inbox-dev` aliases unless a later implementation actually changes command semantics or materially improves UX. For v0.6.0, the release posture is documented separation:
+
+- legacy send/inbox/ack remain warning-only;
+- OpenMLS dev runtime commands remain explicit dev proof surfaces;
+- mature product messaging UX remains future work.
+

@@ -151,3 +151,4 @@ CarbonStack is not production-certified.
 CarbonStack has not received senior external audit or security certification.
 
 Historical docs must not be used to imply production readiness, hostile-server safety, Android readiness, metadata privacy, complete E2EE product status, or verified identity unless a current release document explicitly says so.
+- `200-v0.5.65-runtime-send-inbox-convergence-decision-v0.md` — Runtime send/inbox convergence decision: legacy warning-only surfaces; `openmls-send-dev` / `openmls-inbox-dev` are current canonical dev OpenMLS runtime message paths.

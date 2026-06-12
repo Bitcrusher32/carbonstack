@@ -440,8 +440,8 @@ entries:
     maturity: dev_only
     introduced_in: v0.4.3
     source_path: carbonstack-comms/internal/app/openmls_runtime.go
-    short_help: Protect an OpenMLS application message with the sidecar and submit it through Cypher.
-    why_exists: Dev runtime send-side proof for the OpenMLS/Cypher path.
+    short_help: Protect an OpenMLS application message with the sidecar and submit it through Cypher; current canonical dev send path.
+    why_exists: Current canonical dev/pre-alpha OpenMLS application-message send path for the OpenMLS/Cypher proof surface; not mature product UX.
     validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
     nonclaims:
       - dev/pre-alpha only
@@ -458,8 +458,8 @@ entries:
     maturity: dev_only
     introduced_in: v0.4.4
     source_path: carbonstack-comms/internal/app/openmls_runtime.go
-    short_help: Fetch OpenMLS application-message envelopes, sidecar-open them, and optionally ack after success.
-    why_exists: Dev runtime receive/open proof for the OpenMLS/Cypher path.
+    short_help: Fetch OpenMLS application-message envelopes, sidecar-open them, and optionally ack after success; current canonical dev inbox path.
+    why_exists: Current canonical dev/pre-alpha OpenMLS application-message receive/open path for the OpenMLS/Cypher proof surface; not mature product UX.
     validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
     nonclaims:
       - dev/pre-alpha only
