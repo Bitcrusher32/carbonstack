@@ -1114,14 +1114,18 @@ entries:
     maturity: experimental
     source_path: carbonstack/tools/carbonstack-validate/relay_openmls_join_dev.go
     validation_surface: live-umbrella-relay-openmls-join-dev-positive-path
-    short_help: Run the positive-path Relay Space OpenMLS join dev validation profile.
-    why_exists: Proves a bounded local/dev KeyPackage -> add-member -> Welcome -> join path with no-ack and ACK_AFTER_JOIN subruns using runner-owned temp state and strict nonclaims.
+    short_help: Run the manual/dev positive-path Relay Space OpenMLS join validation profile; excluded from full/release-snapshot for v0.6.0.
+    why_exists: Proves a bounded local/dev KeyPackage -> add-member -> Welcome -> join path with no-ack and ACK_AFTER_JOIN subruns using runner-owned temp state and strict nonclaims. As of v0.5.66, this remains manual/dev-only and excluded from full/release-snapshot until repeated clean runs, package-root rehearsal, artifact behavior review, and an explicit future inclusion decision.
     example: cd carbonstack/tools/carbonstack-validate && go run . --profile relay-openmls-join-dev --compact-summary
     optional_flags:
       - flag: --compact-summary
         meaning: Print a compact evidence summary after successful profile execution.
         boundary: Output/evidence convenience only; does not preserve generated artifacts or change validation scope.
     nonclaims:
+      - not included in full
+      - not included in release-snapshot
+      - not release-package validation
+      - future full-profile candidate only after explicit inclusion decision
       - not local-backbone
       - not production secure messaging
       - not identity verification

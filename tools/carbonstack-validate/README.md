@@ -176,6 +176,21 @@ Boundary:
 
 relay-openmls-join-dev may be reconsidered during a later v0.6.0 release-surface decision, but it is not promoted by registry presence alone.
 
+v0.5.66 release-profile decision:
+
+    relay-openmls-join-dev remains a manual/dev live-umbrella validation profile for v0.6.0.
+    It is not included in full.
+    It is not included in release-snapshot.
+    It is not a package-root release validation profile yet.
+    It is a future full-profile candidate only after repeated clean runs, package-root rehearsal, artifact behavior review, and an explicit release-profile inclusion decision.
+
+Current rationale:
+
+    The profile is useful and bounded: it uses runner-owned temp roots, a temp Cypher DB, unique sidecar labels, no-ack and ACK_AFTER_JOIN subruns, trust/candidate absence checks, DB assertions, and compact evidence output.
+    However, it still deliberately checks for a live git umbrella and depends on OpenMLS sidecar generated state behavior.
+    Therefore it should remain outside full/release-snapshot for v0.6.0.
+
+
 ### full
 
 Runs the current release-package validation ladder:
