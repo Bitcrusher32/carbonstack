@@ -13,7 +13,7 @@ It is not the current release source of truth.
 
 For current release behavior, start with:
 
-    docs/v0.3.0-minor-epoch-release.md
+    https://git.bitcrusher32.win/bitcrusher32/carbonstack/releases
 
 For post-release verification and governance, see:
 
