@@ -10,6 +10,13 @@ Current registry:
 
     registry/commands.v0.yaml
 
+
+Current boundary table:
+
+    registry/COMMAND_BOUNDARY_TABLE.v0.md
+
+The command boundary table is the current registry-facing release-boundary artifact for command/profile/script/API classification. It is not an end-user manual and does not promote every listed command into public UX.
+
 ## Purpose
 
 The registry exists to:
@@ -100,6 +107,17 @@ Only commands marked `include_in_front_readme: true` should be considered for to
 
 Dev/internal/legacy command surfaces should usually live in registry docs, component READMEs, implementation-specific docs, or maintainer-only notes.
 
+
+
+## Flag metadata rule
+
+Registry entries may include `required_flags`, `optional_flags`, and `environment` metadata when a command/profile/script has important operator-facing inputs.
+
+The command boundary table renders that metadata where present. Missing flag metadata means the registry still needs enrichment; it does not mean the command has no flags.
+
+A future command/helper lookup may expose per-command or per-flag help from this registry, but no lookup helper exists yet.
+
+
 ## Generated command reference rule
 
 A generated command reference does not exist yet.
@@ -129,7 +147,7 @@ A generated command reference must not become a claim surface without preserving
     not local-backbone;
     not production secure messaging.
 
-It may be reconsidered during a later v0.6.0 release-surface decision.
+As of v0.5.66, the v0.6.0 decision is conservative exclusion: it remains manual/dev-only, excluded from full and release-snapshot, and is only a future full-profile candidate after repeated clean runs, package-root rehearsal, artifact behavior review, and an explicit later inclusion decision.
 
 ## Maintenance rule
 
