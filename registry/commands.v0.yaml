@@ -368,15 +368,28 @@ entries:
     audience: legacy
     maturity: legacy
     source_path: carbonstack-comms/internal/app/commands.go
-    short_help: Stub-era send command using the older mock/stub message path.
-    why_exists: Preserved for continuity while OpenMLS runtime commands mature.
+    short_help: Explicitly gated stub-era send command using the older mock/stub message path.
+    why_exists: Preserved for continuity and low-level compatibility tests while OpenMLS runtime commands mature; requires explicit legacy opt-in.
     validation_surface: Comms package tests
     replaced_by: openmls-send-dev for dev OpenMLS runtime proof
+    required_flags:
+      - flag: --allow-legacy-stub
+        meaning: explicit opt-in required to run the legacy mock/stub send path.
+        boundary: prevents accidental use of stub-era send as normal message UX.
+      - flag: --to-device
+        meaning: recipient Cypher device ID for the legacy stub envelope.
+      - flag: --message
+        meaning: plaintext input for the legacy mock/stub provider.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path; defaults to the normal Comms state path.
+      - flag: --strict
+        meaning: block sending to unknown, unverified, or changed devices.
     nonclaims:
       - old send is not OpenMLS-backed yet
       - not mature messaging UX
+      - requires explicit legacy-stub opt-in
     include_in_front_readme: false
-
   - id: comms.inbox
     command: go run ./cmd/comms inbox
     repo: carbonstack-comms
@@ -385,15 +398,22 @@ entries:
     audience: legacy
     maturity: legacy
     source_path: carbonstack-comms/internal/app/commands.go
-    short_help: Stub-era inbox command using the older mock/stub message path.
-    why_exists: Preserved for continuity while OpenMLS runtime commands mature.
+    short_help: Explicitly gated stub-era inbox command using the older mock/stub message path.
+    why_exists: Preserved for continuity and low-level compatibility tests while OpenMLS runtime commands mature; requires explicit legacy opt-in.
     validation_surface: Comms package tests
     replaced_by: openmls-inbox-dev for dev OpenMLS runtime proof
+    required_flags:
+      - flag: --allow-legacy-stub
+        meaning: explicit opt-in required to run the legacy mock/stub inbox path.
+        boundary: prevents accidental use of stub-era inbox as normal message UX.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path; defaults to the normal Comms state path.
     nonclaims:
       - old inbox is not OpenMLS-backed yet
       - not mature messaging UX
+      - requires explicit legacy-stub opt-in
     include_in_front_readme: false
-
   - id: comms.ack
     command: go run ./cmd/comms ack
     repo: carbonstack-comms
@@ -402,13 +422,24 @@ entries:
     audience: legacy
     maturity: legacy
     source_path: carbonstack-comms/internal/app/commands.go
-    short_help: Ack a Cypher envelope by ID in the older CLI surface.
-    why_exists: Preserved for explicit ack workflows and continuity.
+    short_help: Explicitly gated standalone legacy ack helper for older Cypher envelope workflows.
+    why_exists: Preserved for explicit ack workflows and continuity; current OpenMLS receive tests should prefer openmls-inbox-dev --ack or scoped Relay Space ack helpers.
     validation_surface: Comms package tests and runtime smoke scripts
+    required_flags:
+      - flag: --allow-legacy-stub
+        meaning: explicit opt-in required to run the standalone legacy ack helper.
+        boundary: gates the old standalone CLI surface without changing OpenMLS inbox --ack or Relay Space scoped ack helpers.
+      - flag: --envelope
+        meaning: envelope ID to acknowledge through the older standalone CLI surface.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path; defaults to the normal Comms state path.
     nonclaims:
       - not a standalone secure receive proof
+      - requires explicit legacy-stub opt-in
+      - does not affect openmls-inbox-dev --ack
+      - does not affect Relay Space scoped ack helpers
     include_in_front_readme: false
-
   - id: comms.state-audit-dev
     command: go run ./cmd/comms state-audit-dev
     repo: carbonstack-comms
