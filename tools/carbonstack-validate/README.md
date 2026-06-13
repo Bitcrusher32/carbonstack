@@ -1,5 +1,16 @@
 # CarbonStack Validate
 
+<!-- CS-V061-CURRENT-STATUS:BEGIN -->
+## Current status note
+
+Current public release: **CarbonStack v0.6.0 State/UX Boundary Validation Pre-Release**.
+
+Current v0.6.x focus: **OpenMLS message-flow integration and boundary hardening**. The next work should normalize the OpenMLS application-message path, keep Relay Space artifact/onboarding paths separate from normal message inboxes, and preserve strict nonclaims around production security, hostile-server safety, metadata privacy, vault/key storage, Android, CarbonStackOS, and mature messenger UX.
+
+Historical docs may preserve older release anchors as provenance. Treat the latest compressed LogDoc, current release assets, current registry/table, and current repo behavior as authority for active work.
+<!-- CS-V061-CURRENT-STATUS:END -->
+
+
 Status: experimental validation runner
 Phase: v0.5.x validation runner / post-v0.5.0 baseline surface
 
