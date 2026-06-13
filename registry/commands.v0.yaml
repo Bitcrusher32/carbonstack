@@ -1,6 +1,6 @@
 schema_version: carbonstack-command-registry/v0
 status: provisional
-generated_for_checkpoint: v0.5.68B
+generated_for_checkpoint: v0.5.69
 owner_repo: carbonstack
 source_of_truth: gitea
 purpose: >
@@ -953,6 +953,56 @@ entries:
     source_path: carbonstack-cypher/internal/httpapi
     short_help: Acknowledge an envelope after successful receive/open.
     why_exists: Supports delivery-state transition and inbox-empty-after-ack proofs.
+    include_in_front_readme: false
+
+  - id: carbonstack.script.stage-v0.6.0-package
+    command: scripts/stage-v0.6.0-package.sh
+    repo: carbonstack
+    component: scripts
+    kind: script
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack/scripts/stage-v0.6.0-package.sh
+    validation_surface: v0.6.0 package staging and checksum preparation
+    short_help: Stage a tracked-source v0.6.0 rehearsal package with release metadata, registry artifacts, checksums, and archive output.
+    why_exists: Provides the v0.6.0-specific staging path so historical v0.5.0 package scripts are not reused as v0.6.0 evidence unchanged.
+    optional_flags:
+      - flag: positional stage_root
+        meaning: Optional stage root; defaults to /tmp/carbonstack-v0.6.0-stage.
+        boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the stage root.
+    nonclaims:
+      - does not cut release
+      - does not upload assets
+      - does not include carbonstack-os
+      - not production security validation
+      - not local-backbone
+    include_in_front_readme: false
+
+  - id: carbonstack.script.rehearse-v0.6.0-package
+    command: scripts/rehearse-v0.6.0-package.sh
+    repo: carbonstack
+    component: scripts
+    kind: script
+    audience: dev
+    maturity: experimental
+    source_path: carbonstack/scripts/rehearse-v0.6.0-package.sh
+    validation_surface: v0.6.0 staged archive fresh-extraction rehearsal
+    short_help: Stage, archive, fresh-extract, checksum-verify, and run full validation from a v0.6.0 rehearsal package root.
+    why_exists: Provides the v0.6.0 G9 package-rehearsal proof path from a fresh extracted package root.
+    optional_flags:
+      - flag: positional stage_root
+        meaning: Optional stage root; defaults to /tmp/carbonstack-v0.6.0-stage.
+        boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the stage script removes the stage root.
+      - flag: positional rehearsal_root
+        meaning: Optional rehearsal/extraction root; defaults to /tmp/carbonstack-v0.6.0-rehearsal.
+        boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the rehearsal root.
+    nonclaims:
+      - does not cut release
+      - does not upload assets
+      - does not include carbonstack-os
+      - not production security proof
+      - not local-backbone
+      - not hostile-server safety
     include_in_front_readme: false
 
   - id: carbonstack.script.rehearse-v0.5.0-package

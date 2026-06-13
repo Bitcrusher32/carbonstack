@@ -1,7 +1,7 @@
 # CarbonStack command boundary table v0
 
 Status: provisional release-boundary artifact
-Checkpoint: v0.5.68B
+Checkpoint: v0.5.69
 Source registry: `registry/commands.v0.yaml`
 
 ## Purpose
@@ -14,7 +14,7 @@ Flag coverage is hybrid and intentionally partial: this table renders `required_
 
 ## Summary
 
-- Registry entries rendered: 73
+- Registry entries rendered: 75
 - Front README candidates: 8
 - Release-supported entries: 4
 - Legacy entries: 10
@@ -141,6 +141,8 @@ Flag coverage is hybrid and intentionally partial: this table renders `required_
 
 | ID | Command/profile | Boundary | Audience / maturity | Description | Flags / env / passthrough notes | Replacement / wrapper / related | Validation / source | Key nonclaims |
 |---|---|---|---|---|---|---|---|---|
+| `carbonstack.script.stage-v0.6.0-package` | `scripts/stage-v0.6.0-package.sh` | v0.6.0 package staging helper; not release publication | dev / experimental | Stage a tracked-source v0.6.0 rehearsal package with release metadata, registry artifacts, checksums, and archive output. | optional: positional stage_root — Optional stage root; defaults to /tmp/carbonstack-v0.6.0-stage. (Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the stage root.) | — | v0.6.0 package staging and checksum preparation<br>carbonstack/scripts/stage-v0.6.0-package.sh | does not cut release<br>does not upload assets<br>does not include carbonstack-os<br>not production security validation<br>not local-backbone |
+| `carbonstack.script.rehearse-v0.6.0-package` | `scripts/rehearse-v0.6.0-package.sh` | v0.6.0 package rehearsal helper; not release publication | dev / experimental | Stage, archive, fresh-extract, checksum-verify, and run full validation from a v0.6.0 rehearsal package root. | optional: positional stage_root — Optional stage root; defaults to /tmp/carbonstack-v0.6.0-stage. (Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the stage script removes the stage root.); positional rehearsal_root — Optional rehearsal/extraction root; defaults to /tmp/carbonstack-v0.6.0-rehearsal. (Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the rehearsal root.) | — | v0.6.0 staged archive fresh-extraction rehearsal<br>carbonstack/scripts/rehearse-v0.6.0-package.sh | does not cut release<br>does not upload assets<br>does not include carbonstack-os<br>not production security proof<br>not local-backbone<br>not hostile-server safety |
 | `carbonstack.script.rehearse-v0.5.0-package` | `scripts/rehearse-v0.5.0-package.sh` | source/dev surface; not automatically public | dev / experimental | Stage a v0.5.0 package, write checksums, archive it, fresh-extract it, verify checksums, and run full validation. | — | — | v0.5.0 package checksum/archive/fresh-extraction rehearsal<br>carbonstack/scripts/rehearse-v0.5.0-package.sh | does not cut release<br>does not upload assets<br>does not include carbonstack-os<br>does not make runtime OpenMLS profiles part of full<br>does not create local-backbone |
 | `carbonstack.script.stage-v0.5.0-package` | `scripts/stage-v0.5.0-package.sh` | source/dev surface; not automatically public | dev / experimental | Stage a clean v0.5.0 package skeleton from tracked carbonstack, carbonstack-comms, and carbonstack-cypher files. | — | — | v0.5.0 package rehearsal staging<br>carbonstack/scripts/stage-v0.5.0-package.sh | does not write final checksums<br>does not archive package<br>does not cut release<br>does not validate fresh extraction<br>does not include carbonstack-os |
 | `carbonstack.script.validate-local` | `powershell -ExecutionPolicy Bypass -File ./scripts/validate-local.ps1` | legacy/continuity; not recommended future UX | legacy / legacy | Historical/local PowerShell validation helper. | — | — | carbonstack/scripts/validate-local.ps1 | — |
