@@ -63,23 +63,19 @@ The exact claims, tested platforms, validation commands, package shape, and know
 
 ## What has been demonstrated so far
 
-Across the v0.3.x and v0.4.x line, CarbonStack has demonstrated experimental validation coverage for:
+Public release claims are release-specific. For runnable artifacts, always start from the latest Gitea release page and its attached testing runbook.
 
-- OpenMLS KeyPackage relay through Cypher;
-- OpenMLS Welcome relay through Cypher;
-- OpenMLS application-message relay through Cypher;
-- a dev runtime OpenMLS CLI smoke proof for openmls-send-dev -> Cypher -> openmls-inbox-dev --ack;
-- consume-then-ack behavior;
-- payload metadata checks before downloaded artifact bytes are written locally;
-- Cypher schema migration idempotence through schema_migrations;
-- local Cypher operator config/data conventions;
-- Cypher-only local lifecycle validation through local-cypher;
-- restart/persistence checks against a temporary DB;
-- rejection of a historical invalid stub-text/OpenMLS protocol pairing;
-- release package layout checks;
-- package checksum verification;
-- fresh-extraction validation;
-- explicit cleanup of known OpenMLS sidecar generated roots.
+Current mainline has demonstrated development evidence for:
+
+- release package layout checks, checksum verification, and fresh-extraction validation discipline;
+- local Cypher lifecycle validation with temporary DB state, restart/persistence checks, envelope routing, and ack behavior;
+- OpenMLS application-message dev proof paths through `openmls-send-dev` and `openmls-inbox-dev`;
+- Relay Space scoped KeyPackage and Welcome artifact transport;
+- Relay Space add-member and join scaffolding with optional ACK_AFTER_JOIN behavior;
+- explicit conservative exclusion of `relay-openmls-join-dev` from `full` and `release-snapshot` for v0.6.0;
+- legacy `send`, `inbox`, and `ack` warnings that keep stub-era paths separate from OpenMLS dev paths;
+- machine-readable state-domain inventory and a non-encrypting local path/vault adapter skeleton;
+- a registry-backed command boundary table that classifies release-facing, dev-only, legacy, internal, and future surfaces.
 
 This is useful project evidence. It is not a production security proof.
 

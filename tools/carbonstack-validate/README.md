@@ -174,7 +174,7 @@ Boundary:
 
 `--compact-summary` is console output/evidence convenience only. It does not preserve generated artifacts and does not change validation scope.
 
-relay-openmls-join-dev may be reconsidered during a later v0.6.0 release-surface decision, but it is not promoted by registry presence alone.
+As of v0.5.66, relay-openmls-join-dev has already been deliberately kept outside full/release-snapshot for v0.6.0. Registry presence is not promotion.
 
 v0.5.66 release-profile decision:
 

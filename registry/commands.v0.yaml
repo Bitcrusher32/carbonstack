@@ -1,6 +1,6 @@
 schema_version: carbonstack-command-registry/v0
 status: provisional
-generated_for_checkpoint: v0.5.67
+generated_for_checkpoint: v0.5.68B
 owner_repo: carbonstack
 source_of_truth: gitea
 purpose: >
@@ -1239,11 +1239,11 @@ entries:
   - id: runner.relay-openmls-join-dev
     command: go run . --profile relay-openmls-join-dev
     repo: carbonstack
-    component: runner
-    kind: validation-profile
-    audience: developer
-    maturity: experimental
-    source_path: carbonstack/tools/carbonstack-validate/relay_openmls_join_dev.go
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    source_path: tools/carbonstack-validate/relay_openmls_join_dev.go
     validation_surface: live-umbrella-relay-openmls-join-dev-positive-path
     short_help: Run the manual/dev positive-path Relay Space OpenMLS join validation profile; excluded from full/release-snapshot for v0.6.0.
     why_exists: Proves a bounded local/dev KeyPackage -> add-member -> Welcome -> join path with no-ack and ACK_AFTER_JOIN subruns using runner-owned temp state and strict nonclaims. As of v0.5.66, this remains manual/dev-only and excluded from full/release-snapshot until repeated clean runs, package-root rehearsal, artifact behavior review, and an explicit future inclusion decision.

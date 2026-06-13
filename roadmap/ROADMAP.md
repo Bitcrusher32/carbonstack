@@ -4,45 +4,26 @@ This roadmap describes the current public direction of CarbonStack.
 
 Older numbered docs preserve older plans and implementation history. Use this file, the top-level README, the latest docs index, and release-specific runbooks for current public-facing direction.
 
-## Current state after v0.5.58-REFACTOR
+## Current public direction and mainline state
 
-CarbonStack has completed the v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release. That remains the current Gitea-source-of-truth public pre-release for package validation and release-facing state.
+CarbonStack's latest Gitea release page and attached release runbook are the truth anchor for runnable public artifacts.
 
-v0.5.1 through v0.5.58 are post-release mainline development checkpoints. They do not retag v0.5.0 and do not create a new public release package.
-
-The major v0.5.x work after v0.5.0 has included:
-
-    state/trust/vault/PQ preliminary recon;
-    storage/trust/provider-state inventory;
-    storage-domain model;
-    trust-state model;
-    provider-state linkage planning;
-    provider-trust report helpers and exposure decision;
-    provider trust-history append planning/helpers;
-    candidate identity storage/review/update/mismatch helpers;
-    candidate observation orchestration;
-    reset/recovery/re-enrollment boundary;
-    recovery classifier/history/orchestration helpers;
-    Relay Space architecture planning;
-    Relay Space schema/API substrate;
-    Relay Space scoped envelope routes;
-    Comms Relay Space client and artifact bridge helpers;
-    KeyPackage / Welcome / add-member / join dev command scaffolding;
-    no-ack and ACK_AFTER_JOIN smoke evidence;
-    relay-openmls-join-dev positive-path validation profile;
-    compact profile summary;
-    negative helper hardening;
-    live negative-path ownership matrix;
-    Comms no-ack/failure coverage matrix;
-    add-member sidecar-failure command test.
-
-Current public release:
+The current public release remains:
 
     v0.5.0 Runtime and Registry Validation Minor Epoch Pre-Release
 
-Current mainline checkpoint:
+Mainline development has moved beyond v0.5.0. Post-release checkpoints do not retag v0.5.0 and do not create a new public package unless a new release is explicitly cut.
 
-    v0.5.58 targeted Comms add-member sidecar-failure test, followed by v0.5.58-REFACTOR planning for pre-v0.6.0 truth hygiene.
+Current mainline after v0.5.68A has closed enough pre-v0.6.0 boundary work to treat G1, G2, G3, G4, G5, and G6 as closed for the v0.6.0 runway:
+
+    non-encrypting state/vault path contract;
+    selected command state lookup/path-resolution decision;
+    documented send/inbox separation;
+    command-surface classification table;
+    relay-openmls-join-dev release-profile exclusion decision;
+    named add-member failure-edge tests.
+
+The remaining pre-v0.6.0 work is public surface refresh, artifact/toolchain hygiene, fresh package rehearsal, and adversarial release review.
 
 Current public/source-of-truth policy:
 
@@ -52,7 +33,9 @@ Current public/source-of-truth policy:
 
 ## Current validated surfaces
 
-Current release-package validation shape for v0.5.0:
+Current release-package validation remains release-specific. For v0.5.0, use the release-attached runbook and assets.
+
+General release-package validation shape:
 
     cd <package-root>/carbonstack/tools/carbonstack-validate
     go run . --profile verify-checksums --root <package-root>
@@ -70,7 +53,7 @@ Current live mainline development validation shape:
     go test ./... -count=1
     go run . --profile doctor
 
-Additional existing profiles remain useful where relevant:
+Additional existing profiles remain useful where relevant, but they are not automatically public release-package validation:
 
     go run . --profile core --clean-generated
     go run . --profile local-cypher
@@ -81,10 +64,10 @@ Additional existing profiles remain useful where relevant:
 Important:
 
     validation passing does not prove production security;
-    v0.5.58 does not create local-backbone;
-    v0.5.58 does not create a public deployment surface;
-    v0.5.58 does not add relay-openmls-join-dev to full or release-snapshot;
-    v0.5.58 does not complete key storage, vault, public CLI/manual, or mature inbox UX.
+    current mainline does not create local-backbone;
+    current mainline does not create a public deployment surface;
+    relay-openmls-join-dev is not included in full or release-snapshot for v0.6.0;
+    current mainline does not complete key storage, vault security, public CLI/manual, or mature inbox UX.
 
 ## Current architecture truth
 

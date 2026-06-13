@@ -8,6 +8,7 @@ For current public testing and release status, start with:
 
     top-level README.md
     roadmap/ROADMAP.md
+    registry/COMMAND_BOUNDARY_TABLE.v0.md
     current Gitea release page and attached release runbook
 
 Current public release:
@@ -17,9 +18,9 @@ Current public release:
 Current mainline state:
 
     Mainline development has moved beyond the v0.5.0 public release package.
-    The current working direction after v0.5.58 is a pre-v0.6.0 truth-hygiene / surface-refactor arc.
+    The current working direction after v0.5.68A is a pre-v0.6.0 public-surface, artifact-hygiene, and package-rehearsal arc.
 
-    v0.5.49-v0.5.58 completed a concentrated Relay Space + OpenMLS validation-profile hardening sequence:
+    v0.5.49-v0.5.68A completed a concentrated Relay Space, OpenMLS, state-boundary, command-boundary, and registry-surface hardening sequence:
         no-ack live evidence;
         ACK_AFTER_JOIN live evidence;
         relay-openmls-join-dev positive-path validation profile;

@@ -50,6 +50,9 @@ func (r *Runner) CheckReleaseSnapshotLayout() error {
 		filepath.Join(r.CarbonStack, "LICENSE"),
 		filepath.Join(r.CarbonStack, "docs", "README.md"),
 		filepath.Join(r.CarbonStack, "roadmap", "ROADMAP.md"),
+		filepath.Join(r.CarbonStack, "registry", "README.md"),
+		filepath.Join(r.CarbonStack, "registry", "commands.v0.yaml"),
+		filepath.Join(r.CarbonStack, "registry", "COMMAND_BOUNDARY_TABLE.v0.md"),
 		filepath.Join(r.CarbonStack, "tools", "carbonstack-validate", "go.mod"),
 		filepath.Join(r.CarbonStack, "tools", "carbonstack-validate", "main.go"),
 		filepath.Join(r.CarbonStack, "tools", "carbonstack-validate", "README.md"),
@@ -188,6 +191,11 @@ func (r *Runner) StrictPreTestArtifactScan() error {
 		".DS_Store",
 	}
 
+	prefixes := []string{
+		"CarbonStackLogDoc",
+		"CarbonStack_Breakpoint",
+	}
+
 	suffixes := []string{
 		".db",
 		".db-shm",
@@ -214,6 +222,16 @@ func (r *Runner) StrictPreTestArtifactScan() error {
 
 			for _, pattern := range patterns {
 				if name == pattern {
+					hits = append(hits, path)
+					if d.IsDir() {
+						return filepath.SkipDir
+					}
+					return nil
+				}
+			}
+
+			for _, prefix := range prefixes {
+				if strings.HasPrefix(name, prefix) {
 					hits = append(hits, path)
 					if d.IsDir() {
 						return filepath.SkipDir

@@ -2,7 +2,7 @@
 
 Status: provisional v0
 Owner repo: carbonstack
-Boundary checkpoint: v0.5.60-REFACTOR-2
+Boundary checkpoint: v0.5.68B public-surface refresh
 
 This directory tracks known command, script, runner-profile, sidecar, API, and operator-facing surfaces across the CarbonStack repo family.
 
@@ -46,26 +46,19 @@ Registry presence is not command promotion.
 
 Gitea remains source of truth.
 
-## Current status after v0.5.60-REFACTOR-2
+## Current status after v0.5.68A
 
-The registry is useful as an internal/current navigation artifact, but the public CLI/manual surface is not complete.
+The registry is the current internal/current navigation and claim-boundary artifact for command surfaces.
 
-v0.5.60 records the command-surface boundary in:
+The command boundary table renders the current registry-facing release-boundary classification:
 
-    carbonstack/docs/198-v0.5.60-registry-manual-boundary-v0.md
+    registry/COMMAND_BOUNDARY_TABLE.v0.md
 
-Future work must explicitly define:
-
-    public release validation commands;
-    source developer commands;
-    dev-only OpenMLS commands;
-    hidden/private validation profiles;
-    legacy/stub-era commands;
-    future commands not yet implemented.
+The table classifies public/release-facing, source developer, dev-only OpenMLS, hidden/private validation, legacy/stub-era, internal sidecar/API, and future/unsupported surfaces.
 
 Do not treat registry presence as public promotion.
 
-Do not expose relay-openmls-join-dev in front-door release docs until a deliberate v0.6.0 release-surface decision is made.
+As of v0.5.66, `relay-openmls-join-dev` has an explicit v0.6.0 release-surface decision: it remains manual/dev-only, excluded from `full`, excluded from `release-snapshot`, and is only a future full-profile candidate after repeated clean runs, package-root rehearsal, artifact behavior review, and an explicit later inclusion decision.
 
 ## Command-surface classes
 

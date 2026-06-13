@@ -1,7 +1,7 @@
 # CarbonStack command boundary table v0
 
 Status: provisional release-boundary artifact
-Checkpoint: v0.5.68-A
+Checkpoint: v0.5.68B
 Source registry: `registry/commands.v0.yaml`
 
 ## Purpose
@@ -36,7 +36,7 @@ Flag coverage is hybrid and intentionally partial: this table renders `required_
 | `runner.release-snapshot` | `go run . --profile release-snapshot` | release/package validation surface; still claim-bounded | dev / release_supported | Validate release package layout, metadata, checksums, strict pre-test artifact hygiene, then core. | — | — | release package layout/checksum/core validation<br>tools/carbonstack-validate/release_snapshot.go | does not package or upload releases<br>not deployment<br>not production security proof |
 | `runner.write-checksums` | `go run . --profile write-checksums` | release/package validation surface; still claim-bounded | dev / release_supported | Write SHA-256 checksums for a clean release package root. | — | — | release checksum generation<br>tools/carbonstack-validate/checksums.go | does not publish releases<br>does not validate runtime security |
 | `runner.verify-checksums` | `go run . --profile verify-checksums` | release/package validation surface; still claim-bounded | public / release_supported | Verify release/checksums.txt against the current package root. | — | — | release checksum verification<br>tools/carbonstack-validate/checksums.go | does not prove runtime security<br>does not replace full validation |
-| `runner.relay-openmls-join-dev` | `go run . --profile relay-openmls-join-dev` | manual/dev live-umbrella only; excluded from full/release-snapshot for v0.6.0 | developer / experimental | Run the manual/dev positive-path Relay Space OpenMLS join validation profile; excluded from full/release-snapshot for v0.6.0. | optional: --compact-summary — Print a compact evidence summary after successful profile execution. (Output/evidence convenience only; does not preserve generated artifacts or change validation scope.) | — | live-umbrella-relay-openmls-join-dev-positive-path<br>carbonstack/tools/carbonstack-validate/relay_openmls_join_dev.go | not included in full<br>not included in release-snapshot<br>not release-package validation<br>future full-profile candidate only after explicit inclusion decision<br>not local-backbone<br>not production secure messaging<br>... +4 more |
+| `runner.relay-openmls-join-dev` | `go run . --profile relay-openmls-join-dev` | manual/dev live-umbrella only; excluded from full/release-snapshot for v0.6.0 | dev / dev_only | Run the manual/dev positive-path Relay Space OpenMLS join validation profile; excluded from full/release-snapshot for v0.6.0. | optional: --compact-summary — Print a compact evidence summary after successful profile execution. (Output/evidence convenience only; does not preserve generated artifacts or change validation scope.) | — | live-umbrella-relay-openmls-join-dev-positive-path<br>tools/carbonstack-validate/relay_openmls_join_dev.go | not included in full<br>not included in release-snapshot<br>not release-package validation<br>future full-profile candidate only after explicit inclusion decision<br>not local-backbone<br>not production secure messaging<br>... +4 more |
 
 ### 02. Comms core/state/trust commands
 
