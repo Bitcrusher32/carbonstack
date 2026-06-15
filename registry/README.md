@@ -217,7 +217,7 @@ These values are classification aids for operators and future generated docs. Th
 
 The planned integrated runtime profile name is `integrated-runtime-dev`.
 
-It is not yet a registry command row because the profile is not implemented in v0.6.10 Stage 1.
+It is now registered as `runner.integrated-runtime-dev` after the Stage 2 implementation patch.
 
 When implemented, it should classify a live-umbrella-only dev profile that chains Relay onboarding plus `message-send-dev` / `message-inbox-dev --ack` while preserving individual primitive command surfaces and strict nonclaims.
 

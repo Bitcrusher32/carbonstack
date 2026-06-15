@@ -78,6 +78,7 @@ func TestCommandRegistryV0Coverage(t *testing.T) {
 		"runner.local-cypher",
 		"runner.dev-runtime-openmls",
 		"runner.dev-runtime-openmls-wrappers",
+		"runner.integrated-runtime-dev",
 		"runner.full",
 		"runner.release-snapshot",
 		"runner.write-checksums",

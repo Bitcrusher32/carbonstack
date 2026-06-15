@@ -173,6 +173,37 @@ Boundary:
     not production UX;
     not security certification.
 
+### integrated-runtime-dev
+
+Runs the first dev/pre-alpha integrated runtime composition profile:
+
+    relay-openmls-join-dev -> dev-runtime-openmls-wrappers
+
+Meaning:
+
+    Relay onboarding proof:
+      KeyPackage -> add-member -> Welcome -> join
+
+    then normal message wrapper proof:
+      openmls-*-dev bootstrap wrappers -> message-send-dev -> Cypher -> message-inbox-dev --ack
+
+Run:
+
+    go run . --profile integrated-runtime-dev --root ~/repos/carbonstack_umbrella --clean-generated
+
+Boundary:
+
+    live umbrella only;
+    not full;
+    not release-snapshot;
+    not package-root validation;
+    not production secure messaging;
+    not hostile-server safety;
+    not local-backbone;
+    not mature messenger UX.
+
+This first implementation composes existing validated dev profiles in sequence. It does not yet claim a same-state/same-conversation package-root release proof. The individual profiles remain separately callable.
+
 ### relay-openmls-join-dev
 
 Runs the current positive-path Relay Space OpenMLS join development validation profile:
@@ -386,7 +417,7 @@ These classify Relay Space OpenMLS onboarding primitives. They are not wrapper c
 
 `integrated-runtime-dev` is the preferred future live-dev profile name for an in-series proof that chains Relay onboarding with the recommended `message-*` normal-message wrapper flow.
 
-As of this policy note, the profile is not implemented yet.
+As of the Stage 2 implementation patch, the profile is implemented as a live-umbrella composition profile.
 
 Policy:
 
