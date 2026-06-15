@@ -244,3 +244,28 @@ v0.6.12 hardens registry metadata for future command-reference generation.
 The goal is to reduce missing nonclaims and validation-surface opacity before generating a Markdown command reference. This does not create `COMMAND_REFERENCE.v0.md`, does not create man pages, and does not replace `COMMAND_BOUNDARY_TABLE.v0.md`.
 
 The registry remains a classification and claim-boundary artifact. Registry presence is not command promotion.
+
+## v0.6.13 generated command reference
+
+`registry/COMMAND_REFERENCE.v0.md` is the generated dev/operator command reference.
+
+Source:
+
+    registry/commands.v0.yaml
+
+Renderer:
+
+    tools/registry/render-command-reference.py
+
+Refresh/check:
+
+    python3 tools/registry/render-command-reference.py
+    python3 tools/registry/render-command-reference.py --check
+
+Boundary:
+
+- registry presence is classification, not promotion;
+- the generated reference is dev/operator-facing, not general-public UX documentation;
+- it is not a man-page set;
+- it does not replace `COMMAND_BOUNDARY_TABLE.v0.md`;
+- it does not change `full`, `release-snapshot`, or `integrated-runtime-dev`.

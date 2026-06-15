@@ -171,3 +171,4 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - `207-v0.6.11-command-reference-generation-policy-v0.md` — records why command reference generation is deferred behind registry hardening.
 
 - `208-v0.6.12-registry-metadata-hardening-v0.md` — records the registry metadata hardening pass before generated command-reference work.
+- `../registry/COMMAND_REFERENCE.v0.md` — generated dev/operator command reference from the command registry.
