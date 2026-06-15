@@ -120,8 +120,8 @@ entries:
     introduced_in: v0.4.17
     source_path: tools/carbonstack-validate/dev_runtime_openmls_wrappers.go
     validation_surface: wrapper-based OpenMLS runtime smoke
-    short_help: Validate the wrapper-bootstrap dev OpenMLS runtime path through Comms and Cypher.
-    why_exists: Separate maturity profile for openmls-*-dev bootstrap wrappers before they can replace direct-sidecar smoke.
+    short_help: Validate the bootstrap-wrapper plus message-wrapper dev OpenMLS runtime path through Comms and Cypher.
+    why_exists: Separate maturity profile for openmls-*-dev bootstrap wrappers plus message-send-dev -> Cypher -> message-inbox-dev --ack before any future merge with direct smoke.
     example: cd carbonstack/tools/carbonstack-validate && go run . --profile dev-runtime-openmls-wrappers --clean-generated
     related_scripts:
       - carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh
@@ -130,6 +130,7 @@ entries:
       - does not replace dev-runtime-openmls yet
       - not release-package validation
       - not included in full
+      - not mature messaging UX
       - not production security proof
     include_in_front_readme: false
 
@@ -471,8 +472,8 @@ entries:
     maturity: dev_only
     introduced_in: v0.4.3
     source_path: carbonstack-comms/internal/app/openmls_runtime.go
-    short_help: Opinionated dev/pre-alpha normal-message send wrapper over the OpenMLS application-message path for public testing.
-    why_exists: Current canonical dev/pre-alpha OpenMLS application-message send path for the OpenMLS/Cypher proof surface; not mature product UX.
+    short_help: Direct dev/pre-alpha OpenMLS application-message send proof path through sidecar message-protect and Cypher.
+    why_exists: Lower-level direct OpenMLS/Cypher implementation proof surface behind the opinionated message-send-dev wrapper; useful for debugging, tests, and implementation visibility.
     validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
     nonclaims:
       - dev/pre-alpha only
@@ -493,8 +494,8 @@ entries:
     maturity: dev_only
     introduced_in: v0.4.4
     source_path: carbonstack-comms/internal/app/openmls_runtime.go
-    short_help: Opinionated dev/pre-alpha normal-message inbox/open wrapper over the OpenMLS application-message path for public testing.
-    why_exists: Current canonical dev/pre-alpha OpenMLS application-message receive/open path for the OpenMLS/Cypher proof surface; not mature product UX.
+    short_help: Direct dev/pre-alpha OpenMLS application-message inbox/open proof path through Cypher inbox and sidecar message-open.
+    why_exists: Lower-level direct OpenMLS/Cypher implementation proof surface behind the opinionated message-inbox-dev wrapper; useful for debugging, tests, and implementation visibility.
     validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
     nonclaims:
       - dev/pre-alpha only
@@ -519,11 +520,16 @@ entries:
     source_path: carbonstack-comms/internal/app/message_wrappers_dev.go
     short_help: Opinionated dev/pre-alpha normal-message send wrapper over the OpenMLS application-message path for public testing.
     why_exists: Current opinionated dev/pre-alpha message send wrapper over the OpenMLS application-message send path for the OpenMLS/Cypher proof surface; not mature product UX.
-    validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
+    validation_surface: dev-runtime-openmls-wrappers and Comms package tests
     nonclaims:
       - dev/pre-alpha only
       - not mature send UX
       - not production E2EE claim
+      - not hostile-server safety
+      - not metadata privacy
+      - not verified identity
+      - not secure enrollment
+      - does not perform Relay onboarding
     include_in_front_readme: true
 
   - id: comms.message-inbox-dev
@@ -537,11 +543,17 @@ entries:
     source_path: carbonstack-comms/internal/app/message_wrappers_dev.go
     short_help: Opinionated dev/pre-alpha normal-message inbox/open wrapper over the OpenMLS application-message path for public testing.
     why_exists: Current opinionated dev/pre-alpha message inbox/open wrapper over the OpenMLS application-message receive/open path for the OpenMLS/Cypher proof surface; not mature product UX.
-    validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
+    validation_surface: dev-runtime-openmls-wrappers and Comms package tests
     nonclaims:
       - dev/pre-alpha only
       - not mature inbox UX
       - not production E2EE claim
+      - not hostile-server safety
+      - not metadata privacy
+      - not verified identity
+      - not durable local receive storage
+      - does not perform Relay onboarding
+      - no ack on fetch
     include_in_front_readme: true
 
   - id: comms.openmls-identity-create-dev
@@ -685,7 +697,7 @@ entries:
     maturity: dev_only
     introduced_in: v0.4.16
     source_path: carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh
-    short_help: Wrapper-bootstrap smoke proving openmls-*-dev wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack.
+    short_help: Wrapper-bootstrap smoke proving openmls-*-dev wrappers -> message-send-dev -> Cypher -> message-inbox-dev --ack.
     why_exists: Higher-level wrapper maturity proof while direct-sidecar baseline remains.
     related_profiles:
       - dev-runtime-openmls-wrappers

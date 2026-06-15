@@ -11,7 +11,7 @@ func (r *Runner) DevRuntimeOpenMLSWrappers() error {
 
 	fmt.Println("status: dev/pre-alpha manual validation profile")
 	fmt.Println("scope: OpenMLS wrapper-bootstrap runtime CLI path through Comms and Cypher")
-	fmt.Println("proof: openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack")
+	fmt.Println("proof: openmls-*-dev bootstrap wrappers -> message-send-dev -> Cypher -> message-inbox-dev --ack")
 	fmt.Println("boundary: not local-backbone, not mature messaging UX, not deployment, and not a production/security claim")
 	fmt.Println("release-package status: live umbrella checkout only for now; not included in full")
 	fmt.Println("relationship: separate maturity profile; does not replace dev-runtime-openmls yet")
@@ -59,9 +59,9 @@ func (r *Runner) DevRuntimeOpenMLSWrappers() error {
 	fmt.Println()
 	fmt.Println("dev-runtime-openmls-wrappers profile result:")
 	fmt.Println("  PASS: wrapper-based dev runtime OpenMLS CLI smoke proof completed")
-	fmt.Println("  proof: openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack")
+	fmt.Println("  proof: openmls-*-dev bootstrap wrappers -> message-send-dev -> Cypher -> message-inbox-dev --ack")
 	fmt.Println("  boundary: not local-backbone, not production messaging UX, not deployment, not security certification")
-	fmt.Println("  relationship: separate wrapper-smoke maturity profile; does not replace dev-runtime-openmls yet")
+	fmt.Println("  relationship: separate message-wrapper smoke maturity profile; does not replace dev-runtime-openmls yet")
 	fmt.Println("  note: run with --clean-generated to remove known OpenMLS sidecar generated roots after success")
 
 	return nil

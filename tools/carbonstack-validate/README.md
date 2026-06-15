@@ -120,7 +120,7 @@ This profile intentionally refuses non-git package-like roots for now. Use it fr
 
 Runs the separate dev/pre-alpha OpenMLS wrapper-bootstrap runtime CLI smoke proof:
 
-    openmls-*-dev bootstrap wrappers -> openmls-send-dev -> Cypher -> openmls-inbox-dev --ack
+    openmls-*-dev bootstrap wrappers -> message-send-dev -> Cypher -> message-inbox-dev --ack
 
 Command:
 
@@ -146,7 +146,7 @@ Boundary:
     not included in full
     does not replace dev-runtime-openmls yet
 
-The existing `dev-runtime-openmls` profile remains the direct-sidecar smoke baseline. This wrapper profile exists as a separate maturity surface while the bootstrap wrappers continue to harden.
+The existing `dev-runtime-openmls` profile remains the direct-sidecar smoke baseline. This wrapper profile exists as a separate maturity surface while bootstrap wrappers and message wrappers continue to harden.
 
 `--clean-generated` is recommended after successful runs because the smoke proof can leave known OpenMLS sidecar generated roots.
 
