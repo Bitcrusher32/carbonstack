@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **79**
+Registry entry count: **80**
 
 ## Release/package validation and package-helper profiles
 
@@ -2253,7 +2253,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **3**
+Entries in this section: **4**
 
 ### `comms.dev-create-invite`
 
@@ -2332,3 +2332,46 @@ Entries in this section: **3**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `runner.same-state-integrated-dev`
+
+- **Command:** `go run . --profile same-state-integrated-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Introduced in:** `v0.6.16`
+- **Source path:** `tools/carbonstack-validate/same_state_integrated_dev.go`
+- **Validation surface:** live-umbrella-same-state-integrated-dev-positive-path
+- **Front README candidate:** `false`
+
+**What it does:** Prove Relay onboarding plus normal message send/open/ack in one coherent same-state live-dev universe.
+
+**Why it exists:** Converts the v0.6.16A temporary same-state proof probe into a bounded runner profile without mutating full, release-snapshot, or the existing sequential integrated-runtime-dev profile.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root`
+  - `--clean-generated`
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in release-snapshot
+  - not release-package validation
+  - not package-root validation
+  - not production secure messaging
+  - not production E2EE
+  - not hostile-server safety
+  - not metadata privacy
+  - not identity verification
+  - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not mature messenger UX
+  - not general-public UX
+  - positive-path same-state proof only
+  - not adversarial relay safety
+  - not vault/key-storage safety
+  - not PQ or hybrid security

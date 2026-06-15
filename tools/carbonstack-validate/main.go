@@ -45,7 +45,7 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	registryID := flag.String("registry-id", "", "registry id to inspect when --profile registry-lookup is used")
 	registryCommand := flag.String("command", "", "literal registry command to inspect when --profile registry-lookup is used")
@@ -83,6 +83,8 @@ func main() {
 		runErr = r.DevRuntimeOpenMLSWrappers()
 	case "integrated-runtime-dev":
 		runErr = r.RunIntegratedRuntimeDev(*cleanGenerated)
+	case "same-state-integrated-dev":
+		runErr = r.SameStateIntegratedDev()
 	case "registry-lookup":
 		runErr = r.RegistryLookupWithOptions(registryLookupOptions{
 			RegistryID:       *registryID,
@@ -112,7 +114,7 @@ func main() {
 	case "verify-checksums":
 		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {

@@ -1704,6 +1704,42 @@ entries:
       - not production messaging UX
     include_in_front_readme: false
 
+  - id: runner.same-state-integrated-dev
+    command: go run . --profile same-state-integrated-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.6.16
+    source_path: tools/carbonstack-validate/same_state_integrated_dev.go
+    validation_surface: live-umbrella-same-state-integrated-dev-positive-path
+    short_help: Prove Relay onboarding plus normal message send/open/ack in one coherent same-state live-dev universe.
+    why_exists: Converts the v0.6.16A temporary same-state proof probe into a bounded runner profile without mutating full, release-snapshot, or the existing sequential integrated-runtime-dev profile.
+    include_in_front_readme: false
+    optional_flags:
+      - flag: --root
+      - flag: --clean-generated
+    nonclaims:
+      - not included in full
+      - not included in release-snapshot
+      - not release-package validation
+      - not package-root validation
+      - not production secure messaging
+      - not production E2EE
+      - not hostile-server safety
+      - not metadata privacy
+      - not identity verification
+      - not secure enrollment
+      - not local-backbone
+      - not deployment
+      - not mature messenger UX
+      - not general-public UX
+      - positive-path same-state proof only
+      - not adversarial relay safety
+      - not vault/key-storage safety
+      - not PQ or hybrid security
+
   - id: runner.registry-lookup
     command: go run . --profile registry-lookup --registry-id <id>
     repo: carbonstack

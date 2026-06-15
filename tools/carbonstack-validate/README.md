@@ -464,3 +464,28 @@ Boundary:
 - it is not runtime validation;
 - it does not generate Unix man pages;
 - it does not make the generated reference general-public UX documentation.
+
+## same-state-integrated-dev
+
+`same-state-integrated-dev` is a live-umbrella dev/pre-alpha validation profile.
+
+    go run . --profile same-state-integrated-dev --root <umbrella root> --clean-generated
+
+It proves Relay onboarding and normal message send/open/ack inside one coherent temp universe:
+
+    KeyPackage -> add-member -> Welcome -> join -> message-send-dev -> message-inbox-dev --ack
+
+Boundary:
+
+- not `full`;
+- not `release-snapshot`;
+- not release-package validation;
+- not package-root validation;
+- not production secure messaging;
+- not hostile-server safety;
+- not metadata privacy;
+- not identity verification;
+- not secure enrollment;
+- not mature messenger UX.
+
+`integrated-runtime-dev` remains the sequential composition profile. `same-state-integrated-dev` is the stronger same-conversation proof profile.
