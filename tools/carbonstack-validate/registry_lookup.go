@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 )
 
@@ -13,20 +14,32 @@ type registryLookupEntry struct {
 	Lists  map[string][]string
 }
 
+type registryLookupOptions struct {
+	RegistryID       string
+	LiteralCommand   string
+	List             bool
+	Audience         string
+	Maturity         string
+	LifecycleStatus  string
+	Kind             string
+	FrontReadmeOnly  bool
+	MissingNonclaims bool
+}
+
 func (r *Runner) RegistryLookup(registryID string, literalCommand string) error {
+	return r.RegistryLookupWithOptions(registryLookupOptions{
+		RegistryID:     registryID,
+		LiteralCommand: literalCommand,
+	})
+}
+
+func (r *Runner) RegistryLookupWithOptions(opts registryLookupOptions) error {
 	r.PrintHeader("registry-lookup")
 
 	fmt.Println("status: dev/operator registry lookup")
 	fmt.Println("scope: command-boundary registry inspection")
 	fmt.Println("boundary: registry presence is classification, not promotion; output is not a public UX stability claim")
 	fmt.Println()
-
-	if strings.TrimSpace(registryID) == "" && strings.TrimSpace(literalCommand) == "" {
-		return fmt.Errorf("registry-lookup requires --registry-id or --command")
-	}
-	if strings.TrimSpace(registryID) != "" && strings.TrimSpace(literalCommand) != "" {
-		return fmt.Errorf("registry-lookup accepts either --registry-id or --command, not both")
-	}
 
 	registryPath := filepath.Join(r.CarbonStack, "registry", "commands.v0.yaml")
 	raw, err := os.ReadFile(registryPath)
@@ -35,27 +48,26 @@ func (r *Runner) RegistryLookup(registryID string, literalCommand string) error 
 	}
 
 	entries := parseRegistryLookupEntries(string(raw))
-	var matches []registryLookupEntry
+	matches := filterRegistryLookupEntries(entries, opts)
 
-	for _, entry := range entries {
-		switch {
-		case strings.TrimSpace(registryID) != "":
-			if entry.ID == strings.TrimSpace(registryID) {
-				matches = append(matches, entry)
-			}
-		case strings.TrimSpace(literalCommand) != "":
-			if entry.Fields["command"] == strings.TrimSpace(literalCommand) {
-				matches = append(matches, entry)
-			}
-		}
+	if opts.List {
+		printRegistryLookupList(matches, opts)
+		return nil
+	}
+
+	if strings.TrimSpace(opts.RegistryID) == "" && strings.TrimSpace(opts.LiteralCommand) == "" {
+		return fmt.Errorf("registry-lookup requires --registry-id or --command, or --list with optional filters")
+	}
+	if strings.TrimSpace(opts.RegistryID) != "" && strings.TrimSpace(opts.LiteralCommand) != "" {
+		return fmt.Errorf("registry-lookup accepts either --registry-id or --command, not both")
 	}
 
 	if len(matches) == 0 {
 		switch {
-		case strings.TrimSpace(registryID) != "":
-			return fmt.Errorf("registry entry not found for id %q", registryID)
+		case strings.TrimSpace(opts.RegistryID) != "":
+			return fmt.Errorf("registry entry not found for id %q", opts.RegistryID)
 		default:
-			return fmt.Errorf("registry entry not found for command %q", literalCommand)
+			return fmt.Errorf("registry entry not found for command %q", opts.LiteralCommand)
 		}
 	}
 	if len(matches) > 1 {
@@ -130,6 +142,41 @@ func parseRegistryLookupEntries(text string) []registryLookupEntry {
 	return entries
 }
 
+func filterRegistryLookupEntries(entries []registryLookupEntry, opts registryLookupOptions) []registryLookupEntry {
+	var matches []registryLookupEntry
+	for _, entry := range entries {
+		if opts.RegistryID != "" && entry.ID != strings.TrimSpace(opts.RegistryID) {
+			continue
+		}
+		if opts.LiteralCommand != "" && entry.Fields["command"] != strings.TrimSpace(opts.LiteralCommand) {
+			continue
+		}
+		if opts.Audience != "" && entry.Fields["audience"] != strings.TrimSpace(opts.Audience) {
+			continue
+		}
+		if opts.Maturity != "" && entry.Fields["maturity"] != strings.TrimSpace(opts.Maturity) {
+			continue
+		}
+		if opts.LifecycleStatus != "" && entry.Fields["lifecycle_status"] != strings.TrimSpace(opts.LifecycleStatus) {
+			continue
+		}
+		if opts.Kind != "" && entry.Fields["kind"] != strings.TrimSpace(opts.Kind) {
+			continue
+		}
+		if opts.FrontReadmeOnly && entry.Fields["include_in_front_readme"] != "true" {
+			continue
+		}
+		if opts.MissingNonclaims && len(entry.Lists["nonclaims"]) > 0 {
+			continue
+		}
+		matches = append(matches, entry)
+	}
+	sort.Slice(matches, func(i, j int) bool {
+		return matches[i].ID < matches[j].ID
+	})
+	return matches
+}
+
 func printRegistryLookupEntry(entry registryLookupEntry) {
 	fmt.Println("registry entry")
 	fmt.Printf("id: %s\n", entry.ID)
@@ -155,6 +202,48 @@ func printRegistryLookupEntry(entry registryLookupEntry) {
 	printRegistryList(entry, "related_scripts")
 	printRegistryList(entry, "nonclaims")
 
+	fmt.Println("boundary: registry presence is classification, not promotion")
+}
+
+func printRegistryLookupList(entries []registryLookupEntry, opts registryLookupOptions) {
+	fmt.Println("registry entries")
+	fmt.Printf("matches: %d\n", len(entries))
+	if opts.Audience != "" {
+		fmt.Printf("filter_audience: %s\n", opts.Audience)
+	}
+	if opts.Maturity != "" {
+		fmt.Printf("filter_maturity: %s\n", opts.Maturity)
+	}
+	if opts.LifecycleStatus != "" {
+		fmt.Printf("filter_lifecycle_status: %s\n", opts.LifecycleStatus)
+	}
+	if opts.Kind != "" {
+		fmt.Printf("filter_kind: %s\n", opts.Kind)
+	}
+	if opts.FrontReadmeOnly {
+		fmt.Println("filter_front_readme_only: true")
+	}
+	if opts.MissingNonclaims {
+		fmt.Println("filter_missing_nonclaims: true")
+	}
+	for _, entry := range entries {
+		fmt.Printf("- id: %s\n", entry.ID)
+		if command := entry.Fields["command"]; command != "" {
+			fmt.Printf("  command: %s\n", command)
+		}
+		if audience := entry.Fields["audience"]; audience != "" {
+			fmt.Printf("  audience: %s\n", audience)
+		}
+		if maturity := entry.Fields["maturity"]; maturity != "" {
+			fmt.Printf("  maturity: %s\n", maturity)
+		}
+		if lifecycle := entry.Fields["lifecycle_status"]; lifecycle != "" {
+			fmt.Printf("  lifecycle_status: %s\n", lifecycle)
+		}
+		if help := entry.Fields["short_help"]; help != "" {
+			fmt.Printf("  short_help: %s\n", help)
+		}
+	}
 	fmt.Println("boundary: registry presence is classification, not promotion")
 }
 

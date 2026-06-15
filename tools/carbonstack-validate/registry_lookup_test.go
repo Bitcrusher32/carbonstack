@@ -90,3 +90,86 @@ func captureStdout(fn func()) string {
 	_, _ = io.Copy(&buf, r)
 	return buf.String()
 }
+
+func TestFilterRegistryLookupEntriesByLifecycleStatus(t *testing.T) {
+	raw := `entries:
+  - id: comms.message-send-dev
+    command: go run ./cmd/comms message-send-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: recommended_dev_wrapper
+    kind: cli
+    nonclaims:
+      - not production E2EE claim
+  - id: comms.openmls-send-dev
+    command: go run ./cmd/comms openmls-send-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: lower_level_direct_proof_transition_candidate
+    kind: cli
+    nonclaims:
+      - not production E2EE claim
+`
+	entries := parseRegistryLookupEntries(raw)
+	matches := filterRegistryLookupEntries(entries, registryLookupOptions{
+		List:            true,
+		LifecycleStatus: "recommended_dev_wrapper",
+	})
+	if len(matches) != 1 || matches[0].ID != "comms.message-send-dev" {
+		t.Fatalf("matches = %#v", matches)
+	}
+}
+
+func TestFilterRegistryLookupEntriesMissingNonclaims(t *testing.T) {
+	raw := `entries:
+  - id: with.nonclaims
+    command: with
+    audience: dev
+    maturity: dev_only
+    nonclaims:
+      - not production E2EE claim
+  - id: without.nonclaims
+    command: without
+    audience: dev
+    maturity: dev_only
+`
+	entries := parseRegistryLookupEntries(raw)
+	matches := filterRegistryLookupEntries(entries, registryLookupOptions{
+		List:             true,
+		MissingNonclaims: true,
+	})
+	if len(matches) != 1 || matches[0].ID != "without.nonclaims" {
+		t.Fatalf("matches = %#v", matches)
+	}
+}
+
+func TestPrintRegistryLookupListIncludesFiltersAndBoundary(t *testing.T) {
+	entry := registryLookupEntry{
+		ID: "comms.message-send-dev",
+		Fields: map[string]string{
+			"command":          "go run ./cmd/comms message-send-dev",
+			"audience":         "dev",
+			"maturity":         "dev_only",
+			"lifecycle_status": "recommended_dev_wrapper",
+			"short_help":       "wrapper",
+		},
+		Lists: map[string][]string{},
+	}
+	output := captureStdout(func() {
+		printRegistryLookupList([]registryLookupEntry{entry}, registryLookupOptions{
+			List:            true,
+			LifecycleStatus: "recommended_dev_wrapper",
+		})
+	})
+	for _, want := range []string{
+		"registry entries",
+		"matches: 1",
+		"filter_lifecycle_status: recommended_dev_wrapper",
+		"id: comms.message-send-dev",
+		"boundary: registry presence is classification, not promotion",
+	} {
+		if !strings.Contains(output, want) {
+			t.Fatalf("lookup list output missing %q\n%s", want, output)
+		}
+	}
+}

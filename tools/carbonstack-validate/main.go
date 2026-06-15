@@ -49,6 +49,13 @@ func main() {
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	registryID := flag.String("registry-id", "", "registry id to inspect when --profile registry-lookup is used")
 	registryCommand := flag.String("command", "", "literal registry command to inspect when --profile registry-lookup is used")
+	registryList := flag.Bool("list", false, "list registry entries when --profile registry-lookup is used")
+	registryAudience := flag.String("audience", "", "filter registry lookup list by audience")
+	registryMaturity := flag.String("maturity", "", "filter registry lookup list by maturity")
+	registryLifecycleStatus := flag.String("lifecycle-status", "", "filter registry lookup list by lifecycle_status")
+	registryKind := flag.String("kind", "", "filter registry lookup list by kind")
+	registryFrontReadmeOnly := flag.Bool("front-readme-only", false, "filter registry lookup list to front README candidates")
+	registryMissingNonclaims := flag.Bool("missing-nonclaims", false, "filter registry lookup list to entries without nonclaims")
 	cleanGenerated := flag.Bool("clean-generated", false, "after a successful profile run, remove known generated/build artifacts such as OpenMLS sidecar target/state roots")
 	compactSummary := flag.Bool("compact-summary", false, "print a compact profile evidence summary for supported validation profiles")
 	flag.Parse()
@@ -75,7 +82,17 @@ func main() {
 	case "dev-runtime-openmls-wrappers":
 		runErr = r.DevRuntimeOpenMLSWrappers()
 	case "registry-lookup":
-		runErr = r.RegistryLookup(*registryID, *registryCommand)
+		runErr = r.RegistryLookupWithOptions(registryLookupOptions{
+			RegistryID:       *registryID,
+			LiteralCommand:   *registryCommand,
+			List:             *registryList,
+			Audience:         *registryAudience,
+			Maturity:         *registryMaturity,
+			LifecycleStatus:  *registryLifecycleStatus,
+			Kind:             *registryKind,
+			FrontReadmeOnly:  *registryFrontReadmeOnly,
+			MissingNonclaims: *registryMissingNonclaims,
+		})
 	case "relay-openmls-join-dev":
 		runErr = r.RelayOpenMLSJoinDev()
 	case "full":

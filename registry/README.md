@@ -184,3 +184,13 @@ As of v0.6.7, the validation runner can inspect registry entries directly:
     go run . --profile registry-lookup --command "go run ./cmd/comms message-send-dev"
 
 Lookup output is classification only. Registry presence is not promotion, not a generated public manual, not production UX, and not security certification.
+
+
+Registry lookup enrichment examples:
+
+    go run . --profile registry-lookup --list
+    go run . --profile registry-lookup --list --lifecycle-status recommended_dev_wrapper
+    go run . --profile registry-lookup --list --audience dev --maturity dev_only
+    go run . --profile registry-lookup --list --missing-nonclaims
+
+These remain dev/operator classification helpers. They are not a generated public manual, production UX, or security certification.

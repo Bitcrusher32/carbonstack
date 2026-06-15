@@ -364,3 +364,12 @@ The expected flow is:
     validate from a fresh extraction with release-snapshot
 
 Do not run `release-snapshot` against the package source root intended for archive/publish.
+
+Registry lookup enrichment examples:
+
+    go run . --profile registry-lookup --list
+    go run . --profile registry-lookup --list --lifecycle-status recommended_dev_wrapper
+    go run . --profile registry-lookup --list --audience dev --maturity dev_only
+    go run . --profile registry-lookup --list --missing-nonclaims
+
+These remain dev/operator classification helpers. They are not a generated public manual, production UX, or security certification.
