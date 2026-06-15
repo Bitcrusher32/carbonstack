@@ -426,3 +426,11 @@ Policy:
 - keep `relay-openmls-join-dev`, `dev-runtime-openmls-wrappers`, and `dev-runtime-openmls` individually callable;
 - do not make Relay onboarding artifacts ordinary `message-inbox-dev` messages;
 - do not introduce `full-runtime-dev` until integrated runtime has matured and an explicit later decision is made.
+
+## v0.6.11 command reference generation policy
+
+A generated command reference is intentionally deferred.
+
+The runner registry lookup profile can inspect registry rows, but it is not yet a generated public manual. Before adding a generated Markdown reference, the registry needs stronger metadata for risky dev/internal surfaces, especially flags, nonclaims, validation surfaces, lifecycle statuses, and root/package/live-umbrella boundaries.
+
+`integrated-runtime-dev` remains a live-umbrella dev profile and must not be folded into `full` by documentation.

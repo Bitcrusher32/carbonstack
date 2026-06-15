@@ -222,3 +222,17 @@ It is now registered as `runner.integrated-runtime-dev` after the Stage 2 implem
 When implemented, it should classify a live-umbrella-only dev profile that chains Relay onboarding plus `message-send-dev` / `message-inbox-dev --ack` while preserving individual primitive command surfaces and strict nonclaims.
 
 Do not treat this planned profile as part of `full`, `release-snapshot`, production UX, local-backbone, hostile-server safety, or public release validation.
+
+## v0.6.11 command reference generation policy
+
+`registry/commands.v0.yaml` is the intended source for a future generated Markdown command reference, but the reference is intentionally deferred until registry metadata is hardened.
+
+Current policy:
+
+- do not generate `COMMAND_REFERENCE.v0.md` yet;
+- do not generate Unix man pages yet;
+- keep `COMMAND_BOUNDARY_TABLE.v0.md` hand-maintained for now;
+- harden missing nonclaims, validation surfaces, flag metadata, lifecycle statuses, and internal/API/script boundary wording before generation;
+- preserve the distinction between `full`, `release-snapshot`, and `integrated-runtime-dev`.
+
+See `docs/207-v0.6.11-command-reference-generation-policy-v0.md`.

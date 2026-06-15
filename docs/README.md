@@ -167,3 +167,5 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - `204-v0.6.5-message-wrapper-implementation-v0.md` — documents the v0.6.5 dev/pre-alpha message wrapper implementation boundary.
 
 - `206-v0.6.10-integrated-runtime-policy-v0.md` — defines the planned `integrated-runtime-dev` policy boundary before implementation.
+
+- `207-v0.6.11-command-reference-generation-policy-v0.md` — records why command reference generation is deferred behind registry hardening.
