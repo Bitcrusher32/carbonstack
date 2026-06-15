@@ -1177,6 +1177,7 @@ entries:
     kind: cli
     audience: dev
     maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
     source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
     validation_surface: relay-openmls-join-dev and Comms package tests
     short_help: Export a dev OpenMLS KeyPackage/public bundle through the sidecar and submit it as a Relay Space scoped KeyPackage envelope.
@@ -1209,6 +1210,7 @@ entries:
     kind: cli
     audience: dev
     maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
     source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
     validation_surface: relay-openmls-join-dev and Comms package tests
     short_help: Fetch Relay Space scoped OpenMLS KeyPackage envelopes and write KeyPackage artifacts without ack.
@@ -1236,6 +1238,7 @@ entries:
     kind: cli
     audience: dev
     maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
     source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
     validation_surface: relay-openmls-join-dev and Comms package tests
     short_help: Submit an existing OpenMLS Welcome artifact as a Relay Space scoped Welcome envelope.
@@ -1266,6 +1269,7 @@ entries:
     kind: cli
     audience: dev
     maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
     source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
     validation_surface: relay-openmls-join-dev and Comms package tests
     short_help: Fetch Relay Space scoped OpenMLS Welcome envelopes and write Welcome artifacts without ack.
@@ -1293,6 +1297,7 @@ entries:
     kind: cli
     audience: dev
     maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_bridge
     source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
     validation_surface: relay-openmls-join-dev and Comms package tests
     short_help: Consume a Relay Space KeyPackage, run sidecar conversation-add-member, and submit the produced Welcome through Relay Space.
@@ -1328,6 +1333,7 @@ entries:
     kind: cli
     audience: dev
     maturity: dev_only
+    lifecycle_status: relay_onboarding_join_transition_candidate
     source_path: carbonstack-comms/internal/app/openmls_relay_dev.go
     validation_surface: relay-openmls-join-dev and Comms package tests
     short_help: Consume a Relay Space Welcome, run sidecar conversation-join, and optionally ack only after join succeeds.

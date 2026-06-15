@@ -194,3 +194,21 @@ Registry lookup enrichment examples:
     go run . --profile registry-lookup --list --missing-nonclaims
 
 These remain dev/operator classification helpers. They are not a generated public manual, production UX, or security certification.
+
+## v0.6.9 Relay onboarding lifecycle-status vocabulary
+
+Relay onboarding commands remain dev/pre-alpha artifact/onboarding surfaces, not ordinary application-message UX.
+
+Lifecycle statuses added in v0.6.9:
+
+- `relay_onboarding_artifact_transport`
+  - `comms.openmls-relay-keypackage-submit-dev`
+  - `comms.openmls-relay-keypackage-inbox-dev`
+  - `comms.openmls-relay-welcome-submit-dev`
+  - `comms.openmls-relay-welcome-inbox-dev`
+- `relay_onboarding_artifact_bridge`
+  - `comms.openmls-relay-add-member-dev`
+- `relay_onboarding_join_transition_candidate`
+  - `comms.openmls-relay-join-dev`
+
+These values are classification aids for operators and future generated docs. They do not promote Relay onboarding commands to production UX, hostile-server safety, identity verification, local-backbone readiness, `full`, or release-snapshot scope.

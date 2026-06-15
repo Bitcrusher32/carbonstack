@@ -373,3 +373,11 @@ Registry lookup enrichment examples:
     go run . --profile registry-lookup --list --missing-nonclaims
 
 These remain dev/operator classification helpers. They are not a generated public manual, production UX, or security certification.
+
+Relay onboarding registry lookup examples:
+
+    go run . --profile registry-lookup --list --lifecycle-status relay_onboarding_artifact_transport
+    go run . --profile registry-lookup --list --lifecycle-status relay_onboarding_artifact_bridge
+    go run . --profile registry-lookup --list --lifecycle-status relay_onboarding_join_transition_candidate
+
+These classify Relay Space OpenMLS onboarding primitives. They are not wrapper commands, not normal message inbox UX, and not production enrollment or membership claims.

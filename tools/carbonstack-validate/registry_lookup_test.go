@@ -173,3 +173,115 @@ func TestPrintRegistryLookupListIncludesFiltersAndBoundary(t *testing.T) {
 		}
 	}
 }
+
+func TestFilterRegistryLookupEntriesByRelayOnboardingLifecycleStatus(t *testing.T) {
+	raw := `entries:
+  - id: comms.openmls-relay-keypackage-submit-dev
+    command: go run ./cmd/comms openmls-relay-keypackage-submit-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
+    kind: cli
+    nonclaims:
+      - not production key distribution UX
+  - id: comms.openmls-relay-keypackage-inbox-dev
+    command: go run ./cmd/comms openmls-relay-keypackage-inbox-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
+    kind: cli
+    nonclaims:
+      - no ack
+  - id: comms.openmls-relay-welcome-submit-dev
+    command: go run ./cmd/comms openmls-relay-welcome-submit-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
+    kind: cli
+    nonclaims:
+      - not production membership UX
+  - id: comms.openmls-relay-welcome-inbox-dev
+    command: go run ./cmd/comms openmls-relay-welcome-inbox-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_transport
+    kind: cli
+    nonclaims:
+      - no conversation-join
+  - id: comms.openmls-relay-add-member-dev
+    command: go run ./cmd/comms openmls-relay-add-member-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_bridge
+    kind: cli
+    nonclaims:
+      - does not ack KeyPackage or Welcome
+  - id: comms.openmls-relay-join-dev
+    command: go run ./cmd/comms openmls-relay-join-dev
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_join_transition_candidate
+    kind: cli
+    nonclaims:
+      - not hostile-server safety
+`
+	entries := parseRegistryLookupEntries(raw)
+
+	transport := filterRegistryLookupEntries(entries, registryLookupOptions{
+		List:            true,
+		LifecycleStatus: "relay_onboarding_artifact_transport",
+	})
+	if len(transport) != 4 {
+		t.Fatalf("transport matches = %d, want 4: %#v", len(transport), transport)
+	}
+
+	bridge := filterRegistryLookupEntries(entries, registryLookupOptions{
+		List:            true,
+		LifecycleStatus: "relay_onboarding_artifact_bridge",
+	})
+	if len(bridge) != 1 || bridge[0].ID != "comms.openmls-relay-add-member-dev" {
+		t.Fatalf("bridge matches = %#v", bridge)
+	}
+
+	join := filterRegistryLookupEntries(entries, registryLookupOptions{
+		List:            true,
+		LifecycleStatus: "relay_onboarding_join_transition_candidate",
+	})
+	if len(join) != 1 || join[0].ID != "comms.openmls-relay-join-dev" {
+		t.Fatalf("join matches = %#v", join)
+	}
+}
+
+func TestPrintRegistryLookupListIncludesRelayOnboardingLifecycleStatus(t *testing.T) {
+	entry := registryLookupEntry{
+		ID: "comms.openmls-relay-join-dev",
+		Fields: map[string]string{
+			"command":          "go run ./cmd/comms openmls-relay-join-dev",
+			"audience":         "dev",
+			"maturity":         "dev_only",
+			"lifecycle_status": "relay_onboarding_join_transition_candidate",
+			"short_help":       "Consume a Relay Space Welcome, run sidecar conversation-join, and optionally ack only after join succeeds.",
+		},
+		Lists: map[string][]string{},
+	}
+
+	output := captureStdout(func() {
+		printRegistryLookupList([]registryLookupEntry{entry}, registryLookupOptions{
+			List:            true,
+			LifecycleStatus: "relay_onboarding_join_transition_candidate",
+		})
+	})
+
+	for _, want := range []string{
+		"registry entries",
+		"matches: 1",
+		"filter_lifecycle_status: relay_onboarding_join_transition_candidate",
+		"id: comms.openmls-relay-join-dev",
+		"lifecycle_status: relay_onboarding_join_transition_candidate",
+		"boundary: registry presence is classification, not promotion",
+	} {
+		if !strings.Contains(output, want) {
+			t.Fatalf("relay lifecycle lookup output missing %q\n%s", want, output)
+		}
+	}
+}

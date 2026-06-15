@@ -162,3 +162,17 @@ Potential future shapes:
     registry flags <id>
 
 Any future lookup helper must preserve nonclaims and release-boundary classifications.
+
+## v0.6.9 Relay onboarding boundary note
+
+Relay Space OpenMLS KeyPackage and Welcome commands are onboarding artifact lifecycle surfaces, not ordinary `message-inbox-dev` application-message flows.
+
+v0.6.9 lifecycle classifications:
+
+| lifecycle_status | Registry IDs | Boundary |
+|---|---|---|
+| `relay_onboarding_artifact_transport` | `comms.openmls-relay-keypackage-submit-dev`, `comms.openmls-relay-keypackage-inbox-dev`, `comms.openmls-relay-welcome-submit-dev`, `comms.openmls-relay-welcome-inbox-dev` | Transports/fetches onboarding artifacts; no production key distribution or membership UX claim. |
+| `relay_onboarding_artifact_bridge` | `comms.openmls-relay-add-member-dev` | Bridges KeyPackage artifact consumption to sidecar add-member and Welcome transport; does not join recipient or ack artifacts. |
+| `relay_onboarding_join_transition_candidate` | `comms.openmls-relay-join-dev` | Consumes Welcome and may ack only after successful join/reloadable state under explicit flag; not hostile-server safety or production UX. |
+
+Future integrated runtime may call these in series, but each primitive remains individually callable and artifact inboxes remain separate from ordinary message inboxes.
