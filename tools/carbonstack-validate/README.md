@@ -154,6 +154,25 @@ This profile intentionally refuses non-git package-like roots for now. Use it fr
 
 
 
+
+### registry-lookup
+
+Prints a dev/operator registry entry by registry ID or literal command.
+
+Examples:
+
+    go run . --profile registry-lookup --registry-id comms.message-send-dev
+    go run . --profile registry-lookup --command "go run ./cmd/comms message-send-dev"
+
+The lookup output is a classification aid. It may print command text, audience, maturity, lifecycle status, source path, validation surface, related surfaces, and nonclaims.
+
+Boundary:
+
+    registry presence is not promotion;
+    not generated public manual;
+    not production UX;
+    not security certification.
+
 ### relay-openmls-join-dev
 
 Runs the current positive-path Relay Space OpenMLS join development validation profile:

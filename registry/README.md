@@ -176,3 +176,11 @@ The older `send`, `inbox`, and `ack` commands remain legacy/stub-era surfaces. T
 - OpenMLS dev runtime commands remain explicit dev proof surfaces;
 - mature product messaging UX remains future work.
 
+## Dev/operator lookup
+
+As of v0.6.7, the validation runner can inspect registry entries directly:
+
+    go run . --profile registry-lookup --registry-id comms.message-send-dev
+    go run . --profile registry-lookup --command "go run ./cmd/comms message-send-dev"
+
+Lookup output is classification only. Registry presence is not promotion, not a generated public manual, not production UX, and not security certification.

@@ -45,8 +45,10 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
+	registryID := flag.String("registry-id", "", "registry id to inspect when --profile registry-lookup is used")
+	registryCommand := flag.String("command", "", "literal registry command to inspect when --profile registry-lookup is used")
 	cleanGenerated := flag.Bool("clean-generated", false, "after a successful profile run, remove known generated/build artifacts such as OpenMLS sidecar target/state roots")
 	compactSummary := flag.Bool("compact-summary", false, "print a compact profile evidence summary for supported validation profiles")
 	flag.Parse()
@@ -72,6 +74,8 @@ func main() {
 		runErr = r.DevRuntimeOpenMLS()
 	case "dev-runtime-openmls-wrappers":
 		runErr = r.DevRuntimeOpenMLSWrappers()
+	case "registry-lookup":
+		runErr = r.RegistryLookup(*registryID, *registryCommand)
 	case "relay-openmls-join-dev":
 		runErr = r.RelayOpenMLSJoinDev()
 	case "full":
@@ -89,7 +93,7 @@ func main() {
 	case "verify-checksums":
 		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {

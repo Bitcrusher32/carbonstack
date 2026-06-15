@@ -372,7 +372,7 @@ entries:
     short_help: Explicitly gated stub-era send command using the older mock/stub message path.
     why_exists: Preserved for continuity and low-level compatibility tests while OpenMLS runtime commands mature; requires explicit legacy opt-in.
     validation_surface: Comms package tests
-    replaced_by: openmls-send-dev for dev OpenMLS runtime proof
+    replaced_by: message-send-dev for dev OpenMLS runtime proof
     required_flags:
       - flag: --allow-legacy-stub
         meaning: explicit opt-in required to run the legacy mock/stub send path.
@@ -390,7 +390,9 @@ entries:
       - old send is not OpenMLS-backed yet
       - not mature messaging UX
       - requires explicit legacy-stub opt-in
+    lifecycle_status: legacy_stub_explicit_opt_in
     include_in_front_readme: false
+
   - id: comms.inbox
     command: go run ./cmd/comms inbox
     repo: carbonstack-comms
@@ -402,7 +404,7 @@ entries:
     short_help: Explicitly gated stub-era inbox command using the older mock/stub message path.
     why_exists: Preserved for continuity and low-level compatibility tests while OpenMLS runtime commands mature; requires explicit legacy opt-in.
     validation_surface: Comms package tests
-    replaced_by: openmls-inbox-dev for dev OpenMLS runtime proof
+    replaced_by: message-inbox-dev for dev OpenMLS runtime proof
     required_flags:
       - flag: --allow-legacy-stub
         meaning: explicit opt-in required to run the legacy mock/stub inbox path.
@@ -414,7 +416,9 @@ entries:
       - old inbox is not OpenMLS-backed yet
       - not mature messaging UX
       - requires explicit legacy-stub opt-in
+    lifecycle_status: legacy_stub_explicit_opt_in
     include_in_front_readme: false
+
   - id: comms.ack
     command: go run ./cmd/comms ack
     repo: carbonstack-comms
@@ -440,7 +444,9 @@ entries:
       - requires explicit legacy-stub opt-in
       - does not affect openmls-inbox-dev --ack
       - does not affect Relay Space scoped ack helpers
+    lifecycle_status: legacy_stub_explicit_opt_in
     include_in_front_readme: false
+
   - id: comms.state-audit-dev
     command: go run ./cmd/comms state-audit-dev
     repo: carbonstack-comms
@@ -483,6 +489,7 @@ entries:
       - not metadata privacy
       - not verified identity
       - does not perform Relay onboarding
+    lifecycle_status: lower_level_direct_proof_transition_candidate
     include_in_front_readme: true
 
   - id: comms.openmls-inbox-dev
@@ -507,6 +514,7 @@ entries:
       - not durable local receive storage
       - does not perform Relay onboarding
       - no ack on fetch
+    lifecycle_status: lower_level_direct_proof_transition_candidate
     include_in_front_readme: true
 
   - id: comms.message-send-dev
@@ -530,6 +538,7 @@ entries:
       - not verified identity
       - not secure enrollment
       - does not perform Relay onboarding
+    lifecycle_status: recommended_dev_wrapper
     include_in_front_readme: true
 
   - id: comms.message-inbox-dev
@@ -554,6 +563,7 @@ entries:
       - not durable local receive storage
       - does not perform Relay onboarding
       - no ack on fetch
+    lifecycle_status: recommended_dev_wrapper
     include_in_front_readme: true
 
   - id: comms.openmls-identity-create-dev
@@ -1373,6 +1383,33 @@ entries:
       - not standalone release-package validation
       - not local-backbone
       - not production messaging UX
+    include_in_front_readme: false
+
+  - id: runner.registry-lookup
+    command: go run . --profile registry-lookup --registry-id <id>
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: experimental
+    introduced_in: v0.6.7
+    source_path: tools/carbonstack-validate/registry_lookup.go
+    validation_surface: command-boundary registry lookup
+    short_help: Print a dev/operator command-registry entry by registry ID or literal command.
+    why_exists: Makes command-boundary classification, maturity, lifecycle status, source path, validation surface, related surfaces, and nonclaims inspectable without manually reading the full registry YAML.
+    example: cd carbonstack/tools/carbonstack-validate && go run . --profile registry-lookup --registry-id comms.message-send-dev
+    optional_flags:
+      - flag: --registry-id
+        meaning: Registry ID to inspect, such as comms.message-send-dev.
+        boundary: Lookup selector only; does not execute the command or validate the surface.
+      - flag: --command
+        meaning: Literal command string to inspect, such as go run ./cmd/comms message-send-dev.
+        boundary: Lookup selector only; may be ambiguous if multiple entries share command text.
+    nonclaims:
+      - registry presence is not promotion
+      - not generated public manual
+      - not production UX
+      - not security certification
     include_in_front_readme: false
 
   - id: runner.relay-openmls-join-dev
