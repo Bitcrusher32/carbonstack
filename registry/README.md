@@ -212,3 +212,13 @@ Lifecycle statuses added in v0.6.9:
   - `comms.openmls-relay-join-dev`
 
 These values are classification aids for operators and future generated docs. They do not promote Relay onboarding commands to production UX, hostile-server safety, identity verification, local-backbone readiness, `full`, or release-snapshot scope.
+
+## v0.6.10 integrated runtime policy note
+
+The planned integrated runtime profile name is `integrated-runtime-dev`.
+
+It is not yet a registry command row because the profile is not implemented in v0.6.10 Stage 1.
+
+When implemented, it should classify a live-umbrella-only dev profile that chains Relay onboarding plus `message-send-dev` / `message-inbox-dev --ack` while preserving individual primitive command surfaces and strict nonclaims.
+
+Do not treat this planned profile as part of `full`, `release-snapshot`, production UX, local-backbone, hostile-server safety, or public release validation.

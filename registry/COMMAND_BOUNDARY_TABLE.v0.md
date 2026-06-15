@@ -176,3 +176,17 @@ v0.6.9 lifecycle classifications:
 | `relay_onboarding_join_transition_candidate` | `comms.openmls-relay-join-dev` | Consumes Welcome and may ack only after successful join/reloadable state under explicit flag; not hostile-server safety or production UX. |
 
 Future integrated runtime may call these in series, but each primitive remains individually callable and artifact inboxes remain separate from ordinary message inboxes.
+
+## v0.6.10 integrated runtime policy note
+
+`integrated-runtime-dev` is reserved as the preferred future live-dev integrated proof name.
+
+It is intentionally not added as a command/profile row until implemented.
+
+Policy boundary:
+
+- planned proof: Relay onboarding in series with `message-send-dev` -> `message-inbox-dev --ack`;
+- current status: policy only, not implemented;
+- relationship to `full`: none yet; `full` remains release-package validation;
+- relationship to `release-snapshot`: none yet; release-snapshot remains package-root validation;
+- nonclaims: not production secure messaging, not hostile-server safety, not local-backbone, not mature UX, not package-root release validation.

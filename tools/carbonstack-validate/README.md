@@ -381,3 +381,17 @@ Relay onboarding registry lookup examples:
     go run . --profile registry-lookup --list --lifecycle-status relay_onboarding_join_transition_candidate
 
 These classify Relay Space OpenMLS onboarding primitives. They are not wrapper commands, not normal message inbox UX, and not production enrollment or membership claims.
+
+## v0.6.10 integrated runtime policy note
+
+`integrated-runtime-dev` is the preferred future live-dev profile name for an in-series proof that chains Relay onboarding with the recommended `message-*` normal-message wrapper flow.
+
+As of this policy note, the profile is not implemented yet.
+
+Policy:
+
+- keep `full` as release-package validation;
+- keep `release-snapshot` as package-root validation;
+- keep `relay-openmls-join-dev`, `dev-runtime-openmls-wrappers`, and `dev-runtime-openmls` individually callable;
+- do not make Relay onboarding artifacts ordinary `message-inbox-dev` messages;
+- do not introduce `full-runtime-dev` until integrated runtime has matured and an explicit later decision is made.

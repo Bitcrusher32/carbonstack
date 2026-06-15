@@ -165,3 +165,5 @@ CarbonStack has not received senior external audit or security certification.
 Historical docs must not be used to imply production readiness, hostile-server safety, Android readiness, metadata privacy, complete E2EE product status, or verified identity unless a current release document explicitly says so.
 - `200-v0.5.65-runtime-send-inbox-convergence-decision-v0.md` — Runtime send/inbox convergence decision: legacy warning-only surfaces; `openmls-send-dev` / `openmls-inbox-dev` are current canonical dev OpenMLS runtime message paths.
 - `204-v0.6.5-message-wrapper-implementation-v0.md` — documents the v0.6.5 dev/pre-alpha message wrapper implementation boundary.
+
+- `206-v0.6.10-integrated-runtime-policy-v0.md` — defines the planned `integrated-runtime-dev` policy boundary before implementation.
