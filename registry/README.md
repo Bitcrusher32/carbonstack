@@ -236,3 +236,11 @@ Current policy:
 - preserve the distinction between `full`, `release-snapshot`, and `integrated-runtime-dev`.
 
 See `docs/207-v0.6.11-command-reference-generation-policy-v0.md`.
+
+## v0.6.12 registry metadata hardening
+
+v0.6.12 hardens registry metadata for future command-reference generation.
+
+The goal is to reduce missing nonclaims and validation-surface opacity before generating a Markdown command reference. This does not create `COMMAND_REFERENCE.v0.md`, does not create man pages, and does not replace `COMMAND_BOUNDARY_TABLE.v0.md`.
+
+The registry remains a classification and claim-boundary artifact. Registry presence is not command promotion.

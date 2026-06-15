@@ -434,3 +434,14 @@ A generated command reference is intentionally deferred.
 The runner registry lookup profile can inspect registry rows, but it is not yet a generated public manual. Before adding a generated Markdown reference, the registry needs stronger metadata for risky dev/internal surfaces, especially flags, nonclaims, validation surfaces, lifecycle statuses, and root/package/live-umbrella boundaries.
 
 `integrated-runtime-dev` remains a live-umbrella dev profile and must not be folded into `full` by documentation.
+
+## v0.6.12 registry metadata hardening
+
+The registry metadata hardening pass improves future command-reference readiness while keeping generation deferred.
+
+Validation remains registry-oriented:
+
+    go run . --profile registry-lookup --list --missing-nonclaims
+    go run . --profile registry-lookup --registry-id runner.integrated-runtime-dev
+
+`registry-lookup` is still an inspection tool, not a generated public manual.
