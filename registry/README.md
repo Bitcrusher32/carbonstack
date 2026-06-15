@@ -170,7 +170,7 @@ As of v0.5.65, the current canonical dev/pre-alpha OpenMLS application-message r
 
 The older `send`, `inbox`, and `ack` commands remain legacy/stub-era surfaces. They are preserved for continuity and must not be described as mature OpenMLS-backed messaging UX.
 
-Do not add new `message-send-dev` / `message-inbox-dev` aliases unless a later implementation actually changes command semantics or materially improves UX. For v0.6.0, the release posture is documented separation:
+`message-send-dev` and `message-inbox-dev` are now dev/pre-alpha opinionated wrapper commands after the v0.6.5 implementation checkpoint; they materially improve public-testing IO while preserving implementation truth. For v0.6.0, the release posture is documented separation:
 
 - legacy send/inbox/ack remain warning-only;
 - OpenMLS dev runtime commands remain explicit dev proof surfaces;

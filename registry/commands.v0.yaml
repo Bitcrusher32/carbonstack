@@ -471,13 +471,17 @@ entries:
     maturity: dev_only
     introduced_in: v0.4.3
     source_path: carbonstack-comms/internal/app/openmls_runtime.go
-    short_help: Protect an OpenMLS application message with the sidecar and submit it through Cypher; current canonical dev send path.
+    short_help: Opinionated dev/pre-alpha normal-message send wrapper over the OpenMLS application-message path for public testing.
     why_exists: Current canonical dev/pre-alpha OpenMLS application-message send path for the OpenMLS/Cypher proof surface; not mature product UX.
     validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
     nonclaims:
       - dev/pre-alpha only
       - not mature send UX
       - not production E2EE claim
+      - not hostile-server safety
+      - not metadata privacy
+      - not verified identity
+      - does not perform Relay onboarding
     include_in_front_readme: true
 
   - id: comms.openmls-inbox-dev
@@ -489,8 +493,50 @@ entries:
     maturity: dev_only
     introduced_in: v0.4.4
     source_path: carbonstack-comms/internal/app/openmls_runtime.go
-    short_help: Fetch OpenMLS application-message envelopes, sidecar-open them, and optionally ack after success; current canonical dev inbox path.
+    short_help: Opinionated dev/pre-alpha normal-message inbox/open wrapper over the OpenMLS application-message path for public testing.
     why_exists: Current canonical dev/pre-alpha OpenMLS application-message receive/open path for the OpenMLS/Cypher proof surface; not mature product UX.
+    validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
+    nonclaims:
+      - dev/pre-alpha only
+      - not mature inbox UX
+      - not production E2EE claim
+      - not hostile-server safety
+      - not metadata privacy
+      - not verified identity
+      - not durable local receive storage
+      - does not perform Relay onboarding
+      - no ack on fetch
+    include_in_front_readme: true
+
+  - id: comms.message-send-dev
+    command: go run ./cmd/comms message-send-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.6.5
+    source_path: carbonstack-comms/internal/app/message_wrappers_dev.go
+    short_help: Opinionated dev/pre-alpha normal-message send wrapper over the OpenMLS application-message path for public testing.
+    why_exists: Current opinionated dev/pre-alpha message send wrapper over the OpenMLS application-message send path for the OpenMLS/Cypher proof surface; not mature product UX.
+    validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
+    nonclaims:
+      - dev/pre-alpha only
+      - not mature send UX
+      - not production E2EE claim
+    include_in_front_readme: true
+
+  - id: comms.message-inbox-dev
+    command: go run ./cmd/comms message-inbox-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.6.5
+    source_path: carbonstack-comms/internal/app/message_wrappers_dev.go
+    short_help: Opinionated dev/pre-alpha normal-message inbox/open wrapper over the OpenMLS application-message path for public testing.
+    why_exists: Current opinionated dev/pre-alpha message inbox/open wrapper over the OpenMLS application-message receive/open path for the OpenMLS/Cypher proof surface; not mature product UX.
     validation_surface: dev-runtime-openmls and dev-runtime-openmls-wrappers
     nonclaims:
       - dev/pre-alpha only
