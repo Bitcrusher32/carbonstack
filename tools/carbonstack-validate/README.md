@@ -445,3 +445,22 @@ Validation remains registry-oriented:
     go run . --profile registry-lookup --registry-id runner.integrated-runtime-dev
 
 `registry-lookup` is still an inspection tool, not a generated public manual.
+
+## Generated command-reference freshness
+
+The runner test suite includes a generated-reference freshness guard.
+
+    go test ./...
+
+The guard runs:
+
+    python3 tools/registry/render-command-reference.py --check
+
+from the `carbonstack` repo root. If `registry/commands.v0.yaml` changes without regenerating `registry/COMMAND_REFERENCE.v0.md`, the runner tests should fail.
+
+Boundary:
+
+- this is a docs/registry freshness guard;
+- it is not runtime validation;
+- it does not generate Unix man pages;
+- it does not make the generated reference general-public UX documentation.

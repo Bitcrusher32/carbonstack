@@ -172,3 +172,4 @@ Historical docs must not be used to imply production readiness, hostile-server s
 
 - `208-v0.6.12-registry-metadata-hardening-v0.md` — records the registry metadata hardening pass before generated command-reference work.
 - `../registry/COMMAND_REFERENCE.v0.md` — generated dev/operator command reference from the command registry.
+- `209-v0.6.14-post-history-rewrite-sanity-v0.md` — post-history-rewrite sanity checkpoint, release/tag sanity, generated-reference validation, and local backup freeze cleanup.
