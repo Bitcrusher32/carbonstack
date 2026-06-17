@@ -178,3 +178,4 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - `212-v0.6.17-same-state-message-failure-dev-profile-v0.md` — first same-state normal-message failure profile and no-ack/no-drain boundary.
 - `213-v0.6.18-same-state-message-unsupported-dev-profile-v0.md` — same-state unsupported normal-message content-type no-ack/no-drain profile boundary.
 - `214-v0.6.19-same-state-message-recipient-failure-dev-profile-v0.md` — same-state wrong recipient/device/sidecar no-false-success profile boundary.
+- `215-v0.6.20-welcome-join-partial-state-safety-v0.md` — failed Welcome join sidecar partial-state safety patch boundary.
