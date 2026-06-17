@@ -543,3 +543,31 @@ Boundary:
 - currently covers unsupported normal application-message content_type only.
 
 `same-state-integrated-dev` remains the positive-path same-conversation proof profile. `same-state-message-failure-dev` remains the wrong-conversation no-ack/no-drain profile.
+
+## same-state-message-recipient-failure-dev
+
+`same-state-message-recipient-failure-dev` is a live-umbrella dev/pre-alpha validation profile.
+
+    go run . --profile same-state-message-recipient-failure-dev --root <umbrella root> --clean-generated
+
+It proves a same-state normal-message wrong recipient/device/sidecar rule:
+
+    wrong recipient/device/sidecar attempts must not falsely open, ack, or drain Bob's inbox.
+
+The profile sends a normal message to Bob after same-state Relay join, then checks Alice state + Alice sidecar, Bob state + Alice sidecar, and Bob state + missing sidecar attempts before proving the correct Bob open/ack path still works.
+
+Boundary:
+
+- not `full`;
+- not `release-snapshot`;
+- not release-package validation;
+- not package-root validation;
+- not adversarial relay harness;
+- not hostile-server safety;
+- not metadata privacy;
+- not production secure messaging;
+- not production E2EE;
+- not identity verification;
+- currently covers wrong recipient/device/sidecar no-false-success only.
+
+`same-state-integrated-dev` remains the positive-path same-conversation proof profile. Existing failure profiles remain narrow and separate.

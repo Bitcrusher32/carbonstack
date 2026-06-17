@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **82**
+Registry entry count: **83**
 
 ## Release/package validation and package-helper profiles
 
@@ -2253,7 +2253,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **6**
+Entries in this section: **7**
 
 ### `comms.dev-create-invite`
 
@@ -2416,6 +2416,49 @@ Entries in this section: **6**
   - not mature messenger UX
   - not general-public UX
   - currently covers wrong-conversation message-open failure only
+  - not vault/key-storage safety
+  - not PQ or hybrid security
+
+### `runner.same-state-message-recipient-failure-dev`
+
+- **Command:** `go run . --profile same-state-message-recipient-failure-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Introduced in:** `v0.6.19`
+- **Source path:** `tools/carbonstack-validate/same_state_message_recipient_failure_dev.go`
+- **Validation surface:** live-umbrella-same-state-normal-message-wrong-recipient-device-no-false-success
+- **Front README candidate:** `false`
+
+**What it does:** Prove wrong recipient/device/sidecar attempts do not falsely open, ack, or drain Bob's inbox after same-state Relay join.
+
+**Why it exists:** Third same-state failure-hardening companion profile after same-state-integrated-dev; locks no-false-success/no-ack/no-drain behavior for wrong recipient/device/sidecar combinations without adding adversarial harness claims or changing full/release-snapshot.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root`
+  - `--clean-generated`
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in release-snapshot
+  - not release-package validation
+  - not package-root validation
+  - not adversarial relay harness
+  - not hostile-server safety
+  - not metadata privacy
+  - not production secure messaging
+  - not production E2EE
+  - not identity verification
+  - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not mature messenger UX
+  - not general-public UX
+  - currently covers wrong recipient/device/sidecar no-false-success only
   - not vault/key-storage safety
   - not PQ or hybrid security
 
