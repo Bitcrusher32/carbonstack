@@ -176,3 +176,4 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - `210-v0.6.15-same-state-integrated-proof-plan-v0.md` — same-state integrated proof recon decision and v0.6.16 implementation/probe plan.
 - `211-v0.6.16-same-state-integrated-dev-profile-v0.md` — committed same-state integrated dev profile proof boundary and nonclaims.
 - `212-v0.6.17-same-state-message-failure-dev-profile-v0.md` — first same-state normal-message failure profile and no-ack/no-drain boundary.
+- `213-v0.6.18-same-state-message-unsupported-dev-profile-v0.md` — same-state unsupported normal-message content-type no-ack/no-drain profile boundary.

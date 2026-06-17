@@ -516,3 +516,30 @@ Boundary:
 - currently covers wrong-conversation message-open failure only.
 
 `same-state-integrated-dev` remains the positive-path same-conversation proof profile.
+
+## same-state-message-unsupported-dev
+
+`same-state-message-unsupported-dev` is a live-umbrella dev/pre-alpha validation profile.
+
+    go run . --profile same-state-message-unsupported-dev --root <umbrella root> --clean-generated
+
+It proves a same-state normal-message unsupported-envelope rule:
+
+    unsupported normal application-message content_type must not ack and must not drain the inbox.
+
+The profile mutates only the normal application-message envelope content type inside a temporary Cypher DB, runs `message-inbox-dev --ack`, verifies unsupported skip/no-ack/no-drain behavior, restores the original content type, and verifies normal open/ack recovery.
+
+Boundary:
+
+- not `full`;
+- not `release-snapshot`;
+- not release-package validation;
+- not package-root validation;
+- not adversarial relay harness;
+- not hostile-server safety;
+- not metadata privacy;
+- not production secure messaging;
+- not production E2EE;
+- currently covers unsupported normal application-message content_type only.
+
+`same-state-integrated-dev` remains the positive-path same-conversation proof profile. `same-state-message-failure-dev` remains the wrong-conversation no-ack/no-drain profile.

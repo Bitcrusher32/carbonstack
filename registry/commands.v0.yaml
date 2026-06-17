@@ -1776,6 +1776,42 @@ entries:
       - not vault/key-storage safety
       - not PQ or hybrid security
 
+  - id: runner.same-state-message-unsupported-dev
+    command: go run . --profile same-state-message-unsupported-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.6.18
+    source_path: tools/carbonstack-validate/same_state_message_unsupported_dev.go
+    validation_surface: live-umbrella-same-state-normal-message-unsupported-content-type-noack
+    short_help: Prove unsupported normal application-message content_type does not ack or drain the inbox after same-state Relay join.
+    why_exists: Second same-state failure-hardening companion profile after same-state-integrated-dev; locks the application-message ack rule for unsupported normal-message envelopes without adding adversarial harness claims or changing full/release-snapshot.
+    include_in_front_readme: false
+    optional_flags:
+      - flag: --root
+      - flag: --clean-generated
+    nonclaims:
+      - not included in full
+      - not included in release-snapshot
+      - not release-package validation
+      - not package-root validation
+      - not adversarial relay harness
+      - not hostile-server safety
+      - not metadata privacy
+      - not production secure messaging
+      - not production E2EE
+      - not identity verification
+      - not secure enrollment
+      - not local-backbone
+      - not deployment
+      - not mature messenger UX
+      - not general-public UX
+      - currently covers unsupported normal application-message content_type only
+      - not vault/key-storage safety
+      - not PQ or hybrid security
+
   - id: runner.registry-lookup
     command: go run . --profile registry-lookup --registry-id <id>
     repo: carbonstack
