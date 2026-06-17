@@ -489,3 +489,30 @@ Boundary:
 - not mature messenger UX.
 
 `integrated-runtime-dev` remains the sequential composition profile. `same-state-integrated-dev` is the stronger same-conversation proof profile.
+
+## same-state-message-failure-dev
+
+`same-state-message-failure-dev` is a live-umbrella dev/pre-alpha validation profile.
+
+    go run . --profile same-state-message-failure-dev --root <umbrella root> --clean-generated
+
+It proves the first same-state normal-message failure rule:
+
+    wrong-conversation message-inbox-dev --ack must not ack and must not drain the inbox.
+
+After the failed wrong-conversation open attempt, the profile opens the same queued message with the correct conversation and asserts the normal explicit ack path still works.
+
+Boundary:
+
+- not `full`;
+- not `release-snapshot`;
+- not release-package validation;
+- not package-root validation;
+- not adversarial relay harness;
+- not hostile-server safety;
+- not metadata privacy;
+- not production secure messaging;
+- not production E2EE;
+- currently covers wrong-conversation message-open failure only.
+
+`same-state-integrated-dev` remains the positive-path same-conversation proof profile.
