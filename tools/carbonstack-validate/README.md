@@ -571,3 +571,34 @@ Boundary:
 - currently covers wrong recipient/device/sidecar no-false-success only.
 
 `same-state-integrated-dev` remains the positive-path same-conversation proof profile. Existing failure profiles remain narrow and separate.
+
+## same-state-welcome-join-failure-dev
+
+`same-state-welcome-join-failure-dev` is a live-umbrella dev/pre-alpha validation profile.
+
+    go run . --profile same-state-welcome-join-failure-dev --root <umbrella root> --clean-generated
+
+It proves a fixed Relay onboarding failure invariant:
+
+    corrupt Welcome join fails;
+    corrupt Welcome join does not ack;
+    corrupt Welcome join does not drain Bob's Relay inbox;
+    corrupt Welcome join leaves no final/staging Bob conversation state;
+    restored valid Welcome joins and acks with the same conversation label.
+
+Boundary:
+
+- not `full`;
+- not `release-snapshot`;
+- not release-package validation;
+- not package-root validation;
+- not adversarial relay harness;
+- not hostile-server safety;
+- not metadata privacy;
+- not production secure messaging;
+- not production E2EE;
+- not identity verification;
+- not stale provider state modeling;
+- currently covers corrupt Welcome join failure plus restored-Welcome recovery only.
+
+This is a leaf profile. It can be called by a future `full-runtime-dev` / contextual `full-*` evaluator after explicit aggregation policy exists.

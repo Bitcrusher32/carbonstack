@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **83**
+Registry entry count: **84**
 
 ## Release/package validation and package-helper profiles
 
@@ -2253,7 +2253,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **7**
+Entries in this section: **8**
 
 ### `comms.dev-create-invite`
 
@@ -2502,5 +2502,49 @@ Entries in this section: **7**
   - not mature messenger UX
   - not general-public UX
   - currently covers unsupported normal application-message content_type only
+  - not vault/key-storage safety
+  - not PQ or hybrid security
+
+### `runner.same-state-welcome-join-failure-dev`
+
+- **Command:** `go run . --profile same-state-welcome-join-failure-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Introduced in:** `v0.6.21`
+- **Source path:** `tools/carbonstack-validate/same_state_welcome_join_failure_dev.go`
+- **Validation surface:** live-umbrella-same-state-corrupt-welcome-join-noack-nodrain-no-state-poison
+- **Front README candidate:** `false`
+
+**What it does:** Prove corrupt Welcome join fails without ack, Relay inbox drain, or final/staging sidecar state poison, then restored Welcome joins and acks.
+
+**Why it exists:** Locks the v0.6.20 atomic Welcome join state-write fix into a live-umbrella failure-path profile before stale-state modeling and later full-runtime aggregation.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root`
+  - `--clean-generated`
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in release-snapshot
+  - not release-package validation
+  - not package-root validation
+  - not adversarial relay harness
+  - not hostile-server safety
+  - not metadata privacy
+  - not production secure messaging
+  - not production E2EE
+  - not identity verification
+  - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not mature messenger UX
+  - not general-public UX
+  - currently covers corrupt Welcome join failure with restored Welcome recovery only
+  - not stale provider state modeling
   - not vault/key-storage safety
   - not PQ or hybrid security
