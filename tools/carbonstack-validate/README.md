@@ -626,3 +626,29 @@ Boundary:
 - not replay or duplicate classification.
 
 This is a deterministic failure-hardening profile. It may become an input to a later adversarial harness, but it is not one today.
+
+## same-state-message-replay-classification-dev
+
+`same-state-message-replay-classification-dev` is a live-umbrella dev/pre-alpha validation profile.
+
+    go run . --profile same-state-message-replay-classification-dev --root <umbrella root> --clean-generated
+
+It classifies normal application-message duplicate/replay behavior. It proves storage rejection for duplicate envelope IDs, delivery-state suppression after ack, and no-open/no-ack/no-drain behavior for manually requeued or duplicated ciphertext envelopes.
+
+Boundary:
+
+- not `full`;
+- not `release-snapshot`;
+- not release-package validation;
+- not package-root validation;
+- not replay safety;
+- not adversarial relay harness;
+- not hostile-server safety;
+- not metadata privacy;
+- not production secure messaging;
+- not production E2EE;
+- not identity verification;
+- not Welcome replay;
+- not KeyPackage replay.
+
+This is deterministic classification hardening. It may become an input to a later adversarial harness, but it is not one today.

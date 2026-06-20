@@ -1851,6 +1851,48 @@ entries:
       - not vault/key-storage safety
       - not PQ or hybrid security
 
+  - id: runner.same-state-message-replay-classification-dev
+    command: go run . --profile same-state-message-replay-classification-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    introduced_in: v0.6.24
+    source_path: tools/carbonstack-validate/same_state_message_replay_classification_dev.go
+    validation_surface: live-umbrella-same-state-normal-message-replay-classification
+    short_help: Classify normal application-message duplicate/replay behavior without claiming replay safety.
+    why_exists: Locks duplicate/replay classification into a deterministic same-state live-dev profile before adversarial harness and vault/PQ modeling work.
+    include_in_front_readme: false
+    optional_flags:
+      - flag: --root
+      - flag: --clean-generated
+    nonclaims:
+      - not included in full
+      - not included in release-snapshot
+      - not release-package validation
+      - not package-root validation
+      - not adversarial relay harness
+      - not hostile-server safety
+      - not replay safety
+      - not metadata privacy
+      - not production secure messaging
+      - not production E2EE
+      - not identity verification
+      - not secure enrollment
+      - not local-backbone
+      - not deployment
+      - not mature messenger UX
+      - not general-public UX
+      - currently covers normal application-message duplicate/replay cases only
+      - does not cover Welcome replay
+      - does not cover KeyPackage replay
+      - does not cover server equivocation
+      - does not cover network drop/delay
+      - does not cover malicious relay harness behavior
+      - not vault/key-storage safety
+      - not PQ or hybrid security
+
   - id: runner.same-state-message-recipient-failure-dev
     command: go run . --profile same-state-message-recipient-failure-dev
     repo: carbonstack

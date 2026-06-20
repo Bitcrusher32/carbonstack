@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **85**
+Registry entry count: **86**
 
 ## Release/package validation and package-helper profiles
 
@@ -2253,7 +2253,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **9**
+Entries in this section: **10**
 
 ### `comms.dev-create-invite`
 
@@ -2505,6 +2505,55 @@ Entries in this section: **9**
   - not mature messenger UX
   - not general-public UX
   - currently covers wrong recipient/device/sidecar no-false-success only
+  - not vault/key-storage safety
+  - not PQ or hybrid security
+
+### `runner.same-state-message-replay-classification-dev`
+
+- **Command:** `go run . --profile same-state-message-replay-classification-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Introduced in:** `v0.6.24`
+- **Source path:** `tools/carbonstack-validate/same_state_message_replay_classification_dev.go`
+- **Validation surface:** live-umbrella-same-state-normal-message-replay-classification
+- **Front README candidate:** `false`
+
+**What it does:** Classify normal application-message duplicate/replay behavior without claiming replay safety.
+
+**Why it exists:** Locks duplicate/replay classification into a deterministic same-state live-dev profile before adversarial harness and vault/PQ modeling work.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root`
+  - `--clean-generated`
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in release-snapshot
+  - not release-package validation
+  - not package-root validation
+  - not adversarial relay harness
+  - not hostile-server safety
+  - not replay safety
+  - not metadata privacy
+  - not production secure messaging
+  - not production E2EE
+  - not identity verification
+  - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not mature messenger UX
+  - not general-public UX
+  - currently covers normal application-message duplicate/replay cases only
+  - does not cover Welcome replay
+  - does not cover KeyPackage replay
+  - does not cover server equivocation
+  - does not cover network drop/delay
+  - does not cover malicious relay harness behavior
   - not vault/key-storage safety
   - not PQ or hybrid security
 
