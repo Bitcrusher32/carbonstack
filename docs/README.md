@@ -181,3 +181,4 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - `215-v0.6.20-welcome-join-partial-state-safety-v0.md` — failed Welcome join sidecar partial-state safety patch boundary.
 - `216-v0.6.21-same-state-welcome-join-failure-dev-profile-v0.md` — same-state corrupt Welcome join no-ack/no-drain/no-state-poison profile boundary.
 - `217-v0.6.22-sidecar-state-authority-classification-v0.md` — sidecar conversation/provider state authority classification after stale-state recon.
+- `218-v0.6.23-same-state-message-malformed-payload-dev-profile-v0.md` — same-state malformed normal-message payload no-open/no-ack/no-drain profile boundary.

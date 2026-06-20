@@ -45,7 +45,7 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	registryID := flag.String("registry-id", "", "registry id to inspect when --profile registry-lookup is used")
 	registryCommand := flag.String("command", "", "literal registry command to inspect when --profile registry-lookup is used")
@@ -89,6 +89,8 @@ func main() {
 		runErr = r.SameStateMessageFailureDev()
 	case "same-state-message-unsupported-dev":
 		runErr = r.SameStateMessageUnsupportedDev()
+	case "same-state-message-malformed-payload-dev":
+		runErr = r.SameStateMessageMalformedPayloadDev()
 	case "same-state-message-recipient-failure-dev":
 		runErr = r.SameStateMessageRecipientFailureDev()
 	case "same-state-welcome-join-failure-dev":
@@ -122,7 +124,7 @@ func main() {
 	case "verify-checksums":
 		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {

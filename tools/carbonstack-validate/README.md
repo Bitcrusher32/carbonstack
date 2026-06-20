@@ -602,3 +602,27 @@ Boundary:
 - currently covers corrupt Welcome join failure plus restored-Welcome recovery only.
 
 This is a leaf profile. It can be called by a future `full-runtime-dev` / contextual `full-*` evaluator after explicit aggregation policy exists.
+
+## same-state-message-malformed-payload-dev
+
+`same-state-message-malformed-payload-dev` is a live-umbrella dev/pre-alpha validation profile.
+
+    go run . --profile same-state-message-malformed-payload-dev --root <umbrella root> --clean-generated
+
+It proves malformed normal application-message payloads do not falsely open, ack, drain Bob's queued normal-message inbox, mutate conversation provider storage, or rewrite the envelope. It also proves restored-payload recovery for each malformed case.
+
+Boundary:
+
+- not `full`;
+- not `release-snapshot`;
+- not release-package validation;
+- not package-root validation;
+- not adversarial relay harness;
+- not hostile-server safety;
+- not metadata privacy;
+- not production secure messaging;
+- not production E2EE;
+- not identity verification;
+- not replay or duplicate classification.
+
+This is a deterministic failure-hardening profile. It may become an input to a later adversarial harness, but it is not one today.
