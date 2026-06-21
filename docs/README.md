@@ -186,3 +186,4 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - `220-v0.6.25-normal-message-envelope-metadata-classification-v0.md` — normal application-message envelope metadata enforcement and sender-metadata nonclaim classification.
 - `221-v0.6.26-sender-metadata-output-warning-v0.md` — normal message inbox output warning that `from_device` is unverified relay envelope metadata, not verified identity.
 - `222-v0.6.26-loadcheck-provider-summary-output-v0.md` — load-check output cleanup distinguishing provider reloadability from summary metadata presence.
+- `223-v0.6.27-vault-security-nosilent-state-model-v0.md` — vault/security state model defining authority categories, sensitivity classes, no-silent rules, backup/recovery implications, bounded substrate eligibility, and PQ/adversarial dependencies.
