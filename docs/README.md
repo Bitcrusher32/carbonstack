@@ -184,3 +184,4 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - `218-v0.6.23-same-state-message-malformed-payload-dev-profile-v0.md` — same-state malformed normal-message payload no-open/no-ack/no-drain profile boundary.
 - `219-v0.6.24-loadcheck-replay-classification-v0.md` — load-check semantics and normal application-message replay classification profile boundary.
 - `220-v0.6.25-normal-message-envelope-metadata-classification-v0.md` — normal application-message envelope metadata enforcement and sender-metadata nonclaim classification.
+- `221-v0.6.26-sender-metadata-output-warning-v0.md` — normal message inbox output warning that `from_device` is unverified relay envelope metadata, not verified identity.
