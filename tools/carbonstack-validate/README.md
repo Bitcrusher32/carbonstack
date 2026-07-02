@@ -252,6 +252,31 @@ Current rationale:
     Therefore it should remain outside full/release-snapshot for v0.6.0.
 
 
+### full-validate-release
+
+Preferred explicit release-package validation profile name.
+
+    go run . --profile full-validate-release --root /path/to/release-package-root --clean-generated
+
+Initial behavior is intentionally identical to `full`:
+
+    release-snapshot
+    local-cypher
+
+Use this name when validating release packages or writing release-facing docs, because it says what the profile actually proves.
+
+`full` remains a compatibility name through v0.7.0.
+
+This profile does not include:
+
+- live-dev runtime aggregation;
+- same-state profiles;
+- `state-audit-dev`;
+- adversarial harness checks;
+- `full-runtime-dev`;
+- deployment validation;
+- production security proof.
+
 ### full
 
 Runs the current release-package validation ladder:
@@ -668,3 +693,13 @@ Initial behavior is intentionally identical to `full`:
 `full-validate-release` does not include live-dev runtime profiles, same-state profiles, `state-audit-dev`, adversarial harness checks, deployment validation, or production security proof.
 
 `full-runtime-dev` is future-only until its member set and semantics are deliberately modeled.
+
+## Toolchain floor note before v0.7.0 rehearsal
+
+The current validation runner is a Go module with `go 1.24`.
+
+CarbonStackComms and CarbonStackCypher currently declare `go 1.26.3`.
+
+The v0.6.32A recon showed local WSL validation passing with Go 1.24.4, while Comms and Cypher remain declared at Go 1.26.3. Before v0.7.0 package-root rehearsal, release-facing docs should state the expected toolchain behavior clearly instead of relying on implicit local setup or Go toolchain auto-selection.
+
+This note does not change `go.mod` files.
