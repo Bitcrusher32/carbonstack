@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **86**
+Registry entry count: **87**
 
 ## Release/package validation and package-helper profiles
 
@@ -2253,7 +2253,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **10**
+Entries in this section: **11**
 
 ### `comms.dev-create-invite`
 
@@ -2332,6 +2332,38 @@ Entries in this section: **10**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `runner.full-validate-release`
+
+- **Command:** `go run . --profile full-validate-release`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `public`
+- **Maturity:** `release_supported`
+- **Introduced in:** `v0.6.30`
+- **Source path:** `tools/carbonstack-validate/main.go`
+- **Validation surface:** release package validation ladder
+- **Front README candidate:** `true`
+
+**What it does:** Run the explicit release-package validation profile; exact alias to current full behavior.
+
+**Why it exists:** Preferred explicit name for the release/package-root validation ladder previously exposed as full; prevents broad full naming from implying live-dev, deployment, or production security validation.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root`
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not deployment
+  - not local-backbone
+  - not runtime Comms UX
+  - not production security proof
+  - not full-runtime-dev
+  - not live-dev aggregation
+  - not adversarial harness
+  - not package publisher
 
 ### `runner.same-state-integrated-dev`
 

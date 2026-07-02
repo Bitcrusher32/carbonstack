@@ -652,3 +652,19 @@ Boundary:
 - not KeyPackage replay.
 
 This is deterministic classification hardening. It may become an input to a later adversarial harness, but it is not one today.
+## v0.6.30 validation naming note
+
+`full-validate-release` is the preferred explicit name for the release-package validation ladder.
+
+    go run . --profile full-validate-release --root /path/to/release-package-root --clean-generated
+
+Initial behavior is intentionally identical to `full`:
+
+    release-snapshot
+    local-cypher
+
+`full` remains a compatibility name through v0.7.0.
+
+`full-validate-release` does not include live-dev runtime profiles, same-state profiles, `state-audit-dev`, adversarial harness checks, deployment validation, or production security proof.
+
+`full-runtime-dev` is future-only until its member set and semantics are deliberately modeled.

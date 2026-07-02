@@ -243,6 +243,34 @@ entries:
       - not production security proof
     include_in_front_readme: true
 
+  - id: runner.full-validate-release
+    command: go run . --profile full-validate-release
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: public
+    maturity: release_supported
+    introduced_in: v0.6.30
+    source_path: tools/carbonstack-validate/main.go
+    validation_surface: release package validation ladder
+    short_help: Run the explicit release-package validation profile; exact alias to current full behavior.
+    why_exists: Preferred explicit name for the release/package-root validation ladder previously exposed as full; prevents broad full naming from implying live-dev, deployment, or production security validation.
+    include_in_front_readme: true
+    optional_flags:
+      - flag: --root
+    related_profiles:
+      - full
+      - release-snapshot
+      - local-cypher
+    nonclaims:
+      - not deployment
+      - not local-backbone
+      - not runtime Comms UX
+      - not production security proof
+      - not full-runtime-dev
+      - not live-dev aggregation
+      - not adversarial harness
+      - not package publisher
   - id: runner.release-snapshot
     command: go run . --profile release-snapshot
     repo: carbonstack

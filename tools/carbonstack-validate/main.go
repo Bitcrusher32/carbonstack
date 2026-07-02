@@ -111,7 +111,7 @@ func main() {
 		})
 	case "relay-openmls-join-dev":
 		runErr = r.RelayOpenMLSJoinDev()
-	case "full":
+	case "full", "full-validate-release":
 		fmt.Println("profile full runs release-snapshot, then local-cypher")
 		fmt.Println("release-snapshot already calls core; full does not call core a second time")
 		if err := r.ReleaseSnapshot(); err != nil {
