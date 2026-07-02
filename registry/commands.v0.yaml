@@ -1381,6 +1381,70 @@ entries:
       - not metadata privacy
     include_in_front_readme: false
 
+
+  - id: carbonstack.script.stage-v0.7.0-package
+    command: scripts/stage-v0.7.0-package.sh
+    repo: carbonstack
+    component: scripts
+    kind: script
+    audience: dev
+    maturity: experimental
+    introduced_in: v0.6.33
+    source_path: carbonstack/scripts/stage-v0.7.0-package.sh
+    validation_surface: v0.7.0 package staging and release metadata generation
+    short_help: Stage a tracked-source v0.7.0 rehearsal package with release metadata, generated command reference, checksums, staged release assets, and archive output.
+    why_exists: Provides the v0.7.0-specific package staging path so v0.6.0 package scripts are treated as prior art rather than reused as v0.7.0 evidence unchanged.
+    optional_flags:
+      - flag: positional stage_root
+        meaning: Optional stage root; defaults to /tmp/carbonstack-v0.7.0-stage.
+        boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the stage root.
+    related_profiles:
+      - runner.write-checksums
+      - runner.verify-checksums
+      - runner.full-validate-release
+    nonclaims:
+      - does not cut release
+      - does not upload assets
+      - does not include carbonstack-os
+      - not production security validation
+      - not deployment
+      - not local-backbone
+      - not hostile-server safety
+    include_in_front_readme: false
+
+  - id: carbonstack.script.rehearse-v0.7.0-package
+    command: scripts/rehearse-v0.7.0-package.sh
+    repo: carbonstack
+    component: scripts
+    kind: script
+    audience: dev
+    maturity: experimental
+    introduced_in: v0.6.33
+    source_path: carbonstack/scripts/rehearse-v0.7.0-package.sh
+    validation_surface: v0.7.0 staged archive fresh-extraction rehearsal
+    short_help: Stage, archive, fresh-extract, asset-checksum-verify, package-checksum-verify, run full-validate-release, and scan final artifacts for the v0.7.0 rehearsal package.
+    why_exists: Provides the v0.7.0 fresh package-root rehearsal path before any public release tag or asset upload, preserving package artifact hygiene and current release-validation naming boundaries.
+    optional_flags:
+      - flag: positional stage_root
+        meaning: Optional stage root; defaults to /tmp/carbonstack-v0.7.0-stage.
+        boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the stage script removes the stage root.
+      - flag: positional rehearsal_root
+        meaning: Optional rehearsal/extraction root; defaults to /tmp/carbonstack-v0.7.0-rehearsal.
+        boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the rehearsal root.
+    related_profiles:
+      - runner.verify-checksums
+      - runner.full-validate-release
+    nonclaims:
+      - does not cut release
+      - does not upload assets
+      - does not include carbonstack-os
+      - not production security proof
+      - not deployment
+      - not local-backbone
+      - not hostile-server safety
+      - package rehearsal evidence only
+    include_in_front_readme: false
+
   - id: carbonstack.script.stage-v0.6.0-package
     command: scripts/stage-v0.6.0-package.sh
     repo: carbonstack

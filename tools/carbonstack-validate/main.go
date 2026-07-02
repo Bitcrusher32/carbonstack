@@ -112,8 +112,8 @@ func main() {
 	case "relay-openmls-join-dev":
 		runErr = r.RelayOpenMLSJoinDev()
 	case "full", "full-validate-release":
-		fmt.Println("profile full runs release-snapshot, then local-cypher")
-		fmt.Println("release-snapshot already calls core; full does not call core a second time")
+		fmt.Printf("profile %s runs release-snapshot, then local-cypher\n", r.Profile)
+		fmt.Println("release-snapshot already calls core; full/full-validate-release do not call core a second time")
 		if err := r.ReleaseSnapshot(); err != nil {
 			runErr = err
 		} else {
@@ -126,7 +126,7 @@ func main() {
 	case "verify-checksums":
 		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, full, release-snapshot, write-checksums, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, full, full-validate-release, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {

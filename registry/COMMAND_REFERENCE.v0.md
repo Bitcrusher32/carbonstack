@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **87**
+Registry entry count: **89**
 
 ## Release/package validation and package-helper profiles
 
@@ -1271,7 +1271,7 @@ Entries in this section: **3**
 
 ## Historical scripts and smoke helpers
 
-Entries in this section: **14**
+Entries in this section: **16**
 
 ### `carbonstack.script.rehearse-v0.5.0-package`
 
@@ -1333,6 +1333,39 @@ Entries in this section: **14**
   - not local-backbone
   - not hostile-server safety
 
+### `carbonstack.script.rehearse-v0.7.0-package`
+
+- **Command:** `scripts/rehearse-v0.7.0-package.sh`
+- **Repo:** `carbonstack`
+- **Component:** `scripts`
+- **Kind:** `script`
+- **Audience:** `dev`
+- **Maturity:** `experimental`
+- **Introduced in:** `v0.6.33`
+- **Source path:** `carbonstack/scripts/rehearse-v0.7.0-package.sh`
+- **Validation surface:** v0.7.0 staged archive fresh-extraction rehearsal
+- **Front README candidate:** `false`
+
+**What it does:** Stage, archive, fresh-extract, asset-checksum-verify, package-checksum-verify, run full-validate-release, and scan final artifacts for the v0.7.0 rehearsal package.
+
+**Why it exists:** Provides the v0.7.0 fresh package-root rehearsal path before any public release tag or asset upload, preserving package artifact hygiene and current release-validation naming boundaries.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `positional stage_root` — Optional stage root; defaults to /tmp/carbonstack-v0.7.0-stage. Boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the stage script removes the stage root.
+  - `positional rehearsal_root` — Optional rehearsal/extraction root; defaults to /tmp/carbonstack-v0.7.0-rehearsal. Boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the rehearsal root.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - does not cut release
+  - does not upload assets
+  - does not include carbonstack-os
+  - not production security proof
+  - not deployment
+  - not local-backbone
+  - not hostile-server safety
+  - package rehearsal evidence only
+
 ### `carbonstack.script.stage-v0.5.0-package`
 
 - **Command:** `scripts/stage-v0.5.0-package.sh`
@@ -1390,6 +1423,37 @@ Entries in this section: **14**
   - does not include carbonstack-os
   - not production security validation
   - not local-backbone
+
+### `carbonstack.script.stage-v0.7.0-package`
+
+- **Command:** `scripts/stage-v0.7.0-package.sh`
+- **Repo:** `carbonstack`
+- **Component:** `scripts`
+- **Kind:** `script`
+- **Audience:** `dev`
+- **Maturity:** `experimental`
+- **Introduced in:** `v0.6.33`
+- **Source path:** `carbonstack/scripts/stage-v0.7.0-package.sh`
+- **Validation surface:** v0.7.0 package staging and release metadata generation
+- **Front README candidate:** `false`
+
+**What it does:** Stage a tracked-source v0.7.0 rehearsal package with release metadata, generated command reference, checksums, staged release assets, and archive output.
+
+**Why it exists:** Provides the v0.7.0-specific package staging path so v0.6.0 package scripts are treated as prior art rather than reused as v0.7.0 evidence unchanged.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `positional stage_root` — Optional stage root; defaults to /tmp/carbonstack-v0.7.0-stage. Boundary: Must be /tmp/carbonstack-* or $HOME/carbonstack-* because the script removes the stage root.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - does not cut release
+  - does not upload assets
+  - does not include carbonstack-os
+  - not production security validation
+  - not deployment
+  - not local-backbone
+  - not hostile-server safety
 
 ### `carbonstack.script.validate-local`
 
