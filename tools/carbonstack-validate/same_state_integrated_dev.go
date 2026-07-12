@@ -267,6 +267,7 @@ func (r *Runner) runSameStateMessageSendOpenAck(sub *relayOpenMLSJoinSubrun, mes
 		"go",
 		"run", "./cmd/comms",
 		"message-send-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.AliceState,
 		"--to-device", sub.BobDeviceID,
 		"--sidecar-device-label", sub.AliceSidecarLabel,
@@ -282,7 +283,7 @@ func (r *Runner) runSameStateMessageSendOpenAck(sub *relayOpenMLSJoinSubrun, mes
 		"message sent",
 		"command: message-send-dev",
 		"implementation_path: openmls-send-dev",
-		"backend: OpenMLS sidecar + Cypher application-message envelope",
+		"backend: OpenMLS sidecar + Cypher Relay Space-scoped application-message envelope",
 		"status: sent",
 		"recipient_device_id: " + sub.BobDeviceID,
 		"conversation: " + sub.AliceConversationLabel,
@@ -304,6 +305,7 @@ func (r *Runner) runSameStateMessageSendOpenAck(sub *relayOpenMLSJoinSubrun, mes
 		"go",
 		"run", "./cmd/comms",
 		"message-inbox-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.BobState,
 		"--sidecar-device-label", sub.BobSidecarLabel,
 		"--conversation", sub.BobConversationLabel,
@@ -318,7 +320,7 @@ func (r *Runner) runSameStateMessageSendOpenAck(sub *relayOpenMLSJoinSubrun, mes
 		"message inbox",
 		"command: message-inbox-dev",
 		"implementation_path: openmls-inbox-dev",
-		"backend: OpenMLS sidecar + Cypher application-message envelope",
+		"backend: OpenMLS sidecar + Cypher Relay Space-scoped application-message envelope",
 		"device_id: " + sub.BobDeviceID,
 		"ack_requested: true",
 		"message opened",
@@ -338,7 +340,7 @@ func (r *Runner) runSameStateMessageSendOpenAck(sub *relayOpenMLSJoinSubrun, mes
 		}
 	}
 
-	count, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	count, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}
@@ -349,8 +351,8 @@ func (r *Runner) runSameStateMessageSendOpenAck(sub *relayOpenMLSJoinSubrun, mes
 	return nil
 }
 
-func sameStateDeviceInboxCount(baseURL string, deviceID string) (int, error) {
-	resp, err := http.Get(baseURL + "/v0/devices/" + deviceID + "/envelopes")
+func sameStateDeviceInboxCount(baseURL string, relaySpace string, deviceID string) (int, error) {
+	resp, err := http.Get(baseURL + "/v0/relay-spaces/" + relaySpace + "/devices/" + deviceID + "/envelopes")
 	if err != nil {
 		return 0, fmt.Errorf("fetch device inbox after same-state ack: %w", err)
 	}

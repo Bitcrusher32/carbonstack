@@ -243,6 +243,7 @@ func (r *Runner) runSameStateUnsupportedContentTypeNoAckThenCorrectOpen(sub *rel
 		"go",
 		"run", "./cmd/comms",
 		"message-send-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.AliceState,
 		"--to-device", sub.BobDeviceID,
 		"--sidecar-device-label", sub.AliceSidecarLabel,
@@ -297,7 +298,7 @@ func (r *Runner) runSameStateUnsupportedContentTypeNoAckThenCorrectOpen(sub *rel
 	if err != nil {
 		return err
 	}
-	inboxBeforeUnsupportedOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	inboxBeforeUnsupportedOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}
@@ -329,6 +330,7 @@ func (r *Runner) runSameStateUnsupportedContentTypeNoAckThenCorrectOpen(sub *rel
 		"go",
 		"run", "./cmd/comms",
 		"message-inbox-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.BobState,
 		"--sidecar-device-label", sub.BobSidecarLabel,
 		"--conversation", sub.BobConversationLabel,
@@ -370,7 +372,7 @@ func (r *Runner) runSameStateUnsupportedContentTypeNoAckThenCorrectOpen(sub *rel
 	if err != nil {
 		return err
 	}
-	inboxAfterUnsupportedOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	inboxAfterUnsupportedOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}
@@ -405,6 +407,7 @@ func (r *Runner) runSameStateUnsupportedContentTypeNoAckThenCorrectOpen(sub *rel
 		"go",
 		"run", "./cmd/comms",
 		"message-inbox-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.BobState,
 		"--sidecar-device-label", sub.BobSidecarLabel,
 		"--conversation", sub.BobConversationLabel,
@@ -437,7 +440,7 @@ func (r *Runner) runSameStateUnsupportedContentTypeNoAckThenCorrectOpen(sub *rel
 	if err != nil {
 		return err
 	}
-	inboxAfterCorrectOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	inboxAfterCorrectOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}

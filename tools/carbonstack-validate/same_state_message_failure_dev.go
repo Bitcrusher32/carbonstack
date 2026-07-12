@@ -241,6 +241,7 @@ func (r *Runner) runSameStateWrongConversationNoAckThenCorrectOpen(sub *relayOpe
 		"go",
 		"run", "./cmd/comms",
 		"message-send-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.AliceState,
 		"--to-device", sub.BobDeviceID,
 		"--sidecar-device-label", sub.AliceSidecarLabel,
@@ -270,7 +271,7 @@ func (r *Runner) runSameStateWrongConversationNoAckThenCorrectOpen(sub *relayOpe
 	if err != nil {
 		return err
 	}
-	inboxBeforeBadOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	inboxBeforeBadOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}
@@ -291,6 +292,7 @@ func (r *Runner) runSameStateWrongConversationNoAckThenCorrectOpen(sub *relayOpe
 		"go",
 		"run", "./cmd/comms",
 		"message-inbox-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.BobState,
 		"--sidecar-device-label", sub.BobSidecarLabel,
 		"--conversation", wrongConversationLabel,
@@ -332,7 +334,7 @@ func (r *Runner) runSameStateWrongConversationNoAckThenCorrectOpen(sub *relayOpe
 	if err != nil {
 		return err
 	}
-	inboxAfterBadOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	inboxAfterBadOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}
@@ -359,6 +361,7 @@ func (r *Runner) runSameStateWrongConversationNoAckThenCorrectOpen(sub *relayOpe
 		"go",
 		"run", "./cmd/comms",
 		"message-inbox-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.BobState,
 		"--sidecar-device-label", sub.BobSidecarLabel,
 		"--conversation", sub.BobConversationLabel,
@@ -391,7 +394,7 @@ func (r *Runner) runSameStateWrongConversationNoAckThenCorrectOpen(sub *relayOpe
 	if err != nil {
 		return err
 	}
-	inboxAfterCorrectOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	inboxAfterCorrectOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}

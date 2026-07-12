@@ -245,6 +245,7 @@ func (r *Runner) runSameStateRecipientFailureNoAckThenCorrectOpen(sub *relayOpen
 		"go",
 		"run", "./cmd/comms",
 		"message-send-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.AliceState,
 		"--to-device", sub.BobDeviceID,
 		"--sidecar-device-label", sub.AliceSidecarLabel,
@@ -274,11 +275,11 @@ func (r *Runner) runSameStateRecipientFailureNoAckThenCorrectOpen(sub *relayOpen
 	if err != nil {
 		return err
 	}
-	bobInboxBeforeWrongAttempts, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	bobInboxBeforeWrongAttempts, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}
-	aliceInboxBeforeWrongAttempts, err := sameStateDeviceInboxCount(sub.BaseURL, sub.AliceDeviceID)
+	aliceInboxBeforeWrongAttempts, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.AliceDeviceID)
 	if err != nil {
 		return err
 	}
@@ -328,6 +329,7 @@ func (r *Runner) runSameStateRecipientFailureNoAckThenCorrectOpen(sub *relayOpen
 			"go",
 			"run", "./cmd/comms",
 			"message-inbox-dev",
+			"--relay-space", sub.RelaySpace,
 			"--state", tc.StatePath,
 			"--sidecar-device-label", tc.Sidecar,
 			"--conversation", sub.BobConversationLabel,
@@ -346,7 +348,7 @@ func (r *Runner) runSameStateRecipientFailureNoAckThenCorrectOpen(sub *relayOpen
 		if err != nil {
 			return err
 		}
-		bobInboxAfterWrongAttempt, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+		bobInboxAfterWrongAttempt, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 		if err != nil {
 			return err
 		}
@@ -374,6 +376,7 @@ func (r *Runner) runSameStateRecipientFailureNoAckThenCorrectOpen(sub *relayOpen
 		"go",
 		"run", "./cmd/comms",
 		"message-inbox-dev",
+		"--relay-space", sub.RelaySpace,
 		"--state", sub.BobState,
 		"--sidecar-device-label", sub.BobSidecarLabel,
 		"--conversation", sub.BobConversationLabel,
@@ -406,7 +409,7 @@ func (r *Runner) runSameStateRecipientFailureNoAckThenCorrectOpen(sub *relayOpen
 	if err != nil {
 		return err
 	}
-	bobInboxAfterCorrectOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.BobDeviceID)
+	bobInboxAfterCorrectOpen, err := sameStateDeviceInboxCount(sub.BaseURL, sub.RelaySpace, sub.BobDeviceID)
 	if err != nil {
 		return err
 	}
@@ -430,6 +433,8 @@ func assertSameStateRecipientFailureNoFalseSuccess(output string, label string) 
 		"message inbox",
 		"command: message-inbox-dev",
 		"implementation_path: openmls-inbox-dev",
+		"backend: OpenMLS sidecar + Cypher Relay Space-scoped application-message envelope",
+		"relay_space_id:",
 		"ack_requested: true",
 		"opened_envelopes: 0",
 		"ack_failures: 0",
@@ -449,8 +454,18 @@ func assertSameStateRecipientFailureNoFalseSuccess(output string, label string) 
 		}
 	}
 
-	if !strings.Contains(output, "unsupported_envelopes: 1") && !strings.Contains(output, "open_failures: 1") {
-		return fmt.Errorf("%s output did not show either unsupported skip or message-open failure", label)
+	scopedEmptyInbox := strings.Contains(output, "queued_envelopes: 0") &&
+		strings.Contains(output, "unsupported_envelopes: 0") &&
+		strings.Contains(output, "open_failures: 0")
+
+	inspectedFailure := strings.Contains(output, "unsupported_envelopes: 1") ||
+		strings.Contains(output, "open_failures: 1")
+
+	if !scopedEmptyInbox && !inspectedFailure {
+		return fmt.Errorf(
+			"%s output showed neither scoped empty-inbox isolation nor an inspected envelope failure",
+			label,
+		)
 	}
 
 	return nil
