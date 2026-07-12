@@ -2058,6 +2058,37 @@ entries:
       - not vault/key-storage safety
       - not PQ or hybrid security
 
+  - id: runner.full-operational-spine-dev
+    command: go run . --profile full-operational-spine-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: future
+    introduced_in: v0.7.1
+    source_path: docs/234-v0.7.1-gate-a-operational-workflow-contract-v0.md
+    validation_surface: documentation and registry placeholder only; not implemented
+    short_help: Future preferred full operational-spine lifecycle aggregate after the required workflow leaves are stable.
+    why_exists: Preserves the accepted Gate A requirement that the preferred lifecycle has a command-table-visible full-prefixed classification while leaf and internal workflows remain documented, callable, and separately testable.
+    related_profiles:
+      - runner.integrated-runtime-dev
+      - runner.relay-openmls-join-dev
+      - runner.dev-runtime-openmls-wrappers
+      - runner.same-state-integrated-dev
+      - runner.state-audit-dev
+    nonclaims:
+      - future placeholder only
+      - command is not implemented
+      - not included in full
+      - not included in full-validate-release
+      - not release-package validation
+      - does not replace documented or callable leaf profiles
+      - not deployment
+      - not production secure messaging
+      - not hostile-server safety
+      - not adversarial campaign evidence
+    include_in_front_readme: false
+
   - id: runner.registry-lookup
     command: go run . --profile registry-lookup --registry-id <id>
     repo: carbonstack

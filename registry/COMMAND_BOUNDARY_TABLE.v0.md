@@ -1,7 +1,7 @@
 # CarbonStack command boundary table v0
 
 Status: provisional release-boundary artifact
-Checkpoint: v0.5.69
+Checkpoint: v0.7.1 Gate A acceptance package
 Source registry: `registry/commands.v0.yaml`
 
 ## Purpose
@@ -14,13 +14,12 @@ Flag coverage is hybrid and intentionally partial: this table renders `required_
 
 ## Summary
 
-- Registry entries rendered: 75
+- Registry entries rendered: 76
 - Front README candidates: 8
 - Release-supported entries: 4
 - Legacy entries: 10
 - Internal entries: 10
-- Future entries: 2
-
+- Future entries: 3
 ## Classification table
 
 ### 01. Runner validation profiles
@@ -33,6 +32,7 @@ Flag coverage is hybrid and intentionally partial: this table renders `required_
 | `runner.dev-runtime-openmls` | `go run . --profile dev-runtime-openmls` | dev/manual; not release-package validation | dev / dev_only | Validate the direct-sidecar dev OpenMLS runtime smoke path through Comms and Cypher. | — | scripts: carbonstack-comms/scripts/dev-openmls-runtime-smoke.sh | direct OpenMLS runtime smoke<br>tools/carbonstack-validate/dev_runtime_openmls.go | not local-backbone<br>not release-package validation<br>not included in full<br>not mature messaging UX<br>not production security proof |
 | `runner.dev-runtime-openmls-wrappers` | `go run . --profile dev-runtime-openmls-wrappers` | dev/manual; not release-package validation | dev / dev_only | Validate the bootstrap-wrapper plus message-wrapper dev OpenMLS runtime path through Comms and Cypher. | — | scripts: carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh | wrapper-based OpenMLS runtime smoke<br>tools/carbonstack-validate/dev_runtime_openmls_wrappers.go | not local-backbone<br>does not replace dev-runtime-openmls yet<br>not release-package validation<br>not included in full<br>not mature messaging UX<br>not production security proof |
 | `runner.integrated-runtime-dev` | `go run . --profile integrated-runtime-dev` | dev/manual live-umbrella integrated composition; excluded from full/release-snapshot | dev / dev_only | Run Relay onboarding proof then wrapper normal-message proof as one integrated dev validation ladder. | optional: `--clean-generated` | related: `runner.relay-openmls-join-dev`, `runner.dev-runtime-openmls-wrappers` | live-umbrella integrated runtime composition<br>tools/carbonstack-validate/integrated_runtime_dev.go | not included in full<br>not included in release-snapshot<br>not package-root validation<br>not production secure messaging<br>not hostile-server safety<br>not local-backbone<br>not mature messenger UX |
+| runner.full-operational-spine-dev | go run . --profile full-operational-spine-dev | future preferred operational lifecycle aggregate; not implemented | dev | Accepted Gate A full-prefixed preferred lifecycle aggregate after required leaf workflows are stable | no current flags; future context must remain explicit | integrated-runtime-dev; relay-openmls-join-dev; dev-runtime-openmls-wrappers; same-state-integrated-dev; state-audit-dev | documentation and registry placeholder only; docs/234-v0.7.1-gate-a-operational-workflow-contract-v0.md | future placeholder only; not implemented; not release validation; does not replace callable leaf profiles; not deployment; not production secure messaging |
 | `runner.registry-lookup` | `go run . --profile registry-lookup --registry-id <id>` | dev/operator lookup; classification only | dev / experimental | Print command-registry entry details by registry ID or literal command, including maturity, lifecycle status, source path, validation surface, related surfaces, and nonclaims. | optional: `--registry-id`, `--command` | — | command-boundary registry lookup<br>tools/carbonstack-validate/registry_lookup.go | registry presence is not promotion<br>not generated public manual<br>not production UX<br>not security certification |
 | `runner.full` | `go run . --profile full` | release/package validation surface; still claim-bounded | public / release_supported | Run release-snapshot, then local-cypher, from a fresh release package root. | — | profiles: release-snapshot, local-cypher | release package validation ladder<br>tools/carbonstack-validate/main.go | not deployment<br>not local-backbone<br>not runtime Comms UX<br>not production security proof |
 | `runner.release-snapshot` | `go run . --profile release-snapshot` | release/package validation surface; still claim-bounded | dev / release_supported | Validate release package layout, metadata, checksums, strict pre-test artifact hygiene, then core. | — | — | release package layout/checksum/core validation<br>tools/carbonstack-validate/release_snapshot.go | does not package or upload releases<br>not deployment<br>not production security proof |

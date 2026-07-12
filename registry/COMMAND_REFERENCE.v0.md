@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **89**
+Registry entry count: **90**
 
 ## Release/package validation and package-helper profiles
 
@@ -2317,7 +2317,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **11**
+Entries in this section: **12**
 
 ### `comms.dev-create-invite`
 
@@ -2396,6 +2396,39 @@ Entries in this section: **11**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `runner.full-operational-spine-dev`
+
+- **Command:** `go run . --profile full-operational-spine-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `future`
+- **Introduced in:** `v0.7.1`
+- **Source path:** `docs/234-v0.7.1-gate-a-operational-workflow-contract-v0.md`
+- **Validation surface:** documentation and registry placeholder only; not implemented
+- **Front README candidate:** `false`
+
+**What it does:** Future preferred full operational-spine lifecycle aggregate after the required workflow leaves are stable.
+
+**Why it exists:** Preserves the accepted Gate A requirement that the preferred lifecycle has a command-table-visible full-prefixed classification while leaf and internal workflows remain documented, callable, and separately testable.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:** Not recorded in registry.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - future placeholder only
+  - command is not implemented
+  - not included in full
+  - not included in full-validate-release
+  - not release-package validation
+  - does not replace documented or callable leaf profiles
+  - not deployment
+  - not production secure messaging
+  - not hostile-server safety
+  - not adversarial campaign evidence
 
 ### `runner.full-validate-release`
 
