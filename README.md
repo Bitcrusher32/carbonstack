@@ -166,8 +166,8 @@ CarbonStack's public release remains release-specific. For current source-tree i
 - `go run . --profile full-validate-release` from `carbonstack/tools/carbonstack-validate` — preferred explicit release-package validation name; exact alias to current `full` behavior.
 - `go run . --profile full` from `carbonstack/tools/carbonstack-validate` — compatibility release-package validation name.
 - `go run . --profile release-snapshot` from `carbonstack/tools/carbonstack-validate` — package-root/layout/checksum/core validation component.
-- `go run ./cmd/comms message-send-dev` from `carbonstack-comms` — recommended dev/pre-alpha normal-message send wrapper.
-- `go run ./cmd/comms message-inbox-dev` from `carbonstack-comms` — recommended dev/pre-alpha normal-message inbox/open wrapper.
+- `go run ./cmd/comms message-send-dev --relay-space <relay-space-id> ...` from `carbonstack-comms` — recommended dev/pre-alpha Relay Space-scoped normal-message send wrapper; active sender and recipient device routing membership is required.
+- `go run ./cmd/comms message-inbox-dev --relay-space <relay-space-id> ...` from `carbonstack-comms` — recommended dev/pre-alpha scoped inbox/open wrapper; `--ack` acts only after successful OpenMLS open.
 - `go run ./cmd/comms state-audit-dev` from `carbonstack-comms` — non-mutating state-boundary/proto-substrate inventory.
 - `registry/COMMAND_REFERENCE.v0.md` — generated command-boundary reference for dev/operator inspection.
 - `docs/229-v0.6.31-adversarial-harness-contract-evidence-matrix-v0.md` — adversarial harness contract/evidence-matrix model; not an implemented adversarial test runner.

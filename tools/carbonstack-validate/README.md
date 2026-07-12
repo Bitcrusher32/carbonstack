@@ -703,3 +703,19 @@ CarbonStackComms and CarbonStackCypher currently declare `go 1.26.3`.
 The v0.6.32A recon showed local WSL validation passing with Go 1.24.4, while Comms and Cypher remain declared at Go 1.26.3. Before v0.7.0 package-root rehearsal, release-facing docs should state the expected toolchain behavior clearly instead of relying on implicit local setup or Go toolchain auto-selection.
 
 This note does not change `go.mod` files.
+## Gate B scoped normal-message profiles
+
+The normal-message validation profiles now use explicit Relay Space context and active device routing membership. The wrapper smoke creates a Relay Space, registers Alice and Bob, proves scoped send/inbox/ack, and preserves unsupported envelopes for wrapper-level no-ack classification.
+
+Relevant profiles:
+
+- `dev-runtime-openmls-wrappers`
+- `integrated-runtime-dev`
+- `same-state-integrated-dev`
+- `same-state-message-failure-dev`
+- `same-state-message-malformed-payload-dev`
+- `same-state-message-recipient-failure-dev`
+- `same-state-message-replay-classification-dev`
+- `same-state-message-unsupported-dev`
+
+These remain live-umbrella dev/pre-alpha proofs, not release-package validation or production security evidence.

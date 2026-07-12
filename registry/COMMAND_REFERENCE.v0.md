@@ -299,18 +299,17 @@ Entries in this section: **4**
 - **Maturity:** `dev_only`
 - **Introduced in:** `v0.4.17`
 - **Source path:** `tools/carbonstack-validate/dev_runtime_openmls_wrappers.go`
-- **Validation surface:** wrapper-based OpenMLS runtime smoke
+- **Validation surface:** Relay Space-scoped wrapper-based OpenMLS runtime smoke
 - **Front README candidate:** `false`
 
-**What it does:** Validate the bootstrap-wrapper plus message-wrapper dev OpenMLS runtime path through Comms and Cypher.
+**What it does:** Validate wrapper bootstrap plus Relay Space creation, active routing membership, scoped normal-message send/open, and ack-after-open through Comms and Cypher.
 
-**Why it exists:** Separate maturity profile for openmls-*-dev bootstrap wrappers plus message-send-dev -> Cypher -> message-inbox-dev --ack before any future merge with direct smoke.
+**Why it exists:** Separate maturity profile proving the current wrapper normal-message path with explicit Relay Space context before any future consolidation with the lower-level direct smoke.
 
-- **Example:** `cd carbonstack/tools/carbonstack-validate && go run . --profile dev-runtime-openmls-wrappers --clean-generated`
 - **Required flags:** Not recorded in registry.
 - **Optional flags:**
-  - `--root` — optional live umbrella root override. Boundary: live-dev profile; not release-package validation.
-  - `--clean-generated` — clean known generated roots after successful validation. Boundary: only known OpenMLS sidecar generated roots are cleaned.
+  - `--root` — Explicit CarbonStack umbrella root.
+  - `--clean-generated` — Remove known generated OpenMLS sidecar roots after validation.
 - **Environment:** Not recorded in registry.
 - **Related registry rows:** Not recorded in registry.
 - **Not claims:**
@@ -319,6 +318,8 @@ Entries in this section: **4**
   - not release-package validation
   - not included in full
   - not mature messaging UX
+  - active Relay membership is routing authority only
+  - not identity verification
   - not production security proof
 
 ### `runner.integrated-runtime-dev`
@@ -331,25 +332,19 @@ Entries in this section: **4**
 - **Maturity:** `dev_only`
 - **Introduced in:** `v0.6.10`
 - **Source path:** `tools/carbonstack-validate/integrated_runtime_dev.go`
-- **Validation surface:** live-umbrella-integrated-runtime-dev-composition
+- **Validation surface:** live-umbrella Relay onboarding plus Relay Space-scoped normal-message composition
 - **Front README candidate:** `false`
 
-**What it does:** Run Relay onboarding proof, then wrapper normal-message runtime proof, as a live-umbrella integrated dev profile.
+**What it does:** Run Relay onboarding proof, then the scoped wrapper normal-message runtime proof, as a live-umbrella integrated dev profile.
 
-**Why it exists:** Provides the first bounded in-series integrated runtime validation ladder without mutating full or release-snapshot.
+**Why it exists:** Provides a bounded in-series validation ladder from Relay onboarding into explicit Relay Space context, active routing membership, scoped message send/open, and ack-after-open without mutating full or release-snapshot.
 
-- **Example:** `cd carbonstack/tools/carbonstack-validate && go run . --profile integrated-runtime-dev --root ~/repos/carbonstack_umbrella --clean-generated`
 - **Required flags:** Not recorded in registry.
 - **Optional flags:**
-  - `--root` — optional live umbrella root override. Boundary: live-dev profile; not release-package validation.
-  - `--clean-generated` — clean known generated roots after successful validation. Boundary: does not make the profile package-root validation.
+  - `--root` — Explicit CarbonStack umbrella root.
+  - `--clean-generated` — Remove known generated OpenMLS sidecar roots after validation.
 - **Environment:** Not recorded in registry.
-- **Related registry rows:**
-  - runner.relay-openmls-join-dev
-  - runner.dev-runtime-openmls-wrappers
-  - comms.openmls-relay-join-dev
-  - comms.message-send-dev
-  - comms.message-inbox-dev
+- **Related registry rows:** Not recorded in registry.
 - **Not claims:**
   - not included in full
   - not included in release-snapshot
@@ -365,9 +360,9 @@ Entries in this section: **4**
   - not deployment
   - not mature messenger UX
   - not general-public UX
+  - active Relay membership is routing authority only
   - does not replace relay-openmls-join-dev
   - does not replace dev-runtime-openmls-wrappers
-  - first implementation composes existing profile proofs in sequence; does not claim same-state package-root release proof
 
 ### `runner.relay-openmls-join-dev`
 
@@ -420,15 +415,23 @@ Entries in this section: **2**
 - **Lifecycle status:** `recommended_dev_wrapper`
 - **Introduced in:** `v0.6.5`
 - **Source path:** `carbonstack-comms/internal/app/message_wrappers_dev.go`
-- **Validation surface:** dev-runtime-openmls-wrappers and Comms package tests
+- **Validation surface:** dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state normal-message profiles, and Comms package tests
 - **Front README candidate:** `true`
 
-**What it does:** Opinionated dev/pre-alpha normal-message inbox/open wrapper over the OpenMLS application-message path for public testing.
+**What it does:** Fetch the Relay Space-scoped device inbox, classify ordinary-message envelopes, sidecar-open supported messages, and optionally ack only after successful open.
 
-**Why it exists:** Current opinionated dev/pre-alpha message inbox/open wrapper over the OpenMLS application-message receive/open path for the OpenMLS/Cypher proof surface; not mature product UX.
+**Why it exists:** Recommended dev/pre-alpha ordinary-message receive/open wrapper after onboarding. It requires explicit Relay Space context, preserves unsupported content or protocol pairs for explicit no-ack classification, and never treats routing membership as identity, trust, or MLS authorization.
 
-- **Required flags:** Not recorded in registry.
-- **Optional flags:** Not recorded in registry.
+- **Required flags:**
+  - `--relay-space` — Relay Space ID used for scoped device-inbox fetch and any subsequent scoped acknowledgement. Boundary: Required routing context; the command does not create the Relay Space or enroll members.
+  - `--sidecar-device-label` — Local OpenMLS sidecar device-state label used for message open.
+  - `--conversation` — Local OpenMLS conversation label used for message open.
+- **Optional flags:**
+  - `--state` — Local Comms state path; defaults to the normal Comms state path.
+  - `--sidecar-dir` — Explicit OpenMLS sidecar project directory override.
+  - `--message-label` — Optional application-message label filter.
+  - `--limit` — Maximum scoped inbox records to inspect; defaults to one.
+  - `--ack` — Request a scoped acknowledgement only after successful OpenMLS message-open. Boundary: Fetch, unsupported skip, and message-open failure do not acknowledge the envelope.
 - **Environment:** Not recorded in registry.
 - **Related registry rows:** Not recorded in registry.
 - **Not claims:**
@@ -440,7 +443,11 @@ Entries in this section: **2**
   - not verified identity
   - not durable local receive storage
   - does not perform Relay onboarding
+  - Relay membership is routing authority only
+  - Relay membership is not identity, trust, or MLS authorization
   - no ack on fetch
+  - no ack on unsupported content or protocol
+  - no ack on message-open failure
 
 ### `comms.message-send-dev`
 
@@ -453,15 +460,24 @@ Entries in this section: **2**
 - **Lifecycle status:** `recommended_dev_wrapper`
 - **Introduced in:** `v0.6.5`
 - **Source path:** `carbonstack-comms/internal/app/message_wrappers_dev.go`
-- **Validation surface:** dev-runtime-openmls-wrappers and Comms package tests
+- **Validation surface:** dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state normal-message profiles, and Comms package tests
 - **Front README candidate:** `true`
 
-**What it does:** Opinionated dev/pre-alpha normal-message send wrapper over the OpenMLS application-message path for public testing.
+**What it does:** Protect an OpenMLS application message and submit it through the required Relay Space-scoped Cypher route.
 
-**Why it exists:** Current opinionated dev/pre-alpha message send wrapper over the OpenMLS application-message send path for the OpenMLS/Cypher proof surface; not mature product UX.
+**Why it exists:** Recommended dev/pre-alpha ordinary-message send wrapper after onboarding. It requires explicit Relay Space context plus active sender and recipient device routing membership; that membership is routing authority only and is not identity, trust, or MLS authorization.
 
-- **Required flags:** Not recorded in registry.
-- **Optional flags:** Not recorded in registry.
+- **Required flags:**
+  - `--relay-space` — Relay Space ID used for the scoped application-message submission. Boundary: Required routing context; the command does not create the Relay Space or enroll members.
+  - `--to-device` — Recipient Cypher device ID, which must be an active member of the selected Relay Space.
+  - `--message` — Plaintext input protected by the OpenMLS sidecar before Relay submission.
+  - `--sidecar-device-label` — Local OpenMLS sidecar device-state label used for message protection.
+  - `--conversation` — Local OpenMLS conversation label used for message protection.
+- **Optional flags:**
+  - `--state` — Local Comms state path; defaults to the normal Comms state path.
+  - `--strict` — Block unknown, unverified, changed, or revoked trust decisions where the current dev trust surface supports them.
+  - `--sidecar-dir` — Explicit OpenMLS sidecar project directory override.
+  - `--message-label` — Dev/test message label carried inside the protected application message.
 - **Environment:** Not recorded in registry.
 - **Related registry rows:** Not recorded in registry.
 - **Not claims:**
@@ -473,6 +489,8 @@ Entries in this section: **2**
   - not verified identity
   - not secure enrollment
   - does not perform Relay onboarding
+  - Relay membership is routing authority only
+  - Relay membership is not identity, trust, or MLS authorization
 
 ## Lower-level direct OpenMLS message proof commands
 
@@ -1708,12 +1726,12 @@ Entries in this section: **16**
 - **Maturity:** `dev_only`
 - **Introduced in:** `v0.4.16`
 - **Source path:** `carbonstack-comms/scripts/dev-openmls-runtime-smoke-wrappers.sh`
-- **Validation surface:** dev-runtime-openmls-wrappers runner profile and wrapper OpenMLS runtime smoke
+- **Validation surface:** dev-runtime-openmls-wrappers runner profile and scoped wrapper OpenMLS runtime smoke
 - **Front README candidate:** `false`
 
-**What it does:** Wrapper-bootstrap smoke proving openmls-*-dev wrappers -> message-send-dev -> Cypher -> message-inbox-dev --ack.
+**What it does:** Create a Relay Space, register active Alice/Bob routing members, then prove scoped message-send-dev -> Cypher -> message-inbox-dev --ack.
 
-**Why it exists:** Higher-level wrapper maturity proof while direct-sidecar baseline remains.
+**Why it exists:** Higher-level wrapper maturity proof for the Relay Space-scoped normal-message path while the lower-level direct-sidecar baseline remains separately callable.
 
 - **Required flags:** Not recorded in registry.
 - **Optional flags:** Not recorded in registry.
@@ -1722,6 +1740,11 @@ Entries in this section: **16**
 - **Not claims:**
   - not local-backbone
   - does not replace direct smoke yet
+  - not Relay onboarding UX
+  - active membership is routing authority only
+  - not identity verification
+  - not production messaging UX
+  - not production security proof
 
 ## Internal OpenMLS sidecar provider commands
 
