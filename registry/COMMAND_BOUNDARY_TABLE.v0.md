@@ -1,7 +1,7 @@
 # CarbonStack command boundary table v0
 
 Status: provisional release-boundary artifact
-Checkpoint: v0.7.1 Gate A acceptance package
+Checkpoint: v0.7.1 Gate A closure hardening
 Source registry: `registry/commands.v0.yaml`
 
 ## Purpose
@@ -191,3 +191,5 @@ Policy boundary:
 - relationship to `full`: none yet; `full` remains release-package validation;
 - relationship to `release-snapshot`: none yet; release-snapshot remains package-root validation;
 - nonclaims: not production secure messaging, not hostile-server safety, not local-backbone, not mature UX, not package-root release validation.
+
+Gate A closure authority: `docs/234-v0.7.1-gate-a-operational-workflow-contract-v0.md` and `docs/235-v0.7.1-gate-a-closure-hardening-v0.md` jointly define the accepted workflow contract, capability domains, lifecycle matrix, refusal posture, and future aggregate boundary.
