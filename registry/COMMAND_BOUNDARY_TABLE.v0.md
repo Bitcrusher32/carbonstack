@@ -215,3 +215,19 @@ Gate B4 routing membership remains coordination and delivery authority only. It 
 | `runner.relay-space-delivery-authority-dev` | validation | Proves disable/left fetch and ACK refusal, queued persistence, restart behavior, and reactivation restoration | validation failure | not release validation, not KeyPackage lifecycle closure, not production safety |
 
 This post-B4 hardening is a prerequisite for Gate B5. It does not reopen Gate B4 and does not implement KeyPackage cryptographic lifecycle semantics.
+
+## Gate B5a KeyPackage inspection and ownership — v0.7.5
+
+| Registry ID | Command | Surface classification | Audience / maturity | Boundary |
+|---|---|---|---|---|
+| `sidecar.keypackage-inspect` | `cargo run -- keypackage-inspect --device-label <label> --keypackage <path>` | internal read-only provider helper; not public UX | internal / internal | Validates a serialized OpenMLS KeyPackage, recomputes its KeyPackage reference, exposes lifetime and artifact-integrity metadata, and checks local public-bundle ownership evidence without state mutation. |
+| `comms.openmls-keypackage-inspect-dev` | `go run ./cmd/comms openmls-keypackage-inspect-dev` | source/dev wrapper; not automatically public | dev / dev_only | Stable wrapper for the B5a read-only inspection surface; local sidecar ownership evidence is not account, device, Relay Space, human identity, or trust verification. |
+| `runner.keypackage-inspect-dev` | `go run . --profile keypackage-inspect-dev` | manual/dev live-umbrella proof; excluded from release/package aggregates | dev / dev_only | Generates two local KeyPackages, proves own inspection, lifetime metadata, no mutation, cross-owner refusal, and tamper refusal. |
+
+B5a identity rule:
+
+- validated OpenMLS `key_package_ref` is the lifecycle identity;
+- artifact SHA-256 is transport-integrity metadata only;
+- local owner evidence is limited to sidecar public-bundle summary/manifest agreement;
+- B5b owns repeatable generation and rotation;
+- B5c owns Relay publication and account/device/Relay Space binding.

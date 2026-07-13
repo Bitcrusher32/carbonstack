@@ -2426,3 +2426,117 @@ entries:
       - not mature messenger UX
       - not audit or certification
     include_in_front_readme: false
+
+  - id: sidecar.keypackage-inspect
+    command: cargo run -- keypackage-inspect --device-label <label> --keypackage <path>
+    repo: carbonstack-comms
+    component: internal/protocol/mls/openmls-sidecar
+    kind: sidecar-command
+    audience: internal
+    maturity: internal
+    lifecycle_status: active
+    introduced_in: v0.7.5
+    source_path: carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/keypackage_inspect.rs
+    validation_surface: read-only-openmls-keypackage-ref-lifetime-artifact-integrity-local-owner-evidence
+    short_help: Inspect and validate a serialized OpenMLS KeyPackage without mutating state.
+    why_exists: Establish the Gate B5a material KeyPackage identity, lifetime, integrity, and local ownership foundation.
+    required_flags:
+      - flag: --device-label
+        meaning: Local sidecar device label whose public-bundle metadata provides ownership evidence.
+      - flag: --keypackage
+        meaning: Serialized OpenMLS KeyPackage artifact path to inspect.
+    nonclaims:
+      - not repeatable KeyPackage generation
+      - not KeyPackage rotation
+      - not Relay publication
+      - not KeyPackage consumption
+      - not Welcome lifecycle
+      - not account identity verification
+      - not device identity verification
+      - not Relay Space membership verification
+      - not trust promotion
+      - not secure enrollment
+      - not production E2EE
+      - not local-backbone
+      - not deployment
+      - not audit or certification
+    include_in_front_readme: false
+
+  - id: comms.openmls-keypackage-inspect-dev
+    command: go run ./cmd/comms openmls-keypackage-inspect-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: comms-command
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.5
+    source_path: carbonstack-comms/internal/app/openmls_keypackage_inspect_dev.go
+    validation_surface: stable-dev-wrapper-for-read-only-keypackage-inspection
+    short_help: Inspect a serialized OpenMLS KeyPackage through a stable Comms dev wrapper.
+    why_exists: Expose the Gate B5a inspection result without promoting the internal sidecar command to production UX.
+    required_flags:
+      - flag: --sidecar-device-label
+        meaning: Local sidecar device label used for ownership evidence.
+      - flag: --keypackage
+        meaning: Serialized OpenMLS KeyPackage artifact path to inspect.
+    optional_flags:
+      - flag: --sidecar-dir
+        meaning: Explicit active OpenMLS sidecar directory.
+    nonclaims:
+      - not repeatable KeyPackage generation
+      - not KeyPackage rotation
+      - not Relay publication
+      - not KeyPackage consumption
+      - not Welcome lifecycle
+      - not account identity verification
+      - not device identity verification
+      - not Relay Space membership verification
+      - not trust promotion
+      - not secure enrollment
+      - not public UX stability
+      - not production E2EE
+      - not local-backbone
+      - not deployment
+      - not audit or certification
+    include_in_front_readme: false
+
+  - id: runner.keypackage-inspect-dev
+    command: go run . --profile keypackage-inspect-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.5
+    source_path: tools/carbonstack-validate/keypackage_inspect_dev.go
+    validation_surface: live-keypackage-generation-read-only-inspection-lifetime-local-owner-cross-owner-tamper-refusal
+    short_help: Prove material KeyPackage inspection, lifetime metadata, local ownership evidence, and read-only refusal behavior.
+    why_exists: Permanently lock the Gate B5a foundation before repeatable generation and rotation begin in B5b.
+    optional_flags:
+      - flag: --root
+        meaning: Explicit live umbrella root containing the CarbonStack repositories.
+      - flag: --clean-generated
+        meaning: Remove known generated OpenMLS build/state roots after successful validation.
+    nonclaims:
+      - not included in full
+      - not included in full-validate-release
+      - not included in release-snapshot
+      - not release-package validation
+      - not repeatable KeyPackage generation
+      - not KeyPackage rotation
+      - not Relay publication
+      - not KeyPackage consumption
+      - not Welcome lifecycle
+      - not account identity verification
+      - not device identity verification
+      - not Relay Space membership verification
+      - not trust promotion
+      - not secure enrollment
+      - not local-backbone
+      - not deployment
+      - not public ingress safety
+      - not mature messenger UX
+      - not audit or certification
+    include_in_front_readme: false

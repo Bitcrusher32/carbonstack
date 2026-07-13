@@ -220,3 +220,19 @@ Current prerequisite authority:
 Scoped Relay Space inbox and scoped ACK now require current active recipient membership. Disabled and left members cannot fetch or acknowledge queued envelopes; queued state remains persisted, restart-safe, and available again only after an allowed explicit reactivation or future rejoin workflow.
 
 This is routing/delivery authority only. B5 KeyPackage inspection, generation, publication, and consumption remain separate leaves.
+
+## Current v0.7.5 Gate B5a KeyPackage inspection and ownership
+
+Canonical decision/implementation contract:
+
+    docs/239-v0.7.5-gate-b5a-keypackage-inspection-ownership-v0.md
+
+B5a establishes a read-only KeyPackage inspection surface, validated
+OpenMLS KeyPackage reference identity, lifetime metadata, artifact-integrity
+metadata, and local sidecar ownership evidence.
+
+It does not implement repeatable generation, rotation, Relay publication,
+consumption, Welcome lifecycle, identity verification, or trust promotion.
+
+B5b is next. A continuity breakpoint will be cut immediately after B5b closes,
+before B5c begins.

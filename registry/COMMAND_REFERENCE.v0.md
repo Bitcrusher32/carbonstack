@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **96**
+Registry entry count: **99**
 
 ## Release/package validation and package-helper profiles
 
@@ -768,7 +768,7 @@ Entries in this section: **6**
 
 ## OpenMLS bootstrap, identity, and conversation commands
 
-Entries in this section: **7**
+Entries in this section: **8**
 
 ### `comms.openmls-bundle-export-dev`
 
@@ -944,6 +944,48 @@ Entries in this section: **7**
 - **Not claims:**
   - not production identity UX
   - does not mutate Comms trust state
+
+### `comms.openmls-keypackage-inspect-dev`
+
+- **Command:** `go run ./cmd/comms openmls-keypackage-inspect-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `comms-command`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/app/openmls_keypackage_inspect_dev.go`
+- **Validation surface:** stable-dev-wrapper-for-read-only-keypackage-inspection
+- **Front README candidate:** `false`
+
+**What it does:** Inspect a serialized OpenMLS KeyPackage through a stable Comms dev wrapper.
+
+**Why it exists:** Expose the Gate B5a inspection result without promoting the internal sidecar command to production UX.
+
+- **Required flags:**
+  - `--sidecar-device-label` — Local sidecar device label used for ownership evidence.
+  - `--keypackage` — Serialized OpenMLS KeyPackage artifact path to inspect.
+- **Optional flags:**
+  - `--sidecar-dir` — Explicit active OpenMLS sidecar directory.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not repeatable KeyPackage generation
+  - not KeyPackage rotation
+  - not Relay publication
+  - not KeyPackage consumption
+  - not Welcome lifecycle
+  - not account identity verification
+  - not device identity verification
+  - not Relay Space membership verification
+  - not trust promotion
+  - not secure enrollment
+  - not public UX stability
+  - not production E2EE
+  - not local-backbone
+  - not deployment
+  - not audit or certification
 
 ## Comms state, account, device, and trust commands
 
@@ -1748,7 +1790,7 @@ Entries in this section: **16**
 
 ## Internal OpenMLS sidecar provider commands
 
-Entries in this section: **10**
+Entries in this section: **11**
 
 ### `sidecar.conversation-add-member`
 
@@ -1920,6 +1962,46 @@ Entries in this section: **10**
   - dev-local status inspection only
   - not identity verification
   - not production trust UX
+
+### `sidecar.keypackage-inspect`
+
+- **Command:** `cargo run -- keypackage-inspect --device-label <label> --keypackage <path>`
+- **Repo:** `carbonstack-comms`
+- **Component:** `internal/protocol/mls/openmls-sidecar`
+- **Kind:** `sidecar-command`
+- **Audience:** `internal`
+- **Maturity:** `internal`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/keypackage_inspect.rs`
+- **Validation surface:** read-only-openmls-keypackage-ref-lifetime-artifact-integrity-local-owner-evidence
+- **Front README candidate:** `false`
+
+**What it does:** Inspect and validate a serialized OpenMLS KeyPackage without mutating state.
+
+**Why it exists:** Establish the Gate B5a material KeyPackage identity, lifetime, integrity, and local ownership foundation.
+
+- **Required flags:**
+  - `--device-label` — Local sidecar device label whose public-bundle metadata provides ownership evidence.
+  - `--keypackage` — Serialized OpenMLS KeyPackage artifact path to inspect.
+- **Optional flags:** Not recorded in registry.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not repeatable KeyPackage generation
+  - not KeyPackage rotation
+  - not Relay publication
+  - not KeyPackage consumption
+  - not Welcome lifecycle
+  - not account identity verification
+  - not device identity verification
+  - not Relay Space membership verification
+  - not trust promotion
+  - not secure enrollment
+  - not production E2EE
+  - not local-backbone
+  - not deployment
+  - not audit or certification
 
 ### `sidecar.message-open`
 
@@ -2340,7 +2422,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **18**
+Entries in this section: **19**
 
 ### `comms.dev-create-invite`
 
@@ -2567,6 +2649,51 @@ Entries in this section: **18**
   - not live-dev aggregation
   - not adversarial harness
   - not package publisher
+
+### `runner.keypackage-inspect-dev`
+
+- **Command:** `go run . --profile keypackage-inspect-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `tools/carbonstack-validate/keypackage_inspect_dev.go`
+- **Validation surface:** live-keypackage-generation-read-only-inspection-lifetime-local-owner-cross-owner-tamper-refusal
+- **Front README candidate:** `false`
+
+**What it does:** Prove material KeyPackage inspection, lifetime metadata, local ownership evidence, and read-only refusal behavior.
+
+**Why it exists:** Permanently lock the Gate B5a foundation before repeatable generation and rotation begin in B5b.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — Explicit live umbrella root containing the CarbonStack repositories.
+  - `--clean-generated` — Remove known generated OpenMLS build/state roots after successful validation.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in full-validate-release
+  - not included in release-snapshot
+  - not release-package validation
+  - not repeatable KeyPackage generation
+  - not KeyPackage rotation
+  - not Relay publication
+  - not KeyPackage consumption
+  - not Welcome lifecycle
+  - not account identity verification
+  - not device identity verification
+  - not Relay Space membership verification
+  - not trust promotion
+  - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not public ingress safety
+  - not mature messenger UX
+  - not audit or certification
 
 ### `runner.relay-space-delivery-authority-dev`
 
