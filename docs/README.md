@@ -200,3 +200,13 @@ Historical docs must not be used to imply production readiness, hostile-server s
 - 234-v0.7.1-gate-a-operational-workflow-contract-v0.md — accepted Gate A operational workflow contract covering the preferred lifecycle, explicit workspace context, workflow ownership, future full-operational-spine-dev classification, documented and callable leaf surfaces, Relay-scoped normal messaging, identity-domain separation, mutation classes, structured partial-completion results, acknowledgement rules, Relay membership authority, Cypher/MLS mismatch handling, state/concurrency policy, and validation boundaries.
 - 235-v0.7.1-gate-a-closure-hardening-v0.md — formal Gate A closure authority defining explicit client, relay-admin, and dev capability domains; preferred-lifecycle stage ownership and mutation mapping; minimum stage-specific refusal behavior; aggregate-to-leaf relationships; evidence requirements; and Gate A closure assertions.
 - `236-v0.7.2-gate-b-b3-relay-scoped-normal-message-path-v0.md` — current authority for explicit Relay Space context, active routing membership prerequisites, scoped ordinary-message send/inbox/ack, unsupported-envelope visibility, and B3b pre-closure posture.
+
+## Current v0.7.4 Gate B4 invite/member lifecycle closure
+
+Current Gate B4 closure authority:
+
+    docs/237-v0.7.4-gate-b-b4-invite-member-lifecycle-closure-v0.md
+
+This document records the implemented Relay Space invite/member lifecycle, including atomic invite claim, active/disabled/left routing-member states, explicit rejoin refusal, member inspection, restart persistence, command/registry surfaces, validation requirements, and hard nonclaims.
+
+Gate B4 is closed. Gate B remains open. B5 KeyPackage lifecycle is next and requires a consolidated deep reconnaissance pass before mutation.

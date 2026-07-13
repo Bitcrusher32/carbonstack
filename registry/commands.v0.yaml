@@ -2347,3 +2347,42 @@ entries:
       - not mature messenger UX
       - not audit or certification
     include_in_front_readme: false
+
+  - id: runner.relay-space-member-restart-dev
+    command: go run . --profile relay-space-member-restart-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.4
+    source_path: tools/carbonstack-validate/relay_space_member_restart_dev.go
+    validation_surface: live-umbrella-member-list-inspection-and-same-database-restart-persistence
+    short_help: Prove disabled and left Relay Space routing-member states survive Cypher restart and remain inspectable.
+    why_exists: Permanently locks Gate B4 restart persistence, member-list inspection, routing refusal/restoration, left-member rejoin refusal, and local-state immutability before formal B4 closure.
+    optional_flags:
+      - flag: --root
+        meaning: Explicit live umbrella root containing the CarbonStack repositories.
+    nonclaims:
+      - not included in full
+      - not included in full-validate-release
+      - not included in release-snapshot
+      - not release-package validation
+      - not authenticated Relay Space administration
+      - not production authorization
+      - not production backup or restore
+      - not rollback safety
+      - not hostile-server safety
+      - not identity verification
+      - not trust promotion
+      - not OpenMLS group membership mutation
+      - not member deletion
+      - not an explicit rejoin workflow
+      - not secure enrollment
+      - not local-backbone
+      - not deployment
+      - not public ingress safety
+      - not mature messenger UX
+      - not audit or certification
+    include_in_front_readme: false

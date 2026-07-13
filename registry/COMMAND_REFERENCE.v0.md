@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **94**
+Registry entry count: **95**
 
 ## Release/package validation and package-helper profiles
 
@@ -2340,7 +2340,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **16**
+Entries in this section: **17**
 
 ### `comms.dev-create-invite`
 
@@ -2603,6 +2603,51 @@ Entries in this section: **16**
   - not OpenMLS group membership
   - not secure enrollment
   - not member disable, leave, or removal lifecycle
+  - not local-backbone
+  - not deployment
+  - not public ingress safety
+  - not mature messenger UX
+  - not audit or certification
+
+### `runner.relay-space-member-restart-dev`
+
+- **Command:** `go run . --profile relay-space-member-restart-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.4`
+- **Source path:** `tools/carbonstack-validate/relay_space_member_restart_dev.go`
+- **Validation surface:** live-umbrella-member-list-inspection-and-same-database-restart-persistence
+- **Front README candidate:** `false`
+
+**What it does:** Prove disabled and left Relay Space routing-member states survive Cypher restart and remain inspectable.
+
+**Why it exists:** Permanently locks Gate B4 restart persistence, member-list inspection, routing refusal/restoration, left-member rejoin refusal, and local-state immutability before formal B4 closure.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — Explicit live umbrella root containing the CarbonStack repositories.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in full-validate-release
+  - not included in release-snapshot
+  - not release-package validation
+  - not authenticated Relay Space administration
+  - not production authorization
+  - not production backup or restore
+  - not rollback safety
+  - not hostile-server safety
+  - not identity verification
+  - not trust promotion
+  - not OpenMLS group membership mutation
+  - not member deletion
+  - not an explicit rejoin workflow
+  - not secure enrollment
   - not local-backbone
   - not deployment
   - not public ingress safety

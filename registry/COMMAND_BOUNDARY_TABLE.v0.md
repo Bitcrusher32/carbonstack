@@ -193,3 +193,15 @@ Policy boundary:
 - nonclaims: not production secure messaging, not hostile-server safety, not local-backbone, not mature UX, not package-root release validation.
 
 Gate A closure authority: `docs/234-v0.7.1-gate-a-operational-workflow-contract-v0.md` and `docs/235-v0.7.1-gate-a-closure-hardening-v0.md` jointly define the accepted workflow contract, capability domains, lifecycle matrix, refusal posture, and future aggregate boundary.
+
+## Gate B4 invite/member lifecycle closure — v0.7.4
+
+| Surface | Capability domain | Mutation/read authority | Required context | Explicit nonclaims |
+|---|---|---|---|---|
+| `comms.relay-space-invite-claim-dev` | participant/dev | Claims one Relay Space invite for an existing account/device pair; idempotent same-member retry | explicit state path, full invite token, existing account/device | not account creation, identity verification, trust promotion, OpenMLS membership, authenticated administration |
+| `runner.relay-space-invite-claim-dev` | validation | Proves created/already-active claim classification, one claim consumption, state immutability, and no trust/candidate mutation | live umbrella root | not release validation, production onboarding, secure enrollment |
+| `comms.relay-space-member-state-dev` | relay-admin/dev | Explicitly transitions active, disabled, or left routing-member state | explicit state path, Relay Space ID, routing-member ID, target state | not authenticated administration, member deletion, identity/trust/OpenMLS mutation, rejoin |
+| `runner.relay-space-member-state-dev` | validation | Proves transition, idempotence, routing refusal/restoration, left-member rejoin refusal, and local-state immutability | live umbrella root | not production authorization, secure membership UX, release validation |
+| `runner.relay-space-member-restart-dev` | validation | Proves member-list inspection and persistence of disabled/left state across restart using the same database | live umbrella root | not backup/restore, rollback safety, replication, authenticated administration, rejoin |
+
+Gate B4 routing membership remains coordination and delivery authority only. It is not verified identity, trust, sender authenticity, or OpenMLS group membership.
