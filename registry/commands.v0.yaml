@@ -2386,3 +2386,43 @@ entries:
       - not mature messenger UX
       - not audit or certification
     include_in_front_readme: false
+
+  - id: runner.relay-space-delivery-authority-dev
+    command: go run . --profile relay-space-delivery-authority-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.5
+    source_path: tools/carbonstack-validate/relay_space_delivery_authority_dev.go
+    validation_surface: live-umbrella-active-membership-scoped-inbox-ack-disable-left-restart-reactivation
+    short_help: Prove scoped Relay Space inbox and ACK require current active recipient membership while queued envelopes remain persisted.
+    why_exists: Locks the Gate B5 prerequisite that disable and leave revoke fetch and ACK authority without deleting queued delivery state, and that explicit reactivation restores access.
+    optional_flags:
+      - flag: --root
+        meaning: Explicit live umbrella root containing the CarbonStack repositories.
+      - flag: --clean-generated
+        meaning: Remove known generated OpenMLS build/state roots after successful validation where present.
+    nonclaims:
+      - not included in full
+      - not included in full-validate-release
+      - not included in release-snapshot
+      - not release-package validation
+      - not KeyPackage generation
+      - not KeyPackage inspection
+      - not KeyPackage consumption
+      - not Welcome lifecycle
+      - not OpenMLS group membership mutation
+      - not identity verification
+      - not trust promotion
+      - not authenticated administration
+      - not envelope deletion
+      - not secure enrollment
+      - not local-backbone
+      - not deployment
+      - not public ingress safety
+      - not mature messenger UX
+      - not audit or certification
+    include_in_front_readme: false

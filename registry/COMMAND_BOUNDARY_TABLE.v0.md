@@ -205,3 +205,13 @@ Gate A closure authority: `docs/234-v0.7.1-gate-a-operational-workflow-contract-
 | `runner.relay-space-member-restart-dev` | validation | Proves member-list inspection and persistence of disabled/left state across restart using the same database | live umbrella root | not backup/restore, rollback safety, replication, authenticated administration, rejoin |
 
 Gate B4 routing membership remains coordination and delivery authority only. It is not verified identity, trust, sender authenticity, or OpenMLS group membership.
+
+## Gate B5 prerequisite scoped delivery authority — v0.7.5
+
+| Surface | Capability domain | Authority | Refusal | Explicit nonclaims |
+|---|---|---|---|---|
+| `GET /v0/relay-spaces/{relay_space_id}/devices/{device_id}/envelopes` | routing/delivery | Exact recipient device must be a current active routing member; disabled/left members cannot fetch; queued rows remain persisted | `403 recipient_not_relay_member` | not identity, trust, MLS membership, KeyPackage consumption, deletion, authenticated administration |
+| `POST /v0/relay-spaces/{relay_space_id}/envelopes/{envelope_id}/ack` | routing/delivery | After envelope and recipient ownership checks, actual recipient must remain active; disabled/left members cannot ACK | `403 recipient_not_relay_member` | not processing proof by itself, not identity/trust, not MLS membership, not deletion |
+| `runner.relay-space-delivery-authority-dev` | validation | Proves disable/left fetch and ACK refusal, queued persistence, restart behavior, and reactivation restoration | validation failure | not release validation, not KeyPackage lifecycle closure, not production safety |
+
+This post-B4 hardening is a prerequisite for Gate B5. It does not reopen Gate B4 and does not implement KeyPackage cryptographic lifecycle semantics.

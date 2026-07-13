@@ -210,3 +210,13 @@ Current Gate B4 closure authority:
 This document records the implemented Relay Space invite/member lifecycle, including atomic invite claim, active/disabled/left routing-member states, explicit rejoin refusal, member inspection, restart persistence, command/registry surfaces, validation requirements, and hard nonclaims.
 
 Gate B4 is closed. Gate B remains open. B5 KeyPackage lifecycle is next and requires a consolidated deep reconnaissance pass before mutation.
+
+## Current v0.7.5 Gate B5 prerequisite scoped delivery authority
+
+Current prerequisite authority:
+
+    docs/238-v0.7.5-gate-b5-prerequisite-scoped-delivery-authority-v0.md
+
+Scoped Relay Space inbox and scoped ACK now require current active recipient membership. Disabled and left members cannot fetch or acknowledge queued envelopes; queued state remains persisted, restart-safe, and available again only after an allowed explicit reactivation or future rejoin workflow.
+
+This is routing/delivery authority only. B5 KeyPackage inspection, generation, publication, and consumption remain separate leaves.

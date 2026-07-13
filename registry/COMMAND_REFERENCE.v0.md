@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **95**
+Registry entry count: **96**
 
 ## Release/package validation and package-helper profiles
 
@@ -2340,7 +2340,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **17**
+Entries in this section: **18**
 
 ### `comms.dev-create-invite`
 
@@ -2567,6 +2567,51 @@ Entries in this section: **17**
   - not live-dev aggregation
   - not adversarial harness
   - not package publisher
+
+### `runner.relay-space-delivery-authority-dev`
+
+- **Command:** `go run . --profile relay-space-delivery-authority-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `tools/carbonstack-validate/relay_space_delivery_authority_dev.go`
+- **Validation surface:** live-umbrella-active-membership-scoped-inbox-ack-disable-left-restart-reactivation
+- **Front README candidate:** `false`
+
+**What it does:** Prove scoped Relay Space inbox and ACK require current active recipient membership while queued envelopes remain persisted.
+
+**Why it exists:** Locks the Gate B5 prerequisite that disable and leave revoke fetch and ACK authority without deleting queued delivery state, and that explicit reactivation restores access.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — Explicit live umbrella root containing the CarbonStack repositories.
+  - `--clean-generated` — Remove known generated OpenMLS build/state roots after successful validation where present.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in full-validate-release
+  - not included in release-snapshot
+  - not release-package validation
+  - not KeyPackage generation
+  - not KeyPackage inspection
+  - not KeyPackage consumption
+  - not Welcome lifecycle
+  - not OpenMLS group membership mutation
+  - not identity verification
+  - not trust promotion
+  - not authenticated administration
+  - not envelope deletion
+  - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not public ingress safety
+  - not mature messenger UX
+  - not audit or certification
 
 ### `runner.relay-space-invite-claim-dev`
 
