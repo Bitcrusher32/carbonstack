@@ -236,3 +236,19 @@ consumption, Welcome lifecycle, identity verification, or trust promotion.
 
 B5b is next. A continuity breakpoint will be cut immediately after B5b closes,
 before B5c begins.
+
+## Current v0.7.5 Gate B5b repeatable KeyPackage generation and rotation
+
+Canonical result and boundary:
+
+    docs/240-v0.7.5-gate-b5b-keypackage-generation-rotation-v0.md
+
+B5b provides persistent local KeyPackage generation, request idempotence,
+legacy adoption, restart-stable inventory, explicit metadata-only retirement,
+and device-local concurrency serialization.
+
+It does not publish to Relay, consume or ACK KeyPackages, process Welcome,
+or mutate trust/candidate state.
+
+A private LogDoc and Breakpoint JSON are mandatory immediately after B5b
+closure. B5c must not begin before that breakpoint is accepted.

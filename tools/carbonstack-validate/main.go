@@ -45,7 +45,7 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, full, full-validate-release, release-snapshot, write-checksums, verify-checksums")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, keypackage-rotation-dev, full, full-validate-release, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	registryID := flag.String("registry-id", "", "registry id to inspect when --profile registry-lookup is used")
 	registryCommand := flag.String("command", "", "literal registry command to inspect when --profile registry-lookup is used")
@@ -121,6 +121,8 @@ func main() {
 		runErr = r.RelaySpaceDeliveryAuthorityDev()
 	case "keypackage-inspect-dev":
 		runErr = r.KeyPackageInspectDev()
+	case "keypackage-rotation-dev":
+		runErr = r.KeyPackageRotationDev()
 	case "full", "full-validate-release":
 		fmt.Printf("profile %s runs release-snapshot, then local-cypher\n", r.Profile)
 		fmt.Println("release-snapshot already calls core; full/full-validate-release do not call core a second time")
@@ -136,7 +138,7 @@ func main() {
 	case "verify-checksums":
 		runErr = r.VerifyReleaseChecksums()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, full, full-validate-release, release-snapshot, write-checksums, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, keypackage-rotation-dev, full, full-validate-release, release-snapshot, write-checksums, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {

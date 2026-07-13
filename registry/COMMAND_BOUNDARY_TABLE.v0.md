@@ -231,3 +231,17 @@ B5a identity rule:
 - local owner evidence is limited to sidecar public-bundle summary/manifest agreement;
 - B5b owns repeatable generation and rotation;
 - B5c owns Relay publication and account/device/Relay Space binding.
+
+## Gate B5b repeatable KeyPackage generation and rotation — v0.7.5
+
+| Registry ID | Command | Surface classification | Audience / maturity | Boundary |
+|---|---|---|---|---|
+| `sidecar.keypackage-generate` | `cargo run -- keypackage-generate --device-label <label> --request-id <safe-id>` | internal persistent local lifecycle primitive | internal / internal | Loads and evolves provider storage, adopts complete legacy state, creates or replays one immutable generation, and publishes inventory last. No Relay behavior. |
+| `sidecar.keypackage-inventory` | `cargo run -- keypackage-inventory --device-label <label>` | internal read-only lifecycle inspection | internal / internal | Validates and reports persistent current, active, and retired generations without implicit repair. |
+| `sidecar.keypackage-retire` | `cargo run -- keypackage-retire --device-label <label> --generation-id <generation-id>` | internal metadata-only lifecycle mutation | internal / internal | Retires a non-current generation without deleting artifacts or private provider state. |
+| `comms.openmls-keypackage-generate-dev` | `go run ./cmd/comms openmls-keypackage-generate-dev` | source/dev wrapper; not public UX | dev / dev_only | Stable wrapper for local generation and idempotent replay. |
+| `comms.openmls-keypackage-inventory-dev` | `go run ./cmd/comms openmls-keypackage-inventory-dev` | source/dev wrapper; read-only | dev / dev_only | Stable wrapper for restart-persistent inventory inspection. |
+| `comms.openmls-keypackage-retire-dev` | `go run ./cmd/comms openmls-keypackage-retire-dev` | source/dev wrapper; metadata-only | dev / dev_only | Stable wrapper for explicit non-current retirement. |
+| `runner.keypackage-rotation-dev` | `go run . --profile keypackage-rotation-dev` | manual/dev live-umbrella proof; excluded from release aggregates | dev / dev_only | Proves legacy adoption, repeatable generation, idempotence, restart, retirement, concurrency, provider persistence, and B5a inspection. |
+
+B5b remains local-only. Relay publication, KeyPackage consume/ACK, Welcome lifecycle, and trust mutation are downstream and are not implied by registry presence.

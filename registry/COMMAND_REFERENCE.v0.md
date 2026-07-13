@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **99**
+Registry entry count: **106**
 
 ## Release/package validation and package-helper profiles
 
@@ -768,7 +768,7 @@ Entries in this section: **6**
 
 ## OpenMLS bootstrap, identity, and conversation commands
 
-Entries in this section: **8**
+Entries in this section: **11**
 
 ### `comms.openmls-bundle-export-dev`
 
@@ -945,6 +945,43 @@ Entries in this section: **8**
   - not production identity UX
   - does not mutate Comms trust state
 
+### `comms.openmls-keypackage-generate-dev`
+
+- **Command:** `go run ./cmd/comms openmls-keypackage-generate-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `comms-command`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/app/openmls_keypackage_rotation_dev.go`
+- **Validation surface:** stable-dev-wrapper-for-repeatable-keypackage-generation
+- **Front README candidate:** `false`
+
+**What it does:** Generate or replay a persistent local KeyPackage generation through Comms.
+
+**Why it exists:** Expose the B5b generation primitive without promoting it to public or production UX.
+
+- **Required flags:**
+  - `--sidecar-device-label` — Local sidecar device label.
+  - `--request-id` — Device-local idempotency identity.
+- **Optional flags:**
+  - `--sidecar-dir` — Explicit active OpenMLS sidecar directory.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not Relay publication
+  - not KeyPackage consumption
+  - not Welcome lifecycle
+  - not identity verification
+  - not trust promotion
+  - not public UX stability
+  - not production onboarding
+  - not local-backbone
+  - not deployment
+  - not audit or certification
+
 ### `comms.openmls-keypackage-inspect-dev`
 
 - **Command:** `go run ./cmd/comms openmls-keypackage-inspect-dev`
@@ -968,6 +1005,7 @@ Entries in this section: **8**
   - `--keypackage` — Serialized OpenMLS KeyPackage artifact path to inspect.
 - **Optional flags:**
   - `--sidecar-dir` — Explicit active OpenMLS sidecar directory.
+  - `--generation-manifest` — Optional immutable B5b generation manifest used as local ownership evidence.
 - **Environment:** Not recorded in registry.
 - **Related registry rows:** Not recorded in registry.
 - **Not claims:**
@@ -983,6 +1021,80 @@ Entries in this section: **8**
   - not secure enrollment
   - not public UX stability
   - not production E2EE
+  - not local-backbone
+  - not deployment
+  - not audit or certification
+
+### `comms.openmls-keypackage-inventory-dev`
+
+- **Command:** `go run ./cmd/comms openmls-keypackage-inventory-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `comms-command`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/app/openmls_keypackage_rotation_dev.go`
+- **Validation surface:** stable-dev-wrapper-for-read-only-keypackage-inventory
+- **Front README candidate:** `false`
+
+**What it does:** Inspect persistent local KeyPackage generations through Comms.
+
+**Why it exists:** Expose the B5b inventory without implicit repair or Relay behavior.
+
+- **Required flags:**
+  - `--sidecar-device-label` — Local sidecar device label.
+- **Optional flags:**
+  - `--sidecar-dir` — Explicit active OpenMLS sidecar directory.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not mutation or implicit repair
+  - not Relay publication
+  - not KeyPackage consumption
+  - not Welcome lifecycle
+  - not identity verification
+  - not trust promotion
+  - not public UX stability
+  - not production onboarding
+  - not local-backbone
+  - not deployment
+  - not audit or certification
+
+### `comms.openmls-keypackage-retire-dev`
+
+- **Command:** `go run ./cmd/comms openmls-keypackage-retire-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `comms-command`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/app/openmls_keypackage_rotation_dev.go`
+- **Validation surface:** stable-dev-wrapper-for-metadata-only-keypackage-retirement
+- **Front README candidate:** `false`
+
+**What it does:** Retire a non-current local KeyPackage generation through Comms.
+
+**Why it exists:** Expose explicit B5b retirement without deletion, Relay revocation, or trust mutation.
+
+- **Required flags:**
+  - `--sidecar-device-label` — Local sidecar device label.
+  - `--generation-id` — Non-current generation to retire.
+- **Optional flags:**
+  - `--sidecar-dir` — Explicit active OpenMLS sidecar directory.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not deletion or garbage collection
+  - not Relay revocation
+  - not KeyPackage consumption
+  - not Welcome lifecycle
+  - not trust revocation
+  - not public UX stability
+  - not production onboarding
   - not local-backbone
   - not deployment
   - not audit or certification
@@ -1790,7 +1902,7 @@ Entries in this section: **16**
 
 ## Internal OpenMLS sidecar provider commands
 
-Entries in this section: **11**
+Entries in this section: **14**
 
 ### `sidecar.conversation-add-member`
 
@@ -1963,6 +2075,43 @@ Entries in this section: **11**
   - not identity verification
   - not production trust UX
 
+### `sidecar.keypackage-generate`
+
+- **Command:** `cargo run -- keypackage-generate --device-label <label> --request-id <safe-id>`
+- **Repo:** `carbonstack-comms`
+- **Component:** `internal/protocol/mls/openmls-sidecar`
+- **Kind:** `sidecar-command`
+- **Audience:** `internal`
+- **Maturity:** `internal`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/keypackage_rotation.rs`
+- **Validation surface:** persistent-repeatable-keypackage-generation-idempotent-request-legacy-adoption-provider-state
+- **Front README candidate:** `false`
+
+**What it does:** Generate or replay one device-local persistent OpenMLS KeyPackage generation.
+
+**Why it exists:** Establish Gate B5b repeatable generation while preserving provider state and every prior generation.
+
+- **Required flags:**
+  - `--device-label` — Local sidecar device label that owns the KeyPackage inventory and provider state.
+  - `--request-id` — Permanent device-local idempotency identity for the generation request.
+- **Optional flags:** Not recorded in registry.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not Relay publication
+  - not KeyPackage consumption
+  - not KeyPackage ACK
+  - not Welcome lifecycle
+  - not account or Relay Space identity binding
+  - not trust promotion
+  - not secure enrollment
+  - not production onboarding
+  - not local-backbone
+  - not deployment
+  - not audit or certification
+
 ### `sidecar.keypackage-inspect`
 
 - **Command:** `cargo run -- keypackage-inspect --device-label <label> --keypackage <path>`
@@ -1984,7 +2133,8 @@ Entries in this section: **11**
 - **Required flags:**
   - `--device-label` — Local sidecar device label whose public-bundle metadata provides ownership evidence.
   - `--keypackage` — Serialized OpenMLS KeyPackage artifact path to inspect.
-- **Optional flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--generation-manifest` — Optional immutable B5b generation manifest used as local ownership evidence.
 - **Environment:** Not recorded in registry.
 - **Related registry rows:** Not recorded in registry.
 - **Not claims:**
@@ -1999,6 +2149,78 @@ Entries in this section: **11**
   - not trust promotion
   - not secure enrollment
   - not production E2EE
+  - not local-backbone
+  - not deployment
+  - not audit or certification
+
+### `sidecar.keypackage-inventory`
+
+- **Command:** `cargo run -- keypackage-inventory --device-label <label>`
+- **Repo:** `carbonstack-comms`
+- **Component:** `internal/protocol/mls/openmls-sidecar`
+- **Kind:** `sidecar-command`
+- **Audience:** `internal`
+- **Maturity:** `internal`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/keypackage_rotation.rs`
+- **Validation surface:** read-only-persistent-keypackage-generation-inventory
+- **Front README candidate:** `false`
+
+**What it does:** Inspect the persistent device-local KeyPackage generation inventory.
+
+**Why it exists:** Expose current, active, and retired generations across restart without implicit repair.
+
+- **Required flags:**
+  - `--device-label` — Local sidecar device label whose inventory is inspected.
+- **Optional flags:** Not recorded in registry.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not mutation or implicit repair
+  - not Relay publication
+  - not KeyPackage consumption
+  - not KeyPackage ACK
+  - not Welcome lifecycle
+  - not identity verification
+  - not trust promotion
+  - not production onboarding
+  - not local-backbone
+  - not deployment
+  - not audit or certification
+
+### `sidecar.keypackage-retire`
+
+- **Command:** `cargo run -- keypackage-retire --device-label <label> --generation-id <generation-id>`
+- **Repo:** `carbonstack-comms`
+- **Component:** `internal/protocol/mls/openmls-sidecar`
+- **Kind:** `sidecar-command`
+- **Audience:** `internal`
+- **Maturity:** `internal`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `carbonstack-comms/internal/protocol/mls/openmls-sidecar/src/keypackage_rotation.rs`
+- **Validation surface:** explicit-noncurrent-keypackage-retirement-metadata-only
+- **Front README candidate:** `false`
+
+**What it does:** Retire a non-current KeyPackage generation without deleting its material.
+
+**Why it exists:** Establish explicit overlap retirement while preserving artifacts and private provider state for later Welcome handling.
+
+- **Required flags:**
+  - `--device-label` — Local sidecar device label that owns the generation.
+  - `--generation-id` — Non-current persistent generation to mark retired.
+- **Optional flags:** Not recorded in registry.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not deletion or garbage collection
+  - not Relay revocation
+  - not KeyPackage consumption
+  - not KeyPackage ACK
+  - not Welcome lifecycle
+  - not trust revocation
+  - not production onboarding
   - not local-backbone
   - not deployment
   - not audit or certification
@@ -2422,7 +2644,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **19**
+Entries in this section: **20**
 
 ### `comms.dev-create-invite`
 
@@ -2686,6 +2908,49 @@ Entries in this section: **19**
   - not Welcome lifecycle
   - not account identity verification
   - not device identity verification
+  - not Relay Space membership verification
+  - not trust promotion
+  - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not public ingress safety
+  - not mature messenger UX
+  - not audit or certification
+
+### `runner.keypackage-rotation-dev`
+
+- **Command:** `go run . --profile keypackage-rotation-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.5`
+- **Source path:** `tools/carbonstack-validate/keypackage_rotation_dev.go`
+- **Validation surface:** live-legacy-adoption-repeatable-generation-idempotence-retirement-concurrency-restart-inspection
+- **Front README candidate:** `false`
+
+**What it does:** Prove the persistent B5b KeyPackage generation and rotation lifecycle.
+
+**Why it exists:** Permanently lock B5b before Relay publication begins in B5c.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — Explicit live umbrella root containing the CarbonStack repositories.
+  - `--clean-generated` — Remove known generated OpenMLS build and state roots after successful validation.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in full-validate-release
+  - not included in release-snapshot
+  - not release-package validation
+  - not Relay publication
+  - not KeyPackage consumption
+  - not KeyPackage ACK
+  - not Welcome lifecycle
+  - not account identity verification
   - not Relay Space membership verification
   - not trust promotion
   - not secure enrollment
