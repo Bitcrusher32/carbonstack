@@ -2267,3 +2267,83 @@ entries:
       - not mature messenger UX
       - not audit or certification
     include_in_front_readme: false
+
+  - id: comms.relay-space-member-state-dev
+    command: go run ./cmd/comms relay-space-member-state-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.4
+    source_path: carbonstack-comms/internal/app/relay_space_member_state_dev.go
+    validation_surface: Comms client/app tests and runner.relay-space-member-state-dev
+    short_help: Explicitly transition one Relay Space routing member between active, disabled, and left states.
+    why_exists: Provides the bounded dev/operator surface for the Cypher routing-member state authority while preserving idempotence, routing enforcement, left-member rejoin refusal, and strict identity/trust/OpenMLS nonclaims.
+    required_flags:
+      - flag: --state
+        meaning: Explicit local Comms state path controlling the Cypher server context; the command does not rewrite the file.
+      - flag: --relay-space-id
+        meaning: Authoritative Relay Space ID containing the routing member.
+      - flag: --routing-member-id
+        meaning: Routing member ID to transition.
+      - flag: --target-state
+        meaning: Target state active, disabled, or left.
+    optional_flags:
+      - flag: --server
+        meaning: Explicit Cypher server URL override; otherwise the selected state file controls the server.
+    nonclaims:
+      - not authenticated Relay Space administration
+      - not production authorization
+      - not caller identity proof
+      - not identity verification
+      - not trust promotion
+      - not OpenMLS group membership mutation
+      - not member deletion
+      - not an explicit rejoin workflow
+      - not secure enrollment
+      - not production membership UX
+      - not public API safety
+      - not deployment
+      - not local-backbone
+      - not audit or certification
+    include_in_front_readme: false
+
+  - id: runner.relay-space-member-state-dev
+    command: go run . --profile relay-space-member-state-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.4
+    source_path: tools/carbonstack-validate/relay_space_member_state_dev.go
+    validation_surface: live-umbrella-disable-idempotence-reactivate-leave-rejoin-refusal-routing-enforcement
+    short_help: Prove the Comms member-state operator command controls routing authority and preserves the explicit rejoin boundary.
+    why_exists: Locks the Gate B4d state-transition leaf to deterministic disable, reactivate, leave, idempotence, routing refusal/restoration, local-state immutability, and identity/trust/OpenMLS nonclaims.
+    optional_flags:
+      - flag: --root
+        meaning: Explicit live umbrella root containing the CarbonStack repositories.
+    nonclaims:
+      - not included in full
+      - not included in full-validate-release
+      - not included in release-snapshot
+      - not release-package validation
+      - not authenticated Relay Space administration
+      - not production authorization
+      - not production secure messaging
+      - not production E2EE
+      - not identity verification
+      - not trust promotion
+      - not OpenMLS group membership mutation
+      - not member deletion
+      - not an explicit rejoin workflow
+      - not secure enrollment
+      - not local-backbone
+      - not deployment
+      - not public ingress safety
+      - not mature messenger UX
+      - not audit or certification
+    include_in_front_readme: false

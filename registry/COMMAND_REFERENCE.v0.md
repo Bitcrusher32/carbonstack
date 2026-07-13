@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **92**
+Registry entry count: **94**
 
 ## Release/package validation and package-helper profiles
 
@@ -2340,7 +2340,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **14**
+Entries in this section: **16**
 
 ### `comms.dev-create-invite`
 
@@ -2402,6 +2402,49 @@ Entries in this section: **14**
   - not secure enrollment
   - not production membership UX
   - not authenticated public API safety
+  - not deployment
+  - not local-backbone
+  - not audit or certification
+
+### `comms.relay-space-member-state-dev`
+
+- **Command:** `go run ./cmd/comms relay-space-member-state-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.4`
+- **Source path:** `carbonstack-comms/internal/app/relay_space_member_state_dev.go`
+- **Validation surface:** Comms client/app tests and runner.relay-space-member-state-dev
+- **Front README candidate:** `false`
+
+**What it does:** Explicitly transition one Relay Space routing member between active, disabled, and left states.
+
+**Why it exists:** Provides the bounded dev/operator surface for the Cypher routing-member state authority while preserving idempotence, routing enforcement, left-member rejoin refusal, and strict identity/trust/OpenMLS nonclaims.
+
+- **Required flags:**
+  - `--state` — Explicit local Comms state path controlling the Cypher server context; the command does not rewrite the file.
+  - `--relay-space-id` — Authoritative Relay Space ID containing the routing member.
+  - `--routing-member-id` — Routing member ID to transition.
+  - `--target-state` — Target state active, disabled, or left.
+- **Optional flags:**
+  - `--server` — Explicit Cypher server URL override; otherwise the selected state file controls the server.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not authenticated Relay Space administration
+  - not production authorization
+  - not caller identity proof
+  - not identity verification
+  - not trust promotion
+  - not OpenMLS group membership mutation
+  - not member deletion
+  - not an explicit rejoin workflow
+  - not secure enrollment
+  - not production membership UX
+  - not public API safety
   - not deployment
   - not local-backbone
   - not audit or certification
@@ -2560,6 +2603,50 @@ Entries in this section: **14**
   - not OpenMLS group membership
   - not secure enrollment
   - not member disable, leave, or removal lifecycle
+  - not local-backbone
+  - not deployment
+  - not public ingress safety
+  - not mature messenger UX
+  - not audit or certification
+
+### `runner.relay-space-member-state-dev`
+
+- **Command:** `go run . --profile relay-space-member-state-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.4`
+- **Source path:** `tools/carbonstack-validate/relay_space_member_state_dev.go`
+- **Validation surface:** live-umbrella-disable-idempotence-reactivate-leave-rejoin-refusal-routing-enforcement
+- **Front README candidate:** `false`
+
+**What it does:** Prove the Comms member-state operator command controls routing authority and preserves the explicit rejoin boundary.
+
+**Why it exists:** Locks the Gate B4d state-transition leaf to deterministic disable, reactivate, leave, idempotence, routing refusal/restoration, local-state immutability, and identity/trust/OpenMLS nonclaims.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — Explicit live umbrella root containing the CarbonStack repositories.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in full-validate-release
+  - not included in release-snapshot
+  - not release-package validation
+  - not authenticated Relay Space administration
+  - not production authorization
+  - not production secure messaging
+  - not production E2EE
+  - not identity verification
+  - not trust promotion
+  - not OpenMLS group membership mutation
+  - not member deletion
+  - not an explicit rejoin workflow
+  - not secure enrollment
   - not local-backbone
   - not deployment
   - not public ingress safety
