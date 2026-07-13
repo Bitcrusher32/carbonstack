@@ -252,3 +252,17 @@ or mutate trust/candidate state.
 
 A private LogDoc and Breakpoint JSON are mandatory immediately after B5b
 closure. B5c must not begin before that breakpoint is accepted.
+
+## Current v0.7.6 Gate B5c idempotent KeyPackage publication
+
+Canonical result and boundary:
+
+    docs/241-v0.7.6-gate-b5c-keypackage-publication-v0.md
+
+B5c publishes one explicitly selected B5b generation only after B5a inspection.
+
+Cypher persists one sender-scoped publication binding so exact retries return the original envelope ID across response loss, acknowledgement, concurrency, and process restart. Cross-destination reuse and reference/payload disagreement are deterministic conflicts.
+
+The older `openmls-relay-keypackage-submit-dev` path remains compatibility-only and does not provide B5c publication semantics.
+
+B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome, or mutate identity/trust state. B5d remains next.

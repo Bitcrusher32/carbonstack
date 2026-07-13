@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **106**
+Registry entry count: **109**
 
 ## Release/package validation and package-helper profiles
 
@@ -562,7 +562,7 @@ Entries in this section: **2**
 
 ## Relay onboarding and artifact commands
 
-Entries in this section: **6**
+Entries in this section: **7**
 
 ### `comms.openmls-relay-add-member-dev`
 
@@ -666,6 +666,52 @@ Entries in this section: **6**
   - no trust mutation
   - no verification
   - not production inbox UX
+
+### `comms.openmls-relay-keypackage-publish-dev`
+
+- **Command:** `go run ./cmd/comms openmls-relay-keypackage-publish-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `comms-command`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.6`
+- **Source path:** `carbonstack-comms/internal/app/openmls_keypackage_publication_dev.go`
+- **Validation surface:** explicit-b5b-generation-selection-b5a-inspection-dedicated-relay-publication-created-or-replay
+- **Front README candidate:** `false`
+
+**What it does:** Inspect and publish one existing active KeyPackage generation through the B5c route.
+
+**Why it exists:** Expose deterministic Relay publication without silently generating, consuming, acknowledging, or promoting identity.
+
+- **Required flags:**
+  - `--relay-space` — Relay Space destination.
+  - `--to-device` — Recipient Cypher device.
+  - `--sidecar-device-label` — Local sidecar owner label.
+  - `--generation-id` — Existing active B5b generation.
+- **Optional flags:**
+  - `--state` — Explicit Comms state path.
+  - `--sidecar-dir` — Explicit active OpenMLS sidecar directory.
+  - `--client-created-at` — Test/dev metadata override; not publication identity.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not implicit KeyPackage generation
+  - not retired-generation publication
+  - not KeyPackage consumption
+  - not KeyPackage ACK
+  - not add-member
+  - not Welcome submission or join
+  - not account or device identity verification
+  - not Relay Space membership verification by the client
+  - not trust promotion
+  - not secure enrollment
+  - not public UX stability
+  - not production key distribution
+  - not local-backbone
+  - not deployment
+  - not audit or certification
 
 ### `comms.openmls-relay-keypackage-submit-dev`
 
@@ -2343,7 +2389,7 @@ Entries in this section: **14**
 
 ## Cypher server and HTTP API surfaces
 
-Entries in this section: **9**
+Entries in this section: **10**
 
 ### `cypher.api.accounts-devices`
 
@@ -2564,6 +2610,50 @@ Entries in this section: **9**
   - not identity verification
   - not production account recovery
 
+### `cypher.api.relay-space-keypackage-publication`
+
+- **Command:** `POST /v0/relay-spaces/{relay_space_id}/keypackage-publications`
+- **Repo:** `carbonstack-cypher`
+- **Component:** `internal/httpapi`
+- **Kind:** `cypher-api-route`
+- **Audience:** `dev`
+- **Maturity:** `experimental`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.6`
+- **Source path:** `carbonstack-cypher/internal/httpapi/keypackage_publication.go`
+- **Validation surface:** sender-scoped-keypackage-publication-created-replay-reuse-identity-conflict-concurrency-restart
+- **Front README candidate:** `false`
+
+**What it does:** Publish one opaque KeyPackage artifact with persistent exact-replay and reuse classification.
+
+**Why it exists:** Establish the Gate B5c Relay publication authority without creating a public KeyPackage directory or consuming the artifact.
+
+- **Required flags:**
+  - `relay_space_id` — Relay Space path identity.
+  - `sender_device_id` — Active sender routing device.
+  - `recipient_device_id` — Active recipient routing device.
+  - `key_package_ref` — Claimed OpenMLS KeyPackage reference in sha256 form.
+  - `ciphertext_b64` — Exact serialized KeyPackage bytes encoded as base64.
+- **Optional flags:**
+  - `client_created_at` — Client metadata only; differences do not create another publication.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not a public KeyPackage directory
+  - not KeyPackage generation
+  - not KeyPackage inspection
+  - not KeyPackage consumption
+  - not KeyPackage ACK
+  - not add-member
+  - not Welcome lifecycle
+  - not identity verification
+  - not trust promotion
+  - not secure enrollment
+  - not authenticated public API safety
+  - not production key distribution
+  - not deployment
+  - not audit or certification
+
 ### `cypher.server`
 
 - **Command:** `go run ./cmd/cypher`
@@ -2644,7 +2734,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **20**
+Entries in this section: **21**
 
 ### `comms.dev-create-invite`
 
@@ -2911,6 +3001,50 @@ Entries in this section: **20**
   - not Relay Space membership verification
   - not trust promotion
   - not secure enrollment
+  - not local-backbone
+  - not deployment
+  - not public ingress safety
+  - not mature messenger UX
+  - not audit or certification
+
+### `runner.keypackage-publication-dev`
+
+- **Command:** `go run . --profile keypackage-publication-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.6`
+- **Source path:** `carbonstack/tools/carbonstack-validate/keypackage_publication_dev.go`
+- **Validation surface:** b5b-generation-b5a-inspection-cypher-created-replay-conflicts-concurrency-restart-comms-selection
+- **Front README candidate:** `false`
+
+**What it does:** Prove the bounded B5c KeyPackage publication contract.
+
+**Why it exists:** Permanently lock publication identity, duplicate/reuse classification, persistence, and no-consume/no-ACK boundaries before B5d.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — Explicit live umbrella root containing the CarbonStack repositories.
+  - `--clean-generated` — Remove known generated OpenMLS build and state roots after successful validation.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in full-validate-release
+  - not included in release-snapshot
+  - not release-package validation
+  - not KeyPackage consumption
+  - not KeyPackage ACK
+  - not add-member
+  - not Welcome lifecycle
+  - not identity verification
+  - not trust promotion
+  - not secure enrollment
+  - not production secure messaging
+  - not production E2EE
   - not local-backbone
   - not deployment
   - not public ingress safety
