@@ -2194,3 +2194,76 @@ entries:
       - not audit or certification
     lifecycle_status: relay_onboarding_join_transition_candidate
     include_in_front_readme: false
+
+  - id: comms.relay-space-invite-claim-dev
+    command: go run ./cmd/comms relay-space-invite-claim-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.4
+    source_path: carbonstack-comms/internal/app/relay_space_invite_claim_dev.go
+    validation_surface: Comms client/app tests and runner.relay-space-invite-claim-dev
+    short_help: Claim a Relay Space invite for the existing account and device in an explicit local Comms state file.
+    why_exists: Provides the participant-side dev/operator leaf for the atomic Cypher Relay Space invite claim route without creating accounts, registering devices, mutating trust, or implying OpenMLS membership.
+    required_flags:
+      - flag: --state
+        meaning: Explicit local Comms state path containing the existing account_id, device_id, and server context.
+      - flag: --invite-token
+        meaning: Full Relay Space invite token; display_code and word_code are not accepted as lookup credentials.
+    optional_flags:
+      - flag: --server
+        meaning: Explicit Cypher server URL override; otherwise the selected state file controls the server.
+      - flag: --display-label
+        meaning: Routing-member display label; defaults to the selected state device label.
+    nonclaims:
+      - not account creation
+      - not device registration
+      - not Relay Space administration
+      - not identity verification
+      - not trust promotion
+      - not OpenMLS group membership
+      - not secure enrollment
+      - not production membership UX
+      - not authenticated public API safety
+      - not deployment
+      - not local-backbone
+      - not audit or certification
+    include_in_front_readme: false
+
+  - id: runner.relay-space-invite-claim-dev
+    command: go run . --profile relay-space-invite-claim-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.7.4
+    source_path: tools/carbonstack-validate/relay_space_invite_claim_dev.go
+    validation_surface: live-umbrella-relay-space-invite-claim-created-idempotent-no-local-state-mutation
+    short_help: Prove the Comms Relay Space invite-claim command creates one routing member, preserves idempotence, and does not rewrite local state.
+    why_exists: Locks the Gate B4c participant/operator claim leaf to the atomic B4b Cypher route with deterministic created and already_active classifications, exact claim accounting, and strict identity/trust/OpenMLS nonclaims.
+    optional_flags:
+      - flag: --root
+        meaning: Explicit live umbrella root containing the CarbonStack repositories.
+    nonclaims:
+      - not included in full
+      - not included in full-validate-release
+      - not included in release-snapshot
+      - not release-package validation
+      - not production secure messaging
+      - not production E2EE
+      - not identity verification
+      - not trust promotion
+      - not OpenMLS group membership
+      - not secure enrollment
+      - not member disable, leave, or removal lifecycle
+      - not local-backbone
+      - not deployment
+      - not public ingress safety
+      - not mature messenger UX
+      - not audit or certification
+    include_in_front_readme: false

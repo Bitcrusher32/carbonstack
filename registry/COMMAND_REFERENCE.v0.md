@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **90**
+Registry entry count: **92**
 
 ## Release/package validation and package-helper profiles
 
@@ -2340,7 +2340,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **12**
+Entries in this section: **14**
 
 ### `comms.dev-create-invite`
 
@@ -2365,6 +2365,46 @@ Entries in this section: **12**
 - **Related registry rows:** Not recorded in registry.
 - **Not claims:**
   - dev helper only
+
+### `comms.relay-space-invite-claim-dev`
+
+- **Command:** `go run ./cmd/comms relay-space-invite-claim-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.4`
+- **Source path:** `carbonstack-comms/internal/app/relay_space_invite_claim_dev.go`
+- **Validation surface:** Comms client/app tests and runner.relay-space-invite-claim-dev
+- **Front README candidate:** `false`
+
+**What it does:** Claim a Relay Space invite for the existing account and device in an explicit local Comms state file.
+
+**Why it exists:** Provides the participant-side dev/operator leaf for the atomic Cypher Relay Space invite claim route without creating accounts, registering devices, mutating trust, or implying OpenMLS membership.
+
+- **Required flags:**
+  - `--state` — Explicit local Comms state path containing the existing account_id, device_id, and server context.
+  - `--invite-token` — Full Relay Space invite token; display_code and word_code are not accepted as lookup credentials.
+- **Optional flags:**
+  - `--server` — Explicit Cypher server URL override; otherwise the selected state file controls the server.
+  - `--display-label` — Routing-member display label; defaults to the selected state device label.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not account creation
+  - not device registration
+  - not Relay Space administration
+  - not identity verification
+  - not trust promotion
+  - not OpenMLS group membership
+  - not secure enrollment
+  - not production membership UX
+  - not authenticated public API safety
+  - not deployment
+  - not local-backbone
+  - not audit or certification
 
 ### `comms.simulate-key-change`
 
@@ -2484,6 +2524,47 @@ Entries in this section: **12**
   - not live-dev aggregation
   - not adversarial harness
   - not package publisher
+
+### `runner.relay-space-invite-claim-dev`
+
+- **Command:** `go run . --profile relay-space-invite-claim-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.7.4`
+- **Source path:** `tools/carbonstack-validate/relay_space_invite_claim_dev.go`
+- **Validation surface:** live-umbrella-relay-space-invite-claim-created-idempotent-no-local-state-mutation
+- **Front README candidate:** `false`
+
+**What it does:** Prove the Comms Relay Space invite-claim command creates one routing member, preserves idempotence, and does not rewrite local state.
+
+**Why it exists:** Locks the Gate B4c participant/operator claim leaf to the atomic B4b Cypher route with deterministic created and already_active classifications, exact claim accounting, and strict identity/trust/OpenMLS nonclaims.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — Explicit live umbrella root containing the CarbonStack repositories.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not included in full
+  - not included in full-validate-release
+  - not included in release-snapshot
+  - not release-package validation
+  - not production secure messaging
+  - not production E2EE
+  - not identity verification
+  - not trust promotion
+  - not OpenMLS group membership
+  - not secure enrollment
+  - not member disable, leave, or removal lifecycle
+  - not local-backbone
+  - not deployment
+  - not public ingress safety
+  - not mature messenger UX
+  - not audit or certification
 
 ### `runner.same-state-integrated-dev`
 
