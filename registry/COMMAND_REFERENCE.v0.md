@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **118**
+Registry entry count: **120**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **27**
+Entries in this section: **29**
 
 ### `comms.dev-create-invite`
 
@@ -3013,6 +3013,49 @@ Entries in this section: **27**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `comms.state-substrate-inventory-dev`
+
+- **Command:** `go run ./cmd/comms state-substrate-inventory-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `gate_c_state_substrate_inventory`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/state_substrate_inventory_dev.go`
+- **Validation surface:** state-substrate-inventory-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Produce a read-only-by-default inventory of Comms, sidecar, Cypher, evidence, receipt, workflow, trust, and candidate state boundaries.
+
+**Why it exists:** Opens Gate C implementation with a machine-readable authority map before schema enforcement, migration, repair, vault, backup, deployment, or runtime aggregation work.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--state` — local Comms state path; remains supported and does not require canonical-root migration.
+  - `--state-root` — optional canonical Comms-owned state root override for inventory classification.
+  - `--sidecar-dir` — OpenMLS sidecar directory to classify as sidecar-owned state.
+  - `--cypher-db` — optional Cypher DB path to classify as Cypher-owned server state.
+  - `--evidence-root` — optional evidence root to classify as generated evidence, not runtime state.
+  - `--output` — optional machine-readable inventory report path; generated evidence only.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not schema enforcement
+  - not migration
+  - not silent repair
+  - not deletion or cleanup
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not Cypher/MLS reconciliation
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
 
 ### `comms.workflow-relay-onboarding-dev`
 
@@ -3848,6 +3891,43 @@ Entries in this section: **27**
   - not stale provider state modeling
   - not vault/key-storage safety
   - not PQ or hybrid security
+
+### `runner.state-substrate-inventory-dev`
+
+- **Command:** `go run . --profile state-substrate-inventory-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/state_substrate_inventory_dev.go`
+- **Validation surface:** state-substrate-inventory-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate C1 state substrate inventory, generated report output, canonical root policy, and Gate B regression compatibility.
+
+**Why it exists:** Closes Gate C1 as an inventory/authority-map subgate before C2 schema/version enforcement.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not schema enforcement
+  - not migration
+  - not silent repair
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
 
 ### `runner.welcome-lifecycle-dev`
 

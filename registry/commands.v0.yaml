@@ -3224,3 +3224,76 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: comms.state-substrate-inventory-dev
+    command: go run ./cmd/comms state-substrate-inventory-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: gate_c_state_substrate_inventory
+    source_path: carbonstack-comms/internal/app/state_substrate_inventory_dev.go
+    validation_surface: state-substrate-inventory-dev and Comms package tests
+    short_help: Produce a read-only-by-default inventory of Comms, sidecar, Cypher, evidence, receipt, workflow, trust, and candidate state boundaries.
+    why_exists: Opens Gate C implementation with a machine-readable authority map before schema enforcement, migration, repair, vault, backup, deployment, or runtime aggregation work.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path; remains supported and does not require canonical-root migration.
+      - flag: --state-root
+        meaning: optional canonical Comms-owned state root override for inventory classification.
+      - flag: --sidecar-dir
+        meaning: OpenMLS sidecar directory to classify as sidecar-owned state.
+      - flag: --cypher-db
+        meaning: optional Cypher DB path to classify as Cypher-owned server state.
+      - flag: --evidence-root
+        meaning: optional evidence root to classify as generated evidence, not runtime state.
+      - flag: --output
+        meaning: optional machine-readable inventory report path; generated evidence only.
+    nonclaims:
+      - not schema enforcement
+      - not migration
+      - not silent repair
+      - not deletion or cleanup
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not Cypher/MLS reconciliation
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: runner.state-substrate-inventory-dev
+    command: go run . --profile state-substrate-inventory-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/state_substrate_inventory_dev.go
+    validation_surface: state-substrate-inventory-dev-profile
+    short_help: Validate Gate C1 state substrate inventory, generated report output, canonical root policy, and Gate B regression compatibility.
+    why_exists: Closes Gate C1 as an inventory/authority-map subgate before C2 schema/version enforcement.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not schema enforcement
+      - not migration
+      - not silent repair
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false

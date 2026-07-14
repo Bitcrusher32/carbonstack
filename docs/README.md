@@ -281,3 +281,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [250-v0.7.10 Gate B9 Integration Closure](250-v0.7.10-gate-b9-integration-closure-v0.md)
 - [251-v0.7.10 Gate B Closure](251-v0.7.10-gate-b-closure-v0.md)
+
+- [252-v0.7.12 Gate C1 State Substrate Inventory](252-v0.7.12-gate-c1-state-substrate-inventory-v0.md)
+- [253-v0.7.12 Gate C1 Closure](253-v0.7.12-gate-c1-closure-v0.md)
