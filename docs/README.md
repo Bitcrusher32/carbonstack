@@ -287,3 +287,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [254-v0.7.13 Gate C2 State Schema Compatibility](254-v0.7.13-gate-c2-state-schema-compatibility-v0.md)
 - [255-v0.7.13 Gate C2 Closure](255-v0.7.13-gate-c2-closure-v0.md)
+
+- [256-v0.7.14 Gate C3 Path Policy](256-v0.7.14-gate-c3-path-policy-v0.md)
+- [257-v0.7.14 Gate C3 Closure](257-v0.7.14-gate-c3-closure-v0.md)

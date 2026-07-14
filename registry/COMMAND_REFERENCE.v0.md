@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **122**
+Registry entry count: **124**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **31**
+Entries in this section: **33**
 
 ### `comms.dev-create-invite`
 
@@ -3013,6 +3013,53 @@ Entries in this section: **31**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `comms.state-path-policy-dev`
+
+- **Command:** `go run ./cmd/comms state-path-policy-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `gate_c_path_policy`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/state_path_policy_dev.go`
+- **Validation surface:** state-path-policy-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Classify Comms state-root/path policy, supported overrides, derived roots, and external state authority boundaries without migration or relocation.
+
+**Why it exists:** Provides the Gate C3 path policy/refusal surface before C4 atomic write, lock, partial-state, and replay behavior.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--state` — local Comms state path; explicit compatibility is preserved.
+  - `--state-root` — optional Comms-owned root override for path-policy classification.
+  - `--sidecar-dir` — OpenMLS sidecar directory classified as sidecar-owned state.
+  - `--cypher-db` — optional Cypher DB path classified as Cypher-owned state.
+  - `--validator-temp-root` — optional validator temp root classified as generated validation state.
+  - `--evidence-root` — optional evidence root classified as evidence-only.
+  - `--output` — optional generated evidence report path.
+  - `--allow-refusal-exit-zero` — print refusal classification but exit zero for validator/profile use.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not migration
+  - not silent repair
+  - not state relocation
+  - not cleanup implementation
+  - not C4 atomicity or lock closure
+  - not C5 Gate C closure
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not Cypher/MLS reconciliation
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
 
 ### `comms.state-schema-compat-dev`
 
@@ -3932,6 +3979,46 @@ Entries in this section: **31**
   - not stale provider state modeling
   - not vault/key-storage safety
   - not PQ or hybrid security
+
+### `runner.state-path-policy-dev`
+
+- **Command:** `go run . --profile state-path-policy-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/state_path_policy_dev.go`
+- **Validation surface:** state-path-policy-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate C3 path policy, explicit state-root classification, unsafe path refusal, and registry/reference freshness.
+
+**Why it exists:** Closes Gate C3 as the path policy and explicit state-root semantics subgate before C4 atomicity work.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not migration
+  - not silent repair
+  - not state relocation
+  - not cleanup implementation
+  - not C4 atomicity or lock closure
+  - not C5 Gate C closure
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
 
 ### `runner.state-schema-compat-dev`
 

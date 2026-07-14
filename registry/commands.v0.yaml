@@ -3366,3 +3366,85 @@ entries:
       - not Gate D runtime aggregate
       - not production E2EE
     include_in_front_readme: false
+
+
+  - id: comms.state-path-policy-dev
+    command: go run ./cmd/comms state-path-policy-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: gate_c_path_policy
+    source_path: carbonstack-comms/internal/app/state_path_policy_dev.go
+    validation_surface: state-path-policy-dev and Comms package tests
+    short_help: Classify Comms state-root/path policy, supported overrides, derived roots, and external state authority boundaries without migration or relocation.
+    why_exists: Provides the Gate C3 path policy/refusal surface before C4 atomic write, lock, partial-state, and replay behavior.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path; explicit compatibility is preserved.
+      - flag: --state-root
+        meaning: optional Comms-owned root override for path-policy classification.
+      - flag: --sidecar-dir
+        meaning: OpenMLS sidecar directory classified as sidecar-owned state.
+      - flag: --cypher-db
+        meaning: optional Cypher DB path classified as Cypher-owned state.
+      - flag: --validator-temp-root
+        meaning: optional validator temp root classified as generated validation state.
+      - flag: --evidence-root
+        meaning: optional evidence root classified as evidence-only.
+      - flag: --output
+        meaning: optional generated evidence report path.
+      - flag: --allow-refusal-exit-zero
+        meaning: print refusal classification but exit zero for validator/profile use.
+    nonclaims:
+      - not migration
+      - not silent repair
+      - not state relocation
+      - not cleanup implementation
+      - not C4 atomicity or lock closure
+      - not C5 Gate C closure
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not Cypher/MLS reconciliation
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: runner.state-path-policy-dev
+    command: go run . --profile state-path-policy-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/state_path_policy_dev.go
+    validation_surface: state-path-policy-dev-profile
+    short_help: Validate Gate C3 path policy, explicit state-root classification, unsafe path refusal, and registry/reference freshness.
+    why_exists: Closes Gate C3 as the path policy and explicit state-root semantics subgate before C4 atomicity work.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not migration
+      - not silent repair
+      - not state relocation
+      - not cleanup implementation
+      - not C4 atomicity or lock closure
+      - not C5 Gate C closure
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false
