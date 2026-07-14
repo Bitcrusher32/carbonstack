@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **115**
+Registry entry count: **117**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **24**
+Entries in this section: **26**
 
 ### `comms.dev-create-invite`
 
@@ -3013,6 +3013,51 @@ Entries in this section: **24**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `comms.workflow-relay-onboarding-dev`
+
+- **Command:** `go run ./cmd/comms workflow-relay-onboarding-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `relay_onboarding_workflow_evaluator`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/workflow_relay_onboarding_dev.go`
+- **Validation surface:** workflow-relay-onboarding-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Evaluate Relay onboarding workflow readiness while preserving B4/B5/B6/B7 leaf boundaries.
+
+**Why it exists:** Closes Gate B8 as a reusable noninteractive workflow report/evaluator without hiding receipts, ACK discipline, or mismatch refusal.
+
+- **Required flags:**
+  - `--relay-space` — Relay Space ID under workflow evaluation.
+  - `--cypher-member-state` — explicit Cypher Relay Space member-state snapshot.
+- **Optional flags:**
+  - `--state` — local Comms state path.
+  - `--workflow-id` — stable workflow report ID.
+  - `--mls-group-state` — local MLS group state snapshot or auto.
+  - `--sidecar-dir` — OpenMLS sidecar directory.
+  - `--sidecar-device-label` — OpenMLS sidecar device label.
+  - `--conversation` — OpenMLS conversation label.
+  - `--conversation-state` — explicit OpenMLS conversation-state path.
+  - `--keypackage-receipt` — optional B5d KeyPackage receipt manifest.
+  - `--welcome-receipt` — optional B6 Welcome receipt manifest.
+  - `--report-root` — local workflow report root.
+  - `--allow-refusal-exit-zero` — print refusal report but return exit 0 for reporting harnesses.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not silent repair
+  - not silent rejoin
+  - not trust promotion
+  - not verified identity
+  - not Cypher/MLS reconciliation
+  - not B9 Gate B closure
+  - not full-runtime-dev
+  - not production E2EE
 
 ### `runner.cypher-mls-mismatch-dev`
 
@@ -3792,3 +3837,36 @@ Entries in this section: **24**
   - not production E2EE
   - not B7 Cypher/MLS reconciliation
   - not full operational aggregate
+
+### `runner.workflow-relay-onboarding-dev`
+
+- **Command:** `go run . --profile workflow-relay-onboarding-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/workflow_relay_onboarding_dev.go`
+- **Validation surface:** workflow-relay-onboarding-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate B8 workflow readiness, partial-state refusal, durable report, replay, and boundary preservation.
+
+**Why it exists:** Proves B8 reusable workflow report/evaluator while preserving B4/B5/B6/B7 lifecycle semantics and nonclaims.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not silent repair
+  - not silent rejoin
+  - not trust promotion
+  - not verified identity
+  - not B9 Gate B closure
+  - not full-runtime-dev
+  - not production E2EE

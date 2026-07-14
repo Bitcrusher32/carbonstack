@@ -275,3 +275,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [246-v0.7.8 Gate B7 Cypher MLS Mismatch](246-v0.7.8-gate-b7-cypher-mls-mismatch-v0.md)
 - [247-v0.7.8 Gate B7 Closure](247-v0.7.8-gate-b7-closure-v0.md)
+
+- [248-v0.7.9 Gate B8 Workflow Engine](248-v0.7.9-gate-b8-workflow-engine-v0.md)
+- [249-v0.7.9 Gate B8 Closure](249-v0.7.9-gate-b8-closure-v0.md)

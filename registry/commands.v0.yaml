@@ -3108,3 +3108,82 @@ entries:
       - not B9 Gate B closure
       - not production E2EE
     include_in_front_readme: false
+
+
+  - id: comms.workflow-relay-onboarding-dev
+    command: go run ./cmd/comms workflow-relay-onboarding-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_workflow_evaluator
+    source_path: carbonstack-comms/internal/app/workflow_relay_onboarding_dev.go
+    validation_surface: workflow-relay-onboarding-dev and Comms package tests
+    short_help: Evaluate Relay onboarding workflow readiness while preserving B4/B5/B6/B7 leaf boundaries.
+    why_exists: Closes Gate B8 as a reusable noninteractive workflow report/evaluator without hiding receipts, ACK discipline, or mismatch refusal.
+    required_flags:
+      - flag: --relay-space
+        meaning: Relay Space ID under workflow evaluation.
+      - flag: --cypher-member-state
+        meaning: explicit Cypher Relay Space member-state snapshot.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path.
+      - flag: --workflow-id
+        meaning: stable workflow report ID.
+      - flag: --mls-group-state
+        meaning: local MLS group state snapshot or auto.
+      - flag: --sidecar-dir
+        meaning: OpenMLS sidecar directory.
+      - flag: --sidecar-device-label
+        meaning: OpenMLS sidecar device label.
+      - flag: --conversation
+        meaning: OpenMLS conversation label.
+      - flag: --conversation-state
+        meaning: explicit OpenMLS conversation-state path.
+      - flag: --keypackage-receipt
+        meaning: optional B5d KeyPackage receipt manifest.
+      - flag: --welcome-receipt
+        meaning: optional B6 Welcome receipt manifest.
+      - flag: --report-root
+        meaning: local workflow report root.
+      - flag: --allow-refusal-exit-zero
+        meaning: print refusal report but return exit 0 for reporting harnesses.
+    nonclaims:
+      - not silent repair
+      - not silent rejoin
+      - not trust promotion
+      - not verified identity
+      - not Cypher/MLS reconciliation
+      - not B9 Gate B closure
+      - not full-runtime-dev
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: runner.workflow-relay-onboarding-dev
+    command: go run . --profile workflow-relay-onboarding-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/workflow_relay_onboarding_dev.go
+    validation_surface: workflow-relay-onboarding-dev-profile
+    short_help: Validate Gate B8 workflow readiness, partial-state refusal, durable report, replay, and boundary preservation.
+    why_exists: Proves B8 reusable workflow report/evaluator while preserving B4/B5/B6/B7 lifecycle semantics and nonclaims.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not silent repair
+      - not silent rejoin
+      - not trust promotion
+      - not verified identity
+      - not B9 Gate B closure
+      - not full-runtime-dev
+      - not production E2EE
+    include_in_front_readme: false
