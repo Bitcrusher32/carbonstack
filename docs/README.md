@@ -269,3 +269,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [242-v0.7.7 Gate B5d KeyPackage Consume Receipt](242-v0.7.7-gate-b5d-keypackage-consume-receipt-v0.md)
 - [243-v0.7.8 Gate B5e KeyPackage Lifecycle Closure](243-v0.7.8-gate-b5e-keypackage-lifecycle-closure-v0.md)
+
+- [244-v0.7.8 Gate B6 Welcome Lifecycle](244-v0.7.8-gate-b6-welcome-lifecycle-v0.md)
+- [245-v0.7.9 Gate B6 Closure](245-v0.7.9-gate-b6-closure-v0.md)

@@ -2970,3 +2970,66 @@ entries:
       - not production E2EE
       - not B6
     include_in_front_readme: false
+
+
+  - id: comms.openmls-relay-welcome-consume-dev
+    command: go run ./cmd/comms openmls-relay-welcome-consume-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_welcome_consume
+    source_path: carbonstack-comms/internal/app/openmls_welcome_lifecycle_dev.go
+    validation_surface: welcome-lifecycle-dev and Comms package tests
+    short_help: Persist one queued Relay Space Welcome artifact locally, run sidecar join, and ACK only after persisted join evidence.
+    why_exists: Closes Gate B6 Welcome consume/join/ACK-after-join semantics without claiming identity verification or trust promotion.
+    required_flags:
+      - flag: --relay-space
+        meaning: Relay Space ID containing the queued Welcome envelope.
+      - flag: --envelope-id
+        meaning: exact Welcome envelope to consume and join.
+      - flag: --sidecar-device-label
+        meaning: OpenMLS sidecar device label for the joining member.
+      - flag: --conversation
+        meaning: OpenMLS sidecar conversation label to join/load.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path.
+      - flag: --sidecar-dir
+        meaning: OpenMLS sidecar directory.
+      - flag: --receipt-root
+        meaning: local Welcome receipt root.
+    nonclaims:
+      - not verified identity
+      - not trust promotion
+      - not secure enrollment
+      - not production E2EE
+      - not B7 Cypher/MLS reconciliation
+      - not public directory safety
+    include_in_front_readme: false
+
+  - id: runner.welcome-lifecycle-dev
+    command: go run . --profile welcome-lifecycle-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/welcome_lifecycle_dev.go
+    validation_surface: welcome-lifecycle-dev-profile
+    short_help: Validate Gate B6 Welcome persistence, join, ACK-after-join, and failure non-ACK behavior.
+    why_exists: Proves the bounded B6 Welcome lifecycle leaf and supports v0.7.9 B6 closure.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not verified identity
+      - not trust promotion
+      - not production E2EE
+      - not B7 Cypher/MLS reconciliation
+      - not full operational aggregate
+    include_in_front_readme: false

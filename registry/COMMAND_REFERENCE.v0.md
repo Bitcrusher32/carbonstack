@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **111**
+Registry entry count: **113**
 
 ## Release/package validation and package-helper profiles
 
@@ -562,7 +562,7 @@ Entries in this section: **2**
 
 ## Relay onboarding and artifact commands
 
-Entries in this section: **8**
+Entries in this section: **9**
 
 ### `comms.openmls-relay-add-member-dev`
 
@@ -783,6 +783,43 @@ Entries in this section: **8**
   - not identity verification
   - not production key distribution UX
   - not local-backbone
+
+### `comms.openmls-relay-welcome-consume-dev`
+
+- **Command:** `go run ./cmd/comms openmls-relay-welcome-consume-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `relay_onboarding_welcome_consume`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/openmls_welcome_lifecycle_dev.go`
+- **Validation surface:** welcome-lifecycle-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Persist one queued Relay Space Welcome artifact locally, run sidecar join, and ACK only after persisted join evidence.
+
+**Why it exists:** Closes Gate B6 Welcome consume/join/ACK-after-join semantics without claiming identity verification or trust promotion.
+
+- **Required flags:**
+  - `--relay-space` — Relay Space ID containing the queued Welcome envelope.
+  - `--envelope-id` — exact Welcome envelope to consume and join.
+  - `--sidecar-device-label` — OpenMLS sidecar device label for the joining member.
+  - `--conversation` — OpenMLS sidecar conversation label to join/load.
+- **Optional flags:**
+  - `--state` — local Comms state path.
+  - `--sidecar-dir` — OpenMLS sidecar directory.
+  - `--receipt-root` — local Welcome receipt root.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not verified identity
+  - not trust promotion
+  - not secure enrollment
+  - not production E2EE
+  - not B7 Cypher/MLS reconciliation
+  - not public directory safety
 
 ### `comms.openmls-relay-welcome-inbox-dev`
 
@@ -2771,7 +2808,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **22**
+Entries in this section: **23**
 
 ### `comms.dev-create-invite`
 
@@ -3648,3 +3685,34 @@ Entries in this section: **22**
   - not stale provider state modeling
   - not vault/key-storage safety
   - not PQ or hybrid security
+
+### `runner.welcome-lifecycle-dev`
+
+- **Command:** `go run . --profile welcome-lifecycle-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/welcome_lifecycle_dev.go`
+- **Validation surface:** welcome-lifecycle-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate B6 Welcome persistence, join, ACK-after-join, and failure non-ACK behavior.
+
+**Why it exists:** Proves the bounded B6 Welcome lifecycle leaf and supports v0.7.9 B6 closure.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not verified identity
+  - not trust promotion
+  - not production E2EE
+  - not B7 Cypher/MLS reconciliation
+  - not full operational aggregate
