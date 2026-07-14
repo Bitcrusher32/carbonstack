@@ -266,3 +266,6 @@ Cypher persists one sender-scoped publication binding so exact retries return th
 The older `openmls-relay-keypackage-submit-dev` path remains compatibility-only and does not provide B5c publication semantics.
 
 B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome, or mutate identity/trust state. B5d remains next.
+
+- [242-v0.7.7 Gate B5d KeyPackage Consume Receipt](242-v0.7.7-gate-b5d-keypackage-consume-receipt-v0.md)
+- [243-v0.7.8 Gate B5e KeyPackage Lifecycle Closure](243-v0.7.8-gate-b5e-keypackage-lifecycle-closure-v0.md)

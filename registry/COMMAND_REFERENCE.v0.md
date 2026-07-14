@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **109**
+Registry entry count: **111**
 
 ## Release/package validation and package-helper profiles
 
@@ -562,7 +562,7 @@ Entries in this section: **2**
 
 ## Relay onboarding and artifact commands
 
-Entries in this section: **7**
+Entries in this section: **8**
 
 ### `comms.openmls-relay-add-member-dev`
 
@@ -634,6 +634,43 @@ Entries in this section: **7**
   - not production UX
   - not hostile-server safety
   - not metadata privacy
+
+### `comms.openmls-relay-keypackage-consume-dev`
+
+- **Command:** `go run ./cmd/comms openmls-relay-keypackage-consume-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `relay_onboarding_artifact_consume`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/openmls_keypackage_consume_dev.go`
+- **Validation surface:** keypackage-consume-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Persist one queued Relay Space KeyPackage artifact locally and ACK only after the receipt is durable.
+
+**Why it exists:** Closes Gate B5d delivery consume/receipt semantics without starting add-member or Welcome lifecycle.
+
+- **Required flags:**
+  - `--relay-space` — Relay Space ID containing the queued KeyPackage envelope.
+  - `--envelope-id` — exact KeyPackage envelope to consume into local receipt state.
+- **Optional flags:**
+  - `--state` — local Comms state path; defaults to the normal Comms state path.
+  - `--receipt-root` — local receipt root; defaults beside the Comms state file.
+  - `--expected-payload-sha256` — optional decoded payload SHA-256 hex guard.
+  - `--expected-key-package-ref` — optional operator expectation recorded in the receipt; not cryptographically verified by this command.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not add-member
+  - not Welcome lifecycle
+  - not identity verification
+  - not trust promotion
+  - not public KeyPackage directory
+  - not production key distribution
+  - not B6
 
 ### `comms.openmls-relay-keypackage-inbox-dev`
 
@@ -2734,7 +2771,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **21**
+Entries in this section: **22**
 
 ### `comms.dev-create-invite`
 
@@ -2961,6 +2998,38 @@ Entries in this section: **21**
   - not live-dev aggregation
   - not adversarial harness
   - not package publisher
+
+### `runner.keypackage-consume-dev`
+
+- **Command:** `go run . --profile keypackage-consume-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/keypackage_consume_dev.go`
+- **Validation surface:** keypackage-consume-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate B5d KeyPackage consume/receipt and ACK-after-persist semantics.
+
+**Why it exists:** Proves the B5d bounded delivery-consume leaf and supports B5e Gate B5 closure.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not add-member
+  - not Welcome lifecycle
+  - not identity verification
+  - not trust promotion
+  - not production E2EE
+  - not B6
 
 ### `runner.keypackage-inspect-dev`
 

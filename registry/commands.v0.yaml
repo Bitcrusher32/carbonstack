@@ -2907,3 +2907,66 @@ entries:
       - not mature messenger UX
       - not audit or certification
     include_in_front_readme: false
+
+
+  - id: comms.openmls-relay-keypackage-consume-dev
+    command: go run ./cmd/comms openmls-relay-keypackage-consume-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_onboarding_artifact_consume
+    source_path: carbonstack-comms/internal/app/openmls_keypackage_consume_dev.go
+    validation_surface: keypackage-consume-dev and Comms package tests
+    short_help: Persist one queued Relay Space KeyPackage artifact locally and ACK only after the receipt is durable.
+    why_exists: Closes Gate B5d delivery consume/receipt semantics without starting add-member or Welcome lifecycle.
+    required_flags:
+      - flag: --relay-space
+        meaning: Relay Space ID containing the queued KeyPackage envelope.
+      - flag: --envelope-id
+        meaning: exact KeyPackage envelope to consume into local receipt state.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path; defaults to the normal Comms state path.
+      - flag: --receipt-root
+        meaning: local receipt root; defaults beside the Comms state file.
+      - flag: --expected-payload-sha256
+        meaning: optional decoded payload SHA-256 hex guard.
+      - flag: --expected-key-package-ref
+        meaning: optional operator expectation recorded in the receipt; not cryptographically verified by this command.
+    nonclaims:
+      - not add-member
+      - not Welcome lifecycle
+      - not identity verification
+      - not trust promotion
+      - not public KeyPackage directory
+      - not production key distribution
+      - not B6
+    include_in_front_readme: false
+
+  - id: runner.keypackage-consume-dev
+    command: go run . --profile keypackage-consume-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/keypackage_consume_dev.go
+    validation_surface: keypackage-consume-dev-profile
+    short_help: Validate Gate B5d KeyPackage consume/receipt and ACK-after-persist semantics.
+    why_exists: Proves the B5d bounded delivery-consume leaf and supports B5e Gate B5 closure.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not add-member
+      - not Welcome lifecycle
+      - not identity verification
+      - not trust promotion
+      - not production E2EE
+      - not B6
+    include_in_front_readme: false
