@@ -284,3 +284,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [252-v0.7.12 Gate C1 State Substrate Inventory](252-v0.7.12-gate-c1-state-substrate-inventory-v0.md)
 - [253-v0.7.12 Gate C1 Closure](253-v0.7.12-gate-c1-closure-v0.md)
+
+- [254-v0.7.13 Gate C2 State Schema Compatibility](254-v0.7.13-gate-c2-state-schema-compatibility-v0.md)
+- [255-v0.7.13 Gate C2 Closure](255-v0.7.13-gate-c2-closure-v0.md)

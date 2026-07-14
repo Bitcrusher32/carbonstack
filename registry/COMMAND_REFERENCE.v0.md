@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **120**
+Registry entry count: **122**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **29**
+Entries in this section: **31**
 
 ### `comms.dev-create-invite`
 
@@ -3013,6 +3013,47 @@ Entries in this section: **29**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `comms.state-schema-compat-dev`
+
+- **Command:** `go run ./cmd/comms state-schema-compat-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `gate_c_schema_compatibility`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/state_schema_compat_dev.go`
+- **Validation surface:** state-schema-compat-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Classify and refuse unsupported schema versions for Comms-owned JSON state/report/receipt artifacts without migration or repair.
+
+**Why it exists:** Provides the Gate C2 compatibility/refusal surface before deeper path policy, atomic write, migration, or runtime aggregate work.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--kind` — schema kind to classify, such as keypackage-receipt, welcome-receipt, workflow-report, state-substrate-inventory, cypher-mls-mismatch-report, or comms-state.
+  - `--path` — JSON file path to inspect.
+  - `--output` — optional generated evidence report path.
+  - `--allow-refusal-exit-zero` — print refusal classification but exit zero for validator/profile use.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not migration
+  - not silent repair
+  - not state relocation
+  - not deletion or cleanup
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not Cypher/MLS reconciliation
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
 
 ### `comms.state-substrate-inventory-dev`
 
@@ -3891,6 +3932,43 @@ Entries in this section: **29**
   - not stale provider state modeling
   - not vault/key-storage safety
   - not PQ or hybrid security
+
+### `runner.state-schema-compat-dev`
+
+- **Command:** `go run . --profile state-schema-compat-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/state_schema_compat_dev.go`
+- **Validation surface:** state-schema-compat-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate C2 schema/version compatibility classification and refusal for Comms-owned JSON artifacts.
+
+**Why it exists:** Closes Gate C2 as an explicit schema compatibility/refusal subgate before C3 path policy and C4 atomicity work.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not migration
+  - not silent repair
+  - not state relocation
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
 
 ### `runner.state-substrate-inventory-dev`
 

@@ -3297,3 +3297,72 @@ entries:
       - not Gate D runtime aggregate
       - not production E2EE
     include_in_front_readme: false
+
+
+  - id: comms.state-schema-compat-dev
+    command: go run ./cmd/comms state-schema-compat-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: gate_c_schema_compatibility
+    source_path: carbonstack-comms/internal/app/state_schema_compat_dev.go
+    validation_surface: state-schema-compat-dev and Comms package tests
+    short_help: Classify and refuse unsupported schema versions for Comms-owned JSON state/report/receipt artifacts without migration or repair.
+    why_exists: Provides the Gate C2 compatibility/refusal surface before deeper path policy, atomic write, migration, or runtime aggregate work.
+    optional_flags:
+      - flag: --kind
+        meaning: schema kind to classify, such as keypackage-receipt, welcome-receipt, workflow-report, state-substrate-inventory, cypher-mls-mismatch-report, or comms-state.
+      - flag: --path
+        meaning: JSON file path to inspect.
+      - flag: --output
+        meaning: optional generated evidence report path.
+      - flag: --allow-refusal-exit-zero
+        meaning: print refusal classification but exit zero for validator/profile use.
+    nonclaims:
+      - not migration
+      - not silent repair
+      - not state relocation
+      - not deletion or cleanup
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not Cypher/MLS reconciliation
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: runner.state-schema-compat-dev
+    command: go run . --profile state-schema-compat-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/state_schema_compat_dev.go
+    validation_surface: state-schema-compat-dev-profile
+    short_help: Validate Gate C2 schema/version compatibility classification and refusal for Comms-owned JSON artifacts.
+    why_exists: Closes Gate C2 as an explicit schema compatibility/refusal subgate before C3 path policy and C4 atomicity work.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not migration
+      - not silent repair
+      - not state relocation
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false
