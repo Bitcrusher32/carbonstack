@@ -278,3 +278,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [248-v0.7.9 Gate B8 Workflow Engine](248-v0.7.9-gate-b8-workflow-engine-v0.md)
 - [249-v0.7.9 Gate B8 Closure](249-v0.7.9-gate-b8-closure-v0.md)
+
+- [250-v0.7.10 Gate B9 Integration Closure](250-v0.7.10-gate-b9-integration-closure-v0.md)
+- [251-v0.7.10 Gate B Closure](251-v0.7.10-gate-b-closure-v0.md)

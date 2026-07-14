@@ -3187,3 +3187,40 @@ entries:
       - not full-runtime-dev
       - not production E2EE
     include_in_front_readme: false
+
+
+  - id: runner.gate-b-relay-lifecycle-closure-dev
+    command: go run . --profile gate-b-relay-lifecycle-closure-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: gate_b_closure
+    source_path: carbonstack/tools/carbonstack-validate/gate_b_relay_lifecycle_closure_dev.go
+    validation_surface: gate-b-relay-lifecycle-closure-dev-profile
+    short_help: Validate Gate B Relay lifecycle closure across B1-B8 without promoting production, trust, identity, deployment, or Gate C claims.
+    why_exists: Closes Gate B as a coherent dev/pre-alpha Relay lifecycle integration lane while preserving every leaf boundary and nonclaim.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not secure enrollment
+      - not hostile-server safety
+      - not Gate C state enforcement
+      - not Gate D runtime aggregate
+      - not Gate E native deployment
+      - not Gate F v0.8.0 maturity
+      - not full-runtime-dev
+      - not deployment readiness
+      - not container packaging
+      - not PQ or hybrid support
+      - not vault backup restore
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false

@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **117**
+Registry entry count: **118**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **26**
+Entries in this section: **27**
 
 ### `comms.dev-create-invite`
 
@@ -3156,6 +3156,48 @@ Entries in this section: **26**
   - not live-dev aggregation
   - not adversarial harness
   - not package publisher
+
+### `runner.gate-b-relay-lifecycle-closure-dev`
+
+- **Command:** `go run . --profile gate-b-relay-lifecycle-closure-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `gate_b_closure`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_b_relay_lifecycle_closure_dev.go`
+- **Validation surface:** gate-b-relay-lifecycle-closure-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate B Relay lifecycle closure across B1-B8 without promoting production, trust, identity, deployment, or Gate C claims.
+
+**Why it exists:** Closes Gate B as a coherent dev/pre-alpha Relay lifecycle integration lane while preserving every leaf boundary and nonclaim.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not secure enrollment
+  - not hostile-server safety
+  - not Gate C state enforcement
+  - not Gate D runtime aggregate
+  - not Gate E native deployment
+  - not Gate F v0.8.0 maturity
+  - not full-runtime-dev
+  - not deployment readiness
+  - not container packaging
+  - not PQ or hybrid support
+  - not vault backup restore
+  - not Android
+  - not CarbonStackOS implementation
 
 ### `runner.keypackage-consume-dev`
 
