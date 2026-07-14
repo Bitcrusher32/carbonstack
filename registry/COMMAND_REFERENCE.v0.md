@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **113**
+Registry entry count: **115**
 
 ## Release/package validation and package-helper profiles
 
@@ -888,7 +888,7 @@ Entries in this section: **9**
 
 ## OpenMLS bootstrap, identity, and conversation commands
 
-Entries in this section: **11**
+Entries in this section: **12**
 
 ### `comms.openmls-bundle-export-dev`
 
@@ -1014,6 +1014,49 @@ Entries in this section: **11**
   - not production membership UX
   - not identity verification
   - not secure recovery
+
+### `comms.openmls-cypher-mls-mismatch-inspect-dev`
+
+- **Command:** `go run ./cmd/comms openmls-cypher-mls-mismatch-inspect-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `relay_state_mismatch_inspection`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/openmls_cypher_mls_mismatch_dev.go`
+- **Validation surface:** cypher-mls-mismatch-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Classify Cypher Relay Space membership versus local MLS/receipt state and refuse unsafe mismatches.
+
+**Why it exists:** Closes Gate B7 as a bounded mismatch inspection/refusal leaf without silent repair, trust promotion, or identity binding.
+
+- **Required flags:**
+  - `--relay-space` — Relay Space ID under inspection.
+  - `--cypher-member-state` — explicit Cypher Relay Space member-state snapshot.
+- **Optional flags:**
+  - `--state` — local Comms state path.
+  - `--mls-group-state` — local MLS group state snapshot or auto.
+  - `--sidecar-dir` — OpenMLS sidecar directory.
+  - `--sidecar-device-label` — OpenMLS sidecar device label.
+  - `--conversation` — OpenMLS conversation label.
+  - `--conversation-state` — explicit OpenMLS conversation state path.
+  - `--keypackage-receipt` — optional B5d KeyPackage receipt manifest.
+  - `--welcome-receipt` — optional B6 Welcome receipt manifest.
+  - `--allow-refusal-exit-zero` — print refusal evidence but return exit 0 for reporting harnesses.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not silent repair
+  - not silent rejoin
+  - not trust promotion
+  - not verified identity
+  - not Cypher/MLS reconciliation
+  - not B8 workflow engine
+  - not B9 Gate B closure
+  - not production E2EE
 
 ### `comms.openmls-identity-create-dev`
 
@@ -2808,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **23**
+Entries in this section: **24**
 
 ### `comms.dev-create-invite`
 
@@ -2970,6 +3013,39 @@ Entries in this section: **23**
   - not trust verification
   - not local-backbone
   - not production secure messaging
+
+### `runner.cypher-mls-mismatch-dev`
+
+- **Command:** `go run . --profile cypher-mls-mismatch-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/cypher_mls_mismatch_dev.go`
+- **Validation surface:** cypher-mls-mismatch-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate B7 Cypher/MLS mismatch classification and refusal behavior.
+
+**Why it exists:** Proves B7 mismatch inspection/refusal while preserving B5/B6 lifecycle semantics and nonclaims.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not silent repair
+  - not silent rejoin
+  - not trust promotion
+  - not verified identity
+  - not B8 workflow engine
+  - not B9 Gate B closure
+  - not production E2EE
 
 ### `runner.full-operational-spine-dev`
 

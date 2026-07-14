@@ -272,3 +272,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [244-v0.7.8 Gate B6 Welcome Lifecycle](244-v0.7.8-gate-b6-welcome-lifecycle-v0.md)
 - [245-v0.7.9 Gate B6 Closure](245-v0.7.9-gate-b6-closure-v0.md)
+
+- [246-v0.7.8 Gate B7 Cypher MLS Mismatch](246-v0.7.8-gate-b7-cypher-mls-mismatch-v0.md)
+- [247-v0.7.8 Gate B7 Closure](247-v0.7.8-gate-b7-closure-v0.md)

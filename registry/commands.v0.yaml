@@ -3033,3 +3033,78 @@ entries:
       - not B7 Cypher/MLS reconciliation
       - not full operational aggregate
     include_in_front_readme: false
+
+
+  - id: comms.openmls-cypher-mls-mismatch-inspect-dev
+    command: go run ./cmd/comms openmls-cypher-mls-mismatch-inspect-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: relay_state_mismatch_inspection
+    source_path: carbonstack-comms/internal/app/openmls_cypher_mls_mismatch_dev.go
+    validation_surface: cypher-mls-mismatch-dev and Comms package tests
+    short_help: Classify Cypher Relay Space membership versus local MLS/receipt state and refuse unsafe mismatches.
+    why_exists: Closes Gate B7 as a bounded mismatch inspection/refusal leaf without silent repair, trust promotion, or identity binding.
+    required_flags:
+      - flag: --relay-space
+        meaning: Relay Space ID under inspection.
+      - flag: --cypher-member-state
+        meaning: explicit Cypher Relay Space member-state snapshot.
+    optional_flags:
+      - flag: --state
+        meaning: local Comms state path.
+      - flag: --mls-group-state
+        meaning: local MLS group state snapshot or auto.
+      - flag: --sidecar-dir
+        meaning: OpenMLS sidecar directory.
+      - flag: --sidecar-device-label
+        meaning: OpenMLS sidecar device label.
+      - flag: --conversation
+        meaning: OpenMLS conversation label.
+      - flag: --conversation-state
+        meaning: explicit OpenMLS conversation state path.
+      - flag: --keypackage-receipt
+        meaning: optional B5d KeyPackage receipt manifest.
+      - flag: --welcome-receipt
+        meaning: optional B6 Welcome receipt manifest.
+      - flag: --allow-refusal-exit-zero
+        meaning: print refusal evidence but return exit 0 for reporting harnesses.
+    nonclaims:
+      - not silent repair
+      - not silent rejoin
+      - not trust promotion
+      - not verified identity
+      - not Cypher/MLS reconciliation
+      - not B8 workflow engine
+      - not B9 Gate B closure
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: runner.cypher-mls-mismatch-dev
+    command: go run . --profile cypher-mls-mismatch-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/cypher_mls_mismatch_dev.go
+    validation_surface: cypher-mls-mismatch-dev-profile
+    short_help: Validate Gate B7 Cypher/MLS mismatch classification and refusal behavior.
+    why_exists: Proves B7 mismatch inspection/refusal while preserving B5/B6 lifecycle semantics and nonclaims.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not silent repair
+      - not silent rejoin
+      - not trust promotion
+      - not verified identity
+      - not B8 workflow engine
+      - not B9 Gate B closure
+      - not production E2EE
+    include_in_front_readme: false
