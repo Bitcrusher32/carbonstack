@@ -318,3 +318,5 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [276-v0.7.20 Gate F F2 Closure](276-v0.7.20-gate-f-f2-closure-v0.md)
 - [277-v0.7.21 Gate F F3 Compatibility Rollback Observability](277-v0.7.21-gate-f-f3-compat-rollback-observability-v0.md)
 - [278-v0.7.21 Gate F F3 Closure](278-v0.7.21-gate-f-f3-closure-v0.md)
+- [279-v0.7.22 Gate F F4 Code Health Source Hygiene](279-v0.7.22-gate-f-f4-code-health-source-hygiene-v0.md)
+- [280-v0.7.22 Gate F F4 Closure](280-v0.7.22-gate-f-f4-closure-v0.md)

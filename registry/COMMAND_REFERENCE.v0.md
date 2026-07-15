@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **134**
+Registry entry count: **135**
 
 ## Release/package validation and package-helper profiles
 
@@ -2900,7 +2900,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **42**
+Entries in this section: **43**
 
 ### `comms.dev-create-invite`
 
@@ -3599,6 +3599,61 @@ Entries in this section: **42**
   - not Android
   - not CarbonStackOS implementation
   - not v0.8.0 release readiness
+
+### `runner.gate-f-code-health-source-hygiene-dev`
+
+- **Command:** `go run . --profile gate-f-code-health-source-hygiene-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_code_health_source_hygiene_dev.go`
+- **Validation surface:** gate-f-f4-code-health-source-hygiene-classification
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate F F4 code-health and source-hygiene classification without package/runtime candidate, release creation, migration, repair, cleanup, or full-runtime-dev.
+
+**Why it exists:** Closes a bounded source-hygiene layer after F3 observability so later package/runtime candidate work starts from clean generated-cache policy, non-destructive cypher.db classification, and static helper safety classification.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-f-compat-rollback-observability-dev
+  - runner.gate-f-release-package-surface-dev
+  - runner.gate-f-operator-docs-runbook-dev
+  - runner.release-snapshot
+  - runner.full-validate-release
+- **Not claims:**
+  - not v0.8.0 release readiness
+  - not release creation
+  - not release upload
+  - not package publication
+  - not package staging execution
+  - not package-runtime candidate
+  - not full-runtime-dev
+  - not migration implementation
+  - not repair implementation
+  - not destructive cleanup
+  - not state relocation
+  - not service or systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
 
 ### `runner.gate-f-compat-rollback-observability-dev`
 

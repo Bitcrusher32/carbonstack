@@ -3876,3 +3876,53 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: runner.gate-f-code-health-source-hygiene-dev
+    command: go run . --profile gate-f-code-health-source-hygiene-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_code_health_source_hygiene_dev.go
+    validation_surface: gate-f-f4-code-health-source-hygiene-classification
+    short_help: Validate Gate F F4 code-health and source-hygiene classification without package/runtime candidate, release creation, migration, repair, cleanup, or full-runtime-dev.
+    why_exists: Closes a bounded source-hygiene layer after F3 observability so later package/runtime candidate work starts from clean generated-cache policy, non-destructive cypher.db classification, and static helper safety classification.
+    related:
+      - runner.gate-f-compat-rollback-observability-dev
+      - runner.gate-f-release-package-surface-dev
+      - runner.gate-f-operator-docs-runbook-dev
+      - runner.release-snapshot
+      - runner.full-validate-release
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+    nonclaims:
+      - not v0.8.0 release readiness
+      - not release creation
+      - not release upload
+      - not package publication
+      - not package staging execution
+      - not package-runtime candidate
+      - not full-runtime-dev
+      - not migration implementation
+      - not repair implementation
+      - not destructive cleanup
+      - not state relocation
+      - not service or systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false
