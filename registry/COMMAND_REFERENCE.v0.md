@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **130**
+Registry entry count: **131**
 
 ## Release/package validation and package-helper profiles
 
@@ -2900,7 +2900,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **38**
+Entries in this section: **39**
 
 ### `comms.dev-create-invite`
 
@@ -3508,6 +3508,53 @@ Entries in this section: **38**
   - not CarbonStackOS implementation
   - not PQ or hybrid migration
   - not v0.8.0 release readiness
+
+### `runner.gate-e-native-deployment-closure-dev`
+
+- **Command:** `go run . --profile gate-e-native-deployment-closure-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_e_native_deployment_closure_dev.go`
+- **Validation surface:** gate-e-native-deployment-closure-profile
+- **Front README candidate:** `false`
+
+**What it does:** Close Gate E manual-private native deployment by validating Gate E E1, Cypher terminating config inspection, registry references, and nonclaims.
+
+**Why it exists:** Establishes the bounded Gate E closure surface before Gate F preflight while preventing service/systemd/helper, public ingress, container, TUI, full-runtime-dev, trust, identity, vault, backup, PQ, Android, and OS scope creep.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-e-native-deployment-dev
+  - cypher.config-inspection
+  - runner.gate-d-runtime-aggregate-dev
+- **Not claims:**
+  - not Gate F
+  - not v0.8.0 release readiness
+  - not semi-persistent service
+  - not systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not full-runtime-dev
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
 
 ### `runner.gate-e-native-deployment-dev`
 

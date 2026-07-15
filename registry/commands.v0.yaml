@@ -3687,3 +3687,46 @@ entries:
       - not CarbonStackOS implementation
       - not v0.8.0 release readiness
     include_in_front_readme: false
+
+
+  - id: runner.gate-e-native-deployment-closure-dev
+    command: go run . --profile gate-e-native-deployment-closure-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_e_native_deployment_closure_dev.go
+    validation_surface: gate-e-native-deployment-closure-profile
+    short_help: Close Gate E manual-private native deployment by validating Gate E E1, Cypher terminating config inspection, registry references, and nonclaims.
+    why_exists: Establishes the bounded Gate E closure surface before Gate F preflight while preventing service/systemd/helper, public ingress, container, TUI, full-runtime-dev, trust, identity, vault, backup, PQ, Android, and OS scope creep.
+    related:
+      - runner.gate-e-native-deployment-dev
+      - cypher.config-inspection
+      - runner.gate-d-runtime-aggregate-dev
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not Gate F
+      - not v0.8.0 release readiness
+      - not semi-persistent service
+      - not systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not full-runtime-dev
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false

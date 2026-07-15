@@ -305,3 +305,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [266-v0.7.19 Gate E E2 Cypher Config Inspection](266-v0.7.19-gate-e-e2-cypher-config-inspection-v0.md)
 - [267-v0.7.19 Gate E E2 Closure](267-v0.7.19-gate-e-e2-closure-v0.md)
+
+- [268-v0.7.19 Gate E E3 Native Deployment Closure](268-v0.7.19-gate-e-e3-native-deployment-closure-v0.md)
+- [269-v0.7.19 Gate E Closure](269-v0.7.19-gate-e-closure-v0.md)
