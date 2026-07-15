@@ -3730,3 +3730,51 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: runner.gate-f-release-package-surface-dev
+    command: go run . --profile gate-f-release-package-surface-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_release_package_surface_dev.go
+    validation_surface: gate-f-f1-release-package-runtime-surface-classification
+    short_help: Classify release validation, package staging, package rehearsal, runtime validation, helper, and hygiene surfaces before v0.8.0 package/runtime candidate work.
+    why_exists: Prevents historical package scripts and validation profiles from being mistaken for v0.8.0 release authority while preserving manual release creation as an operator process.
+    related:
+      - runner.full-validate-release
+      - runner.release-snapshot
+      - runner.local-cypher
+      - runner.integrated-runtime-dev
+      - runner.gate-d-runtime-aggregate-dev
+      - runner.gate-e-native-deployment-closure-dev
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+    nonclaims:
+      - not v0.8.0 release readiness
+      - not release creation
+      - not release upload
+      - not package publication
+      - not package staging execution
+      - not package-runtime candidate
+      - not full-runtime-dev
+      - not migration implementation
+      - not service or systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false

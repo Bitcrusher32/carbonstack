@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **131**
+Registry entry count: **132**
 
 ## Release/package validation and package-helper profiles
 
@@ -2900,7 +2900,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **39**
+Entries in this section: **40**
 
 ### `comms.dev-create-invite`
 
@@ -3599,6 +3599,59 @@ Entries in this section: **39**
   - not Android
   - not CarbonStackOS implementation
   - not v0.8.0 release readiness
+
+### `runner.gate-f-release-package-surface-dev`
+
+- **Command:** `go run . --profile gate-f-release-package-surface-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_release_package_surface_dev.go`
+- **Validation surface:** gate-f-f1-release-package-runtime-surface-classification
+- **Front README candidate:** `false`
+
+**What it does:** Classify release validation, package staging, package rehearsal, runtime validation, helper, and hygiene surfaces before v0.8.0 package/runtime candidate work.
+
+**Why it exists:** Prevents historical package scripts and validation profiles from being mistaken for v0.8.0 release authority while preserving manual release creation as an operator process.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.full-validate-release
+  - runner.release-snapshot
+  - runner.local-cypher
+  - runner.integrated-runtime-dev
+  - runner.gate-d-runtime-aggregate-dev
+  - runner.gate-e-native-deployment-closure-dev
+- **Not claims:**
+  - not v0.8.0 release readiness
+  - not release creation
+  - not release upload
+  - not package publication
+  - not package staging execution
+  - not package-runtime candidate
+  - not full-runtime-dev
+  - not migration implementation
+  - not service or systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
 
 ### `runner.keypackage-consume-dev`
 

@@ -308,3 +308,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [268-v0.7.19 Gate E E3 Native Deployment Closure](268-v0.7.19-gate-e-e3-native-deployment-closure-v0.md)
 - [269-v0.7.19 Gate E Closure](269-v0.7.19-gate-e-closure-v0.md)
+
+- [270-v0.7.20 Gate F F1 Release Package Runtime Surface](270-v0.7.20-gate-f-f1-release-package-surface-v0.md)
+- [271-v0.7.20 Gate F F1 Closure](271-v0.7.20-gate-f-f1-closure-v0.md)
