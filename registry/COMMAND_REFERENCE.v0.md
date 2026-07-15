@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **127**
+Registry entry count: **128**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **36**
+Entries in this section: **37**
 
 ### `comms.dev-create-invite`
 
@@ -3419,6 +3419,46 @@ Entries in this section: **36**
   - not PQ or hybrid migration
   - not Android
   - not CarbonStackOS implementation
+
+### `runner.gate-d-runtime-aggregate-dev`
+
+- **Command:** `go run . --profile gate-d-runtime-aggregate-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_d_runtime_aggregate_dev.go`
+- **Validation surface:** gate-d-runtime-aggregate-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate the Gate D mechanical runtime aggregate across Gate C state preflight, workflow onboarding, restart/resume inspection, and minimal normal-message send/inbox proof without promoting full-runtime-dev.
+
+**Why it exists:** Closes Gate D as a bounded dev/pre-alpha runtime aggregate while reserving full-runtime-dev until a later explicit promotion decision.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not full-runtime-dev
+  - not Gate E native deployment
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not public ingress
+  - not TUI
+  - not Android
+  - not CarbonStackOS implementation
+  - not PQ or hybrid migration
+  - not v0.8.0 release readiness
 
 ### `runner.keypackage-consume-dev`
 

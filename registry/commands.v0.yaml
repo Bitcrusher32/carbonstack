@@ -3567,3 +3567,38 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: runner.gate-d-runtime-aggregate-dev
+    command: go run . --profile gate-d-runtime-aggregate-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_d_runtime_aggregate_dev.go
+    validation_surface: gate-d-runtime-aggregate-dev-profile
+    short_help: Validate the Gate D mechanical runtime aggregate across Gate C state preflight, workflow onboarding, restart/resume inspection, and minimal normal-message send/inbox proof without promoting full-runtime-dev.
+    why_exists: Closes Gate D as a bounded dev/pre-alpha runtime aggregate while reserving full-runtime-dev until a later explicit promotion decision.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not full-runtime-dev
+      - not Gate E native deployment
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not public ingress
+      - not TUI
+      - not Android
+      - not CarbonStackOS implementation
+      - not PQ or hybrid migration
+      - not v0.8.0 release readiness
+    include_in_front_readme: false

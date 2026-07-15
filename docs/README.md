@@ -296,3 +296,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [260-v0.7.16 Gate C5 State Substrate Closure](260-v0.7.16-gate-c5-state-substrate-closure-v0.md)
 - [261-v0.7.16 Gate C Closure](261-v0.7.16-gate-c-closure-v0.md)
+
+- [262-v0.7.17 Gate D Runtime Aggregate](262-v0.7.17-gate-d-runtime-aggregate-v0.md)
+- [263-v0.7.17 Gate D Closure](263-v0.7.17-gate-d-closure-v0.md)
