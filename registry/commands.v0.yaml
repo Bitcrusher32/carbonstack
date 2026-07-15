@@ -3528,3 +3528,42 @@ entries:
       - not Gate D runtime aggregate
       - not production E2EE
     include_in_front_readme: false
+
+
+  - id: runner.gate-c-state-substrate-closure-dev
+    command: go run . --profile gate-c-state-substrate-closure-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_c_state_substrate_closure_dev.go
+    validation_surface: gate-c-state-substrate-closure-dev-profile
+    short_help: Validate Gate C state-substrate closure across C1 inventory, C2 schema compatibility, C3 path policy, and C4 write policy without opening Gate D.
+    why_exists: Closes Gate C as a bounded dev/pre-alpha state-substrate enforcement lane and blocks Gate D until a fresh Gate D contract is accepted.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not Gate D runtime aggregate
+      - not full-runtime-dev
+      - not migration
+      - not silent repair
+      - not state relocation
+      - not runtime writer rewiring
+      - not cleanup implementation
+      - not destructive cleanup
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not Cypher/MLS reconciliation
+      - not deployment
+      - not production E2EE
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false

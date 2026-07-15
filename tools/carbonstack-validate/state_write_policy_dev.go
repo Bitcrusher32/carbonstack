@@ -63,12 +63,12 @@ func (r *Runner) StateWritePolicyDev() error {
 			},
 		},
 		{
-			Name:    "C2 schema compatibility command accepts C3 path-policy schema",
+			Name:    "C2 schema compatibility command accepts C3 path-policy schema by explicit kind",
 			Dir:     r.Comms,
 			Command: "bash",
 			Args: []string{
 				"-lc",
-				fmt.Sprintf("printf '{\"schema_version\":\"carbonstack-state-path-policy-report/v0\"}' > %q && go run ./cmd/comms state-schema-compat-dev --kind state-substrate-inventory --path %q --allow-refusal-exit-zero --output %q", filepath.Join(reportRoot, "path-policy-fixture.json"), filepath.Join(reportRoot, "path-policy-fixture.json"), filepath.Join(reportRoot, "compat-report.json")),
+				fmt.Sprintf("printf '{\"schema_version\":\"carbonstack-state-path-policy-report/v0\"}' > %q && go run ./cmd/comms state-schema-compat-dev --kind path-policy-report --path %q --output %q", filepath.Join(reportRoot, "path-policy-fixture.json"), filepath.Join(reportRoot, "path-policy-fixture.json"), filepath.Join(reportRoot, "compat-report.json")),
 			},
 		},
 		{

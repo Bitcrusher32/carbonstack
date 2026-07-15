@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **126**
+Registry entry count: **127**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **35**
+Entries in this section: **36**
 
 ### `comms.dev-create-invite`
 
@@ -3373,6 +3373,50 @@ Entries in this section: **35**
   - not container packaging
   - not PQ or hybrid support
   - not vault backup restore
+  - not Android
+  - not CarbonStackOS implementation
+
+### `runner.gate-c-state-substrate-closure-dev`
+
+- **Command:** `go run . --profile gate-c-state-substrate-closure-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_c_state_substrate_closure_dev.go`
+- **Validation surface:** gate-c-state-substrate-closure-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate C state-substrate closure across C1 inventory, C2 schema compatibility, C3 path policy, and C4 write policy without opening Gate D.
+
+**Why it exists:** Closes Gate C as a bounded dev/pre-alpha state-substrate enforcement lane and blocks Gate D until a fresh Gate D contract is accepted.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not Gate D runtime aggregate
+  - not full-runtime-dev
+  - not migration
+  - not silent repair
+  - not state relocation
+  - not runtime writer rewiring
+  - not cleanup implementation
+  - not destructive cleanup
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not Cypher/MLS reconciliation
+  - not deployment
+  - not production E2EE
+  - not PQ or hybrid migration
   - not Android
   - not CarbonStackOS implementation
 

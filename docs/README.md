@@ -293,3 +293,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [258-v0.7.15 Gate C4 Write Policy](258-v0.7.15-gate-c4-write-policy-v0.md)
 - [259-v0.7.15 Gate C4 Closure](259-v0.7.15-gate-c4-closure-v0.md)
+
+- [260-v0.7.16 Gate C5 State Substrate Closure](260-v0.7.16-gate-c5-state-substrate-closure-v0.md)
+- [261-v0.7.16 Gate C Closure](261-v0.7.16-gate-c-closure-v0.md)
