@@ -3825,3 +3825,54 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: runner.gate-f-compat-rollback-observability-dev
+    command: go run . --profile gate-f-compat-rollback-observability-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_compat_rollback_observability_dev.go
+    validation_surface: gate-f-f3-compatibility-rollback-observability-refusal-posture
+    short_help: Validate Gate F F3 aggregate compatibility, stale-state, rollback observability, and refusal posture without implementing migration, repair, cleanup, package/runtime candidate, or full-runtime-dev.
+    why_exists: Reuses Gate C compatibility/path/write-policy authorities, Gate F F1/F2 release/runbook authorities, and Cypher config inspection to prove current observability/refusal posture before later code-health and package/runtime work.
+    related:
+      - runner.state-schema-compat-dev
+      - runner.state-path-policy-dev
+      - runner.state-write-policy-dev
+      - runner.gate-f-release-package-surface-dev
+      - runner.gate-f-operator-docs-runbook-dev
+      - cypher.config-inspection
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+    nonclaims:
+      - not v0.8.0 release readiness
+      - not release creation
+      - not release upload
+      - not package publication
+      - not package staging execution
+      - not package-runtime candidate
+      - not full-runtime-dev
+      - not migration implementation
+      - not repair implementation
+      - not destructive cleanup
+      - not state relocation
+      - not service or systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false

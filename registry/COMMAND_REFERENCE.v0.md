@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **133**
+Registry entry count: **134**
 
 ## Release/package validation and package-helper profiles
 
@@ -2900,7 +2900,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **41**
+Entries in this section: **42**
 
 ### `comms.dev-create-invite`
 
@@ -3599,6 +3599,62 @@ Entries in this section: **41**
   - not Android
   - not CarbonStackOS implementation
   - not v0.8.0 release readiness
+
+### `runner.gate-f-compat-rollback-observability-dev`
+
+- **Command:** `go run . --profile gate-f-compat-rollback-observability-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_compat_rollback_observability_dev.go`
+- **Validation surface:** gate-f-f3-compatibility-rollback-observability-refusal-posture
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate F F3 aggregate compatibility, stale-state, rollback observability, and refusal posture without implementing migration, repair, cleanup, package/runtime candidate, or full-runtime-dev.
+
+**Why it exists:** Reuses Gate C compatibility/path/write-policy authorities, Gate F F1/F2 release/runbook authorities, and Cypher config inspection to prove current observability/refusal posture before later code-health and package/runtime work.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.state-schema-compat-dev
+  - runner.state-path-policy-dev
+  - runner.state-write-policy-dev
+  - runner.gate-f-release-package-surface-dev
+  - runner.gate-f-operator-docs-runbook-dev
+  - cypher.config-inspection
+- **Not claims:**
+  - not v0.8.0 release readiness
+  - not release creation
+  - not release upload
+  - not package publication
+  - not package staging execution
+  - not package-runtime candidate
+  - not full-runtime-dev
+  - not migration implementation
+  - not repair implementation
+  - not destructive cleanup
+  - not state relocation
+  - not service or systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
 
 ### `runner.gate-f-operator-docs-runbook-dev`
 
