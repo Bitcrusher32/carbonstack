@@ -3448,3 +3448,83 @@ entries:
       - not Gate D runtime aggregate
       - not production E2EE
     include_in_front_readme: false
+
+
+  - id: comms.state-write-policy-dev
+    command: go run ./cmd/comms state-write-policy-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: cli
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: gate_c_write_policy
+    source_path: carbonstack-comms/internal/app/state_write_policy_dev.go
+    validation_surface: state-write-policy-dev and Comms package tests
+    short_help: Classify atomic write, lock, partial-state, replay, and cleanup-boundary policy for Comms-owned state surfaces without migration or writer rewiring.
+    why_exists: Provides the Gate C4 write-policy classification surface before C5 Gate C closure.
+    optional_flags:
+      - flag: --state-root
+        meaning: Comms-owned state root to use when describing write policy.
+      - flag: --sidecar-dir
+        meaning: OpenMLS sidecar directory classified as sidecar-owned state.
+      - flag: --cypher-db
+        meaning: optional Cypher DB path classified as Cypher-owned state.
+      - flag: --validator-temp-root
+        meaning: optional validator temp root classified as generated validation state.
+      - flag: --evidence-root
+        meaning: optional evidence root classified as evidence-only.
+      - flag: --output
+        meaning: optional generated evidence report path.
+    nonclaims:
+      - not migration
+      - not silent repair
+      - not state relocation
+      - not runtime writer rewiring
+      - not cleanup implementation
+      - not destructive cleanup
+      - not C5 Gate C closure
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not Cypher/MLS reconciliation
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: runner.state-write-policy-dev
+    command: go run . --profile state-write-policy-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/state_write_policy_dev.go
+    validation_surface: state-write-policy-dev-profile
+    short_help: Validate Gate C4 write-policy classification, report generation, C3/C2/C1 smoke, and registry/reference freshness.
+    why_exists: Closes Gate C4 as the write policy and partial-state classification subgate before C5 Gate C closure.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not migration
+      - not silent repair
+      - not state relocation
+      - not runtime writer rewiring
+      - not cleanup implementation
+      - not destructive cleanup
+      - not C5 Gate C closure
+      - not vault security
+      - not backup restore
+      - not trust promotion
+      - not verified identity
+      - not deployment
+      - not full-runtime-dev
+      - not Gate D runtime aggregate
+      - not production E2EE
+    include_in_front_readme: false

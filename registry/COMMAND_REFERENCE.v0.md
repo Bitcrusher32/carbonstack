@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **124**
+Registry entry count: **126**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **33**
+Entries in this section: **35**
 
 ### `comms.dev-create-invite`
 
@@ -3135,6 +3135,52 @@ Entries in this section: **33**
   - not migration
   - not silent repair
   - not deletion or cleanup
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not Cypher/MLS reconciliation
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
+
+### `comms.state-write-policy-dev`
+
+- **Command:** `go run ./cmd/comms state-write-policy-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `cli`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `gate_c_write_policy`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/state_write_policy_dev.go`
+- **Validation surface:** state-write-policy-dev and Comms package tests
+- **Front README candidate:** `false`
+
+**What it does:** Classify atomic write, lock, partial-state, replay, and cleanup-boundary policy for Comms-owned state surfaces without migration or writer rewiring.
+
+**Why it exists:** Provides the Gate C4 write-policy classification surface before C5 Gate C closure.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--state-root` — Comms-owned state root to use when describing write policy.
+  - `--sidecar-dir` — OpenMLS sidecar directory classified as sidecar-owned state.
+  - `--cypher-db` — optional Cypher DB path classified as Cypher-owned state.
+  - `--validator-temp-root` — optional validator temp root classified as generated validation state.
+  - `--evidence-root` — optional evidence root classified as evidence-only.
+  - `--output` — optional generated evidence report path.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not migration
+  - not silent repair
+  - not state relocation
+  - not runtime writer rewiring
+  - not cleanup implementation
+  - not destructive cleanup
+  - not C5 Gate C closure
   - not vault security
   - not backup restore
   - not trust promotion
@@ -4085,6 +4131,47 @@ Entries in this section: **33**
   - not schema enforcement
   - not migration
   - not silent repair
+  - not vault security
+  - not backup restore
+  - not trust promotion
+  - not verified identity
+  - not deployment
+  - not full-runtime-dev
+  - not Gate D runtime aggregate
+  - not production E2EE
+
+### `runner.state-write-policy-dev`
+
+- **Command:** `go run . --profile state-write-policy-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/state_write_policy_dev.go`
+- **Validation surface:** state-write-policy-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate C4 write-policy classification, report generation, C3/C2/C1 smoke, and registry/reference freshness.
+
+**Why it exists:** Closes Gate C4 as the write policy and partial-state classification subgate before C5 Gate C closure.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not migration
+  - not silent repair
+  - not state relocation
+  - not runtime writer rewiring
+  - not cleanup implementation
+  - not destructive cleanup
+  - not C5 Gate C closure
   - not vault security
   - not backup restore
   - not trust promotion

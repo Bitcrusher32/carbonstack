@@ -290,3 +290,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [256-v0.7.14 Gate C3 Path Policy](256-v0.7.14-gate-c3-path-policy-v0.md)
 - [257-v0.7.14 Gate C3 Closure](257-v0.7.14-gate-c3-closure-v0.md)
+
+- [258-v0.7.15 Gate C4 Write Policy](258-v0.7.15-gate-c4-write-policy-v0.md)
+- [259-v0.7.15 Gate C4 Closure](259-v0.7.15-gate-c4-closure-v0.md)

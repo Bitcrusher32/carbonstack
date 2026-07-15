@@ -45,7 +45,7 @@ type ArtifactHit struct {
 }
 
 func main() {
-	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, keypackage-rotation-dev, keypackage-publication-dev, keypackage-consume-dev, welcome-lifecycle-dev, cypher-mls-mismatch-dev, workflow-relay-onboarding-dev, gate-b-relay-lifecycle-closure-dev, state-substrate-inventory-dev, state-schema-compat-dev, state-path-policy-dev, full, full-validate-release, release-snapshot, write-checksums, verify-checksums")
+	profile := flag.String("profile", "doctor", "validation profile: doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, keypackage-rotation-dev, keypackage-publication-dev, keypackage-consume-dev, welcome-lifecycle-dev, cypher-mls-mismatch-dev, workflow-relay-onboarding-dev, gate-b-relay-lifecycle-closure-dev, state-substrate-inventory-dev, state-schema-compat-dev, state-path-policy-dev, state-write-policy-dev, full, full-validate-release, release-snapshot, write-checksums, verify-checksums")
 	rootOverride := flag.String("root", "", "optional umbrella root containing carbonstack, carbonstack-comms, carbonstack-cypher")
 	registryID := flag.String("registry-id", "", "registry id to inspect when --profile registry-lookup is used")
 	registryCommand := flag.String("command", "", "literal registry command to inspect when --profile registry-lookup is used")
@@ -141,6 +141,8 @@ func main() {
 		runErr = r.StateSchemaCompatibilityDev()
 	case "state-path-policy-dev":
 		runErr = r.StatePathPolicyDev()
+	case "state-write-policy-dev":
+		runErr = r.StateWritePolicyDev()
 	case "full", "full-validate-release":
 		fmt.Printf("profile %s runs release-snapshot, then local-cypher\n", r.Profile)
 		fmt.Println("release-snapshot already calls core; full/full-validate-release do not call core a second time")
