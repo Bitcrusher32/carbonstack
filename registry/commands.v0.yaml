@@ -3602,3 +3602,42 @@ entries:
       - not PQ or hybrid migration
       - not v0.8.0 release readiness
     include_in_front_readme: false
+
+
+  - id: runner.gate-e-native-deployment-dev
+    command: go run . --profile gate-e-native-deployment-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_e_native_deployment_dev.go
+    validation_surface: gate-e-e1-native-deployment-profile
+    short_help: Validate Gate E E1 manual-private native deployment context with explicit-env Cypher start/stop/restart and Gate C state-policy inspection over deployment roots.
+    why_exists: Establishes the first bounded native deployment proof after Gate D while keeping service/systemd, public ingress, containers, TUI, full-runtime-dev, trust, identity, vault, backup, PQ, Android, and OS work out of scope.
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+      - flag: --clean-generated
+        meaning: remove known generated/build artifacts after successful profile execution.
+    nonclaims:
+      - not Gate E final closure by itself
+      - not semi-persistent service
+      - not systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not full-runtime-dev
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+      - not v0.8.0 release readiness
+    include_in_front_readme: false

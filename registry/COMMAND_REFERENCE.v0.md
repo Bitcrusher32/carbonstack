@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **128**
+Registry entry count: **129**
 
 ## Release/package validation and package-helper profiles
 
@@ -2851,7 +2851,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **37**
+Entries in this section: **38**
 
 ### `comms.dev-create-invite`
 
@@ -3458,6 +3458,50 @@ Entries in this section: **37**
   - not Android
   - not CarbonStackOS implementation
   - not PQ or hybrid migration
+  - not v0.8.0 release readiness
+
+### `runner.gate-e-native-deployment-dev`
+
+- **Command:** `go run . --profile gate-e-native-deployment-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_e_native_deployment_dev.go`
+- **Validation surface:** gate-e-e1-native-deployment-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate E E1 manual-private native deployment context with explicit-env Cypher start/stop/restart and Gate C state-policy inspection over deployment roots.
+
+**Why it exists:** Establishes the first bounded native deployment proof after Gate D while keeping service/systemd, public ingress, containers, TUI, full-runtime-dev, trust, identity, vault, backup, PQ, Android, and OS work out of scope.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+  - `--clean-generated` — remove known generated/build artifacts after successful profile execution.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not Gate E final closure by itself
+  - not semi-persistent service
+  - not systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not full-runtime-dev
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
   - not v0.8.0 release readiness
 
 ### `runner.keypackage-consume-dev`

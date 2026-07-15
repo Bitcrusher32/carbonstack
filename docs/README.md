@@ -299,3 +299,6 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [262-v0.7.17 Gate D Runtime Aggregate](262-v0.7.17-gate-d-runtime-aggregate-v0.md)
 - [263-v0.7.17 Gate D Closure](263-v0.7.17-gate-d-closure-v0.md)
+
+- [264-v0.7.18 Gate E E1 Native Deployment](264-v0.7.18-gate-e-e1-native-deployment-v0.md)
+- [265-v0.7.18 Gate E E1 Closure](265-v0.7.18-gate-e-e1-closure-v0.md)
