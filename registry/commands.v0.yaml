@@ -3641,3 +3641,49 @@ entries:
       - not CarbonStackOS implementation
       - not v0.8.0 release readiness
     include_in_front_readme: false
+
+
+  - id: cypher.config-inspection
+    command: go run ./cmd/cypher --print-config
+    repo: carbonstack-cypher
+    component: cmd/cypher
+    kind: server-config-inspection
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack-cypher/cmd/cypher/main.go
+    validation_surface: Gate E E2 Cypher config inspection
+    short_help: Print effective Cypher config as JSON and exit without starting the server.
+    why_exists: Provides a terminating operator inspection surface before Gate E runbook/helper/service decisions, preventing --help/config probes from accidentally starting the blocking server with defaults.
+    related:
+      - runner.gate-e-native-deployment-dev
+      - runner.local-cypher
+      - cypher.server
+    optional_flags:
+      - flag: --print-config
+        meaning: print effective config JSON and exit without starting the server.
+      - flag: --check-config
+        meaning: validate effective config and exit without starting the server.
+      - flag: --help
+        meaning: print Cypher usage and exit without starting the server.
+    nonclaims:
+      - not Gate E final closure by itself
+      - not deployment implementation
+      - not semi-persistent service
+      - not systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not full-runtime-dev
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+      - not v0.8.0 release readiness
+    include_in_front_readme: false

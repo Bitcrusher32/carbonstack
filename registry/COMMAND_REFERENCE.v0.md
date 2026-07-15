@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **129**
+Registry entry count: **130**
 
 ## Release/package validation and package-helper profiles
 
@@ -2506,7 +2506,7 @@ Entries in this section: **14**
 
 ## Cypher server and HTTP API surfaces
 
-Entries in this section: **10**
+Entries in this section: **11**
 
 ### `cypher.api.accounts-devices`
 
@@ -2770,6 +2770,55 @@ Entries in this section: **10**
   - not production key distribution
   - not deployment
   - not audit or certification
+
+### `cypher.config-inspection`
+
+- **Command:** `go run ./cmd/cypher --print-config`
+- **Repo:** `carbonstack-cypher`
+- **Component:** `cmd/cypher`
+- **Kind:** `server-config-inspection`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-cypher/cmd/cypher/main.go`
+- **Validation surface:** Gate E E2 Cypher config inspection
+- **Front README candidate:** `false`
+
+**What it does:** Print effective Cypher config as JSON and exit without starting the server.
+
+**Why it exists:** Provides a terminating operator inspection surface before Gate E runbook/helper/service decisions, preventing --help/config probes from accidentally starting the blocking server with defaults.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--print-config` — print effective config JSON and exit without starting the server.
+  - `--check-config` — validate effective config and exit without starting the server.
+  - `--help` — print Cypher usage and exit without starting the server.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-e-native-deployment-dev
+  - runner.local-cypher
+  - cypher.server
+- **Not claims:**
+  - not Gate E final closure by itself
+  - not deployment implementation
+  - not semi-persistent service
+  - not systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not full-runtime-dev
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
+  - not v0.8.0 release readiness
 
 ### `cypher.server`
 
