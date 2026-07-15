@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **132**
+Registry entry count: **133**
 
 ## Release/package validation and package-helper profiles
 
@@ -2900,7 +2900,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **40**
+Entries in this section: **41**
 
 ### `comms.dev-create-invite`
 
@@ -3599,6 +3599,58 @@ Entries in this section: **40**
   - not Android
   - not CarbonStackOS implementation
   - not v0.8.0 release readiness
+
+### `runner.gate-f-operator-docs-runbook-dev`
+
+- **Command:** `go run . --profile gate-f-operator-docs-runbook-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_operator_docs_runbook_dev.go`
+- **Validation surface:** gate-f-f2-operator-docs-runbook-closure
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate F F2 manual-private lifecycle, config/env, release/package authority, and failure/refusal/hygiene operator documentation.
+
+**Why it exists:** Closes the operator documentation and runbook layer after Gate F F1 surface classification and before later compatibility, package/runtime, or release-candidate work.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-f-release-package-surface-dev
+  - runner.gate-e-native-deployment-closure-dev
+  - cypher.config-inspection
+  - runner.full-validate-release
+  - runner.release-snapshot
+- **Not claims:**
+  - not v0.8.0 release readiness
+  - not release creation
+  - not release upload
+  - not package publication
+  - not package staging execution
+  - not package-runtime candidate
+  - not full-runtime-dev
+  - not migration implementation
+  - not service or systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not production readiness
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
 
 ### `runner.gate-f-release-package-surface-dev`
 

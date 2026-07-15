@@ -311,3 +311,8 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - [270-v0.7.20 Gate F F1 Release Package Runtime Surface](270-v0.7.20-gate-f-f1-release-package-surface-v0.md)
 - [271-v0.7.20 Gate F F1 Closure](271-v0.7.20-gate-f-f1-closure-v0.md)
+- [272-v0.7.20 Gate F F2 Manual Private Lifecycle Runbook](272-v0.7.20-gate-f-f2-manual-private-lifecycle-runbook-v0.md)
+- [273-v0.7.20 Gate F F2 Config Env Validation Guide](273-v0.7.20-gate-f-f2-config-env-validation-guide-v0.md)
+- [274-v0.7.20 Gate F F2 Release Package Authority Guide](274-v0.7.20-gate-f-f2-release-package-authority-guide-v0.md)
+- [275-v0.7.20 Gate F F2 Failure Refusal Hygiene Guide](275-v0.7.20-gate-f-f2-failure-refusal-hygiene-guide-v0.md)
+- [276-v0.7.20 Gate F F2 Closure](276-v0.7.20-gate-f-f2-closure-v0.md)

@@ -3778,3 +3778,50 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: runner.gate-f-operator-docs-runbook-dev
+    command: go run . --profile gate-f-operator-docs-runbook-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_operator_docs_runbook_dev.go
+    validation_surface: gate-f-f2-operator-docs-runbook-closure
+    short_help: Validate Gate F F2 manual-private lifecycle, config/env, release/package authority, and failure/refusal/hygiene operator documentation.
+    why_exists: Closes the operator documentation and runbook layer after Gate F F1 surface classification and before later compatibility, package/runtime, or release-candidate work.
+    related:
+      - runner.gate-f-release-package-surface-dev
+      - runner.gate-e-native-deployment-closure-dev
+      - cypher.config-inspection
+      - runner.full-validate-release
+      - runner.release-snapshot
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+    nonclaims:
+      - not v0.8.0 release readiness
+      - not release creation
+      - not release upload
+      - not package publication
+      - not package staging execution
+      - not package-runtime candidate
+      - not full-runtime-dev
+      - not migration implementation
+      - not service or systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not production readiness
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false
