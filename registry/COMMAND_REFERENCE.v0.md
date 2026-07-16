@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **138**
+Registry entry count: **139**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **44**
+Entries in this section: **45**
 
 ### `comms.dev-create-invite`
 
@@ -3895,6 +3895,66 @@ Entries in this section: **44**
   - not trust promotion
   - not vault security
   - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
+
+### `runner.gate-f-package-runtime-candidate-dev`
+
+- **Command:** `go run . --profile gate-f-package-runtime-candidate-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_package_runtime_candidate_dev.go`
+- **Validation surface:** gate-f-f6-package-runtime-candidate-validation
+- **Front README candidate:** `false`
+
+**What it does:** Validate a disposable package/runtime candidate root shape without release creation, release upload, package publication, legacy package staging execution, or full-runtime-dev promotion.
+
+**Why it exists:** Closes the v0.7.x package/runtime candidate validation layer so v0.8.0 release-candidate closure can use a coherent root model and manual release handoff without pretending a public release has already been created.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-f-release-package-surface-dev
+  - runner.gate-f-operator-docs-runbook-dev
+  - runner.gate-f-compat-rollback-observability-dev
+  - runner.gate-f-code-health-source-hygiene-dev
+  - runner.gate-f-basic-local-trust-posture-dev
+  - comms.basic-local-trust-posture-dev
+  - cypher.config-inspection
+  - runner.release-snapshot
+  - runner.full-validate-release
+- **Not claims:**
+  - not v0.8.0 release readiness
+  - not release creation
+  - not release upload
+  - not package publication
+  - not package staging execution
+  - not public package artifact creation
+  - not full-runtime-dev
+  - not service or systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not migration implementation
+  - not repair implementation
+  - not destructive cleanup
+  - not state relocation
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not cryptographic identity binding
+  - not vault security
+  - not backup restore
+  - not production E2EE
   - not PQ or hybrid migration
   - not Android
   - not CarbonStackOS implementation

@@ -4044,3 +4044,58 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: runner.gate-f-package-runtime-candidate-dev
+    command: go run . --profile gate-f-package-runtime-candidate-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_package_runtime_candidate_dev.go
+    validation_surface: gate-f-f6-package-runtime-candidate-validation
+    short_help: Validate a disposable package/runtime candidate root shape without release creation, release upload, package publication, legacy package staging execution, or full-runtime-dev promotion.
+    why_exists: Closes the v0.7.x package/runtime candidate validation layer so v0.8.0 release-candidate closure can use a coherent root model and manual release handoff without pretending a public release has already been created.
+    related:
+      - runner.gate-f-release-package-surface-dev
+      - runner.gate-f-operator-docs-runbook-dev
+      - runner.gate-f-compat-rollback-observability-dev
+      - runner.gate-f-code-health-source-hygiene-dev
+      - runner.gate-f-basic-local-trust-posture-dev
+      - comms.basic-local-trust-posture-dev
+      - cypher.config-inspection
+      - runner.release-snapshot
+      - runner.full-validate-release
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+    nonclaims:
+      - not v0.8.0 release readiness
+      - not release creation
+      - not release upload
+      - not package publication
+      - not package staging execution
+      - not public package artifact creation
+      - not full-runtime-dev
+      - not service or systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not migration implementation
+      - not repair implementation
+      - not destructive cleanup
+      - not state relocation
+      - not verified identity
+      - not full trust promotion
+      - not secure enrollment
+      - not cryptographic identity binding
+      - not vault security
+      - not backup restore
+      - not production E2EE
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false

@@ -322,3 +322,5 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [280-v0.7.22 Gate F F4 Closure](280-v0.7.22-gate-f-f4-closure-v0.md)
 - [281-v0.7.23 Gate F F5 Basic Local Trust Posture](281-v0.7.23-gate-f-f5-basic-local-trust-posture-v0.md)
 - [282-v0.7.23 Gate F F5 Closure](282-v0.7.23-gate-f-f5-closure-v0.md)
+- [283-v0.7.24 Gate F F6 Package Runtime Candidate Validation](283-v0.7.24-gate-f-f6-package-runtime-candidate-v0.md)
+- [284-v0.7.24 Gate F F6 Closure](284-v0.7.24-gate-f-f6-closure-v0.md)
