@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **135**
+Registry entry count: **138**
 
 ## Release/package validation and package-helper profiles
 
@@ -1264,7 +1264,82 @@ Entries in this section: **12**
 
 ## Comms state, account, device, and trust commands
 
-Entries in this section: **9**
+Entries in this section: **11**
+
+### `comms.basic-local-trust-accept-dev`
+
+- **Command:** `go run ./cmd/comms basic-local-trust-accept-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `dev-command`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/basic_local_trust_posture_dev.go`
+- **Validation surface:** gate-f-f5-basic-local-trust-candidate-posture
+- **Front README candidate:** `false`
+
+**What it does:** Record an explicit local manual trust candidate acceptance event with loud nonclaims.
+
+**Why it exists:** Provides a dev/pre-alpha local evidence path for manual candidate acceptance without verified identity, automatic trust promotion, or cryptographic identity binding.
+
+- **Required flags:**
+  - `--accept-candidate` — explicit operator confirmation that a local candidate acceptance event should be written.
+  - `--reason` — operator reason for local manual candidate acceptance.
+- **Optional flags:** Not recorded in registry.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not server-hostile identity replacement proof
+  - not real-world person verification
+  - not cryptographic binding across Cypher Comms and OpenMLS identities
+  - not automatic trust promotion
+  - not trust from Relay membership
+  - not trust from successful Welcome or MLS join
+  - not package-runtime candidate
+  - not release readiness
+  - not production E2EE
+
+### `comms.basic-local-trust-posture-dev`
+
+- **Command:** `go run ./cmd/comms basic-local-trust-posture-dev`
+- **Repo:** `carbonstack-comms`
+- **Component:** `cmd/comms`
+- **Kind:** `dev-command`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack-comms/internal/app/basic_local_trust_posture_dev.go`
+- **Validation surface:** gate-f-f5-basic-local-trust-candidate-posture
+- **Front README candidate:** `false`
+
+**What it does:** Print a basic local trust posture report across Cypher account/device, Comms local fingerprint, OpenMLS sidecar/KeyPackage, and Relay Space routing evidence.
+
+**Why it exists:** Makes identity-domain separation explicit before v0.8.0 without claiming verified identity, trust promotion, secure enrollment, or cryptographic binding.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--report` — write the posture report to a JSON file.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:** Not recorded in registry.
+- **Not claims:**
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not server-hostile identity replacement proof
+  - not real-world person verification
+  - not cryptographic binding across Cypher Comms and OpenMLS identities
+  - not automatic trust promotion
+  - not trust from Relay membership
+  - not trust from successful Welcome or MLS join
+  - not package-runtime candidate
+  - not release readiness
+  - not production E2EE
 
 ### `comms.claim-invite`
 
@@ -2900,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **43**
+Entries in this section: **44**
 
 ### `comms.dev-create-invite`
 
@@ -3599,6 +3674,67 @@ Entries in this section: **43**
   - not Android
   - not CarbonStackOS implementation
   - not v0.8.0 release readiness
+
+### `runner.gate-f-basic-local-trust-posture-dev`
+
+- **Command:** `go run . --profile gate-f-basic-local-trust-posture-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_basic_local_trust_posture_dev.go`
+- **Validation surface:** gate-f-f5-basic-local-trust-candidate-posture
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate F F5 basic local manual trust candidate posture without verified identity, trust promotion, secure enrollment, cryptographic binding, package/runtime candidate, or release work.
+
+**Why it exists:** Closes the minimal v0.7.x local trust posture so v0.8.0 can honestly state verified identity remains a nonclaim while a basic local acceptance model exists for future expansion.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - comms.basic-local-trust-posture-dev
+  - comms.basic-local-trust-accept-dev
+  - comms.message-send-dev
+  - comms.openmls-relay-join-dev
+  - runner.gate-f-code-health-source-hygiene-dev
+- **Not claims:**
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not server-hostile identity replacement proof
+  - not real-world person verification
+  - not cryptographic binding across Cypher Comms and OpenMLS identities
+  - not automatic trust promotion
+  - not trust from Relay membership
+  - not trust from successful Welcome or MLS join
+  - not package-runtime candidate
+  - not v0.8.0 release readiness
+  - not release creation
+  - not release upload
+  - not package publication
+  - not package staging execution
+  - not full-runtime-dev
+  - not migration implementation
+  - not repair implementation
+  - not destructive cleanup
+  - not state relocation
+  - not service or systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not production E2EE
+  - not vault security
+  - not backup restore
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
 
 ### `runner.gate-f-code-health-source-hygiene-dev`
 

@@ -3926,3 +3926,121 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+
+  - id: comms.basic-local-trust-posture-dev
+    command: go run ./cmd/comms basic-local-trust-posture-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: dev-command
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack-comms/internal/app/basic_local_trust_posture_dev.go
+    validation_surface: gate-f-f5-basic-local-trust-candidate-posture
+    short_help: Print a basic local trust posture report across Cypher account/device, Comms local fingerprint, OpenMLS sidecar/KeyPackage, and Relay Space routing evidence.
+    why_exists: Makes identity-domain separation explicit before v0.8.0 without claiming verified identity, trust promotion, secure enrollment, or cryptographic binding.
+    optional_flags:
+      - flag: --report
+        meaning: write the posture report to a JSON file.
+    nonclaims:
+      - not verified identity
+      - not full trust promotion
+      - not secure enrollment
+      - not server-hostile identity replacement proof
+      - not real-world person verification
+      - not cryptographic binding across Cypher Comms and OpenMLS identities
+      - not automatic trust promotion
+      - not trust from Relay membership
+      - not trust from successful Welcome or MLS join
+      - not package-runtime candidate
+      - not release readiness
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: comms.basic-local-trust-accept-dev
+    command: go run ./cmd/comms basic-local-trust-accept-dev
+    repo: carbonstack-comms
+    component: cmd/comms
+    kind: dev-command
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack-comms/internal/app/basic_local_trust_posture_dev.go
+    validation_surface: gate-f-f5-basic-local-trust-candidate-posture
+    short_help: Record an explicit local manual trust candidate acceptance event with loud nonclaims.
+    why_exists: Provides a dev/pre-alpha local evidence path for manual candidate acceptance without verified identity, automatic trust promotion, or cryptographic identity binding.
+    required_flags:
+      - flag: --accept-candidate
+        meaning: explicit operator confirmation that a local candidate acceptance event should be written.
+      - flag: --reason
+        meaning: operator reason for local manual candidate acceptance.
+    nonclaims:
+      - not verified identity
+      - not full trust promotion
+      - not secure enrollment
+      - not server-hostile identity replacement proof
+      - not real-world person verification
+      - not cryptographic binding across Cypher Comms and OpenMLS identities
+      - not automatic trust promotion
+      - not trust from Relay membership
+      - not trust from successful Welcome or MLS join
+      - not package-runtime candidate
+      - not release readiness
+      - not production E2EE
+    include_in_front_readme: false
+
+  - id: runner.gate-f-basic-local-trust-posture-dev
+    command: go run . --profile gate-f-basic-local-trust-posture-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_basic_local_trust_posture_dev.go
+    validation_surface: gate-f-f5-basic-local-trust-candidate-posture
+    short_help: Validate Gate F F5 basic local manual trust candidate posture without verified identity, trust promotion, secure enrollment, cryptographic binding, package/runtime candidate, or release work.
+    why_exists: Closes the minimal v0.7.x local trust posture so v0.8.0 can honestly state verified identity remains a nonclaim while a basic local acceptance model exists for future expansion.
+    related:
+      - comms.basic-local-trust-posture-dev
+      - comms.basic-local-trust-accept-dev
+      - comms.message-send-dev
+      - comms.openmls-relay-join-dev
+      - runner.gate-f-code-health-source-hygiene-dev
+    optional_flags:
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+    nonclaims:
+      - not verified identity
+      - not full trust promotion
+      - not secure enrollment
+      - not server-hostile identity replacement proof
+      - not real-world person verification
+      - not cryptographic binding across Cypher Comms and OpenMLS identities
+      - not automatic trust promotion
+      - not trust from Relay membership
+      - not trust from successful Welcome or MLS join
+      - not package-runtime candidate
+      - not v0.8.0 release readiness
+      - not release creation
+      - not release upload
+      - not package publication
+      - not package staging execution
+      - not full-runtime-dev
+      - not migration implementation
+      - not repair implementation
+      - not destructive cleanup
+      - not state relocation
+      - not service or systemd
+      - not helper install
+      - not public ingress
+      - not container readiness
+      - not TUI
+      - not production E2EE
+      - not vault security
+      - not backup restore
+      - not PQ or hybrid migration
+      - not Android
+      - not CarbonStackOS implementation
+    include_in_front_readme: false
