@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **139**
+Registry entry count: **140**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **45**
+Entries in this section: **46**
 
 ### `comms.dev-create-invite`
 
@@ -3933,6 +3933,69 @@ Entries in this section: **45**
   - runner.full-validate-release
 - **Not claims:**
   - not v0.8.0 release readiness
+  - not release creation
+  - not release upload
+  - not package publication
+  - not package staging execution
+  - not public package artifact creation
+  - not full-runtime-dev
+  - not service or systemd
+  - not helper install
+  - not public ingress
+  - not container readiness
+  - not TUI
+  - not migration implementation
+  - not repair implementation
+  - not destructive cleanup
+  - not state relocation
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not cryptographic identity binding
+  - not vault security
+  - not backup restore
+  - not production E2EE
+  - not PQ or hybrid migration
+  - not Android
+  - not CarbonStackOS implementation
+
+### `runner.gate-f-release-candidate-closure-dev`
+
+- **Command:** `go run . --profile gate-f-release-candidate-closure-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `Not recorded in registry.`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_release_candidate_closure_dev.go`
+- **Validation surface:** gate-f-f7-release-candidate-closure-matrix-manual-handoff
+- **Front README candidate:** `false`
+
+**What it does:** Validate the v0.8.0 release-candidate closure matrix and manual release handoff without release creation, release upload, package publication, package staging, public package artifacts, or full-runtime-dev promotion.
+
+**Why it exists:** Closes Gate F as a release-candidate handoff surface so the operator can manually prepare v0.8.0 using prior release assets without the tooling pretending the public release already exists.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-b-relay-lifecycle-closure-dev
+  - runner.gate-c-state-substrate-closure-dev
+  - runner.gate-d-runtime-aggregate-dev
+  - runner.gate-e-native-deployment-closure-dev
+  - runner.gate-f-release-package-surface-dev
+  - runner.gate-f-operator-docs-runbook-dev
+  - runner.gate-f-compat-rollback-observability-dev
+  - runner.gate-f-code-health-source-hygiene-dev
+  - runner.gate-f-basic-local-trust-posture-dev
+  - runner.gate-f-package-runtime-candidate-dev
+  - runner.full-validate-release
+  - runner.release-snapshot
+  - cypher.config-inspection
+- **Not claims:**
   - not release creation
   - not release upload
   - not package publication
