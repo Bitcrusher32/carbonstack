@@ -4418,3 +4418,45 @@ entries:
       - not external pen-test completion
     include_in_front_readme: false
 
+  - id: runner.gate-f-native-process-f2-component-probes-dev
+    command: go run . --profile gate-f-native-process-f2-component-probes-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.6-gate-f-f2
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_native_process_f2_component_probes_dev.go
+    validation_surface: gate-f-f2-component-runtime-process-probe-substrate
+    short_help: Validate Gate F F2 Comms/Cypher component-owned native process probe substrate and nonclaim preservation before deep WSL or real Debian host testing.
+    why_exists: Moves Gate F beyond F1 contract-only docs by adding component-owned Comms and Cypher probe models for disposable run roots, path/log/DB/config/port/CLI findings while still deferring deep WSL execution and slow real-Debian laptop validation.
+    related:
+      - runner.gate-f-native-process-f1-contract-dev
+      - runner.gate-e-relay-onboarding-adversarial-dev
+    optional_flags:
+      - flag: --root
+        meaning: umbrella root to inspect.
+    nonclaims:
+      - not deep WSL process testing
+      - not real Debian laptop validation
+      - not service readiness
+      - not systemd readiness
+      - not helper install readiness
+      - not public ingress
+      - not container readiness
+      - not deployment hardening certification
+      - not production security
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not secure enrollment
+      - not vault security
+      - not backup restore
+      - not migration safety
+      - not repair implementation
+      - not destructive cleanup safety
+      - not external audit
+      - not external pen-test completion
+    include_in_front_readme: false
+

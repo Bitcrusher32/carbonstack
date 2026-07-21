@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **146**
+Registry entry count: **147**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **52**
+Entries in this section: **53**
 
 ### `comms.dev-create-invite`
 
@@ -4133,6 +4133,53 @@ Entries in this section: **52**
   - not Android readiness
   - not CarbonStackOS implementation
   - not PQ or hybrid security
+  - not external audit
+  - not external pen-test completion
+
+### `runner.gate-f-native-process-f2-component-probes-dev`
+
+- **Command:** `go run . --profile gate-f-native-process-f2-component-probes-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.6-gate-f-f2`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_native_process_f2_component_probes_dev.go`
+- **Validation surface:** gate-f-f2-component-runtime-process-probe-substrate
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate F F2 Comms/Cypher component-owned native process probe substrate and nonclaim preservation before deep WSL or real Debian host testing.
+
+**Why it exists:** Moves Gate F beyond F1 contract-only docs by adding component-owned Comms and Cypher probe models for disposable run roots, path/log/DB/config/port/CLI findings while still deferring deep WSL execution and slow real-Debian laptop validation.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — umbrella root to inspect.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-f-native-process-f1-contract-dev
+  - runner.gate-e-relay-onboarding-adversarial-dev
+- **Not claims:**
+  - not deep WSL process testing
+  - not real Debian laptop validation
+  - not service readiness
+  - not systemd readiness
+  - not helper install readiness
+  - not public ingress
+  - not container readiness
+  - not deployment hardening certification
+  - not production security
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not secure enrollment
+  - not vault security
+  - not backup restore
+  - not migration safety
+  - not repair implementation
+  - not destructive cleanup safety
   - not external audit
   - not external pen-test completion
 

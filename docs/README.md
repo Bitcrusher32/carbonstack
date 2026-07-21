@@ -341,3 +341,5 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [299-v0.8.6 Gate F Service systemd Helper Threat Model](299-v0.8.6-gate-f-service-systemd-helper-threat-model-v0.md)
 - [300-v0.8.6 Gate F Native Process Case Matrix](300-v0.8.6-gate-f-native-process-case-matrix-v0.md)
 - [301-v0.8.6 Gate F Subgate Plan](301-v0.8.6-gate-f-subgate-plan-v0.md)
+- [302-v0.8.6 Gate F F2 Component Runtime Process Probes Contract](302-v0.8.6-gate-f-f2-component-runtime-process-probes-contract-v0.md)
+- [303-v0.8.6 Gate F F2 Component Probe Report Model](303-v0.8.6-gate-f-f2-component-probe-report-model-v0.md)
