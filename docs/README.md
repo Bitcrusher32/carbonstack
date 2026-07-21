@@ -331,3 +331,5 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [289-v0.8.1 Gate A Closure](289-v0.8.1-gate-a-closure-v0.md)
 - [290-v0.8.2 Gate B Adversarial Harness Contract](290-v0.8.2-gate-b-adversarial-harness-contract-v0.md)
 - [291-v0.8.2 Gate B Seed Case Registry](291-v0.8.2-gate-b-seed-case-registry-v0.md)
+- [292-v0.8.3 Gate C Local Trust Candidate Contract](292-v0.8.3-gate-c-local-trust-candidate-contract-v0.md)
+- [293-v0.8.3 Gate C Local Trust Candidate Model](293-v0.8.3-gate-c-local-trust-candidate-model-v0.md)

@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **142**
+Registry entry count: **143**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **48**
+Entries in this section: **49**
 
 ### `comms.dev-create-invite`
 
@@ -3594,6 +3594,49 @@ Entries in this section: **48**
   - not vault backup restore
   - not Android
   - not CarbonStackOS implementation
+
+### `runner.gate-c-local-trust-candidate-model-dev`
+
+- **Command:** `go run . --profile gate-c-local-trust-candidate-model-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.3-gate-c`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_c_local_trust_candidate_model_dev.go`
+- **Validation surface:** gate-c-local-trust-candidate-schema-trust-state-nonclaims
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate C local trust candidate model, trust-state schema, nonclaim guards, and adversarial seed-case carry-forward.
+
+**Why it exists:** Makes local trust promotion candidate semantics explicit enough to attack without claiming verified identity, secure enrollment, automatic trust promotion, or hostile-server identity replacement proof.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — umbrella root to inspect.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-b-adversarial-harness-dev
+  - runner.gate-f-basic-local-trust-posture-dev
+  - comms.basic-local-trust-posture-dev
+  - comms.basic-local-trust-accept-dev
+- **Not claims:**
+  - not production verified identity
+  - not secure enrollment
+  - not hardware-backed identity
+  - not real-world person verification
+  - not automatic trust promotion
+  - not hostile-server identity replacement proof
+  - not trust from Relay membership
+  - not trust from MLS join
+  - not trust from provider observation
+  - not cryptographic binding across Cypher Comms and OpenMLS identities
+  - not production security
+  - not production E2EE
+  - not external audit
+  - not external pen-test completion
 
 ### `runner.gate-c-state-substrate-closure-dev`
 

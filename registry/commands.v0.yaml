@@ -4243,3 +4243,41 @@ entries:
       - not Android or CarbonStackOS readiness
       - not PQ or hybrid security
     include_in_front_readme: false
+
+  - id: runner.gate-c-local-trust-candidate-model-dev
+    command: go run . --profile gate-c-local-trust-candidate-model-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.3-gate-c
+    source_path: carbonstack/tools/carbonstack-validate/gate_c_local_trust_candidate_model_dev.go
+    validation_surface: gate-c-local-trust-candidate-schema-trust-state-nonclaims
+    short_help: Validate Gate C local trust candidate model, trust-state schema, nonclaim guards, and adversarial seed-case carry-forward.
+    why_exists: Makes local trust promotion candidate semantics explicit enough to attack without claiming verified identity, secure enrollment, automatic trust promotion, or hostile-server identity replacement proof.
+    related:
+      - runner.gate-b-adversarial-harness-dev
+      - runner.gate-f-basic-local-trust-posture-dev
+      - comms.basic-local-trust-posture-dev
+      - comms.basic-local-trust-accept-dev
+    optional_flags:
+      - flag: --root
+        meaning: umbrella root to inspect.
+    nonclaims:
+      - not production verified identity
+      - not secure enrollment
+      - not hardware-backed identity
+      - not real-world person verification
+      - not automatic trust promotion
+      - not hostile-server identity replacement proof
+      - not trust from Relay membership
+      - not trust from MLS join
+      - not trust from provider observation
+      - not cryptographic binding across Cypher Comms and OpenMLS identities
+      - not production security
+      - not production E2EE
+      - not external audit
+      - not external pen-test completion
+    include_in_front_readme: false

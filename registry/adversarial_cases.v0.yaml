@@ -63,3 +63,159 @@ cases:
       - Gate C local trust promotion candidate model
       - Gate E Relay/onboarding/MLS-Cypher adversarial pass
       - Gate H integrated native adversarial campaign
+  - case_id: ADV-TRUST-LABEL-SPOOF-NOT-IDENTITY-001
+    title: Label spoof must not become verified identity
+    status: seed_contract_only_not_executed
+    surface: local-trust-candidate-model
+    case_family: trust-boundary-nonpromotion
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Local trust candidate evidence exists.
+      - No explicit operator promotion event has occurred unless the case states otherwise.
+    attack_or_fault: Treat a matching or convincing human label as verified identity.
+    expected_refusal_or_warning: System/report must preserve candidate state and refuse verified identity language.
+    expected_nonclaim_preservation:
+      - Relay membership is not trust.
+      - MLS join is not trust.
+      - Provider observation is not trust.
+      - No verified identity claim.
+      - No automatic trust promotion.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-c-local-trust-candidate-model-dev
+    future_gate_links:
+      - Gate C local trust promotion candidate model
+      - Gate E Relay/onboarding/MLS-Cypher adversarial pass
+      - Gate H integrated native adversarial campaign
+
+  - case_id: ADV-TRUST-MLS-JOIN-NOT-TRUST-001
+    title: MLS join must not become local trust
+    status: seed_contract_only_not_executed
+    surface: local-trust-candidate-model
+    case_family: trust-boundary-nonpromotion
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Local trust candidate evidence exists.
+      - No explicit operator promotion event has occurred unless the case states otherwise.
+    attack_or_fault: Treat successful MLS join as local trust promotion.
+    expected_refusal_or_warning: System/report must preserve candidate or untrusted state until explicit operator promotion.
+    expected_nonclaim_preservation:
+      - Relay membership is not trust.
+      - MLS join is not trust.
+      - Provider observation is not trust.
+      - No verified identity claim.
+      - No automatic trust promotion.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-c-local-trust-candidate-model-dev
+    future_gate_links:
+      - Gate C local trust promotion candidate model
+      - Gate E Relay/onboarding/MLS-Cypher adversarial pass
+      - Gate H integrated native adversarial campaign
+
+  - case_id: ADV-TRUST-PROVIDER-OBSERVATION-NOT-TRUST-001
+    title: Provider observation must not become trust
+    status: seed_contract_only_not_executed
+    surface: local-trust-candidate-model
+    case_family: trust-boundary-nonpromotion
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Local trust candidate evidence exists.
+      - No explicit operator promotion event has occurred unless the case states otherwise.
+    attack_or_fault: Treat provider-observed account/device/material as local trust.
+    expected_refusal_or_warning: System/report must classify provider observation as evidence only, not trust authority.
+    expected_nonclaim_preservation:
+      - Relay membership is not trust.
+      - MLS join is not trust.
+      - Provider observation is not trust.
+      - No verified identity claim.
+      - No automatic trust promotion.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-c-local-trust-candidate-model-dev
+    future_gate_links:
+      - Gate C local trust promotion candidate model
+      - Gate E Relay/onboarding/MLS-Cypher adversarial pass
+      - Gate H integrated native adversarial campaign
+
+  - case_id: ADV-TRUST-CHANGED-SIGNER-LOUD-WARNING-001
+    title: Changed signer must be loud
+    status: seed_contract_only_not_executed
+    surface: local-trust-candidate-model
+    case_family: trust-boundary-nonpromotion
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Local trust candidate evidence exists.
+      - No explicit operator promotion event has occurred unless the case states otherwise.
+    attack_or_fault: Replace signer fingerprint while preserving subject label and attempt to keep local trust silent.
+    expected_refusal_or_warning: System/report must produce changed-lineage warning and block promotion while unresolved.
+    expected_nonclaim_preservation:
+      - Relay membership is not trust.
+      - MLS join is not trust.
+      - Provider observation is not trust.
+      - No verified identity claim.
+      - No automatic trust promotion.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-c-local-trust-candidate-model-dev
+    future_gate_links:
+      - Gate C local trust promotion candidate model
+      - Gate E Relay/onboarding/MLS-Cypher adversarial pass
+      - Gate H integrated native adversarial campaign
+
+  - case_id: ADV-TRUST-CHANGED-DEVICE-LOUD-WARNING-001
+    title: Changed device must be loud
+    status: seed_contract_only_not_executed
+    surface: local-trust-candidate-model
+    case_family: trust-boundary-nonpromotion
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Local trust candidate evidence exists.
+      - No explicit operator promotion event has occurred unless the case states otherwise.
+    attack_or_fault: Replace Cypher device or OpenMLS device context while preserving subject label and attempt to keep trust silent.
+    expected_refusal_or_warning: System/report must produce changed-lineage warning and block promotion while unresolved.
+    expected_nonclaim_preservation:
+      - Relay membership is not trust.
+      - MLS join is not trust.
+      - Provider observation is not trust.
+      - No verified identity claim.
+      - No automatic trust promotion.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-c-local-trust-candidate-model-dev
+    future_gate_links:
+      - Gate C local trust promotion candidate model
+      - Gate E Relay/onboarding/MLS-Cypher adversarial pass
+      - Gate H integrated native adversarial campaign
+
+  - case_id: ADV-TRUST-AUTOPROMOTION-REFUSED-001
+    title: Autopromotion must be refused
+    status: seed_contract_only_not_executed
+    surface: local-trust-candidate-model
+    case_family: trust-boundary-nonpromotion
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Local trust candidate evidence exists.
+      - No explicit operator promotion event has occurred unless the case states otherwise.
+    attack_or_fault: Promote a candidate without explicit operator promotion event.
+    expected_refusal_or_warning: System/report must refuse promotion and preserve nonclaims.
+    expected_nonclaim_preservation:
+      - Relay membership is not trust.
+      - MLS join is not trust.
+      - Provider observation is not trust.
+      - No verified identity claim.
+      - No automatic trust promotion.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-c-local-trust-candidate-model-dev
+    future_gate_links:
+      - Gate C local trust promotion candidate model
+      - Gate E Relay/onboarding/MLS-Cypher adversarial pass
+      - Gate H integrated native adversarial campaign
+
