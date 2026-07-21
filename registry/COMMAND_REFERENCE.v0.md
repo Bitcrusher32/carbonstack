@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **141**
+Registry entry count: **142**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **47**
+Entries in this section: **48**
 
 ### `comms.dev-create-invite`
 
@@ -3507,6 +3507,51 @@ Entries in this section: **47**
   - not production E2EE
   - not external pen-test completion
   - not external audit
+
+### `runner.gate-b-adversarial-harness-dev`
+
+- **Command:** `go run . --profile gate-b-adversarial-harness-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.2-gate-b`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_b_adversarial_harness_dev.go`
+- **Validation surface:** gate-b-adversarial-harness-contract-case-registry-report-schema
+- **Front README candidate:** `false`
+
+**What it does:** Validate the Gate B adversarial harness seed contract, case registry schema, report schema, severity/disposition model, and the trust-boundary seed case.
+
+**Why it exists:** Provides durable adversarial case infrastructure before broad attack passes, without claiming comprehensive adversarial coverage or requiring component runtime mutation.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — umbrella root to inspect.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-a-v08x-reset-dev
+  - runner.gate-b-relay-lifecycle-closure-dev
+  - runner.gate-f-basic-local-trust-posture-dev
+  - comms.basic-local-trust-posture-dev
+- **Not claims:**
+  - not comprehensive adversarial coverage
+  - not hostile-server safety
+  - not malicious-relay safety
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not cryptographic identity binding
+  - not production security
+  - not production E2EE
+  - not external pen-test completion
+  - not external audit
+  - not public deployment readiness
+  - not container readiness
+  - not TUI readiness
+  - not Android or CarbonStackOS readiness
+  - not PQ or hybrid security
 
 ### `runner.gate-b-relay-lifecycle-closure-dev`
 

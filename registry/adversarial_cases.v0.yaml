@@ -1,0 +1,65 @@
+schema_version: carbonstack-adversarial-case-registry/v0
+registry_version: v0.8.2-gate-b-seed
+status: dev_pre_alpha_contract_seed
+scope: claim_bounded_adversarial_case_registry
+nonclaims:
+  - not comprehensive adversarial coverage
+  - not hostile-server safety
+  - not malicious-relay safety
+  - not external pen-test completion
+  - not external audit
+  - not production security
+  - not production E2EE
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not cryptographic identity binding
+severity_labels:
+  - release-blocker
+  - high
+  - medium
+  - informational
+  - accepted-risk
+finding_dispositions:
+  - passed
+  - failed
+  - not_executed
+  - seed_contract_only_not_executed
+  - fixed
+  - deferred
+  - nonclaim_preserved
+  - accepted_risk
+  - not_applicable
+case_id_policy:
+  style: stable_semantic_ids_with_numeric_suffix
+  pattern: "^ADV-[A-Z0-9]+(?:-[A-Z0-9]+)*-[0-9]{3}$"
+  note: "Case IDs are stable handles, not patch-version numbers."
+broad_ladder_policy:
+  narrow_gate_b_framework_seed: "do not use broad integration ladders unless the seed exposes an integration dependency"
+  full_carbonstack_integration_or_closure: "broad ladders are allowed when testing full CarbonStack integration or closure"
+cases:
+  - case_id: ADV-TRUST-RELAY-MEMBERSHIP-NOT-TRUST-001
+    title: Relay membership must not become local trust
+    status: seed_contract_only_not_executed
+    surface: local-trust-boundary
+    case_family: trust-boundary-nonpromotion
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Relay Space membership or server-side membership evidence exists.
+      - No explicit operator local trust promotion event exists.
+    attack_or_fault: Treat Relay membership as local trust or verified identity.
+    expected_refusal_or_warning: System/report must preserve candidate or untrusted state and warn/refuse any safety-sensitive trust-dependent action.
+    expected_nonclaim_preservation:
+      - Relay membership is not trust.
+      - MLS join is not trust.
+      - Provider observation is not trust.
+      - No verified identity claim.
+      - No automatic trust promotion.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-b-adversarial-harness-dev
+    future_gate_links:
+      - Gate C local trust promotion candidate model
+      - Gate E Relay/onboarding/MLS-Cypher adversarial pass
+      - Gate H integrated native adversarial campaign

@@ -329,3 +329,5 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [287-v0.7.25 Gate F F7 Closure](287-v0.7.25-gate-f-f7-closure-v0.md)
 - [288-v0.8.1 Gate A Post-v0.8.0 Reset Workflow Doctrine](288-v0.8.1-gate-a-post-v0.8.0-reset-workflow-doctrine-v0.md)
 - [289-v0.8.1 Gate A Closure](289-v0.8.1-gate-a-closure-v0.md)
+- [290-v0.8.2 Gate B Adversarial Harness Contract](290-v0.8.2-gate-b-adversarial-harness-contract-v0.md)
+- [291-v0.8.2 Gate B Seed Case Registry](291-v0.8.2-gate-b-seed-case-registry-v0.md)

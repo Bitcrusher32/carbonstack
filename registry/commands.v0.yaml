@@ -4203,3 +4203,43 @@ entries:
       - not external pen-test completion
       - not external audit
     include_in_front_readme: false
+
+  - id: runner.gate-b-adversarial-harness-dev
+    command: go run . --profile gate-b-adversarial-harness-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.2-gate-b
+    source_path: carbonstack/tools/carbonstack-validate/gate_b_adversarial_harness_dev.go
+    validation_surface: gate-b-adversarial-harness-contract-case-registry-report-schema
+    short_help: Validate the Gate B adversarial harness seed contract, case registry schema, report schema, severity/disposition model, and the trust-boundary seed case.
+    why_exists: Provides durable adversarial case infrastructure before broad attack passes, without claiming comprehensive adversarial coverage or requiring component runtime mutation.
+    related:
+      - runner.gate-a-v08x-reset-dev
+      - runner.gate-b-relay-lifecycle-closure-dev
+      - runner.gate-f-basic-local-trust-posture-dev
+      - comms.basic-local-trust-posture-dev
+    optional_flags:
+      - flag: --root
+        meaning: umbrella root to inspect.
+    nonclaims:
+      - not comprehensive adversarial coverage
+      - not hostile-server safety
+      - not malicious-relay safety
+      - not verified identity
+      - not full trust promotion
+      - not secure enrollment
+      - not cryptographic identity binding
+      - not production security
+      - not production E2EE
+      - not external pen-test completion
+      - not external audit
+      - not public deployment readiness
+      - not container readiness
+      - not TUI readiness
+      - not Android or CarbonStackOS readiness
+      - not PQ or hybrid security
+    include_in_front_readme: false
