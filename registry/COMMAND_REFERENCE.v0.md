@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **144**
+Registry entry count: **145**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **50**
+Entries in this section: **51**
 
 ### `comms.dev-create-invite`
 
@@ -3864,6 +3864,53 @@ Entries in this section: **50**
   - not Android
   - not CarbonStackOS implementation
   - not v0.8.0 release readiness
+
+### `runner.gate-e-relay-onboarding-adversarial-dev`
+
+- **Command:** `go run . --profile gate-e-relay-onboarding-adversarial-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.5-gate-e`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_e_relay_onboarding_adversarial_dev.go`
+- **Validation surface:** gate-e-relay-onboarding-adversarial-case-matrix-report-schema-nonclaims
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate E Relay/onboarding adversarial case classification, report schema, carry-forward boundaries, and nonclaim preservation.
+
+**Why it exists:** Classifies the Relay/onboarding/MLS-Cypher adversarial surface using Gate B case infrastructure, Gate C local trust boundaries, and Gate D state/recovery no-silent boundaries without claiming malicious-relay safety or production security.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — umbrella root to inspect.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-b-adversarial-harness-dev
+  - runner.gate-c-local-trust-candidate-model-dev
+  - runner.gate-d-state-recovery-vault-backup-model-dev
+  - runner.relay-openmls-join-dev
+  - runner.keypackage-publication-dev
+  - runner.keypackage-consume-dev
+  - runner.welcome-lifecycle-dev
+  - runner.cypher-mls-mismatch-dev
+  - runner.workflow-relay-onboarding-dev
+- **Not claims:**
+  - not malicious-relay safety
+  - not metadata privacy
+  - not verified identity
+  - not hostile-server proof
+  - not production security
+  - not production E2EE
+  - not external pen-test completion
+  - not external audit
+  - not public deployment readiness
+  - not container readiness
+  - not TUI readiness
+  - not Android or CarbonStackOS readiness
+  - not PQ or hybrid security
 
 ### `runner.gate-f-basic-local-trust-posture-dev`
 

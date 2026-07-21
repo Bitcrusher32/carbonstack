@@ -391,4 +391,411 @@ cases:
       - Gate D state recovery migration vault-backup model refresh
       - Gate H integrated native adversarial campaign
       - v0.9.x external adversarial methodology
+  - case_id: ADV-RELAY-KEYPACKAGE-STALE-001
+    title: stale KeyPackage
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify stale KeyPackage across the keypackage surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-KEYPACKAGE-REPLAYED-001
+    title: replayed KeyPackage
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify replayed KeyPackage across the keypackage surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-KEYPACKAGE-WRONG-RECIPIENT-001
+    title: wrong-recipient KeyPackage
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify wrong-recipient KeyPackage across the keypackage surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-KEYPACKAGE-MALFORMED-ENVELOPE-001
+    title: malformed KeyPackage envelope
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify malformed KeyPackage envelope across the keypackage surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-WELCOME-STALE-001
+    title: stale Welcome
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify stale Welcome across the welcome surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-WELCOME-REPLAYED-001
+    title: replayed Welcome
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify replayed Welcome across the welcome surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-WELCOME-DUPLICATE-001
+    title: duplicate Welcome
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify duplicate Welcome across the welcome surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-WELCOME-WRONG-GROUP-001
+    title: wrong-group Welcome
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify wrong-group Welcome across the welcome surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-WELCOME-WRONG-DEVICE-001
+    title: wrong-device Welcome
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify wrong-device Welcome across the welcome surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-CYPHER-MLS-MEMBERSHIP-MISMATCH-001
+    title: Cypher membership vs local MLS mismatch
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify Cypher membership vs local MLS mismatch across the membership_mismatch surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-MEMBER-DISABLED-BEHAVIOR-001
+    title: disabled member behavior
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify disabled member behavior across the membership_state surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-MEMBER-LEFT-BEHAVIOR-001
+    title: left member behavior
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify left member behavior across the membership_state surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-ACK-AFTER-FAILED-JOIN-001
+    title: ACK after failed join/open
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify ACK after failed join/open across the ack_failure surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-SELECTIVE-WITHHOLDING-DROP-DELAY-REORDER-001
+    title: selective withholding/drop/delay/reorder
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify selective withholding/drop/delay/reorder across the delivery_ordering surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-METADATA-LIES-001
+    title: Relay metadata lies
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify Relay metadata lies across the metadata surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-ROUTING-MEMBERSHIP-MUTATION-001
+    title: routing membership mutation
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify routing membership mutation across the routing_membership surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-RELAY-LOCAL-STATE-ROLLBACK-ONBOARDING-001
+    title: local state rollback interacting with onboarding
+    status: classified_from_existing_coverage
+    surface: relay-onboarding-mls-cypher
+    case_family: gate-e-relay-onboarding-adversarial
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    attack_or_fault: Classify local state rollback interacting with onboarding across the rollback_onboarding surface without converting onboarding artifacts into normal messages or Cypher into trust/identity authority.
+    expected_refusal_or_warning: Preserve explicit refusal/warning/classification behavior and nonclaims.
+    expected_nonclaim_preservation:
+      - Not malicious-relay safety.
+      - Not metadata privacy.
+      - Not verified identity.
+      - Not hostile-server proof.
+      - Not production security.
+      - Not production E2EE.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: not_applicable_for_classified_existing_coverage
+    regression_profile: runner.gate-e-relay-onboarding-adversarial-dev
+    future_gate_links:
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
 

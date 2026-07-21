@@ -4328,3 +4328,45 @@ entries:
       - not external audit
       - not external pen-test completion
     include_in_front_readme: false
+
+  - id: runner.gate-e-relay-onboarding-adversarial-dev
+    command: go run . --profile gate-e-relay-onboarding-adversarial-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.5-gate-e
+    source_path: carbonstack/tools/carbonstack-validate/gate_e_relay_onboarding_adversarial_dev.go
+    validation_surface: gate-e-relay-onboarding-adversarial-case-matrix-report-schema-nonclaims
+    short_help: Validate Gate E Relay/onboarding adversarial case classification, report schema, carry-forward boundaries, and nonclaim preservation.
+    why_exists: Classifies the Relay/onboarding/MLS-Cypher adversarial surface using Gate B case infrastructure, Gate C local trust boundaries, and Gate D state/recovery no-silent boundaries without claiming malicious-relay safety or production security.
+    related:
+      - runner.gate-b-adversarial-harness-dev
+      - runner.gate-c-local-trust-candidate-model-dev
+      - runner.gate-d-state-recovery-vault-backup-model-dev
+      - runner.relay-openmls-join-dev
+      - runner.keypackage-publication-dev
+      - runner.keypackage-consume-dev
+      - runner.welcome-lifecycle-dev
+      - runner.cypher-mls-mismatch-dev
+      - runner.workflow-relay-onboarding-dev
+    optional_flags:
+      - flag: --root
+        meaning: umbrella root to inspect.
+    nonclaims:
+      - not malicious-relay safety
+      - not metadata privacy
+      - not verified identity
+      - not hostile-server proof
+      - not production security
+      - not production E2EE
+      - not external pen-test completion
+      - not external audit
+      - not public deployment readiness
+      - not container readiness
+      - not TUI readiness
+      - not Android or CarbonStackOS readiness
+      - not PQ or hybrid security
+    include_in_front_readme: false
