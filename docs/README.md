@@ -327,3 +327,5 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [285-v0.7.25 Gate F F7 Release Candidate Closure Matrix](285-v0.7.25-gate-f-f7-release-candidate-closure-v0.md)
 - [286-v0.7.25 Gate F F7 Manual Release Handoff](286-v0.7.25-gate-f-f7-manual-release-handoff-v0.md)
 - [287-v0.7.25 Gate F F7 Closure](287-v0.7.25-gate-f-f7-closure-v0.md)
+- [288-v0.8.1 Gate A Post-v0.8.0 Reset Workflow Doctrine](288-v0.8.1-gate-a-post-v0.8.0-reset-workflow-doctrine-v0.md)
+- [289-v0.8.1 Gate A Closure](289-v0.8.1-gate-a-closure-v0.md)

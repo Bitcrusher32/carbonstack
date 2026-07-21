@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **140**
+Registry entry count: **141**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **46**
+Entries in this section: **47**
 
 ### `comms.dev-create-invite`
 
@@ -3457,6 +3457,56 @@ Entries in this section: **46**
   - not live-dev aggregation
   - not adversarial harness
   - not package publisher
+
+### `runner.gate-a-v08x-reset-dev`
+
+- **Command:** `go run . --profile gate-a-v08x-reset-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.1-gate-a`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_a_v08x_reset_dev.go`
+- **Validation surface:** gate-a-v08x-reset-workflow-doctrine-active-logdoc-reset
+- **Front README candidate:** `false`
+
+**What it does:** Validate the post-v0.8.0 reset, external v0.9.0 EVERGREEN planning authority acceptance, v0.8.0 PRIME archival continuity, v0.8.1 active LogDoc reset requirement, and Gate B block.
+
+**Why it exists:** Closes the v0.8.x Gate A reset layer without starting adversarial harness implementation, requiring the roadmap PDF to exist in WSL, or generating LogDoc/Breakpoint artifacts inside WSL.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — optional umbrella root override.
+  - `--compact-summary` — print compact evidence where supported.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-f-release-candidate-closure-dev
+  - runner.gate-f-basic-local-trust-posture-dev
+  - runner.gate-f-package-runtime-candidate-dev
+  - runner.full-operational-spine-dev
+  - comms.basic-local-trust-posture-dev
+- **Not claims:**
+  - not adversarial harness implementation
+  - not verified identity
+  - not full trust promotion
+  - not secure enrollment
+  - not cryptographic identity binding
+  - not vault or backup restore
+  - not migration or repair implementation
+  - not full-runtime-dev promotion
+  - not TUI
+  - not service or systemd
+  - not public ingress
+  - not container readiness
+  - not PQ or hybrid implementation
+  - not Android
+  - not CarbonStackOS implementation
+  - not production readiness
+  - not production E2EE
+  - not external pen-test completion
+  - not external audit
 
 ### `runner.gate-b-relay-lifecycle-closure-dev`
 

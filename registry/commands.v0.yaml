@@ -4157,3 +4157,49 @@ entries:
       - not Android
       - not CarbonStackOS implementation
     include_in_front_readme: false
+
+  - id: runner.gate-a-v08x-reset-dev
+    command: go run . --profile gate-a-v08x-reset-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.1-gate-a
+    source_path: carbonstack/tools/carbonstack-validate/gate_a_v08x_reset_dev.go
+    validation_surface: gate-a-v08x-reset-workflow-doctrine-active-logdoc-reset
+    short_help: Validate the post-v0.8.0 reset, external v0.9.0 EVERGREEN planning authority acceptance, v0.8.0 PRIME archival continuity, v0.8.1 active LogDoc reset requirement, and Gate B block.
+    why_exists: Closes the v0.8.x Gate A reset layer without starting adversarial harness implementation, requiring the roadmap PDF to exist in WSL, or generating LogDoc/Breakpoint artifacts inside WSL.
+    related:
+      - runner.gate-f-release-candidate-closure-dev
+      - runner.gate-f-basic-local-trust-posture-dev
+      - runner.gate-f-package-runtime-candidate-dev
+      - runner.full-operational-spine-dev
+      - comms.basic-local-trust-posture-dev
+    optional_flags:
+      - flag: --root
+        meaning: optional umbrella root override.
+      - flag: --compact-summary
+        meaning: print compact evidence where supported.
+    nonclaims:
+      - not adversarial harness implementation
+      - not verified identity
+      - not full trust promotion
+      - not secure enrollment
+      - not cryptographic identity binding
+      - not vault or backup restore
+      - not migration or repair implementation
+      - not full-runtime-dev promotion
+      - not TUI
+      - not service or systemd
+      - not public ingress
+      - not container readiness
+      - not PQ or hybrid implementation
+      - not Android
+      - not CarbonStackOS implementation
+      - not production readiness
+      - not production E2EE
+      - not external pen-test completion
+      - not external audit
+    include_in_front_readme: false

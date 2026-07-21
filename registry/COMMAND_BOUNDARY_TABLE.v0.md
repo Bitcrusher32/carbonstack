@@ -14,7 +14,8 @@ Flag coverage is hybrid and intentionally partial: this table renders `required_
 
 ## Summary
 
-- Registry entries rendered: 76
+- Historical boundary-table rendered entries: 76 (v0.7.1-era partial table; retained for continuity, not current registry count)
+- Current generated registry reference: registry/COMMAND_REFERENCE.v0.md
 - Front README candidates: 8
 - Release-supported entries: 4
 - Legacy entries: 10
