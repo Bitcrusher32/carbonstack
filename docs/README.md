@@ -333,3 +333,5 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [291-v0.8.2 Gate B Seed Case Registry](291-v0.8.2-gate-b-seed-case-registry-v0.md)
 - [292-v0.8.3 Gate C Local Trust Candidate Contract](292-v0.8.3-gate-c-local-trust-candidate-contract-v0.md)
 - [293-v0.8.3 Gate C Local Trust Candidate Model](293-v0.8.3-gate-c-local-trust-candidate-model-v0.md)
+- [294-v0.8.4 Gate D State Recovery Vault-Backup Contract](294-v0.8.4-gate-d-state-recovery-vault-backup-contract-v0.md)
+- [295-v0.8.4 Gate D State Recovery Vault-Backup Model](295-v0.8.4-gate-d-state-recovery-vault-backup-model-v0.md)

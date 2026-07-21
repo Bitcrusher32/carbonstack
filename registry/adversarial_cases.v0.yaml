@@ -218,4 +218,177 @@ cases:
       - Gate C local trust promotion candidate model
       - Gate E Relay/onboarding/MLS-Cypher adversarial pass
       - Gate H integrated native adversarial campaign
+  - case_id: ADV-STATE-RESTORE-MUST-NOT-IMPORT-TRUST-001
+    title: Restore classification must not import trust
+    status: seed_contract_only_not_executed
+    surface: state-recovery-vault-backup-model
+    case_family: state-recovery-no-silent-boundary
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Gate D state/recovery/vault-backup model exists.
+      - Candidate state or local state is being classified for recovery or backup behavior.
+    attack_or_fault: Treat restore classification as permission to import local trust candidate state.
+    expected_refusal_or_warning: Report must classify trust candidate state as referenced inventory only and refuse silent trust import.
+    expected_nonclaim_preservation:
+      - Not production vault.
+      - Not encryption-at-rest.
+      - Not secure key storage.
+      - Not production backup/restore.
+      - Not migration safety.
+      - Not secret-bearing backup restore.
+      - Not silent repair.
+      - Not silent trust import.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-d-state-recovery-vault-backup-model-dev
+    future_gate_links:
+      - Gate D state recovery migration vault-backup model refresh
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-STATE-MIGRATION-DRY-RUN-NOT-REPAIR-001
+    title: Migration dry-run must not repair
+    status: seed_contract_only_not_executed
+    surface: state-recovery-vault-backup-model
+    case_family: state-recovery-no-silent-boundary
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Gate D state/recovery/vault-backup model exists.
+      - Candidate state or local state is being classified for recovery or backup behavior.
+    attack_or_fault: Treat migration compatibility dry-run as permission to mutate, repair, or relocate state.
+    expected_refusal_or_warning: Report must classify/refuse only and preserve no repair/no migration claims.
+    expected_nonclaim_preservation:
+      - Not production vault.
+      - Not encryption-at-rest.
+      - Not secure key storage.
+      - Not production backup/restore.
+      - Not migration safety.
+      - Not secret-bearing backup restore.
+      - Not silent repair.
+      - Not silent trust import.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-d-state-recovery-vault-backup-model-dev
+    future_gate_links:
+      - Gate D state recovery migration vault-backup model refresh
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-STATE-ROLLBACK-MUST-WARN-NOT-SILENT-001
+    title: Rollback metadata must warn, not silently heal
+    status: seed_contract_only_not_executed
+    surface: state-recovery-vault-backup-model
+    case_family: state-recovery-no-silent-boundary
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Gate D state/recovery/vault-backup model exists.
+      - Candidate state or local state is being classified for recovery or backup behavior.
+    attack_or_fault: Treat rollback metadata inspection as permission to silently regenerate signer/provider/group state.
+    expected_refusal_or_warning: Report must warn/refuse and preserve no-silent regeneration claims.
+    expected_nonclaim_preservation:
+      - Not production vault.
+      - Not encryption-at-rest.
+      - Not secure key storage.
+      - Not production backup/restore.
+      - Not migration safety.
+      - Not secret-bearing backup restore.
+      - Not silent repair.
+      - Not silent trust import.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-d-state-recovery-vault-backup-model-dev
+    future_gate_links:
+      - Gate D state recovery migration vault-backup model refresh
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-STATE-BACKUP-MANIFEST-NOT-SECRET-BACKUP-001
+    title: Backup manifest is not secret backup
+    status: seed_contract_only_not_executed
+    surface: state-recovery-vault-backup-model
+    case_family: state-recovery-no-silent-boundary
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Gate D state/recovery/vault-backup model exists.
+      - Candidate state or local state is being classified for recovery or backup behavior.
+    attack_or_fault: Treat backup manifest classification as a working secret-bearing backup pipeline.
+    expected_refusal_or_warning: Report must preserve secret-bearing backup restore as blocked or future-vault-required.
+    expected_nonclaim_preservation:
+      - Not production vault.
+      - Not encryption-at-rest.
+      - Not secure key storage.
+      - Not production backup/restore.
+      - Not migration safety.
+      - Not secret-bearing backup restore.
+      - Not silent repair.
+      - Not silent trust import.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-d-state-recovery-vault-backup-model-dev
+    future_gate_links:
+      - Gate D state recovery migration vault-backup model refresh
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-STATE-VAULT-LANGUAGE-NOT-ENCRYPTED-STORAGE-001
+    title: Vault language must not imply encrypted storage
+    status: seed_contract_only_not_executed
+    surface: state-recovery-vault-backup-model
+    case_family: state-recovery-no-silent-boundary
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Gate D state/recovery/vault-backup model exists.
+      - Candidate state or local state is being classified for recovery or backup behavior.
+    attack_or_fault: Treat vault wording in docs/registry/profile output as an encryption-at-rest or secure key storage claim.
+    expected_refusal_or_warning: Report must preserve production vault and encryption-at-rest as false.
+    expected_nonclaim_preservation:
+      - Not production vault.
+      - Not encryption-at-rest.
+      - Not secure key storage.
+      - Not production backup/restore.
+      - Not migration safety.
+      - Not secret-bearing backup restore.
+      - Not silent repair.
+      - Not silent trust import.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-d-state-recovery-vault-backup-model-dev
+    future_gate_links:
+      - Gate D state recovery migration vault-backup model refresh
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
+
+  - case_id: ADV-STATE-DESTRUCTIVE-CLEANUP-REQUIRES-CONTRACT-001
+    title: Destructive cleanup requires explicit contract
+    status: seed_contract_only_not_executed
+    surface: state-recovery-vault-backup-model
+    case_family: state-recovery-no-silent-boundary
+    severity: high
+    finding_disposition: seed_contract_only_not_executed
+    preconditions:
+      - Gate D state/recovery/vault-backup model exists.
+      - Candidate state or local state is being classified for recovery or backup behavior.
+    attack_or_fault: Treat state inventory/classification as permission to delete live or unknown operator state.
+    expected_refusal_or_warning: Report must refuse destructive cleanup unless a future explicit contract owns the target.
+    expected_nonclaim_preservation:
+      - Not production vault.
+      - Not encryption-at-rest.
+      - Not secure key storage.
+      - Not production backup/restore.
+      - Not migration safety.
+      - Not secret-bearing backup restore.
+      - Not silent repair.
+      - Not silent trust import.
+    evidence_paths: []
+    fix_required: not_applicable_until_case_executed
+    regression_profile: runner.gate-d-state-recovery-vault-backup-model-dev
+    future_gate_links:
+      - Gate D state recovery migration vault-backup model refresh
+      - Gate H integrated native adversarial campaign
+      - v0.9.x external adversarial methodology
 

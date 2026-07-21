@@ -135,6 +135,8 @@ func main() {
 		runErr = r.WorkflowRelayOnboardingDev()
 	case "gate-a-v08x-reset-dev":
 		runErr = r.GateAV08xResetDev()
+	case "gate-d-state-recovery-vault-backup-model-dev":
+		runErr = r.GateDStateRecoveryVaultBackupModelDev()
 	case "gate-c-local-trust-candidate-model-dev":
 		runErr = r.GateCLocalTrustCandidateModelDev()
 	case "gate-b-adversarial-harness-dev":

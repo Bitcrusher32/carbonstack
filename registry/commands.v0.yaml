@@ -4281,3 +4281,50 @@ entries:
       - not external audit
       - not external pen-test completion
     include_in_front_readme: false
+
+  - id: runner.gate-d-state-recovery-vault-backup-model-dev
+    command: go run . --profile gate-d-state-recovery-vault-backup-model-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.4-gate-d
+    source_path: carbonstack/tools/carbonstack-validate/gate_d_state_recovery_vault_backup_model_dev.go
+    validation_surface: gate-d-state-recovery-vault-backup-model-report-schema-nonclaims
+    short_help: Validate Gate D state/recovery/vault-backup model refresh, non-secret dry-run classification, no-silent boundaries, and adversarial seed-case carry-forward.
+    why_exists: Reconciles current state/recovery/vault-backup lineage with current code while avoiding secure-vault, secret-restore, migration-safety, and silent-repair claims.
+    related:
+      - runner.gate-c-local-trust-candidate-model-dev
+      - runner.state-substrate-inventory-dev
+      - runner.state-schema-compat-dev
+      - runner.state-path-policy-dev
+      - runner.state-write-policy-dev
+      - comms.state-substrate-inventory-dev
+      - comms.state-schema-compat-dev
+      - comms.state-path-policy-dev
+      - comms.state-write-policy-dev
+    optional_flags:
+      - flag: --root
+        meaning: umbrella root to inspect.
+    nonclaims:
+      - not production vault
+      - not encryption-at-rest
+      - not secure key storage
+      - not production backup/restore
+      - not migration safety
+      - not secret-bearing backup restore
+      - not hardware-backed storage
+      - not automatic migration
+      - not silent repair
+      - not silent signer provider or group regeneration
+      - not silent trust import
+      - not destructive cleanup
+      - not verified identity
+      - not trust promotion
+      - not production security
+      - not production E2EE
+      - not external audit
+      - not external pen-test completion
+    include_in_front_readme: false

@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **143**
+Registry entry count: **144**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **49**
+Entries in this section: **50**
 
 ### `comms.dev-create-invite`
 
@@ -3721,6 +3721,58 @@ Entries in this section: **49**
   - not CarbonStackOS implementation
   - not PQ or hybrid migration
   - not v0.8.0 release readiness
+
+### `runner.gate-d-state-recovery-vault-backup-model-dev`
+
+- **Command:** `go run . --profile gate-d-state-recovery-vault-backup-model-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.4-gate-d`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_d_state_recovery_vault_backup_model_dev.go`
+- **Validation surface:** gate-d-state-recovery-vault-backup-model-report-schema-nonclaims
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate D state/recovery/vault-backup model refresh, non-secret dry-run classification, no-silent boundaries, and adversarial seed-case carry-forward.
+
+**Why it exists:** Reconciles current state/recovery/vault-backup lineage with current code while avoiding secure-vault, secret-restore, migration-safety, and silent-repair claims.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — umbrella root to inspect.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-c-local-trust-candidate-model-dev
+  - runner.state-substrate-inventory-dev
+  - runner.state-schema-compat-dev
+  - runner.state-path-policy-dev
+  - runner.state-write-policy-dev
+  - comms.state-substrate-inventory-dev
+  - comms.state-schema-compat-dev
+  - comms.state-path-policy-dev
+  - comms.state-write-policy-dev
+- **Not claims:**
+  - not production vault
+  - not encryption-at-rest
+  - not secure key storage
+  - not production backup/restore
+  - not migration safety
+  - not secret-bearing backup restore
+  - not hardware-backed storage
+  - not automatic migration
+  - not silent repair
+  - not silent signer provider or group regeneration
+  - not silent trust import
+  - not destructive cleanup
+  - not verified identity
+  - not trust promotion
+  - not production security
+  - not production E2EE
+  - not external audit
+  - not external pen-test completion
 
 ### `runner.gate-e-native-deployment-closure-dev`
 
