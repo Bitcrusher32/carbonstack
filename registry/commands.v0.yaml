@@ -4370,3 +4370,51 @@ entries:
       - not Android or CarbonStackOS readiness
       - not PQ or hybrid security
     include_in_front_readme: false
+
+  - id: runner.gate-f-native-process-f1-contract-dev
+    command: go run . --profile gate-f-native-process-f1-contract-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.6-gate-f-f1
+    source_path: carbonstack/tools/carbonstack-validate/gate_f_native_process_f1_contract_dev.go
+    validation_surface: gate-f-native-process-f1-contract-case-matrix-service-helper-threat-model-subgate-plan
+    short_help: Validate Gate F F1 native deployment/process adversarial contract, subgate split, case matrix, service/systemd/helper threat model, and nonclaim preservation.
+    why_exists: Freezes Gate F as a staged native/manual-private process hardening lane: F1 carbonstack-only contract/model, F2 component runtime/process probes in Comms/Cypher if justified, and F3/F4 full local plus real Debian host validation without service/container/public-ingress promotion drift.
+    related:
+      - runner.gate-e-relay-onboarding-adversarial-dev
+      - runner.gate-f-code-health-source-hygiene-dev
+      - runner.gate-f-package-runtime-candidate-dev
+      - runner.gate-f-release-candidate-closure-dev
+      - cypher.config-inspection
+    optional_flags:
+      - flag: --root
+        meaning: umbrella root to inspect.
+    nonclaims:
+      - not service readiness
+      - not systemd readiness
+      - not helper install readiness
+      - not public ingress
+      - not container readiness
+      - not deployment hardening certification
+      - not production security
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not secure enrollment
+      - not vault security
+      - not backup restore
+      - not migration safety
+      - not repair implementation
+      - not destructive cleanup safety
+      - not TUI readiness
+      - not Android readiness
+      - not CarbonStackOS implementation
+      - not PQ or hybrid security
+      - not external audit
+      - not external pen-test completion
+    include_in_front_readme: false
+

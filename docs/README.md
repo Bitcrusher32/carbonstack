@@ -337,3 +337,7 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [295-v0.8.4 Gate D State Recovery Vault-Backup Model](295-v0.8.4-gate-d-state-recovery-vault-backup-model-v0.md)
 - [296-v0.8.5 Gate E Relay Onboarding Adversarial Contract](296-v0.8.5-gate-e-relay-onboarding-adversarial-contract-v0.md)
 - [297-v0.8.5 Gate E Relay Onboarding Case Matrix](297-v0.8.5-gate-e-relay-onboarding-case-matrix-v0.md)
+- [298-v0.8.6 Gate F Native Deployment Process Contract](298-v0.8.6-gate-f-native-deployment-process-contract-v0.md)
+- [299-v0.8.6 Gate F Service systemd Helper Threat Model](299-v0.8.6-gate-f-service-systemd-helper-threat-model-v0.md)
+- [300-v0.8.6 Gate F Native Process Case Matrix](300-v0.8.6-gate-f-native-process-case-matrix-v0.md)
+- [301-v0.8.6 Gate F Subgate Plan](301-v0.8.6-gate-f-subgate-plan-v0.md)

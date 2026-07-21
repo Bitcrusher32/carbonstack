@@ -798,4 +798,693 @@ cases:
     future_gate_links:
       - Gate H integrated native adversarial campaign
       - v0.9.x external adversarial methodology
+  - case_id: ADV-NATIVE-CYPHER-CONFIG-ENV-MISUSE-001
+    title: Cypher config/env misuse
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component runtime/process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify Cypher config/env misuse without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-DB-PATH-CONFUSION-001
+    title: DB path confusion
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component runtime/process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify DB path confusion without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-MIGRATION-PATH-CONFUSION-001
+    title: migration path confusion
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component runtime/process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify migration path confusion without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-STATE-ROOT-CONFUSION-001
+    title: state root confusion
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component runtime/process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify state root confusion without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-PACKAGE-VS-RUNTIME-ROOT-CONFUSION-001
+    title: package root vs runtime root confusion
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F1 contract/model; F2 probes if needed
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify package root vs runtime root confusion without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-RESTART-SHUTDOWN-BEHAVIOR-001
+    title: restart/shutdown behavior
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify restart/shutdown behavior without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-STALE-PROCESS-001
+    title: stale process behavior
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify stale process behavior without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-LOG-LEAKAGE-001
+    title: log leakage
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component probes; F3/F4 real-host verification
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify log leakage without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-FILE-PERMISSIONS-001
+    title: file permissions
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component probes; F3/F4 real-host verification
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify file permissions without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-GENERATED-ARTIFACTS-001
+    title: generated artifacts
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify generated artifacts without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-PORT-CONFIG-COLLISION-001
+    title: port/config collision
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify port/config collision without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-LOCAL-CLEANUP-HAZARDS-001
+    title: local cleanup hazards
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify local cleanup hazards without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-FOREGROUND-PROCESS-FAILURE-PARTIAL-STATE-001
+    title: foreground process failure and partial state
+    status: surface_present_multi_repo_ready_for_contract
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 process probes
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify foreground process failure and partial state without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-DEBIAN-HOST-EXPORT-SLOW-DISK-001
+    title: real Debian host export / slow disk validation hazard
+    status: operator_environment_required_contract_case
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F3/F4 real Debian host validation
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify real Debian host export / slow disk validation hazard without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
+
+  - case_id: ADV-NATIVE-CLI-TERMINATING-INSPECTION-001
+    title: CLI terminating inspection consistency
+    status: preflight_observed_contract_case
+    surface: native-deployment-process
+    case_family: gate-f-native-deployment-process-adversarial
+    subgate_lane: F2 component CLI behavior; F3/F4 real-host verification
+    severity: informational
+    finding_disposition: nonclaim_preserved
+    preconditions:
+      - v0.8.x Gate A/B/C/D/E are closed.
+      - Gate F F1 contract/model exists before component mutation.
+      - Real Debian host is the final target, but WSL local validation must pass first.
+      - Process and DB probes use disposable run roots.
+    attack_or_fault: Classify CLI terminating inspection consistency without claiming service/systemd/helper readiness, public ingress, container readiness, deployment certification, or production security.
+    expected_refusal_or_warning: Refuse, classify, or warn without hidden repair, destructive cleanup, repo-root artifact creation, or promotion drift.
+    expected_nonclaim_preservation:
+      - Not service readiness.
+      - Not systemd readiness.
+      - Not helper install readiness.
+      - Not public ingress.
+      - Not container readiness.
+      - Not deployment hardening certification.
+      - Not production security.
+      - Not production E2EE.
+      - Not verified identity.
+      - Not trust promotion.
+      - Not secure enrollment.
+      - Not vault security.
+      - Not backup restore.
+      - Not migration safety.
+      - Not repair implementation.
+      - Not destructive cleanup safety.
+      - Not TUI readiness.
+      - Not Android readiness.
+      - Not CarbonStackOS implementation.
+      - Not PQ/hybrid security.
+      - Not external audit.
+      - Not external pen-test completion.
+    evidence_paths: []
+    fix_required: f1_contract_only_until_component_probe_or_real_host_evidence
+    regression_profile: runner.gate-f-native-process-f1-contract-dev
+    future_gate_links:
+      - Gate F F2 component runtime/process probes
+      - Gate F F3/F4 real Debian host validation
+      - Gate G operator lifecycle engine decision
 

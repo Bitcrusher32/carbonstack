@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **145**
+Registry entry count: **146**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **51**
+Entries in this section: **52**
 
 ### `comms.dev-create-invite`
 
@@ -4083,6 +4083,58 @@ Entries in this section: **51**
   - not PQ or hybrid migration
   - not Android
   - not CarbonStackOS implementation
+
+### `runner.gate-f-native-process-f1-contract-dev`
+
+- **Command:** `go run . --profile gate-f-native-process-f1-contract-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.6-gate-f-f1`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_f_native_process_f1_contract_dev.go`
+- **Validation surface:** gate-f-native-process-f1-contract-case-matrix-service-helper-threat-model-subgate-plan
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate F F1 native deployment/process adversarial contract, subgate split, case matrix, service/systemd/helper threat model, and nonclaim preservation.
+
+**Why it exists:** Freezes Gate F as a staged native/manual-private process hardening lane: F1 carbonstack-only contract/model, F2 component runtime/process probes in Comms/Cypher if justified, and F3/F4 full local plus real Debian host validation without service/container/public-ingress promotion drift.
+
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — umbrella root to inspect.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-e-relay-onboarding-adversarial-dev
+  - runner.gate-f-code-health-source-hygiene-dev
+  - runner.gate-f-package-runtime-candidate-dev
+  - runner.gate-f-release-candidate-closure-dev
+  - cypher.config-inspection
+- **Not claims:**
+  - not service readiness
+  - not systemd readiness
+  - not helper install readiness
+  - not public ingress
+  - not container readiness
+  - not deployment hardening certification
+  - not production security
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not secure enrollment
+  - not vault security
+  - not backup restore
+  - not migration safety
+  - not repair implementation
+  - not destructive cleanup safety
+  - not TUI readiness
+  - not Android readiness
+  - not CarbonStackOS implementation
+  - not PQ or hybrid security
+  - not external audit
+  - not external pen-test completion
 
 ### `runner.gate-f-operator-docs-runbook-dev`
 
