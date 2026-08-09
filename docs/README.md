@@ -348,3 +348,8 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 
 - `304-v0.8.8-gate-g-operator-lifecycle-contract-v0.md` - Gate G3 operator lifecycle contract after G2 placement freeze.
 - `305-v0.8.8-gate-g-operator-lifecycle-report-model-v0.md` - Gate G3 operator lifecycle report model and safe-summary output contract.
+
+### v0.8.10 Gate G4 local/private service/systemd/helper contract
+
+- `306-v0.8.10-gate-g-g4-service-systemd-helper-contract-v0.md` - Gate G4a contract for local/private service/systemd/helper posture.
+- `307-v0.8.10-gate-g-g4-service-systemd-helper-report-model-v0.md` - Gate G4a report model, safe-summary output, root policy, and nonclaim contract.

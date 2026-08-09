@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **148**
+Registry entry count: **149**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **54**
+Entries in this section: **55**
 
 ### `comms.dev-create-invite`
 
@@ -4410,6 +4410,54 @@ Entries in this section: **54**
   - not PQ or hybrid migration
   - not Android
   - not CarbonStackOS implementation
+
+### `runner.gate-g4-service-systemd-helper-contract-dev`
+
+- **Command:** `go run . --profile gate-g4-service-systemd-helper-contract-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.10-gate-g-g4a`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_g4_service_systemd_helper_contract_dev.go`
+- **Validation surface:** gate-g4-service-systemd-helper-contract-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate G4a local/private service/systemd/helper contract, no-install boundary, root policy, safe-summary output, and G5/container deferrals.
+
+**Why it exists:** Freezes the Gate G4 local/private lifecycle-management contract before any helper, service, systemd, or public-ingress implementation.
+
+- **Boundary note:** registry presence is classification; G4a is contract-only local/private lifecycle evidence, not service installation, public deployment, public ingress, or container readiness
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root`
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.operator-lifecycle-dev
+  - runner.gate-f-native-process-f2-component-probes-dev
+  - runner.gate-e-relay-onboarding-adversarial-dev
+- **Not claims:**
+  - not service readiness
+  - not systemd readiness
+  - not helper install readiness
+  - not public-ingress safety
+  - not public deployment readiness
+  - not container readiness
+  - not deployment hardening certification
+  - not production security
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not secure enrollment
+  - not malicious-relay safety
+  - not metadata privacy
+  - not external audit
+  - not external pen-test completion
+  - not PQ or hybrid support
+  - not full-runtime-dev promotion
+  - not zero-leakage public logging posture
 
 ### `runner.keypackage-consume-dev`
 

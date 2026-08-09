@@ -4497,3 +4497,44 @@ entries:
       - not external pen-test completion
       - not PQ or hybrid support
     include_in_front_readme: false
+  - id: runner.gate-g4-service-systemd-helper-contract-dev
+    boundary: registry presence is classification; G4a is contract-only local/private lifecycle evidence, not service installation, public deployment, public ingress, or container readiness
+    command: go run . --profile gate-g4-service-systemd-helper-contract-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.10-gate-g-g4a
+    source_path: carbonstack/tools/carbonstack-validate/gate_g4_service_systemd_helper_contract_dev.go
+    validation_surface: gate-g4-service-systemd-helper-contract-dev-profile
+    short_help: Validate Gate G4a local/private service/systemd/helper contract, no-install boundary, root policy, safe-summary output, and G5/container deferrals.
+    why_exists: Freezes the Gate G4 local/private lifecycle-management contract before any helper, service, systemd, or public-ingress implementation.
+    related:
+      - runner.operator-lifecycle-dev
+      - runner.gate-f-native-process-f2-component-probes-dev
+      - runner.gate-e-relay-onboarding-adversarial-dev
+    optional_flags:
+      - flag: --root
+    nonclaims:
+      - not service readiness
+      - not systemd readiness
+      - not helper install readiness
+      - not public-ingress safety
+      - not public deployment readiness
+      - not container readiness
+      - not deployment hardening certification
+      - not production security
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not secure enrollment
+      - not malicious-relay safety
+      - not metadata privacy
+      - not external audit
+      - not external pen-test completion
+      - not PQ or hybrid support
+      - not full-runtime-dev promotion
+      - not zero-leakage public logging posture
+    include_in_front_readme: false
