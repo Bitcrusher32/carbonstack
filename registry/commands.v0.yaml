@@ -4459,4 +4459,41 @@ entries:
       - not external audit
       - not external pen-test completion
     include_in_front_readme: false
-
+  - id: runner.operator-lifecycle-dev
+    boundary: registry presence is classification; profile output is safe-summary dev evidence, not public UX stability or deployment readiness
+    command: go run . --profile operator-lifecycle-dev
+    repo: carbonstack
+    component: tools/carbonstack-validate
+    kind: runner-profile
+    audience: dev
+    maturity: dev_only
+    lifecycle_status: active
+    introduced_in: v0.8.8-gate-g-g3
+    source_path: carbonstack/tools/carbonstack-validate/gate_g_operator_lifecycle_dev.go
+    validation_surface: operator-lifecycle-dev-profile
+    short_help: Validate Gate G3 operator lifecycle contract, safe-summary output, full-runtime reservation, and conditional G4/G5 placement.
+    why_exists: Provides the preferred Gate G operator lifecycle aggregate surface after G2 freeze while preserving service, public-ingress, container, release, production, and full-runtime nonclaims.
+    related:
+      - runner.gate-f-native-process-f1-contract-dev
+      - runner.gate-e-relay-onboarding-adversarial-dev
+    optional_flags:
+      - flag: --root
+        meaning: umbrella root to inspect.
+    nonclaims:
+      - not full-runtime-dev promotion
+      - not service readiness
+      - not systemd readiness
+      - not helper install readiness
+      - not public-ingress safety
+      - not public deployment readiness
+      - not container readiness
+      - not production security
+      - not production E2EE
+      - not verified identity
+      - not trust promotion
+      - not malicious-relay safety
+      - not metadata privacy
+      - not external audit
+      - not external pen-test completion
+      - not PQ or hybrid support
+    include_in_front_readme: false

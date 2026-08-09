@@ -15,7 +15,7 @@ Boundary:
 - `full`, `release-snapshot`, and `integrated-runtime-dev` are distinct and must not be merged.
 - Internal sidecar commands, Cypher API surfaces, and legacy scripts are documented for boundary clarity, not promoted as user-facing commands.
 
-Registry entry count: **147**
+Registry entry count: **148**
 
 ## Release/package validation and package-helper profiles
 
@@ -2975,7 +2975,7 @@ Entries in this section: **2**
 
 ## Other registered surfaces
 
-Entries in this section: **53**
+Entries in this section: **54**
 
 ### `comms.dev-create-invite`
 
@@ -4574,6 +4574,50 @@ Entries in this section: **53**
   - not public ingress safety
   - not mature messenger UX
   - not audit or certification
+
+### `runner.operator-lifecycle-dev`
+
+- **Command:** `go run . --profile operator-lifecycle-dev`
+- **Repo:** `carbonstack`
+- **Component:** `tools/carbonstack-validate`
+- **Kind:** `runner-profile`
+- **Audience:** `dev`
+- **Maturity:** `dev_only`
+- **Lifecycle status:** `active`
+- **Introduced in:** `v0.8.8-gate-g-g3`
+- **Source path:** `carbonstack/tools/carbonstack-validate/gate_g_operator_lifecycle_dev.go`
+- **Validation surface:** operator-lifecycle-dev-profile
+- **Front README candidate:** `false`
+
+**What it does:** Validate Gate G3 operator lifecycle contract, safe-summary output, full-runtime reservation, and conditional G4/G5 placement.
+
+**Why it exists:** Provides the preferred Gate G operator lifecycle aggregate surface after G2 freeze while preserving service, public-ingress, container, release, production, and full-runtime nonclaims.
+
+- **Boundary note:** registry presence is classification; profile output is safe-summary dev evidence, not public UX stability or deployment readiness
+- **Required flags:** Not recorded in registry.
+- **Optional flags:**
+  - `--root` — umbrella root to inspect.
+- **Environment:** Not recorded in registry.
+- **Related registry rows:**
+  - runner.gate-f-native-process-f1-contract-dev
+  - runner.gate-e-relay-onboarding-adversarial-dev
+- **Not claims:**
+  - not full-runtime-dev promotion
+  - not service readiness
+  - not systemd readiness
+  - not helper install readiness
+  - not public-ingress safety
+  - not public deployment readiness
+  - not container readiness
+  - not production security
+  - not production E2EE
+  - not verified identity
+  - not trust promotion
+  - not malicious-relay safety
+  - not metadata privacy
+  - not external audit
+  - not external pen-test completion
+  - not PQ or hybrid support
 
 ### `runner.relay-space-delivery-authority-dev`
 

@@ -193,8 +193,10 @@ func main() {
 		runErr = r.GateFNativeProcessF1ContractDev()
 	case "gate-f-native-process-f2-component-probes-dev":
 		runErr = r.GateFNativeProcessF2ComponentProbesDev()
+	case "operator-lifecycle-dev":
+		runErr = r.GateGOperatorLifecycleDev()
 	default:
-		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, keypackage-rotation-dev, keypackage-publication-dev, keypackage-consume-dev, welcome-lifecycle-dev, full, full-validate-release, release-snapshot, write-checksums, welcome-lifecycle-dev, or verify-checksums", r.Profile)
+		runErr = fmt.Errorf("unknown profile %q; expected doctor, core, local-cypher, dev-runtime-openmls, dev-runtime-openmls-wrappers, integrated-runtime-dev, same-state-integrated-dev, same-state-message-failure-dev, same-state-message-unsupported-dev, same-state-message-malformed-payload-dev, same-state-message-replay-classification-dev, same-state-message-recipient-failure-dev, same-state-welcome-join-failure-dev, registry-lookup, relay-openmls-join-dev, relay-space-invite-claim-dev, relay-space-member-state-dev, relay-space-member-restart-dev, relay-space-delivery-authority-dev, keypackage-inspect-dev, keypackage-rotation-dev, keypackage-publication-dev, keypackage-consume-dev, welcome-lifecycle-dev, full, full-validate-release, release-snapshot, write-checksums, welcome-lifecycle-dev, operator-lifecycle-dev, or verify-checksums", r.Profile)
 	}
 
 	if runErr != nil {

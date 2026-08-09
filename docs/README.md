@@ -343,3 +343,8 @@ B5c does not consume or ACK KeyPackages, run add-member, submit or join Welcome,
 - [301-v0.8.6 Gate F Subgate Plan](301-v0.8.6-gate-f-subgate-plan-v0.md)
 - [302-v0.8.6 Gate F F2 Component Runtime Process Probes Contract](302-v0.8.6-gate-f-f2-component-runtime-process-probes-contract-v0.md)
 - [303-v0.8.6 Gate F F2 Component Probe Report Model](303-v0.8.6-gate-f-f2-component-probe-report-model-v0.md)
+
+### v0.8.8 Gate G operator lifecycle
+
+- `304-v0.8.8-gate-g-operator-lifecycle-contract-v0.md` - Gate G3 operator lifecycle contract after G2 placement freeze.
+- `305-v0.8.8-gate-g-operator-lifecycle-report-model-v0.md` - Gate G3 operator lifecycle report model and safe-summary output contract.
